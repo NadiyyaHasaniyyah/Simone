@@ -344,7 +344,7 @@
                                                                             <th>Semester</th>
                                                                             <th>Jumlah SKS</th>
                                                                             <th>File IRS</th>
-                                                                            <th>Action</th>
+                                                                            <th>Verifikasi</th>
                                                                         </tr>
                                                                     </thead>
                                                                     @foreach ($irs as $item)
@@ -360,10 +360,12 @@
                                                                                 </a>
                                                                                     <span class="overlay"></span>
                                                                             </td>
-                                                                            {{-- <td> <button type="button"
-                                                                                    class="btn btn-inverse-danger btn-icon ">
-                                                                                    <i class="ti-trash"></i>
-                                                                            </td> --}}
+                                                                            <!-- pesan -->
+<!--                                                                        <!-- nanti buat kondisi ketika doswal udah klik verifikasi baru bagian td button sucsess ini muncul. Karna ada verifikasi IRS oleh dosen -->
+                                                                            <td> <button type="button"
+                                                                                    class="btn btn-success btn-rounded btn-ico ">
+                                                                                    <i class="ti-check"></i></td>
+                                                                                
                                                                         </tr>
                                                                     @endforeach
                                                                 </table>
