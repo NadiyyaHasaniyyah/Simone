@@ -115,7 +115,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            {{ $attribute->nama }} <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            {{ $attribute->nama }}<i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -178,9 +178,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="khs">
+                        <a class="nav-link" href="pkl">
                             <i class="fa fa-file-text-o menu-icon"></i>
-                            <span class="menu-title">KHS</span>
+                            <span class="menu-title">PKL</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -202,164 +202,94 @@
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
-                        <div class="col-md-12 grid-margin">
+                        <div class="col-lg-9 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Praktik Kerja Lapangan</h3>
+                                    <h3 class="font-weight-bold">Pencarian Mahasiswa</h3>
                                     <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
-                                        style="color: black" href="irs">Praktik Kerja Lapangan</a>
-
+                                        style="color: black" href="pencarian_dsn">Pencarian Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        {{-- IRS --}}
-                        <div class="col-11 stretch-card" style="margin: auto">
-                            <div class="card">
-                                {{-- Verifikasi --}}
-                                <div class=" submit ">
-                                    <button name="verif" value="verif"
-                                        class="btn btn-primary "
-                                        type="button">Verifikasi</button>
-                                </div>
 
+                    {{-- Pencarian  --}}
+                    <div class="row">
+                        <div class="col-md-7  stretch-card transparent">
+                            <div class="card ">
                                 <div class="card-body">
-                                    <div class="tabs">
-                                        <input type="radio" id="tab1" name="tab-control" checked>
-                                        <input type="radio" id="tab2" name="tab-control">
-                                        <ul>
-                                            <li title="Features"><label for="tab1" role="button"><svg
-                                                        viewBox="0 0 24 24">
-                                                        <path
-                                                            d="M14,2A8,8 0 0,0 6,10A8,8 0 0,0 14,18A8,8 0 0,0 22,10H20C20,13.32 17.32,16 14,16A6,6 0 0,1 8,10A6,6 0 0,1 14,4C14.43,4 14.86,4.05 15.27,4.14L16.88,2.54C15.96,2.18 15,2 14,2M20.59,3.58L14,10.17L11.62,7.79L10.21,9.21L14,13L22,5M4.93,5.82C3.08,7.34 2,9.61 2,12A8,8 0 0,0 10,20C10.64,20 11.27,19.92 11.88,19.77C10.12,19.38 8.5,18.5 7.17,17.29C5.22,16.25 4,14.21 4,12C4,11.7 4.03,11.41 4.07,11.11C4.03,10.74 4,10.37 4,10C4,8.56 4.32,7.13 4.93,5.82Z" />
-                                                    </svg><br><span>Isi PKL</span></label></li>
-                                            <li title="Delivery Contents"><label for="tab2" role="button"><svg
-                                                        viewBox="0 0 24 24">
-                                                        <path
-                                                            d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19.55,8.72L13.27,12.35L13.85,13.36Z" />
-                                                    </svg><br><span>Hasil PKL</span></label></li>
-                                        </ul>
-
-                                        <div class="slider">
-                                            <div class="indicator"></div>
-                                        </div>
-                                        <div class="content">
-                                            <section>
-                                                <h2>Isi KHS</h2>
-                                                <div class="card">
-                                                    <div class="card-body">
-
-                                                        {{-- FORM --}}
-                                                        <form action="{{ route('pkl') }}" method="POST">
-                                                            {{-- Judul --}}
-                                                            <div class="form-group row" style="margin: auto">
-                                                                <label for="judul"
-                                                                    class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">Judul</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                        name="jumlah_sks" id="jumlah_sks"
-                                                                        value="{{ old('jumlah_sks') }}"  >
-                                                                    @error('jumlah_sks')
-                                                                        <div class="invalid-feedback">{{ $message }}
-                                                                        </div>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            {{-- Nilai --}}
-                                                            <div class="form-group row" style="margin: auto">
-                                                              <label for="nilai"
-                                                                  class="col-sm-3 col-form-label"
-                                                                  style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
-                                                              <div class="col-sm-7">
-                                                                  <input type="text"
-                                                                      class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                      name="jumlah_sks" id="jumlah_sks"
-                                                                      value="{{ old('jumlah_sks') }}"  >
-                                                                  @error('jumlah_sks')
-                                                                      <div class="invalid-feedback">{{ $message }}
-                                                                      </div>
-                                                                  @enderror
-                                                              </div>
-                                                          </div>
-                                                            <br>
-                                                            {{-- File --}}
-                                                            {{-- <div class="form-group row" style="margin: auto">
-                                                                <label class="col-sm-3"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">File
-                                                                    upload</label>
-                                                                <input type="file" name="file_irs"
-                                                                    class="  file-upload-default  @error('file_irs') is-invalid @enderror"
-                                                                    name="file_irs" id="file_irs" accept = ".pdf"
-                                                                    value="{{ old('file_irs') }}"  >
-                                                                <div class="input-group col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control file-upload-info" disabled
-                                                                        placeholder="Upload">
-                                                                    <span class="input-group-append">
-                                                                        <button
-                                                                            class="file-upload-browse btn btn-primary"
-                                                                            type="button">Upload</button>
-                                                                    </span>
-                                                                </div>
-                                                            </div> --}}
-                                                            <br>
-                                                            <div class=" submit ">
-                                                                <button type="submit" name="submit" value="submit"
-                                                                    class="btn btn-primary "
-                                                                    type="button">Simpan</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-                                            </section>
-                                            <section>
-                                                <h2>IRS</h2>
-                                                <div class="grid-margin stretch-card" >
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title"> Hasil PKL</h4>
-                                                            <p class="card-description">
-                                                                {{ $attribute->nama }}<code style="color: #3f499d">
-                                                                    {{ $attribute->nim }}</code>
-                                                            </p>
-                                                            <h5>Belum diverifikasi Dosen Wali</h5>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                            </section>
-
-
-
-
-
-
-                                        </div>
-                                        <div class="modal-wrapper"  >
-                                            <div class="modal">
-                                              <div class="head">
-                                                <a class="btn-close trigger" href="#">
-
-                                                </a>
-                                              </div>
-                                              <div class="content" >
-                                                <div class="good-job">
-                                                    <br>
-                                                    <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
-                                                </div>
-
-
-
-
-                                              </div>
-                                            </div>
-                                          </div>
+                                    <h4 class="card-title">Cari Mahasiswa</h4>
+                                  <form class="form-group">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama atau NIM">
+                                      <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                      </div>
                                     </div>
-
+                                  </form>
                                 </div>
+                              </div>
+                        </div>
+                    </div>
+
+                        <br><br>
+
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Hasil Pencarian</h4>
+                                <p class="card-description">
+                                  nama <code>.(mahasiswa)</code>
+                                </p>
+                                <div class="table-responsive">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>
+                                          No
+                                        </th>
+                                        <th>
+                                          Nama
+                                        </th>
+                                        <th>
+                                          NIM
+                                        </th>
+                                        <th>
+                                          Angkatan
+                                        </th>
+                                        <th>
+                                          Info
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td class="py-1">
+                                          1
+                                        </td>
+                                        <td>
+                                          Alif Jambi
+                                        </td>
+                                        <td>
+                                          20001
+                                        </td>
+                                        <td>
+                                          2021
+                                        </td>
+                                        <td>
+                                          May 15, 2015
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
 
 
 

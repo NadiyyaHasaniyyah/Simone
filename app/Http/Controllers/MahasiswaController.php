@@ -27,13 +27,18 @@ class MahasiswaController extends Controller
     public function irs()
     {
         $attribute=Auth::guard('mhs')->user();
+        $irs = Irs::where('mhs_id', $attribute->id)->orderBy('semester')->get();
+        // dd($irs);
         // dd($attribute);
-        return view('mahasiswa/irs_mhs',['attribute'=>$attribute]);
+        return view('mahasiswa/irs_mhs',[
+            'attribute'=>$attribute,
+            'irs'=>$irs]);
 
     }
 
     public function irs_import(Request $request)
     {
+        // ddd($request);
         $validateData = $request->validate([
             'semester' => 'required',
             'jumlah_sks'=> 'required',
@@ -132,31 +137,25 @@ class MahasiswaController extends Controller
     }
 
     public function viewPDF($semester)
-    {
-        // Ambil objek mahasiswa dari Auth
-        $mahasiswa = Auth::guard('mhs')->user();
+{
+    $mahasiswa = Auth::guard('mhs')->user();
 
-        // Pastikan objek mahasiswa ditemukan
-        if ($mahasiswa) {
-            $irs = Irs::where('semester', $semester)
-                      ->where('mhs_id', $mahasiswa->id) // Pastikan kolom yang sesuai di sini adalah "mhs_id"
-                      ->first();
+    if ($mahasiswa) {
+        $irs = Irs::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
 
-            // Pastikan IRS ditemukan
-            if ($irs) {
-                $pdfPath = public_path($irs->file_irs);
+        if ($irs) {
+            $pdfPath = public_path('storage/' . $irs->file_irs);
 
-                // Pastikan file PDF ada
-                if (file_exists($pdfPath)) {
-                    // Tampilkan file PDF
-                    return response()->file($pdfPath);
-                }
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath);
             }
         }
-
-        // Jika objek mahasiswa tidak ditemukan, IRS tidak ditemukan, atau file PDF tidak ada, tampilkan pesan error
-        return response('File PDF tidak ditemukan', 404);
     }
+
+    return response('File PDF tidak ditemukan', 404);
+}
 
 
 

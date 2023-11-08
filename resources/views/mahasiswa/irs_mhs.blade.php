@@ -237,11 +237,13 @@
                                             <div class="indicator"></div>
                                         </div>
                                         <div class="content">
+
+                                            {{-- ISI IRS --}}
                                             <section>
                                                 <h2>Isi IRS</h2>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form action="{{ route('irs_import') }}" method="POST">
+                                                        <form action="{{ route('irs_import') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="form-group row" style="margin: auto">
 
@@ -323,6 +325,8 @@
                                                 </div>
 
                                             </section>
+
+                                            {{-- IRS --}}
                                             <section>
                                                 <h2>IRS</h2>
                                                 <div class="grid-margin stretch-card" >
@@ -341,36 +345,27 @@
                                                                             <th>Jumlah SKS</th>
                                                                             <th>File IRS</th>
                                                                             <th>Action</th>
-
                                                                         </tr>
                                                                     </thead>
+                                                                    @foreach ($irs as $item)
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>1</td>
-                                                                            <td>24</td>
-                                                                            {{-- contoh buat pop up lihat file pdf pakai modal --}}
-                                                                            <td><button
-                                                                                    class="btn btn-inverse-primary btn-fw trigger" >Semester1.png</button>
+                                                                            <td>{{ $item->semester }}</td>
+                                                                            <td>{{ $item->jumlah_sks }}</td>
+                                                                            <td>
+                                                                                <a href="{{ route('view_pdf', ['semester' => $item->semester]) }}">
+                                                                                    <button
+                                                                                        class="btn btn-inverse-primary btn-fw trigger" >Semester {{ $item->semester }}
+                                                                                    </button>
+                                                                                </a>
                                                                                     <span class="overlay"></span>
                                                                             </td>
-                                                                            <td> <button type="button"
+                                                                            {{-- <td> <button type="button"
                                                                                     class="btn btn-inverse-danger btn-icon ">
-                                                                                    <i class="ti-trash"></i></td>
-
+                                                                                    <i class="ti-trash"></i>
+                                                                            </td> --}}
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>21</td>
-                                                                            <td><button
-                                                                                    class="btn btn-inverse-primary btn-fw">Semester2.pdf</button>
-                                                                            </td>
-                                                                            <td> <button type="button"
-                                                                                    class="btn btn-inverse-danger btn-icon">
-                                                                                    <i class="ti-trash"></i></td>
-                                                                        </tr>
-
-
-                                                                    </tbody>
+                                                                    @endforeach
                                                                 </table>
 
 
@@ -379,33 +374,25 @@
                                                     </div>
                                                 </div>
                                             </section>
-
-
-
-
-
-
                                         </div>
+
+                                        {{-- POP UP --}}
                                         <div class="modal-wrapper"  >
                                             <div class="modal">
-                                              <div class="head">
-                                                <a class="btn-close trigger" href="#">
-
-                                                </a>
-                                              </div>
-                                              <div class="content" >
-                                                <div class="good-job">
-                                                    <br>
-                                                    <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
+                                                <div class="head">
+                                                    <a class="btn-close trigger" href="#">
+                                                    </a>
                                                 </div>
-
-
-
-
-                                              </div>
+                                                <div class="content" >
+                                                    <div class="good-job">
+                                                        <br>
+                                                        {{-- <img xlink:href="{{ asset('storage/' . $irs->file_irs) }}" alt=""> --}}
+                                                        <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
+                                                    </div>
+                                                </div>
                                             </div>
-                                          </div>
-                                    </div>
+                                            </div>
+                                        </div>
 
                                 </div>
 
@@ -420,7 +407,7 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script>
+                            {{-- <script>
                               $(document).ready(function () {
                                 $(".trigger").on("click", function () {
                                   $(".modal-wrapper").toggleClass("open");
@@ -428,7 +415,7 @@
                                   return false;
                                 });
                               });
-                            </script>
+                            </script> --}}
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->

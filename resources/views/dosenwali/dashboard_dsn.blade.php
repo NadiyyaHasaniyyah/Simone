@@ -199,7 +199,7 @@
                     </ul>
                     </li>
                     <li>
-                        <a href="#"><i  class="fa fa-fw fa-columns"></i> Pencarian Progress Studi</a>
+                        <a href="{{ route('pencarian_dsn') }}"><i  class="fa fa-fw fa-columns"></i> Pencarian Progress Studi</a>
                     </li>
                 </ul>
             </div>

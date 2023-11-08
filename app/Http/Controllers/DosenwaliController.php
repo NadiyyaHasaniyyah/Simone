@@ -18,6 +18,13 @@ class DosenwaliController extends Controller
         return view('dosenwali/dashboard_dsn',['attribute'=>$attribute]);
     }
 
+    public function pencarian()
+    {
+        $attribute=Auth::guard('dsn')->user();
+        // dd($attribute);
+        return view('dosenwali/pencarian_dsn',['attribute'=>$attribute]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -56,13 +56,14 @@ Route::middleware(['isMahasiswa'])->group(function(){
 
     // IRS progress
     Route::post('mahasiswa/irs',[MahasiswaController::class, 'irs_import'])-> name('irs_import');
-    Route::get('mahasiswa/irs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view-pdf');
+    Route::get('mahasiswa/irs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf');
 
 });
 
 
 Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
+    Route::get('dosenwali/pencarian',[DosenwaliController::class, 'pencarian'])-> name('pencarian_dsn');
 });
 
 
