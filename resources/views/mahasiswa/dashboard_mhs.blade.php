@@ -219,8 +219,8 @@
                                             {{-- jika melakukan update foto --}}
 
                                             <image width="100" height="100"
-                                                xlink:href=="{{ asset('storage/' . $attribute->foto) }}"
-                                                class=" imgpr rounded" alt="{{ $attribute->nama }}">
+                                                xlink:href="{{ asset('storage/' . $attribute->foto) }}"
+                                                class=" rounded" alt="{{ $attribute->nama }}">
                                             @else
                                                 {{-- jika tdk upadate foto --}}
                                                 <image width="100" height="100"
@@ -242,7 +242,12 @@
                                     <tr>
                                         <td class="value">{{ $attribute->nim }}</td><br>
                                         <td class="value">{{ $attribute->email }}</td><br>
-                                        <td class="value">{{ $attribute->email_pribadi }} -</td><br>
+
+                                        @if ($attribute->email_pribadi === null)
+                                            <td class="value">-</td><br>
+                                        @else
+                                            <td class="value">{{ $attribute->email_pribadi }}</td><br>
+                                        @endif
                                         <td class="value">{{ $attribute->status }}</td>
                                     </tr>
                                 </div>
@@ -256,7 +261,7 @@
                                         <a href="irs" style="color: white">
                                             <div class="card-body">
                                                 <p class="mb-4">Progress Akademik</p>
-                                                <i class="fa fa-tasks fa-3x"> IRS</i>
+                                                <i class="fa fa-tasks fa-2x"> IRS</i>
                                             </div>
                                         </a>
                                     </div>
@@ -267,7 +272,7 @@
                                         <a href="khs" style="color: white">
                                             <div class="card-body">
                                                 <p class="mb-4">Progress Akademik</p>
-                                                <i class="fa fa-file-text-o fa-3x"> KHS</i>
+                                                <i class="fa fa-file-text-o fa-2x"> KHS</i>
                                             </div>
                                         </a>
                                     </div>
@@ -278,7 +283,7 @@
                                     <div class="card card-light-blue"><a href="pkl" style="color: white">
                                             <div class="card-body">
                                                 <p class="mb-4">Progress Akademik</p>
-                                                <i class="fa fa-newspaper-o  fa-3x"> PKL</i>
+                                                <i class="fa fa-newspaper-o "> PKL</i>
                                             </div>
                                         </a>
                                     </div>
@@ -287,7 +292,7 @@
                                     <div class="card card-light-danger"><a href="skripsi" style="color: white">
                                             <div class="card-body">
                                                 <p class="mb-4">Progress Akademik</p>
-                                                <i class="fa fa-columns fa-3x"> Skripsi</i>
+                                                <i class="fa fa-columns"> Skripsi</i>
                                         </a>
                                     </div>
                                 </div>

@@ -190,7 +190,7 @@
 
                         <div class="form-floating mt-3">
                             <label class="col-sm-4 " for="angkatan">Angkatan</label>
-                            <input class="col-sm-8" name="angkatan" type="text" class="form-control" id="angkatan" value="{{ $attribute->angkatan }}">
+                            <input class="col-sm-8" name="angkatan" type="text" class="form-control" id="angkatan" value="{{ $attribute->angkatan }}" disabled>
                         </div>
 
                         <div class="form-floating mb-3">
@@ -202,9 +202,17 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <label class="col-sm-4 " for="email">Email</label>
-                            <input class="col-sm-8 @error('email') is-invalid @enderror" name="email" type="email" class="form-control" id="email" value="{{ $attribute->email }}">
-                            @error('email')
+                            <label class="col-sm-4 " for="email_pribadi">Email</label>
+                            <input class="col-sm-8 @error('email_pribadi') is-invalid @enderror" name="email_pribadi" type="email_pribadi" class="form-control" id="email_pribadi" value="{{ $attribute->email_pribadi }}">
+                            @error('email_pribadi')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label class="col-sm-4 " for="nomor_tlp">No. Telepon</label>
+                            <input class="col-sm-8 @error('nomor_tlp') is-invalid @enderror" name="nomor_tlp" type="nomor_tlp" class="form-control" id="nomor_tlp" value="{{ $attribute->nomor_tlp }}">
+                            @error('nomor_tlp')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -228,9 +236,29 @@
                     </div>
 
                     <div class="able col-sm-4">
+                        <div class="form-floating mb-3">
+                            <label class="col-sm-4 " for="jalur_masuk">Jalur Masuk</label>
+                            <select class="col-sm-8 @error('jalur_masuk') is-invalid @enderror" name="jalur_masuk" id="jalur_masuk">
+                                <option value="">Pilih Jalur Masuk</option>
+                                <option value="">SBMPTN</option>
+                                <option value="">SNMPTN</option>
+                                <option value="">Mandiri</option>
+                                <option value="">SPBUB</option>
+                            </select>
+                            @error('jalur_masuk')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="form-floating mb-2">
                             <label class="col-sm-4 " for="status">Status</label>
-                            <input class="col-sm-8 @error('status') is-invalid @enderror" name="status" type="status" class="form-control" id="status" value="{{ $attribute->status }}">
+                            <select class="col-sm-8 @error('status') is-invalid @enderror" name="status" type="status" class="form-control" id="status" value="{{ $attribute->status }}">
+                                <option value="">Aktif</option>
+                                <option value="">Cuti</option>
+                                <option value="">Mangkir</option>
+                                <option value="">DO</option>
+                                <option value="">Undur Diri</option>
+                            </select>
                             @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -255,14 +283,6 @@
                                 <option  value="">Pilih Kabupaten...</option>
                             </select>
                             @error('kabupaten')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <label class="col-sm-4 " for="jalur_masuk">Jalur Masuk</label>
-                            <input class="col-sm-8 @error('jalur_masuk') is-invalid @enderror" name="jalur_masuk"  class="form-control" id="jalur_masuk" value="{{ $attribute->jalur_masuk }}">
-                            @error('jalur_masuk')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

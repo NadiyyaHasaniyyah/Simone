@@ -135,17 +135,17 @@ class MahasiswaController extends Controller
     {
         // Ambil objek mahasiswa dari Auth
         $mahasiswa = Auth::guard('mhs')->user();
-    
+
         // Pastikan objek mahasiswa ditemukan
         if ($mahasiswa) {
             $irs = Irs::where('semester', $semester)
                       ->where('mhs_id', $mahasiswa->id) // Pastikan kolom yang sesuai di sini adalah "mhs_id"
                       ->first();
-    
+
             // Pastikan IRS ditemukan
             if ($irs) {
                 $pdfPath = public_path($irs->file_irs);
-    
+
                 // Pastikan file PDF ada
                 if (file_exists($pdfPath)) {
                     // Tampilkan file PDF
@@ -153,11 +153,11 @@ class MahasiswaController extends Controller
                 }
             }
         }
-    
+
         // Jika objek mahasiswa tidak ditemukan, IRS tidak ditemukan, atau file PDF tidak ada, tampilkan pesan error
         return response('File PDF tidak ditemukan', 404);
     }
-    
+
 
 
 
@@ -172,7 +172,8 @@ class MahasiswaController extends Controller
     $validateData = $request->validate([
         'foto' => 'image|max:1024', // Hilangkan 'file', karena 'image' sudah termasuk 'file'
         'nama' => 'required',
-        'email' => 'required',
+        'email_pribadi' => 'required',
+        'nomor_tlp' => 'required',
         'provinsi' => 'required',
         'kabupaten' => 'required',
         'status' => 'required',
@@ -226,5 +227,5 @@ class MahasiswaController extends Controller
     {
         //
     }
-    
+
 }

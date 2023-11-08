@@ -178,9 +178,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pkl">
+                        <a class="nav-link" href="khs">
                             <i class="fa fa-file-text-o menu-icon"></i>
-                            <span class="menu-title">PKL</span>
+                            <span class="menu-title">KHS</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -248,7 +248,7 @@
                                                                 <label for="semester" class="col-form-label col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
                                                                 <div class="col-sm-7">
-                                                                    <select 
+                                                                    <select
                                                                         class="form-control @error('semester') is-invalid @enderror"
                                                                         name="semester" id="semester">
                                                                         <option>pilih semester </option>
@@ -356,7 +356,7 @@
                                                                             <td> <button type="button"
                                                                                     class="btn btn-inverse-danger btn-icon ">
                                                                                     <i class="ti-trash"></i></td>
-                                                                      
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>2</td>
@@ -371,16 +371,16 @@
 
 
                                                                     </tbody>
-                                                                </table>                                                          
+                                                                </table>
 
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </section>
-                                        
-                                            
+
+
 
 
 
@@ -390,7 +390,7 @@
                                             <div class="modal">
                                               <div class="head">
                                                 <a class="btn-close trigger" href="#">
-                                                
+
                                                 </a>
                                               </div>
                                               <div class="content" >
@@ -398,17 +398,17 @@
                                                     <br>
                                                     <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
                                                 </div>
-                                              
-                                                
 
-                                                  
+
+
+
                                               </div>
                                             </div>
                                           </div>
                                     </div>
-                                    
+
                                 </div>
-                                
+
 
 
 
