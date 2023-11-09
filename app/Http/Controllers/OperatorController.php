@@ -82,7 +82,7 @@ class OperatorController extends Controller
 
         dd($request);
 
-        mahasiswa::created($validateData);
+        mahasiswa::create($validateData);
         return redirect()->route('import_mhs');
     }
 
