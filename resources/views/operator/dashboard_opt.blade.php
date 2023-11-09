@@ -255,9 +255,9 @@
                                                     <td class="value">{{ $attribute->nama }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="value">NIM</td>
+                                                    <td class="value">NIP</td>
                                                     <td>&nbsp;: </td>
-                                                    <td class="value">{{ $attribute->nip }}</td>
+                                                    <td class="value">{{ $attribute->id }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="value">Email</td>

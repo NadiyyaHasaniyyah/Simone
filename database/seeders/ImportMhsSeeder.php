@@ -33,7 +33,7 @@ class ImportMhsSeeder extends Seeder
         ->each(function(LazyCollection $chunk){
             $records = $chunk->map(function($row){
                 return [
-                    'nim'=>$row[2],
+                    'id'=>$row[2],
                     'nama'=>$row[3],
                     'email'=>$row[0],
                     'password'=>Hash::make($row[1]),

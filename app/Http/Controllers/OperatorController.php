@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\LazyCollection;
 use App\Http\Requests\StoreoperatorRequest;
 use App\Http\Requests\UpdateoperatorRequest;
+use App\Models\mahasiswa;
 use Illuminate\Http\Request;
 
 
@@ -21,12 +22,14 @@ class OperatorController extends Controller
     public function index()
     {
         $attribute=Auth::guard('opt')->user();
+        
         // dd($attribute);
         return view('operator/dashboard_opt',['attribute'=>$attribute]);
     }
     public function generate()
     {
-        return view('operator.generate');
+        $mahasiswa=mahasiswa::all();
+        return view('operator.generate',['mahasiswa'=>$mahasiswa]);
     }
 
     /**

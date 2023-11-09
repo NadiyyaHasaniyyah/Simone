@@ -185,7 +185,7 @@
                     <div class="disable col-sm-4 ">
                         <div class="form-floating m-3">
                             <label class="col-sm-4 " for="nim">NIM</label>
-                            <input class="col-sm-8" name="mim" type="text" class="form-control" placeholder="{{ $attribute->nim }}" id="nim" disabled>
+                            <input class="col-sm-8" name="mim" type="text" class="form-control" placeholder="{{ $attribute->id }}" id="nim" disabled>
                         </div>
 
                         <div class="form-floating mt-3">
@@ -240,10 +240,10 @@
                             <label class="col-sm-4 " for="jalur_masuk">Jalur Masuk</label>
                             <select class="col-sm-8 @error('jalur_masuk') is-invalid @enderror" name="jalur_masuk" id="jalur_masuk">
                                 <option value="">Pilih Jalur Masuk</option>
-                                <option value="">SBMPTN</option>
-                                <option value="">SNMPTN</option>
-                                <option value="">Mandiri</option>
-                                <option value="">SPBUB</option>
+                                <option value="SBMPTN">SBMPTN</option>
+                                <option value="SNMPTN">SNMPTN</option>
+                                <option value="Mandiri">Mandiri</option>
+                                <option value="SPBUB">SPBUB</option>
                             </select>
                             @error('jalur_masuk')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -253,11 +253,11 @@
                         <div class="form-floating mb-2">
                             <label class="col-sm-4 " for="status">Status</label>
                             <select class="col-sm-8 @error('status') is-invalid @enderror" name="status" type="status" class="form-control" id="status" value="{{ $attribute->status }}">
-                                <option value="">Aktif</option>
-                                <option value="">Cuti</option>
-                                <option value="">Mangkir</option>
-                                <option value="">DO</option>
-                                <option value="">Undur Diri</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Cuti">Cuti</option>
+                                <option value="Mangkir">Mangkir</option>
+                                <option value="DO">DO</option>
+                                <option value="Undur Diri">Undur Diri</option>
                             </select>
                             @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>

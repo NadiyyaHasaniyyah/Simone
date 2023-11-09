@@ -16,7 +16,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $attribute=Auth::guard('mhs')->user();
-        if ($attribute->nim == null || $attribute->nama == null ||$attribute->email == null ||$attribute->fakultas == null ||$attribute->departemen == null ||$attribute->status == null ||$attribute->provinsi == null||$attribute->kabupaten == null ||$attribute->jalur_masuk == null || $attribute->alamat == null){
+        if ($attribute->nama == null ||$attribute->email_pribadi == null ||$attribute->nomor_tlp == null||$attribute->status == null  ||$attribute->jalur_masuk == null  ||$attribute->provinsi == null||$attribute->kabupaten == null || $attribute->alamat == null){
             return redirect()->route('update_mhs');
         }else{
             // dd($attribute);
@@ -166,6 +166,9 @@ class MahasiswaController extends Controller
     public function update(Request $request, mahasiswa $mahasiswa)
 {
     // dd($request);
+    // $attribute=Auth::guard('mhs')->user();
+    // dd(mahasiswa::where('nim', $attribute->nim)->first());
+
     $provinces = Province::all();
     $regencies = Regency::all();
     $validateData = $request->validate([
@@ -176,12 +179,10 @@ class MahasiswaController extends Controller
         'provinsi' => 'required',
         'kabupaten' => 'required',
         'status' => 'required',
-        'angkatan' => 'required',
         'jalur_masuk' => 'required',
         'alamat' => 'required'
     ]);
 
-    // dd($data);
 
     if ($request->hasFile('foto')) {
         $validateData['foto'] = $request->file('foto')->store('updateImages');
@@ -195,6 +196,8 @@ class MahasiswaController extends Controller
 
     $validateData['provinsi'] = $provinceName;
     $validateData['kabupaten'] = $regencyName;
+
+    //dd($validateData);
 
     $attribute=Auth::guard('mhs')->user();
     mahasiswa::where('id', $attribute->id)->update($validateData);

@@ -18,7 +18,7 @@ class mahasiswaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nim' => $this->faker->numberBetween(1, 9999),
+            'id' => $this->faker->numberBetween(1, 9999),
             'nama'=> $this->faker->name,
             'email' => fake()->unique()->safeEmail(),
             'email_pribadi' => fake()->unique()->safeEmail(),
