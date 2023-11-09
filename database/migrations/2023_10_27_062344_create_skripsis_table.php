@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->char('nilai');
             $table->string('semester');
+            $table->string('file_skripsi')->nullable();
             $table->foreignId('mhs_id');
             $table->timestamps();
         });
