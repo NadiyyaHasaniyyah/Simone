@@ -117,6 +117,26 @@ class MahasiswaController extends Controller
 
     }
 
+    public function pkl_import(Request $request)
+    {
+        // ddd($request);
+        $attribute=Auth::guard('mhs')->user();
+        $validateData = $request->validate([
+            'status' => 'required',
+            'nilai'=> 'required',
+        ]);
+
+        $validateData['semester']= Irs::where('mhs_id', $attribute->id)->orderBy('semester','desc')->first();
+        $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
+
+        // dd($validateData);
+        Pkl::create($validateData);
+
+        return redirect()->route('pkl');
+
+        // $attribute=Auth::guard('mhs')->user();
+    }
+
     public function skripsi()
     {
         $attribute=Auth::guard('mhs')->user();
@@ -124,23 +144,7 @@ class MahasiswaController extends Controller
         return view('mahasiswa/skripsi_mhs',['attribute'=>$attribute]);
 
     }
-    public function pkl_import(Request $request)
-    {
-        // ddd($request);
-        $validateData = $request->validate([
-            'judul' => 'required',
-            'nilai'=> 'required',
-            'semester' => 'required',
-        ]);
-
-        $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
-
-        Pkl::create($validateData);
-
-        return redirect()->route('pkl');
-
-        // $attribute=Auth::guard('mhs')->user();
-    }
+    
 
     // public function update_mhs()
     // {

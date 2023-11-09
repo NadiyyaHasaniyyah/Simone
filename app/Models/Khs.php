@@ -19,7 +19,4 @@ class Khs extends Model
         return $this->belongsTo(mahasiswa::class);
     }
 
-    public function semester(){
-        return $this->belongsTo(semester::class);
-    }
 }
