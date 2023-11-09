@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Province;
-use App\Models\Regency;
-use App\Models\mahasiswa;
 use App\Models\Irs;
+use App\Models\Khs;
+use App\Models\Regency;
+use App\Models\Village;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\mahasiswa;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
@@ -61,9 +66,38 @@ class MahasiswaController extends Controller
     public function khs()
     {
         $attribute=Auth::guard('mhs')->user();
-        // dd($attribute);
-        return view('mahasiswa/khs_mhs',['attribute'=>$attribute]);
+        $khs = Khs::where('mhs_id', $attribute->id)->orderBy('semester')->get();
 
+        return view('mahasiswa/khs_mhs',[
+            'attribute'=>$attribute,
+            'khs'=>$khs]);
+
+
+    }
+    public function khs_import(Request $request)
+    {
+        // dd($request);
+        $validateData = $request->validate([
+            'sks_smt' => 'required',
+            'sks_komulatif'=> 'required',
+            'ips' => 'required',
+            'ipk'=> 'required',
+            'semester' => 'required',
+            'file_khs' => 'required|max:2048',
+        ]);
+
+        $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
+
+        if ($request->hasFile('file_khs')) {
+            $validateData['file_khs'] = $request->file('file_khs')->store('importKHS');
+        }
+        // dd($validateData);
+
+        Khs::create($validateData);
+
+        return redirect()->route('dashboard_mhs');
+
+        // $attribute=Auth::guard('mhs')->user();
     }
 
     public function pkl()
@@ -144,9 +178,18 @@ class MahasiswaController extends Controller
         $irs = Irs::where('semester', $semester)
                   ->where('mhs_id', $mahasiswa->id)
                   ->first();
+        $khs = khs::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
 
         if ($irs) {
             $pdfPath = public_path('storage/' . $irs->file_irs);
+
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath);
+            }
+        }else if ($khs) {
+            $pdfPath = public_path('storage/' . $khs->file_khs);
 
             if (file_exists($pdfPath)) {
                 return response()->file($pdfPath);

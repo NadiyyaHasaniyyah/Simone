@@ -241,7 +241,7 @@
                                                 <h2>Isi KHS</h2>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form action="{{ route('irs_import') }}" method="POST">
+                                                        <form action="{{ route('khs_import') }}" method="POST">
                                                             @csrf
                                                             <div class="form-group row" style="margin: auto">
 
@@ -276,15 +276,57 @@
                                                             </div>
                                                             <br>
                                                             <div class="form-group row" style="margin: auto">
-                                                                <label for="jumlah_sks"
+                                                                <label for="sks_smt"
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">SKS
-                                                                    Kumulatif</label>
+                                                                    Diambil</label>
                                                                 <div class="col-sm-7">
                                                                     <input type="text"
-                                                                        class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                        name="jumlah_sks" id="jumlah_sks"
-                                                                        value="{{ old('jumlah_sks') }}"  >
+                                                                        class="form-control @error('sks_smt') is-invalid @enderror"
+                                                                        name="sks_smt" id="sks_smt">
+                                                                    @error('sks_smt')
+                                                                        <div class="invalid-feedback">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" style="margin: auto">
+                                                                <label for="sks_komulatif"
+                                                                    class="col-sm-3 col-form-label"
+                                                                    style="font-size: 16px; font-weight: bold; color: #000;">SKS
+                                                                    Komulatif</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text"
+                                                                        class="form-control @error('sks_komulatif') is-invalid @enderror"
+                                                                        name="sks_komulatif" id="sks_komulatif"  >
+                                                                    @error('sks_komulatif')
+                                                                        <div class="invalid-feedback">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" style="margin: auto">
+                                                                <label for="ips"
+                                                                    class="col-sm-3 col-form-label"
+                                                                    style="font-size: 16px; font-weight: bold; color: #000;">IP Semester</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text"
+                                                                        class="form-control @error('ips') is-invalid @enderror"
+                                                                        name="ips" id="ips"  >
+                                                                    @error('ips')
+                                                                        <div class="invalid-feedback">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" style="margin: auto">
+                                                                <label for="ipk"
+                                                                    class="col-sm-3 col-form-label"
+                                                                    style="font-size: 16px; font-weight: bold; color: #000;">IP Komulatif</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text"
+                                                                        class="form-control @error('ipk') is-invalid @enderror"
+                                                                        name="ipk" id="ipk"  >
                                                                     @error('jumlah_sks')
                                                                         <div class="invalid-feedback">{{ $message }}
                                                                         </div>
@@ -296,10 +338,10 @@
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">File
                                                                     upload</label>
-                                                                <input type="file" name="file_irs"
-                                                                    class="  file-upload-default  @error('file_irs') is-invalid @enderror"
-                                                                    name="file_irs" id="file_irs" accept = ".pdf"
-                                                                    value="{{ old('file_irs') }}"  >
+                                                                <input type="file" name="file_khs"
+                                                                    class="  file-upload-default  @error('file_khs') is-invalid @enderror"
+                                                                    name="file_khs" id="file_khs" accept = ".pdf"
+                                                                    value="{{ old('file_khs') }}"  >
                                                                 <div class="input-group col-sm-7">
                                                                     <input type="text"
                                                                         class="form-control file-upload-info" disabled

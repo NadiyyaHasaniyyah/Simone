@@ -80,10 +80,10 @@ class OperatorController extends Controller
             'password' => 'required',
         ]);
 
-        ddd($request);
+        dd($request);
 
-        // mahasiswa::created($validateData);
-        // return redirect()->route('import_mhs');
+        mahasiswa::created($validateData);
+        return redirect()->route('import_mhs');
     }
 
     /**

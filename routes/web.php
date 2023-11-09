@@ -37,7 +37,7 @@ Route::middleware(['isOperator'])->group(function(){
         Artisan::call('db:seed', ['--class' => 'ImportMhsSeeder']);
         return redirect()->route('generate');
     })->name('import_mhs');
-    Route::post('operator/generate/import_manual', [OperatorController::class, 'import_manual'])->name('import_manual');
+    Route::post('operator/generate', [OperatorController::class, 'import_manual'])->name('import_manual');
 });
 
 //mhs
@@ -58,6 +58,10 @@ Route::middleware(['isMahasiswa'])->group(function(){
     // IRS progress
     Route::post('mahasiswa/irs',[MahasiswaController::class, 'irs_import'])-> name('irs_import');
     Route::get('mahasiswa/irs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf');
+
+    // KHS progress
+    Route::post('mahasiswa/khs',[MahasiswaController::class, 'khs_import'])-> name('khs_import');
+    Route::get('mahasiswa/khs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf');
 
 });
 
