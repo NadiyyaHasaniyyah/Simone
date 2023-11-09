@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 use App\Models\Irs;
 use App\Models\Khs;
+use App\Models\Pkl;
 use App\Models\Regency;
 use App\Models\Village;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\mahasiswa;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Support\ValidatedData;
 
 class MahasiswaController extends Controller
 {
@@ -122,6 +123,22 @@ class MahasiswaController extends Controller
         // dd($attribute);
         return view('mahasiswa/skripsi_mhs',['attribute'=>$attribute]);
 
+    }
+    public function pkl_import(Request $request)
+    {
+        // ddd($request);
+        $validateData = $request->validate([
+            'judul' => 'required',
+            'nilai'=> 'required',
+        ]);
+
+        $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
+
+        Pkl::create($validateData);
+
+        return redirect()->route('pkl');
+
+        // $attribute=Auth::guard('mhs')->user();
     }
 
     // public function update_mhs()
@@ -257,20 +274,19 @@ class MahasiswaController extends Controller
 }
 
     public function getKabupaten(Request $request)
-    {
-        $id_provinsi = $request->id_provinsi;
-        $kabupatens = Regency::where('province_id', $id_provinsi)->get();
-        dd($kabupatens);
-        $options = "<option value=''>Pilih Kabupaten...</option>";
+{
+    $id_provinsi = $request->id_provinsi;
+    $kabupatens = Regency::where('province_id', $id_provinsi)->get();
+    $options = "<option value=''>Pilih Kabupaten...</option>";
 
-        foreach ($kabupatens as $kabupaten) {
-            // Append each new option to the $options string
-            $options .= "<option value='$kabupaten->id'>$kabupaten->name</option>";
-        }
-
-        // Return the options string as a response
-        return response()->json($options);
+    foreach ($kabupatens as $kabupaten) {
+        // Append each new option to the $options string
+        $options .= "<option value='$kabupaten->id'>$kabupaten->name</option>";
     }
+
+    // Return the options string as a response
+    return response()->json($options);
+}
 
 
 

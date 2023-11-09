@@ -63,6 +63,12 @@ Route::middleware(['isMahasiswa'])->group(function(){
     Route::post('mahasiswa/khs',[MahasiswaController::class, 'khs_import'])-> name('khs_import');
     Route::get('mahasiswa/khs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf_khs');
 
+    // PKL progress
+    Route::post('mahasiswa/pkl',[MahasiswaController::class, 'pkl_import'])-> name('pkl_import');
+
+    // Skripsi progress
+    Route::post('mahasiswa/skripsi',[MahasiswaController::class, 'skripsi_import'])-> name('skripsi_import');
+
 });
 
 

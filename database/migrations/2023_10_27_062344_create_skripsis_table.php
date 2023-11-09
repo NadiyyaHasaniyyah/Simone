@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('skripsis', function (Blueprint $table) {
             $table->id();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->char('nilai');
             $table->string('semester');
             $table->foreignId('mhs_id');
