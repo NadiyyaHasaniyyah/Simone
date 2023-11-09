@@ -12,6 +12,8 @@ class mahasiswa extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    // protected $fillable = ['nama', 'angkatan', 'dsn_id', 'email', 'password', 'remember_token', 'created_at', 'updated_at'];
     protected $guarded = [
         'nim',
         'id',

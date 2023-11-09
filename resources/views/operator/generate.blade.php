@@ -225,7 +225,7 @@
                                                     </tr>
                                                   @endforeach
                                                 </tbody>
-                                                
+
 
                                             </table>
 
@@ -336,7 +336,7 @@
                                                 <br>
 
                                                 <div class="page-wrapper col-lg-6" style="margin: auto">
-                                                    <form action="{{ route('import') }}" method="POST">
+                                                    <form action="{{ route('import_mhs') }}" method="POST">
                                                         @csrf
                                                         {{-- GENERATE --}}
                                                         <button type="submit" name="submit" value="submit"
@@ -356,14 +356,14 @@
                                             <h2>Manual Generate</h2>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <form {{-- action="#" --}} method="POST">
+                                                    <form action="{{ route('import_manual') }}" method="POST">
                                                         @csrf
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 {{-- Kolom pertama --}}
                                                                 {{-- Nama --}}
                                                                 <div class="form-group row" style="margin: auto">
-                                                                    <label for="Nama" class="col-sm-3 col-gen"
+                                                                    <label for="nama" class="col-sm-3 col-gen" name="nama" id="nama"
                                                                         style="font-size: 13px; font-weight: bold; color: #000; ">
                                                                         Nama</label>
                                                                     <div class="col-sm-9">
@@ -374,7 +374,7 @@
                                                                         <input type="text" class="form-control"
                                                                             style="height: 60%">
                                                                         {{-- @error('jumlah_sks')
-                                                                      <div class="invalid-feedback">{{ $message }} 
+                                                                      <div class="invalid-feedback">{{ $message }}
                                                                       </div>
                                                                   @enderror --}}
                                                                     </div>
@@ -382,7 +382,7 @@
 
                                                                 {{-- NIM --}}
                                                                 <div class="form-group row" style="margin: auto">
-                                                                    <label for="nim" class="col-sm-3 col-gen"
+                                                                    <label for="id" class="col-sm-3 col-gen" name="id" id="id"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         NIM</label>
                                                                     <div class="col-sm-9">
@@ -393,7 +393,7 @@
                                                                         <input type="text" class="form-control"
                                                                             style="height: 60%">
                                                                         {{-- @error('jumlah_sks')
-                                                                    <div class="invalid-feedback">{{ $message }} 
+                                                                    <div class="invalid-feedback">{{ $message }}
                                                                     </div>
                                                                 @enderror --}}
                                                                     </div>
@@ -401,7 +401,7 @@
 
                                                                 {{-- Angkatan --}}
                                                                 <div class="form-group row" style="margin: auto">
-                                                                    <label for="angkatan" class="col-sm-3 col-gen"
+                                                                    <label for="angkatan" class="col-sm-3 col-gen" name="angkatan" id="angkatan"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Angkatan </label>
                                                                     <div class="col-sm-9">
@@ -412,7 +412,7 @@
                                                                         <input type="text" class="form-control"
                                                                             style="height: 60%">
                                                                         {{-- @error('jumlah_sks')
-                                                                  <div class="invalid-feedback">{{ $message }} 
+                                                                  <div class="invalid-feedback">{{ $message }}
                                                                   </div>
                                                               @enderror --}}
                                                                     </div>
@@ -426,7 +426,7 @@
                                                                 {{-- Dosen ID --}}
                                                                 {{-- Dosen ID --}}
                                                                 <div class="form-group row" style="margin: auto">
-                                                                    <label for="dsn_id" class="col-sm-3 col-gen"
+                                                                    <label for="dsn_id" class="col-sm-3 col-gen" name="dsn_id" id="dsn_id"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Dosen ID</label>
                                                                     <div class="col-sm-9">
@@ -437,7 +437,7 @@
                                                                         <input type="text" class="form-control"
                                                                             style="height: 60%">
                                                                         {{-- @error('jumlah_sks')
-                                                              <div class="invalid-feedback">{{ $message }} 
+                                                              <div class="invalid-feedback">{{ $message }}
                                                               </div>
                                                           @enderror --}}
                                                                     </div>
@@ -445,7 +445,7 @@
 
                                                                 {{-- Email --}}
                                                                 <div class="form-group row" style="margin: auto">
-                                                                    <label for="email" class="col-sm-3 col-gen"
+                                                                    <label for="email" class="col-sm-3 col-gen" name="email" id="email"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Email</label>
                                                                     <div class="col-sm-9">
@@ -456,7 +456,7 @@
                                                                         <input type="text" class="form-control "
                                                                             style="height: 60%">
                                                                         {{-- @error('jumlah_sks')
-                                                                  <div class="invalid-feedback">{{ $message }} 
+                                                                  <div class="invalid-feedback">{{ $message }}
                                                                   </div>
                                                               @enderror --}}
                                                                     </div>
@@ -464,7 +464,7 @@
 
                                                                 {{-- Password --}}
                                                                 <div class="form-group row" style="margin: auto">
-                                                                    <label for="password" class="col-sm-3 col-gen"
+                                                                    <label for="password" class="col-sm-3 col-gen" name="password" id="password"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Password </label>
                                                                     <div class="col-sm-9">
@@ -475,7 +475,7 @@
                                                                         <input type="text" class="form-control"
                                                                             style="height: 60%">
                                                                         {{-- @error('jumlah_sks')
-                                                                <div class="invalid-feedback">{{ $message }} 
+                                                                <div class="invalid-feedback">{{ $message }}
                                                                 </div>
                                                             @enderror --}}
                                                                     </div>
@@ -483,9 +483,9 @@
 
                                                             </div>
 
-                                                            {{-- <div class="form-group" >
-                                                        <button style="display: flex; justify-content: flex-end; align-items: center;" type="submit" name="submit" value="submit" class="btn btn-primary" type="button">Simpan</button>
-                                                    </div> --}}
+                                                            <button type="submit" name="submit" value="submit"
+                                                            class="btn btn-primary"
+                                                            type="button">Simpan</button>
 
                                                     </form>
                                                 </div>
@@ -496,10 +496,10 @@
 
 
                                 </div>
-                          
-                            <br> 
+
+                            <br>
                         </div>
-                            
+
 
 
                             <!-- partial:partials/_footer.html -->
@@ -621,7 +621,7 @@
                       }
                     }
                   };
-                  
+
                   $(document).ready(function () {
                     $(".dataTables_filter").css("display", "block");
     $(".dataTables_filter input").css("height", "50%");
@@ -715,7 +715,7 @@
                   });
                   </script>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
               <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -735,8 +735,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
-                 
-                 
+
+
 </body>
 
 </html>

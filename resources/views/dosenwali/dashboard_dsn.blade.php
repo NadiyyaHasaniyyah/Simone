@@ -1,358 +1,422 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
+    <link rel="shortcut icon" href="{{ asset('style1/skydash/images/logo-mini.svg') }}">
+    <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>SIMONE</title>
+    <title>Simone</title>
+    <!-- plugins:css -->
+    <link href="{{ asset('style1/skydash/vendors/feather/feather.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/css/vendor.bundle.base.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/css/vendor.bundle.base.css') }}" rel="stylesheet">
+    <!-- endinject -->
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link href="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/js/select.dataTables.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/vertical-layout-light/style.css') }}" rel="stylesheet">
+    <!-- endinject -->
 
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <!-- Bootstrap Core CSS -->
-    <link href="{{asset('style/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('style/css/bootstrap.css')}}" rel="stylesheet">
+    <!-- profile card -->
+    <link rel="stylesheet" href="{{ asset('style1/skydash/css/operator/profile_opt.css') }}">
 
+    <!-- dashboard_opt -->
+    <link rel="stylesheet" href="{{ asset('style1/skydash/css/operator/dashboard_opt.css') }}">
+    <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="{{asset('style/css/sb-admin.css')}}" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="{{asset('style/css/plugins/morris.css')}}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{asset('style/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <link href="{{asset('style/css/dsb-dsn.css')}}" rel="stylesheet">
 </head>
+<style>
+    /* CSS untuk tampilan layar dengan lebar kurang dari 768px */
+    @media (max-width: 767px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .col-md-6,
+        .col-md-4 {
+            width: 100%;
+        }
+    }
+
+    /* CSS untuk tampilan layar dengan lebar 768px atau lebih */
+    @media (min-width: 768px) {
+        .row {
+            display: flex;
+        }
+
+        .col-md-6 {
+            width: 50%;
+        }
+
+        .col-md-4 {
+            width: 33.33%;
+        }
+    }
+</style>
 
 <body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" style="display: flex; align-items: center;">
-        <a href="{{ route('dashboard_mhs') }}">
-            <img style="margin-left: -5px;" src="https://i.ibb.co/yBG6mSK/Simone-4.png" width="50" height="50" alt="">
-        </a>
-
-</a>
-
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_mhs') }}"><img
+                        style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
+                        class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"> <img
+                        src="{{ asset('style1/skydash/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+                <ul class="navbar-nav mr-lg-2">
 
-            <!--Top buat logout -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-envelope"></i>
-                    <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu message-dropdown">
-                    <li class="message-preview">
-                      <a href="#">
-                        <div class="media">
-                          <span class="pull-left">
-                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                          </span>
-                          <div class="media-body">
-                            <h5 class="media-heading">
-                              <strong>Dosen</strong>
-                            </h5>
-                            <p class="small text-muted">
-                              <i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="message-preview">
-                      <a href="#">
-                        <div class="media">
-                          <span class="pull-left">
-                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                          </span>
-                          <div class="media-body">
-                            <h5 class="media-heading">
-                              <strong>Deepartemen</strong>
-                            </h5>
-                            <p class="small text-muted">
-                              <i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="message-preview">
-                      <a href="#">
-                        <div class="media">
-                          <span class="pull-left">
-                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                          </span>
-                          <div class="media-body">
-                            <h5 class="media-heading">
-                              <strong>Dosen</strong>
-                            </h5>
-                            <p class="small text-muted">
-                              <i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="message-footer">
-                      <a href="#">Read All New Messages</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bell"></i>
-                    <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu alert-dropdown">
-                    <li>
-                      <a href="#">Alert Name <span class="label label-default">Alert Badge</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">Alert Name <span class="label label-primary">Alert Badge</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">Alert Name <span class="label label-success">Alert Badge</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">Alert Name <span class="label label-info">Alert Badge</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">Alert Name <span class="label label-warning">Alert Badge</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">Alert Name <span class="label label-danger">Alert Badge</span>
-                      </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="#">View All</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-user"></i> Dosen <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="/logout">
-                        <i class="fa fa-fw fa-power-off"></i> Log Out </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                            data-toggle="dropdown">
+                            <i class="icon-bell mx-0"></i>
+                            <span class="count"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                            aria-labelledby="notificationDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="fa fa-tasks mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">IRS</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        IRS sudah diverifikasi
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-info">
+                                        <i class="fa fa-file-text-o  mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal"> KHS</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Harap Isi KHS
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-warning">
+                                        <i class="fa fa-tasks mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">IRS</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Harap Isi IRS
+                                    </p>
+                                </div>
+                            </a>
 
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="{{ route('dashboard_dsn') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        </div>
                     </li>
-                    <li >
-                        <a class="nav-link custom-nav-link" href="#"><i class="fa fa-fw fa-columns"></i> Verifikasi Progress Studi</a>
-                        <ul class="sub-menu">
-                        <li>
-                            <a class="nav-link custom-nav-link" href="#"><i class="fa fa-fw fa-columns"></i>IRS</a>
-                        </li>
-                        <li>
-                            <a class="nav-link custom-nav-link" href="#"><i class="fa fa-fw fa-columns"></i>KHS</a>
-                        </li>
-                        <li>
-                            <a class="nav-link custom-nav-link" href="#"><i class="fa fa-fw fa-columns"></i>PKL</a>
-                        </li>
-
-                    </ul>
-                    </li>
-                    <li>
-                        <a href="{{ route('pencarian_dsn') }}"><i  class="fa fa-fw fa-columns"></i> Pencarian Progress Studi</a>
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            {{ $attribute->nama }} <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            </i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="/logout">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </div>
                     </li>
                 </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
             </div>
-            <!-- /.navbar-collapse -->
         </nav>
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            <a href="{{ route('dashboard_mhs') }}" >Dashboard</a>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <a href="{{ route('dashboard_mhs') }}" >Dashboard</a>
-                            </li>
-                        </ol>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_settings-panel.html -->
+            <div class="theme-setting-wrapper">
+                <div id="settings-trigger"><i class="ti-settings"></i></div>
+                <div id="theme-settings" class="settings-panel">
+                    <i class="settings-close ti-close"></i>
+                    <p class="settings-heading">SIDEBAR SKINS</p>
+                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                        <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
+                    </div>
+                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                        <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
+                    </div>
+                    <p class="settings-heading mt-2">HEADER SKINS</p>
+                    <div class="color-tiles mx-0 px-4">
+                        <div class="tiles success"></div>
+                        <div class="tiles warning"></div>
+                        <div class="tiles danger"></div>
+                        <div class="tiles info"></div>
+                        <div class="tiles dark"></div>
+                        <div class="tiles default"></div>
                     </div>
                 </div>
-                <!-- /.row -->
+            </div>
 
-                <!-- /.row -->
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
 
-<div class="row">
-    <div class="col-lg-11">
-        <section>
-        <div class="card1">
-            <div class="card ">
-                <div class="left-container">
-                    <br><br>
-                  <img class="imgpr" src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="Profile Image">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard_dsn') }}">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-tasks menu-icon"></i>
+                            <span class="menu-title">Verifikasi Progress Studi</span>
+                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="irs">
+                            <i class="fa fa-tasks menu-icon"></i>
+                            <span class="menu-title">IRS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pkl">
+                                <i class="fa fa-file-text-o menu-icon"></i>
+                                <span class="menu-title">KHS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pkl">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title">PKL</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="skripsi">
+                                <i class="fa fa-columns menu-icon"></i>
+                                <span class="menu-title">Skripsi</span>
+                            </a>
+                        </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pencarian_dsn') }}">
+                            <i class="fa fa-user menu-icon"></i>
+                            <span class="menu-title">Pencarian</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-                </div>
-                <div class="right-container">
-  <table>
-    <a href="#" class="edit-button btn">
-        <i class="fa fa-edit"> Edit</i>
-    </a>
-    <br>
 
-    <tr>
-        <td>Nama</td>
-        <td>&nbsp;:&nbsp;</td>
-        <td class="value">{{ $attribute->nama }}</td>
-      </tr>
-      <tr>
-        <td>NIP</td>
-        <td>&nbsp;: </td>
-        <td class="value">{{ $attribute->nip }}</td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td>&nbsp;: </td>
-        <td class="value">{{ $attribute->email }}</td>
-      </tr>
-  </table>
-</div>
+            <!-- Dashboard -->
+            <div class="main-panel">
+                <div class="content-wrapper">
 
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <div class="row">
+                                <div class="col-lg-12 grid-margin">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                            <h3 class="font-weight-bold"> Dashboard</h3>
+                                            <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard</a>
 
-        </div>
-    </section>
-
-        </div>
-    </div>
-
-
-
-                    <br>
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-
-                                    <div>
-                                        <i class="fa fa-fw fa-tasks fa-3x">  </i>
-                                    </div>
-
-                            </div>
-
-                                <div class="panel-footer">
-                                    <span class="pull-left">Verifikasi Progress Studi</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <br><br>
-
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="card" style="width: 15rem; height: 4rem;">
-                                                    <a href="#" class="btn" role="button" style="width: 15rem; height: 4rem;">IRS</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="card" style="width: 15rem; height: 4rem;">
-                                                    <a href="#" class="btn" role="button" style="width: 15rem; height: 4rem;">KHS</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="card" style="width: 15rem; height: 4rem;">
-                                                    <a href="#" class="btn" role="button" style="width: 15rem; height: 4rem;">PKL</a>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="clearfix"></div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                    <div>
-                                        <i class="fa fa-fw fa-columns fa-3x">  </i>
-                                    </div>
+                    </div>
+                    {{-- Card yang pertama campuran --}}
+                     <!-- profile -->
+                     <div class=row>
+                        <div class="col-md-5 grid-margin ">
+                            <div class="cardp">
+                                <div class="bannerp">
+                                    <svg class="imgpr" viewBox="0 0 100 100" alt="Profile Image">
+                                        {{-- PROFILE PICTURE --}}
+                                        @if ($attribute->foto != null)
+                                            {{-- jika melakukan update foto --}}
+
+                                            <image width="100" height="100"
+                                                xlink:href="{{ asset('storage/' . $attribute->foto) }}"
+                                                class=" imgpr rounded" alt="{{ $attribute->nama }}">
+                                            @else
+                                                {{-- jika tdk upadate foto --}}
+                                                <image width="100" height="100"
+                                                    xlink:href="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                                                    alt="{{ $attribute->nama }}">
+                                        @endif
+                                    </svg>
+                                </div>
+
+                                <div class="menup">
+                                    <a href="{{ route('update_mhs') }}">
+                                        <div class="openerp"><span></span><span>
+                                            </span><span></span></div>
+                                    </a>
+                                </div>
+                                <h3 class="namep value">Dosen Wali</h3>
+                                <div class="titlep value">{{ $attribute->nama }}</div>
+                                <div class="descp">
+                                    <tr>
+                                        <td class="value">{{ $attribute->nim }}</td><br>
+                                        <td class="value">{{ $attribute->email }}</td><br>
+                                        <td class="value">{{ $attribute->email_pribadi }} -</td><br>
+                                        <td class="value">{{ $attribute->status }}</td>
+                                    </tr>
+                                </div>
                             </div>
 
-                                <div class="panel-footer">
-                                    <span class="pull-left">Pencarian Program Studi</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
+                        </div>
+
+
+                         <!-- GENERATE-->
+                         <div class="col-md-7 grid-margin transparent">
+                            <div class="row">
+                                <div class="col-md-6 mb-4 stretch-card transparent">
+                                    <div class="card card-tale">
+                                        <a href="irs" style="color: white">
+                                            <div class="card-body">
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-tasks fa-2x"> IRS</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4 stretch-card transparent">
+                                    <div class="card card-dark-blue">
+                                        <a href="khs" style="color: white">
+                                            <div class="card-body">
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-file-text-o fa-2x"> KHS</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                                    <div class="card card-light-blue"><a href="pkl" style="color: white">
+                                            <div class="card-body">
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-newspaper-o  fa-2x"> PKL</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 stretch-card transparent">
+                                    <div class="card card-light-danger"><a href="skripsi" style="color: white">
+                                            <div class="card-body">
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-columns fa-2x"> Skripsi</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card card-tale">
+                            <a href="{{ route('pencarian_dsn') }}" style="color: white">
+                                <div class="card-body">
+                                    <p class="mb-4">Pencarian</p>
+                                    <i class="fa fa-user fa-2x"> Pencarian Mahasiswa</i>
                                 </div>
                             </a>
                         </div>
-                    <br><br>
+                    </div>
 
+
+
+
+
+
+
+
+
+                    <br><br><br><br>
+
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Proyek
+                                Perangkat Lunak © 2023. All rights reserved.</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Tugas Besar
+                                Informatika <i class="ti-heart text-danger ml-1"></i></span>
+                        </div>
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Oleh: Alif,
+                                Adji, Ririn, Nadiyya</a></span>
+                        </div>
+                    </footer>
+                    <!-- partial -->
                 </div>
-
+                <!-- main-panel ends -->
             </div>
-
-                <!-- /.row -->
-
-            </div>
-            <!-- /.container-fluid -->
-
+            <!-- page-body-wrapper ends -->
         </div>
-        <!-- /#page-wrapper -->
+        <!-- container-scroller -->
 
-    </div>
-    <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="{{asset('style/js/jquery.js')}}"></script>
+        <!-- plugins:js -->
+        <script src="vendors/js/vendor.bundle.base.js"></script>
+        <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="{{ asset('style1/skydash/vendors/chart.js/Chart.min.js') }}"></script>
+        <script src="{{ asset('style1/skydash/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+        <script src="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+        <script src="{{ asset('style1/skydash/js/dataTables.select.min.js') }}"></script>
+        <script src="vendors/chart.js/Chart.min.js"></script>
+        <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+        <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+        <script src="js/dataTables.select.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{asset('style/js/bootstrap.min.js')}}"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="{{ asset('style1/skydash/js/off-canvas.js') }}"></script>
+        <script src="{{ asset('style1/skydash/js/hoverable-collapse.js') }}"></script>
+        <script src="{{ asset('style1/skydash/js/template.js') }}"></script>
+        <script src="{{ asset('style1/skydash/js/settings.js') }}"></script>
+        <script src="{{ asset('style1/skydash/js/todolist.js') }}"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="{{asset('style/js/plugins/morris/raphael.min.js')}}"></script>
-    <script src="{{asset('style/js/plugins/morris/morris.min.js')}}"></script>
-    <script src="{{asset('style/js/plugins/morris/morris-data.js')}}"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
+        <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
+        <!-- End custom js for this page-->
 </body>
 
 </html>

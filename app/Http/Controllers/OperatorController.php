@@ -22,7 +22,7 @@ class OperatorController extends Controller
     public function index()
     {
         $attribute=Auth::guard('opt')->user();
-        
+
         // dd($attribute);
         return view('operator/dashboard_opt',['attribute'=>$attribute]);
     }
@@ -67,6 +67,23 @@ class OperatorController extends Controller
 
         // $attribute=Auth::guard('opt')->user();
         return redirect()->route('generate');
+    }
+
+    public function import_manual(Request $request)
+    {
+        $validateData = $request->validate([
+            'nama' => 'required',
+            'id' => 'required',
+            'angkatan' => 'required',
+            'dsn_id' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        ddd($request);
+
+        // mahasiswa::created($validateData);
+        // return redirect()->route('import_mhs');
     }
 
     /**

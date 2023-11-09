@@ -36,7 +36,8 @@ Route::middleware(['isOperator'])->group(function(){
     Route::post('operator/generate/import', function(){
         Artisan::call('db:seed', ['--class' => 'ImportMhsSeeder']);
         return redirect()->route('generate');
-    })->name('import');
+    })->name('import_mhs');
+    Route::post('operator/generate/import_manual', [OperatorController::class, 'import_manual'])->name('import_manual');
 });
 
 //mhs
