@@ -57,11 +57,11 @@ Route::middleware(['isMahasiswa'])->group(function(){
 
     // IRS progress
     Route::post('mahasiswa/irs',[MahasiswaController::class, 'irs_import'])-> name('irs_import');
-    Route::get('mahasiswa/irs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf');
+    Route::get('mahasiswa/irs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf_irs');
 
     // KHS progress
     Route::post('mahasiswa/khs',[MahasiswaController::class, 'khs_import'])-> name('khs_import');
-    Route::get('mahasiswa/khs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf');
+    Route::get('mahasiswa/khs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf_khs');
 
 });
 

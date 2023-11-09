@@ -30,11 +30,12 @@ class DosenwaliController extends Controller
     {
         $attribute=Auth::guard('dsn')->user();
         $keyword = $request->keyword;
-        // dd($keyword);
 
+        $mhs = Auth::guard('mhs')->user();
         $mahasiswa = mahasiswa::where('nama', 'like', "%" . $keyword . "%")->paginate(10);
+        dd($mhs);
 
-        return view('dosenwali/pencarian_dsn', ['mahasiswa' => $mahasiswa, 'attribute'=>$attribute]);
+        return view('dosenwali/pencarian_dsn', ['mahasiswa' => $mahasiswa, 'attribute'=>$attribute, 'mhs'=>$mhs]);
     }
 
     /**

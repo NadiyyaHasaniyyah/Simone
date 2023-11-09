@@ -33,8 +33,6 @@ class MahasiswaController extends Controller
     {
         $attribute=Auth::guard('mhs')->user();
         $irs = Irs::where('mhs_id', $attribute->id)->orderBy('semester')->get();
-        // dd($irs);
-        // dd($attribute);
         return view('mahasiswa/irs_mhs',[
             'attribute'=>$attribute,
             'irs'=>$irs]);
@@ -91,7 +89,7 @@ class MahasiswaController extends Controller
             $sks_komulatif=Khs::where('mhs_id', $attribute->id)->Where('semester',$validateData['semester']-1)->first()->sks_komulatif;
             $totalIP = Khs::where('mhs_id', $attribute->id)->sum('ips');
             $CountSMT = Khs::where('mhs_id', $attribute->id)->count();
-            
+
             $validateData['sks_komulatif'] = $sks_komulatif+$validateData['sks_smt'];
             $validateData['ipk']=($totalIP+$validateData['ips'])/($CountSMT+1);
         }

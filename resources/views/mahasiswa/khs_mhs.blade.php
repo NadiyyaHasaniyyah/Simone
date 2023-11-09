@@ -241,14 +241,14 @@
                                                 <h2>Isi KHS</h2>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form action="{{ route('khs_import') }}" method="POST">
+                                                        <form action="{{ route('khs_import') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="form-group row" style="margin: auto">
 
                                                                 <label for="semester" class="col-form-label col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
                                                                 <div class="col-sm-7">
-                                                                    <select 
+                                                                    <select
                                                                         class="form-control @error('semester') is-invalid @enderror"
                                                                         name="semester" id="semester">
                                                                         <option>pilih semester </option>
@@ -392,26 +392,32 @@
                                                                             <tr>
                                                                                 <td>{{ $item->semester }}</td>
                                                                                 <td>{{ $sum=$sum+$item->sks_smt }}</td>
-                                                                                <td>file</td>
+                                                                                <td>
+                                                                                    <a href="{{ route('view_pdf_khs', ['semester' => $item->semester]) }}">
+                                                                                        <button
+                                                                                            class="btn btn-inverse-primary btn-fw trigger" >Semester {{ $item->semester }}
+                                                                                        </button>
+                                                                                    </a>
+                                                                                </td>
                                                                                 <td> <button type="button"
                                                                                     class="btn btn-inverse-danger btn-icon">
                                                                                     <i class="ti-trash"></i></td>
                                                                             </tr>
                                                                         @endforeach
-                                                                        
+
 
 
                                                                     </tbody>
-                                                                </table>                                                          
+                                                                </table>
 
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </section>
-                                        
-                                            
+
+
 
 
 
@@ -421,7 +427,7 @@
                                             <div class="modal">
                                               <div class="head">
                                                 <a class="btn-close trigger" href="#">
-                                                
+
                                                 </a>
                                               </div>
                                               <div class="content" >
@@ -429,17 +435,17 @@
                                                     <br>
                                                     <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
                                                 </div>
-                                              
-                                                
 
-                                                  
+
+
+
                                               </div>
                                             </div>
                                           </div>
                                     </div>
-                                    
+
                                 </div>
-                                
+
 
 
 
@@ -451,15 +457,15 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script>
-                              $(document).ready(function () {
-                                $(".trigger").on("click", function () {
-                                  $(".modal-wrapper").toggleClass("open");
-                                  $(".page-wrapper").toggleClass("blur-it");
-                                  return false;
+                                {{-- <script>
+                                $(document).ready(function () {
+                                    $(".trigger").on("click", function () {
+                                    $(".modal-wrapper").toggleClass("open");
+                                    $(".page-wrapper").toggleClass("blur-it");
+                                    return false;
+                                    });
                                 });
-                              });
-                            </script>
+                                </script> --}}
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->

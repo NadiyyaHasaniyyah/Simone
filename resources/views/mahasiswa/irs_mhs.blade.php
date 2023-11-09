@@ -353,7 +353,7 @@
                                                                             <td>{{ $item->semester }}</td>
                                                                             <td>{{ $item->jumlah_sks }}</td>
                                                                             <td>
-                                                                                <a href="{{ route('view_pdf', ['semester' => $item->semester]) }}">
+                                                                                <a href="{{ route('view_pdf_irs', ['semester' => $item->semester]) }}">
                                                                                     <button
                                                                                         class="btn btn-inverse-primary btn-fw trigger" >Semester {{ $item->semester }}
                                                                                     </button>
@@ -365,7 +365,7 @@
                                                                             <td> <button type="button"
                                                                                     class="btn btn-success btn-rounded btn-ico ">
                                                                                     <i class="ti-check"></i></td>
-                                                                                
+
                                                                         </tr>
                                                                     @endforeach
                                                                 </table>

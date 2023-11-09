@@ -246,8 +246,9 @@
                                 </p>
                                 <div class="table-responsive">
                                   <table class="table table-striped">
-                                    <thead>
 
+                                    {{-- HEAD --}}
+                                    <thead>
                                       <tr>
                                         <th>
                                           No
@@ -266,25 +267,29 @@
                                         </th>
                                       </tr>
                                     </thead>
-                                    <tbody>
-                                      <tr>
-                                        <td class="py-1">
-                                          1
-                                        </td>
-                                        <td>
-                                          Alif Jambi
-                                        </td>
-                                        <td>
-                                          20001
-                                        </td>
-                                        <td>
-                                          2021
-                                        </td>
-                                        <td>
-                                          May 15, 2015
-                                        </td>
-                                      </tr>
-                                    </tbody>
+
+                                    {{-- BODY --}}
+                                    @foreach ($mhs as $item)
+                                        <tbody>
+                                        <tr>
+                                            <td class="py-1">
+                                            1
+                                            </td>
+                                            <td>
+                                            {{ $item->nama }}
+                                            </td>
+                                            <td>
+                                            {{ $item->nim }}
+                                            </td>
+                                            <td>
+                                            {{ $item->angkatan }}
+                                            </td>
+                                            <td>
+                                            <a href="{{ route('detail_mhs', $item->id) }}" class="btn btn-primary btn-sm">Detail</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    @endforeach
                                   </table>
                                 </div>
                               </div>
