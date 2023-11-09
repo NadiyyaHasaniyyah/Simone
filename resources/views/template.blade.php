@@ -10,23 +10,38 @@
 
     <title>SIMONE</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="shortcut icon"  href='https://i.ibb.co/yBG6mSK/Simone-4.png'>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="shortcut icon" href="{{ asset('style1/skydash/images/logo-mini.svg') }}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{{asset('style/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('style/css/bootstrap.css')}}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
 
-
-    <!-- Custom CSS -->
-    <link href="{{asset('style/css/sb-admin.css')}}" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="{{asset('style/css/plugins/morris.css')}}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{asset('style/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <title>Simone</title>
+    <!-- plugins:css -->
+    <link href="{{ asset('style1/skydash/vendors/feather/feather.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/css/vendor.bundle.base.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/css/vendor.bundle.base.css') }}" rel="stylesheet">
+    <!-- endinject -->
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link href="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/js/select.dataTables.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/vertical-layout-light/style.css') }}" rel="stylesheet">
+    <!-- dashboard css -->
+    <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
 
 
 </head>
