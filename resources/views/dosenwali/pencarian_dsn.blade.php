@@ -48,7 +48,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_mhs') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_dsn') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -166,7 +166,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard_mhs') }}">
+                        <a class="nav-link" href="{{ route('dashboard_dsn') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -206,7 +206,7 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Pencarian Mahasiswa</h3>
-                                    <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
+                                    <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard/</a><a
                                         style="color: black" href="pencarian_dsn">Pencarian Mahasiswa</a>
                                 </div>
                             </div>
