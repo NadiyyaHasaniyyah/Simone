@@ -46,6 +46,12 @@ class DosenwaliController extends Controller
         return view('dosenwali/pencarian_dsn', ['attribute'=>$attribute, 'mhs'=>$mhs]);
     }
 
+       public function verifikasi()
+    {
+        $attribute=Auth::guard('dsn')->user();
+        // dd($attribute);
+        return view('dosenwali/verifikasi_dsn',['attribute'=>$attribute]);
+    }
     /**
      * Show the form for creating a new resource.
      */
