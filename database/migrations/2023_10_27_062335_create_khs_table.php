@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('ipk');
             $table->string('file_khs')->nullable();
             $table->string('semester');
+            $table->string('status_verif')->default('belum');
             $table->foreignId('mhs_id');
             $table->timestamps();
         });
