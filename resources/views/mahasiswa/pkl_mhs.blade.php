@@ -252,7 +252,7 @@
                                                         {{-- FORM --}}
                                                         <form action="{{ route('pkl') }}" method="POST">
                                                             @csrf
-                                                            
+
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label for="Status"
                                                                     class="col-sm-3 col-form-label"
@@ -291,10 +291,10 @@
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Scan Berita Acara</label>
-                                                                <input type="file" name="file_irs"
-                                                                    class="  file-upload-default  @error('file_irs') is-invalid @enderror"
-                                                                    name="file_irs" id="file_irs" accept = ".pdf"
-                                                                    value="{{ old('file_irs') }}"  >
+                                                                <input type="file" name="file_pkl"
+                                                                    class="  file-upload-default  @error ('file_pkl') is-invalid @enderror"
+                                                                    name="file_pkl" id="file_pkl" accept = ".pdf"
+                                                                    value="{{ old('file_pkl') }}"  >
                                                                 <div class="input-group col-sm-7">
                                                                     <input type="text"
                                                                         class="form-control file-upload-info" disabled

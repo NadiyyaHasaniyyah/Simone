@@ -126,14 +126,18 @@ class MahasiswaController extends Controller
     }
     public function pkl_import(Request $request)
     {
+        $attribute=Auth::guard('mhs')->user();
         // ddd($request);
         $validateData = $request->validate([
-            'judul' => 'required',
+            'status' => 'required',
             'nilai'=> 'required',
-            'semester' => 'required',
+            'file_pkl' => 'max:2048',
         ]);
 
+        $irs = Irs::where('mhs_id', $attribute->id)->orderBy('semester', 'desc')->first();
+
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
+        $validateData['semester'] = $irs->semester;
 
         Pkl::create($validateData);
 
