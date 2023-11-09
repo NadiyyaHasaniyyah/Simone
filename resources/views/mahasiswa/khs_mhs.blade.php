@@ -290,7 +290,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row" style="margin: auto">
+                                                            {{-- <div class="form-group row" style="margin: auto">
                                                                 <label for="sks_komulatif"
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">SKS
@@ -304,7 +304,7 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label for="ips"
                                                                     class="col-sm-3 col-form-label"
@@ -319,7 +319,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row" style="margin: auto">
+                                                            {{-- <div class="form-group row" style="margin: auto">
                                                                 <label for="ipk"
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">IP Komulatif</label>
@@ -332,7 +332,7 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                             <br>
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
@@ -387,29 +387,18 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>24</td>
-                                                                            {{-- contoh buat pop up lihat file pdf pakai modal --}}
-                                                                            <td><button
-                                                                                    class="btn btn-inverse-primary btn-fw trigger" >Semester1.png</button>
-                                                                                    <span class="overlay"></span>
-                                                                            </td>
-                                                                            <td> <button type="button"
-                                                                                    class="btn btn-inverse-danger btn-icon ">
-                                                                                    <i class="ti-trash"></i></td>
-                                                                      
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>21</td>
-                                                                            <td><button
-                                                                                    class="btn btn-inverse-primary btn-fw">Semester2.pdf</button>
-                                                                            </td>
-                                                                            <td> <button type="button"
+                                                                        {{ $sum = 0 }}
+                                                                        @foreach ($khs as $item)
+                                                                            <tr>
+                                                                                <td>{{ $item->semester }}</td>
+                                                                                <td>{{ $sum=$sum+$item->sks_smt }}</td>
+                                                                                <td>file</td>
+                                                                                <td> <button type="button"
                                                                                     class="btn btn-inverse-danger btn-icon">
                                                                                     <i class="ti-trash"></i></td>
-                                                                        </tr>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                        
 
 
                                                                     </tbody>

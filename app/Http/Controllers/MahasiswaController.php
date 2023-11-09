@@ -77,14 +77,24 @@ class MahasiswaController extends Controller
     public function khs_import(Request $request)
     {
         // dd($request);
+        $attribute=Auth::guard('mhs')->user();
         $validateData = $request->validate([
             'sks_smt' => 'required',
-            'sks_komulatif'=> 'required',
             'ips' => 'required',
-            'ipk'=> 'required',
             'semester' => 'required',
             'file_khs' => 'required|max:2048',
         ]);
+        if ($validateData['semester']==1){
+            $validateData['sks_komulatif']=$validateData['sks_smt'];
+            $validateData['ipk']=$validateData['ips'];
+        }else{
+            $sks_komulatif=Khs::where('mhs_id', $attribute->id)->Where('semester',$validateData['semester']-1)->first()->sks_komulatif;
+            $totalIP = Khs::where('mhs_id', $attribute->id)->sum('ips');
+            $CountSMT = Khs::where('mhs_id', $attribute->id)->count();
+            
+            $validateData['sks_komulatif'] = $sks_komulatif+$validateData['sks_smt'];
+            $validateData['ipk']=($totalIP+$validateData['ips'])/($CountSMT+1);
+        }
 
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
 
