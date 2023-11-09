@@ -1,0 +1,695 @@
+@import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
+
+/* colors */
+/* tab setting */
+/* breakpoints */
+/* selectors relative to radio inputs */
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-files-container {
+    width: 520px;
+    height: 200px;
+    padding: 30px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+}
+
+.drag-file-area {
+    background-color: white;
+    border: 1px;
+    border-radius: 10px;
+    margin: 10px 0 15px;
+    padding: 30px 50px;
+    width: 750px;
+    text-align: center;
+}
+
+.drag-file-area .upload-icon {
+    font-size: 50px;
+}
+
+.drag-file-area h3 {
+    font-size: 20px;
+    margin: 15px 0;
+    color: gainsboro;
+}
+
+.drag-file-area label {
+    font-size: 19px;
+}
+
+.drag-file-area label .browse-files-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.browse-files span {
+    position: relative;
+}
+
+.default-file-input {
+    opacity: 0;
+}
+
+
+.cannot-upload-message {
+    background-color: #ffc6c4;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 5px 10px 5px 30px;
+    border-radius: 5px;
+    color: #BB0000;
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.cannot-upload-message span,
+.upload-button-icon {
+    padding-right: 10px;
+}
+
+.cannot-upload-message span:last-child {
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.file-block {
+    color: skyblue;
+    background-color: #282424;
+    transition: all 1s;
+    width: 390px;
+    position: relative;
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.file-icon {
+    margin-right: 10px;
+}
+
+.file-name,
+.file-size {
+    padding: 0 3px;
+}
+
+.remove-file-icon {
+    cursor: pointer;
+}
+
+.progress-bar {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    width: 0;
+    height: 1px;
+    background-color: #4BB543;
+}
+
+.upload-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ccc;
+    color: white;
+}
+
+.label {
+    background-color: white;
+    border-radius: 10px;
+    width: 400px;
+    height: 100px;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.label input[type="file"] {
+    display: none;
+}
+
+
+/* Memberi gaya saat tombol dihover */
+.label:hover {
+    background-color: #d3d3e6;
+    /* Ganti warna latar belakang saat dihover */
+}
+
+.upload-button:hover {
+    background-color: greenyellow;
+    /* Ganti warna latar belakang saat dihover */
+}
+
+body {
+
+    color: #333;
+    font-family: "Raleway";
+}
+
+body h1 {
+    text-align: center;
+    color: #428bff;
+    font-weight: 300;
+    padding: 0px 0 0px 0;
+    margin: 0;
+}
+
+.tabs {
+    left: 40%;
+    transform: translateX(-40%);
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    min-width: 240px;
+}
+
+.tabs input[name=tab-control] {
+    display: none;
+}
+
+.tabs .content section h2,
+.tabs ul li label {
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-size: 18px;
+    color: #428bff;
+}
+
+.tabs ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.tabs ul li {
+    box-sizing: border-box;
+    flex: 1;
+    width: 25%;
+    text-align: center;
+}
+
+.tabs ul li label {
+    transition: all 0.3s ease-in-out;
+    color: #929daf;
+    padding: 5px auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tabs ul li label br {
+    display: none;
+}
+
+.tabs ul li label svg {
+    fill: #929daf;
+    height: 1.2em;
+    vertical-align: bottom;
+    margin-right: 0.2em;
+    transition: all 0.2s ease-in-out;
+}
+
+.tabs ul li label:hover,
+.tabs ul li label:focus,
+.tabs ul li label:active {
+    outline: 0;
+    color: #bec5cf;
+}
+
+.tabs ul li label:hover svg,
+.tabs ul li label:focus svg,
+.tabs ul li label:active svg {
+    fill: #bec5cf;
+}
+
+.tabs .slider {
+    position: relative;
+    width: 50%;
+    transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
+}
+
+.tabs .slider .indicator {
+    position: relative;
+    width: 80px;
+    max-width: 100%;
+    margin: auto;
+    height: 4px;
+    background: #428bff;
+    border-radius: 1px;
+}
+
+.tabs .content {
+    margin-top: 30px;
+}
+
+.tabs .content section {
+    display: none;
+    -webkit-animation-name: content;
+    animation-name: content;
+    -webkit-animation-direction: normal;
+    animation-direction: normal;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    line-height: 1.4;
+}
+
+.tabs .content section h2 {
+    color: #428bff;
+    display: none;
+}
+
+.tabs .content section h2::after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #428bff;
+    margin-top: 5px;
+    left: 1px;
+}
+
+.tabs input[name=tab-control]:nth-of-type(1):checked~ul>li:nth-child(1)>label {
+    cursor: default;
+    color: #428bff;
+}
+
+.tabs input[name=tab-control]:nth-of-type(1):checked~ul>li:nth-child(1)>label svg {
+    fill: #428bff;
+}
+
+@media (max-width: 600px) {
+    .tabs input[name=tab-control]:nth-of-type(1):checked~ul>li:nth-child(1)>label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name=tab-control]:nth-of-type(1):checked~.slider {
+    transform: translateX(0%);
+}
+
+.tabs input[name=tab-control]:nth-of-type(1):checked~.content>section:nth-child(1) {
+    display: block;
+}
+
+.tabs input[name=tab-control]:nth-of-type(2):checked~ul>li:nth-child(2)>label {
+    cursor: default;
+    color: #428bff;
+}
+
+.tabs input[name=tab-control]:nth-of-type(2):checked~ul>li:nth-child(2)>label svg {
+    fill: #428bff;
+}
+
+@media (max-width: 600px) {
+    .tabs input[name=tab-control]:nth-of-type(2):checked~ul>li:nth-child(2)>label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name=tab-control]:nth-of-type(2):checked~.slider {
+    transform: translateX(100%);
+}
+
+.tabs input[name=tab-control]:nth-of-type(2):checked~.content>section:nth-child(2) {
+    display: block;
+}
+
+.tabs input[name=tab-control]:nth-of-type(3):checked~ul>li:nth-child(3)>label {
+    cursor: default;
+    color: #428bff;
+}
+
+.tabs input[name=tab-control]:nth-of-type(3):checked~ul>li:nth-child(3)>label svg {
+    fill: #428bff;
+}
+
+@media (max-width: 600px) {
+    .tabs input[name=tab-control]:nth-of-type(3):checked~ul>li:nth-child(3)>label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name=tab-control]:nth-of-type(3):checked~.slider {
+    transform: translateX(200%);
+}
+
+.tabs input[name=tab-control]:nth-of-type(3):checked~.content>section:nth-child(3) {
+    display: block;
+}
+
+.tabs input[name=tab-control]:nth-of-type(4):checked~ul>li:nth-child(4)>label {
+    cursor: default;
+    color: #428bff;
+}
+
+.tabs input[name=tab-control]:nth-of-type(4):checked~ul>li:nth-child(4)>label svg {
+    fill: #428bff;
+}
+
+@media (max-width: 600px) {
+    .tabs input[name=tab-control]:nth-of-type(4):checked~ul>li:nth-child(4)>label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name=tab-control]:nth-of-type(4):checked~.slider {
+    transform: translateX(300%);
+}
+
+.tabs input[name=tab-control]:nth-of-type(4):checked~.content>section:nth-child(4) {
+    display: block;
+}
+
+@-webkit-keyframes content {
+    from {
+        opacity: 0;
+        transform: translateY(5%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes content {
+    from {
+        opacity: 0;
+        transform: translateY(5%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@media (max-width: 1000px) {
+    .tabs ul li label {
+        white-space: initial;
+    }
+
+    .tabs ul li label br {
+        display: initial;
+    }
+
+    .tabs ul li label svg {
+        height: 1.5em;
+    }
+}
+
+@media (max-width: 600px) {
+    .tabs ul li label {
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .tabs ul li label span {
+        display: none;
+    }
+
+    .tabs .slider {
+        display: none;
+    }
+
+    .tabs .content {
+        margin-top: 20px;
+    }
+
+    .tabs .content section h2 {
+        display: block;
+    }
+}
+
+
+
+/* pop up */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+.blur-it {
+    filter: blur(1px);
+}
+
+
+
+.modal-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+}
+
+.modal-wrapper.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+
+    display: block;
+    margin: auto;
+    border-radius: 20px;
+    border: 1px solid gray;
+    position: relative;
+    top: 50%;
+    left: 0%;
+    background: white;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.modal-wrapper.open .modal {
+    margin-top: -200px;
+    opacity: 1;
+}
+
+.head {
+    width: 100%;
+    overflow: hidden;
+    background: skyblue;
+}
+
+.btn-close {
+    font-size: 38px;
+    display: block;
+    float: right;
+    color: white;
+}
+
+.good-job {
+    text-align: center;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: skyblue;
+}
+
+.good-job .fa-thumbs-o-up {
+    font-size: 180px;
+}
+
+.good-job h1 {
+    font-size: 45px;
+}
+
+.col-gen-label {
+    margin: 0px;
+}
+
+/* Tabel */
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+i {
+    margin-bottom: 4px;
+}
+
+.btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-app {
+    color: white;
+    box-shadow: none;
+    border-radius: 3px;
+    position: relative;
+    padding: 10px 15px;
+    margin: 0;
+    min-width: 60px;
+    max-width: 80px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    font-size: 12px;
+    transition: all 0.2s;
+    background-color: steelblue !important;
+}
+
+.btn-app>.fa,
+.btn-app>.glyphicon,
+.btn-app>.ion {
+    font-size: 30px;
+    display: block;
+}
+
+.btn-app:hover {
+    border-color: #aaa;
+    transform: scale(1.1);
+}
+
+.pdf {
+    background-color: #dc2f2f !important;
+}
+
+.excel {
+    background-color: #3ca23c !important;
+}
+
+.csv {
+    background-color: #e86c3a !important;
+}
+
+.imprimir {
+    background-color: #8766b1 !important;
+}
+
+/*
+    Esto es opcional pero sirve para que todos los botones de exportacion se distribuyan de manera equitativa usando flexbox
+    
+    .flexcontent {
+        display: flex;
+        justify-content: space-around;
+    }
+    */
+
+.selectTable {
+    height: 40px;
+    float: right;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #4682b4;
+    border-color: #4682b4;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #315f86;
+    border-color: #545b62;
+}
+
+.titulo-tabla {
+    color: #606263;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.inline {
+    display: inline-block;
+    padding: 0;
+}
+
+#ejemplo {
+    font-size: 16px; /* Atur ukuran font untuk tabel */
+}
+
+#ejemplo th {
+    font-size: 14px; /* Atur ukuran font untuk elemen-elemen <th> (header) dalam tabel */
+}
+
+#ejemplo td {
+    font-size: 14px; /* Atur ukuran font untuk elemen-elemen <td> (data) dalam tabel */
+}
+
+container{
+    height: 30%;
+}
+  
+
