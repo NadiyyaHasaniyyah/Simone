@@ -5,6 +5,7 @@ use App\Models\Irs;
 use App\Models\Khs;
 use App\Models\Pkl;
 use App\Models\Regency;
+use App\Models\Skripsi;
 use App\Models\Village;
 use App\Models\District;
 use App\Models\Province;
@@ -144,6 +145,27 @@ class MahasiswaController extends Controller
         // dd($attribute);
         return view('mahasiswa/skripsi_mhs',['attribute'=>$attribute]);
 
+    }
+
+    public function skripsi_import(Request $request)
+    {
+        // ddd($request);
+        $attribute=Auth::guard('mhs')->user();
+        $validateData = $request->validate([
+
+            'status' => 'required',
+            'nilai'=> 'required',
+        ]);
+
+        $validateData['semester']= Irs::where('mhs_id', $attribute->id)->orderBy('semester','desc')->first();
+        $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
+
+        // dd($validateData);
+        Skripsi::create($validateData);
+
+        return redirect()->route('skripsi');
+
+        // $attribute=Auth::guard('mhs')->user();
     }
     
 
