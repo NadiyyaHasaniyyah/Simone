@@ -195,7 +195,7 @@
 
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class="font-weight-bold">Nama</label> <span class="grey"></span>
-                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" style="height: 20px" value="{{ $attribute->nama }}"/>
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" style="height: 20px"  name='nama' id="nama" value="{{ $attribute->nama }}"/>
                                     @error('nama')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -203,7 +203,7 @@
 
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class="font-weight-bold">Email</label> <span class="grey"></span>
-                                    <input type="text" class="form-control @error('email_pribadi') is-invalid @enderror" style="height: 20px" id="email_pribadi" value="{{ $attribute->email_pribadi }}"/>
+                                    <input type="text" class="form-control @error('email_pribadi') is-invalid @enderror" style="height: 20px" name='email_pribadi' id="email_pribadi" value="{{ $attribute->email_pribadi }}"/>
                                     @error('email_pribadi')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -211,7 +211,7 @@
 
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class="font-weight-bold">No.Telepon</label> <span class="grey"></span>
-                                    <input type="text" class="form-control @error('nomor_tlp') is-invalid @enderror" style="height: 20px" id="nomor_tlp" value="{{ $attribute->nomor_tlp }}"/>
+                                    <input type="text" class="form-control @error('nomor_tlp') is-invalid @enderror" style="height: 20px" name='nomor_tlp' id="nomor_tlp" value="{{ $attribute->nomor_tlp }}"/>
                                     @error('nomor_tlp')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -221,14 +221,14 @@
                             <div class="col-md-3">
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class="font-weight-bold">Fakultas</label> <span class="grey"><i>*tidak dapat diubah</i></span>
-                                    <input type="text" class="form-control @error('fakultas') is-invalid @enderror" style="height: 20px" id="Fakultas" value="{{ $attribute->fakultas }}" disabled/>
+                                    <input type="text" class="form-control @error('fakultas') is-invalid @enderror" style="height: 20px" name='fakultas'  id="fakultas" value="{{ $attribute->fakultas }}" disabled/>
                                     @error('fakultas')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div> <br>
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class="font-weight-bold">Departemen</label> <span class="grey"><i>*tidak dapat diubah</i></span>
-                                    <input type="text" class="form-control @error('departemen') is-invalid @enderror" style="height: 20px" id="Departemen" value="{{ $attribute->departemen}}" disabled/>
+                                    <input type="text" class="form-control @error('departemen') is-invalid @enderror" style="height: 20px" name='departemen' id="departemen" value="{{ $attribute->departemen}}" disabled/>
                                     @error('departemen')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -285,14 +285,14 @@
                                 </div> <br>
                                 <div class="form-group" id="">
                                     <label for="" class="font-weight-bold">Alamat</label> <span class="grey"></span>
-                                    <textarea class="col-sm-12 form-control @error('alamat') is-invalid @enderror" name="alamat" name="alamat" class="form-control" id="alamat" cols="30" rows="5" value="{{ $attribute->alamat }}"></textarea>
+                                    <textarea class="col-sm-12 form-control @error('alamat') is-invalid @enderror" name="alamat" class="form-control" id="alamat" cols="30" rows="5" value="{{ $attribute->alamat }}"></textarea>
                                     @error('alamat')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div> <br>
                                 <br><br><br><br><br>
                                 <div class="form-group" id="">
-                                    <button type="button" class="col-sm-12 btn btn-primary">Simpan</button>
+                                    <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block" type="button">Simpan</button>
                                 </div>
                             </div>
 

@@ -321,7 +321,6 @@
 
                                                         {{-- Semester --}}
                                                         <div class="form-group row" style="margin: auto">
-
                                                             <label for="semester" class="col-form-label col-sm-3"
                                                                 style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
                                                             <div class="col-sm-7">
@@ -345,6 +344,7 @@
                                                                     <option value="14">14</option>
                                                                 </select>
                                                             </div>
+                                                        </div>
                                                             <br>
                                                             <div class=" submit ">
                                                                 <button type="submit" name="submit" value="submit"
@@ -352,6 +352,7 @@
                                                                     type="button">Simpan</button>
 
                                                             </div>
+
                                                         </form>
                                                     </div>
                                                 </div>

@@ -285,26 +285,32 @@
                                                               </div>
                                                           </div>
                                                             <br>
-                                                            {{-- File --}}
-                                                            {{-- <div class="form-group row" style="margin: auto">
-                                                                <label class="col-sm-3"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">File
-                                                                    upload</label>
-                                                                <input type="file" name="file_irs"
-                                                                    class="  file-upload-default  @error('file_irs') is-invalid @enderror"
-                                                                    name="file_irs" id="file_irs" accept = ".pdf"
-                                                                    value="{{ old('file_irs') }}"  >
-                                                                <div class="input-group col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control file-upload-info" disabled
-                                                                        placeholder="Upload">
-                                                                    <span class="input-group-append">
-                                                                        <button
-                                                                            class="file-upload-browse btn btn-primary"
-                                                                            type="button">Upload</button>
-                                                                    </span>
-                                                                </div>
-                                                            </div> --}}
+                                                            {{-- Semester --}}
+                                                        <div class="form-group row" style="margin: auto">
+                                                            <label for="semester" class="col-form-label col-sm-3"
+                                                                style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
+                                                            <div class="col-sm-7">
+                                                                <select
+                                                                    class="form-control @error('semester') is-invalid @enderror"
+                                                                    name="semester" id="semester">
+                                                                    <option>pilih semester </option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                    <option value="6">6</option>
+                                                                    <option value="7">7</option>
+                                                                    <option value="8">8</option>
+                                                                    <option value="9">9</option>
+                                                                    <option value="10">10</option>
+                                                                    <option value="11">11</option>
+                                                                    <option value="12">12</option>
+                                                                    <option value="13">13</option>
+                                                                    <option value="14">14</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                             <br>
                                                             <div class=" submit ">
                                                                 <button type="submit" name="submit" value="submit"
