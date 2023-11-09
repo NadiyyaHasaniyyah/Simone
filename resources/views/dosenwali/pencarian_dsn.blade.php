@@ -220,16 +220,18 @@
                             <div class="card ">
                                 <div class="card-body">
                                     <h4 class="card-title">Cari Mahasiswa</h4>
-                                  <form class="form-group">
-                                    <div class="input-group">
-                                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama atau NIM">
-                                      <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                      </div>
-                                    </div>
-                                  </form>
+
+                                    {{-- FROM --}}
+                                    <form class="form-group" action="{{ route('search_dsn') }}" method="get">
+                                        <div class="input-group">
+                                            <input name="keyword" type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama atau NIM">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                              </div>
+                                </div>
                         </div>
                     </div>
 
@@ -245,6 +247,7 @@
                                 <div class="table-responsive">
                                   <table class="table table-striped">
                                     <thead>
+
                                       <tr>
                                         <th>
                                           No

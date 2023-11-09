@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\dosenwali;
+use App\Models\mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,17 @@ class DosenwaliController extends Controller
         $attribute=Auth::guard('dsn')->user();
         // dd($attribute);
         return view('dosenwali/pencarian_dsn',['attribute'=>$attribute]);
+    }
+
+    public function search(Request $request)
+    {
+        $attribute=Auth::guard('dsn')->user();
+        $keyword = $request->keyword;
+        // dd($keyword);
+
+        $mahasiswa = mahasiswa::where('nama', 'like', "%" . $keyword . "%")->paginate(10);
+
+        return view('dosenwali/pencarian_dsn', ['mahasiswa' => $mahasiswa, 'attribute'=>$attribute]);
     }
 
     /**
