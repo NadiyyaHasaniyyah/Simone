@@ -366,56 +366,55 @@
                                                                     <label for="nama" class="col-sm-3 col-gen" name="nama" id="nama"
                                                                         style="font-size: 13px; font-weight: bold; color: #000; ">
                                                                         Nama</label>
-                                                                    <div class="col-sm-9">
-                                                                        {{-- <input type="text"
-                                                                      class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                      name="jumlah_sks" id="jumlah_sks"
-                                                                      value="{{ old('jumlah_sks') }}"  > --}}
-                                                                        <input type="text" class="form-control"
-                                                                            style="height: 60%">
-                                                                        {{-- @error('jumlah_sks')
-                                                                      <div class="invalid-feedback">{{ $message }}
-                                                                      </div>
-                                                                  @enderror --}}
-                                                                    </div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text"
+                                                                            class="form-control @error('nama') is-invalid @enderror"
+                                                                            name="nama" id="nama"
+                                                                            value="{{ old('nama') }}"  >
+                                                                        {{-- <input type="text" class="form-control"
+                                                                            style="height: 60%"> --}}
+                                                                        @error('nama')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+                                                                        </div>
                                                                 </div>
+                                                                <br>
 
                                                                 {{-- NIM --}}
                                                                 <div class="form-group row" style="margin: auto">
                                                                     <label for="id" class="col-sm-3 col-gen" name="id" id="id"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         NIM</label>
-                                                                    <div class="col-sm-9">
-                                                                        {{-- <input type="text"
-                                                                    class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                    name="jumlah_sks" id="jumlah_sks"
-                                                                    value="{{ old('jumlah_sks') }}"  > --}}
-                                                                        <input type="text" class="form-control"
-                                                                            style="height: 60%">
-                                                                        {{-- @error('jumlah_sks')
-                                                                    <div class="invalid-feedback">{{ $message }}
-                                                                    </div>
-                                                                @enderror --}}
-                                                                    </div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text"
+                                                                            class="form-control @error('id') is-invalid @enderror"
+                                                                            name="id" id="id"
+                                                                            value="{{ old('id') }}"  >
+                                                                        {{-- <input type="text" class="form-control"
+                                                                            style="height: 60%"> --}}
+                                                                        @error('id')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+                                                                        </div>
                                                                 </div>
+                                                                <br>
 
                                                                 {{-- Angkatan --}}
                                                                 <div class="form-group row" style="margin: auto">
                                                                     <label for="angkatan" class="col-sm-3 col-gen" name="angkatan" id="angkatan"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Angkatan </label>
-                                                                    <div class="col-sm-9">
-                                                                        {{-- <input type="text"
-                                                                  class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                  name="jumlah_sks" id="jumlah_sks"
-                                                                  value="{{ old('jumlah_sks') }}"  > --}}
-                                                                        <input type="text" class="form-control"
-                                                                            style="height: 60%">
-                                                                        {{-- @error('jumlah_sks')
-                                                                  <div class="invalid-feedback">{{ $message }}
-                                                                  </div>
-                                                              @enderror --}}
-                                                                    </div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text"
+                                                                            class="form-control @error('angkatan') is-invalid @enderror"
+                                                                            name="angkatan" id="angkatan"
+                                                                            value="{{ old('angkatan') }}"  >
+                                                                        {{-- <input type="text" class="form-control"
+                                                                            style="height: 60%"> --}}
+                                                                        @error('angkatan')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+                                                                        </div>
                                                                 </div>
                                                             </div>
 
@@ -430,62 +429,67 @@
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Dosen ID</label>
                                                                     <div class="col-sm-9">
-                                                                        {{-- <input type="text"
-                                                              class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                              name="jumlah_sks" id="jumlah_sks"
-                                                              value="{{ old('jumlah_sks') }}"  > --}}
-                                                                        <input type="text" class="form-control"
-                                                                            style="height: 60%">
-                                                                        {{-- @error('jumlah_sks')
-                                                              <div class="invalid-feedback">{{ $message }}
-                                                              </div>
-                                                          @enderror --}}
+                                                                        <input type="text"
+                                                                        class="form-control @error('dsn_id') is-invalid @enderror"
+                                                                        name="dsn_id" id="dsn_id"
+                                                                        value="{{ old('dsn_id') }}"  >
+                                                                    {{-- <input type="text" class="form-control"
+                                                                        style="height: 60%"> --}}
+                                                                    @error('dsn_id')
+                                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                                    @enderror
                                                                     </div>
                                                                 </div>
+                                                                <br>
 
                                                                 {{-- Email --}}
                                                                 <div class="form-group row" style="margin: auto">
                                                                     <label for="email" class="col-sm-3 col-gen" name="email" id="email"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Email</label>
-                                                                    <div class="col-sm-9">
-                                                                        {{-- <input type="text"
-                                                                  class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                  name="jumlah_sks" id="jumlah_sks"
-                                                                  value="{{ old('jumlah_sks') }}"  > --}}
-                                                                        <input type="text" class="form-control "
-                                                                            style="height: 60%">
-                                                                        {{-- @error('jumlah_sks')
-                                                                  <div class="invalid-feedback">{{ $message }}
-                                                                  </div>
-                                                              @enderror --}}
-                                                                    </div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text"
+                                                                            class="form-control @error('email') is-invalid @enderror"
+                                                                            name="email" id="email"
+                                                                            value="{{ old('email') }}"  >
+                                                                        {{-- <input type="text" class="form-control"
+                                                                            style="height: 60%"> --}}
+                                                                        @error('email')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+                                                                        </div>
                                                                 </div>
 
                                                                 {{-- Password --}}
-                                                                <div class="form-group row" style="margin: auto">
+                                                                {{-- <div class="form-group row" style="margin: auto">
                                                                     <label for="password" class="col-sm-3 col-gen" name="password" id="password"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Password </label>
-                                                                    <div class="col-sm-9">
-                                                                        {{-- <input type="text"
-                                                                class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                name="jumlah_sks" id="jumlah_sks"
-                                                                value="{{ old('jumlah_sks') }}"  > --}}
-                                                                        <input type="text" class="form-control"
-                                                                            style="height: 60%">
-                                                                        {{-- @error('jumlah_sks')
-                                                                <div class="invalid-feedback">{{ $message }}
-                                                                </div>
-                                                            @enderror --}}
-                                                                    </div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text"
+                                                                            class="form-control @error('password') is-invalid @enderror"
+                                                                            name="password" id="password"
+                                                                            value="{{ old('password') }}"  >
+
+                                                                        @error('password')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+                                                                        </div>
+                                                                </div> --}}
+
+                                                                <br><br>
+                                                                <div class="simpan" style="margin: auto;">
+                                                                    <button type="submit" name="submit" value="submit" class="btn btn-primary" style="width: 20px" type="button">
+                                                                        Simpan
+                                                                    </button>
                                                                 </div>
 
                                                             </div>
+                                                            <br>
+                                                            <br>
 
-                                                            <button type="submit" name="submit" value="submit"
-                                                            class="btn btn-primary"
-                                                            type="button">Simpan</button>
+
+
 
                                                     </form>
                                                 </div>
@@ -588,12 +592,12 @@
                 <script>
                   var idioma = {
                     sProcessing: "...",
-                    sLengthMenu: " _MENU_ ",
+                    sLengthMenu: " MENU ",
                     sZeroRecords: "Tidak Ada ",
                     sEmptyTable: "Kosong",
-                    sInfo: " Halaman _START_ dari total  _TOTAL_ Mahasiswa",
+                    sInfo: " Halaman START dari total  TOTAL Mahasiswa",
                     sInfoEmpty: "Mahasiswa 0 dari 0 total 0 ",
-                    sInfoFiltered: "(total  _MAX_ Mahasiswa)",
+                    sInfoFiltered: "(total  MAX Mahasiswa)",
                     sInfoPostFix: "",
                     sSearch: "Cari:",
                     sUrl: "",

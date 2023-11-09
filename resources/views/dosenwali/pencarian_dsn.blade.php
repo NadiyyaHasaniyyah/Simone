@@ -224,7 +224,7 @@
                                     {{-- FROM --}}
                                     <form class="form-group" action="{{ route('search_dsn') }}" method="get">
                                         <div class="input-group">
-                                            <input name="keyword" type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama atau NIM">
+                                            <input name="keyword" type="text" class="form-control" id="search" placeholder="Nama atau NIM">
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
@@ -236,16 +236,16 @@
                     </div>
 
                         <br><br>
-
+                    <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
                                 <h4 class="card-title">Hasil Pencarian</h4>
-                                <p class="card-description">
+                                {{-- <p class="card-description">
                                   nama <code>.(mahasiswa)</code>
-                                </p>
+                                </p> --}}
                                 <div class="table-responsive">
-                                  <table class="table table-striped">
+                                  <table class="table table-striped" id=TabelMahasiswa>
 
                                     {{-- HEAD --}}
                                     <thead>
@@ -273,28 +273,30 @@
                                         <tbody>
                                         <tr>
                                             <td class="py-1">
-                                            1
+                                                {{ $loop->iteration }}
                                             </td>
                                             <td>
-                                            {{ $item->nama }}
+                                                {{ $item->nama }}
                                             </td>
                                             <td>
-                                            {{ $item->nim }}
+                                                {{ $item->id }}
                                             </td>
                                             <td>
-                                            {{ $item->angkatan }}
+                                                {{ $item->angkatan }}
                                             </td>
                                             <td>
-                                            <a href="{{ route('detail_mhs', $item->id) }}" class="btn btn-primary btn-sm">Detail</a>
+                                                <a href="" class="btn btn-primary btn-sm">Detail</a>
                                             </td>
                                         </tr>
                                         </tbody>
                                     @endforeach
-                                  </table>
+
+                                    </table>
+                                    </div>
                                 </div>
-                              </div>
+                                </div>
                             </div>
-                          </div>
+                        </div>
 
 
 
@@ -345,7 +347,35 @@
                             <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
-                            <!-- Modal PDF-->
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+
+
+
+                <script>
+                    $(document).ready(function() {
+                        $('#search').keyup(function() {
+                            search_table($(this).val());
+                        });
+
+                        function search_table(value) {
+                            $('#TabelMahasiswa tr').each(function() {
+                                var found = 'false';
+                                $(this).each(function() {
+                                    if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                                        found = 'true';
+                                    }
+                                });
+                                if (found == 'true') {
+                                    $(this).show();
+                                } else {
+                                    $(this).hide();
+                                }
+                            });
+                        }
+                    });
+                </script>
 
 
 

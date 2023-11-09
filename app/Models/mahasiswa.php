@@ -16,7 +16,6 @@ class mahasiswa extends Model
     // protected $fillable = ['nama', 'angkatan', 'dsn_id', 'email', 'password', 'remember_token', 'created_at', 'updated_at'];
     protected $guarded = [
         'nim',
-        'id',
     ];
 
     // protected $fillable = ['foto', 'nama', 'email', 'provinsi', 'kabupaten', 'status', 'fakultas', 'departemen', 'jalur_masuk', 'alamat'];

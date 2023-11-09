@@ -71,20 +71,20 @@ class OperatorController extends Controller
 
     public function import_manual(Request $request)
     {
+
         $validateData = $request->validate([
             'nama' => 'required',
             'id' => 'required',
             'angkatan' => 'required',
             'dsn_id' => 'required',
             'email' => 'required',
-            // 'password' => 'required',
         ]);
-        $validateData['password']= '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
-
-        dd($request);
+        $validateData['password']='$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $validateData['status']='Aktif';
+        // dd($validateData);
 
         mahasiswa::create($validateData);
-        return redirect()->route('import_mhs');
+        return redirect()->route('generate');
     }
 
     /**

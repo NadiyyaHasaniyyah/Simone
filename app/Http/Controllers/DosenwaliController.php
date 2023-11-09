@@ -22,20 +22,20 @@ class DosenwaliController extends Controller
     public function pencarian()
     {
         $attribute=Auth::guard('dsn')->user();
-        // dd($attribute);
-        return view('dosenwali/pencarian_dsn',['attribute'=>$attribute]);
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+        // dd($mhs);
+        return view('dosenwali/pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs]);
     }
 
     public function search(Request $request)
     {
-        $attribute=Auth::guard('dsn')->user();
         $keyword = $request->keyword;
 
-        $mhs = Auth::guard('mhs')->user();
-        $mahasiswa = mahasiswa::where('nama', 'like', "%" . $keyword . "%")->paginate(10);
-        dd($mhs);
 
-        return view('dosenwali/pencarian_dsn', ['mahasiswa' => $mahasiswa, 'attribute'=>$attribute, 'mhs'=>$mhs]);
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+
+        return view('dosenwali/pencarian_dsn', ['attribute'=>$attribute, 'mhs'=>$mhs]);
     }
 
     /**
