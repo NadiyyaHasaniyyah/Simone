@@ -19,12 +19,20 @@ class DosenwaliController extends Controller
         return view('dosenwali/dashboard_dsn',['attribute'=>$attribute]);
     }
 
-    public function pencarian()
+    public function pencarian_dsn()
     {
         $attribute=Auth::guard('dsn')->user();
         $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
         // dd($mhs);
         return view('dosenwali/pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs]);
+    }
+
+    public function hasil_pencarian_dsn()
+    {
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+        // dd($mhs);
+        return view('dosenwali/hasil_pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs]);
     }
 
     public function search(Request $request)

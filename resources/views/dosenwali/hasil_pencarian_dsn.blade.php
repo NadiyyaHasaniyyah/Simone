@@ -48,7 +48,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_dsn') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_mhs') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -115,7 +115,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            {{ $attribute->nama }}<i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -188,116 +188,199 @@
             </nav>
 
 
+            
+
             <!-- Dashboard -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
-                        <div class="col-lg-9 grid-margin">
+                        <div class="col-lg-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Pencarian Mahasiswa</h3>
-                                    <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard/</a><a
-                                        style="color: black" href="pencarian_dsn">Pencarian Mahasiswa</a>
+                                    <h3 class="font-weight-bold"> Hasil Pencarian Mahasiswa</h3>
+                                    <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard/</a>
+                                    <a style="color: black" href="pencarian_dsn">Pencarian Mahasiswa/</a>
+                                    <a style="color: black" href="hasil_pencarian_dsn"> Hasil Pencarian Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    
 
+                
                     {{-- Pencarian  --}}
-                    <div class="row">
-                        <div class="col-md-7  stretch-card transparent">
-                            <div class="card ">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="row">
+                            <div class="col-md-5">
+                              <div class="card-body">
+                                <h4 class="card-title">Cari Mahasiswa</h4>
+                                <table>
+                                    <tr>
+                                      <td class ="value">Nama</td>
+                                      <td>&nbsp;:&nbsp;</td>
+                                      <td class="value"></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="value">NIM</td>
+                                      <td>&nbsp;: </td>
+                                      <td class="value"></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="value">Angkatan</td>
+                                      <td>&nbsp;: </td>
+                                      <td class="value"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="value">Dosen Wali</td>
+                                        <td>&nbsp;: </td>
+                                        <td class="value"> </td>
+                                    </tr>
+                                  </table>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="card-body">
-                                    <h4 class="card-title">Cari Mahasiswa</h4>
-
-                                    {{-- FROM --}}
-                                    <form class="form-group" action="{{ route('pencarian_dsn') }}" method="get">
-                                        <div class="input-group">
-                                            <input name="keyword" type="text" class="form-control" id="search" placeholder="Nama atau NIM">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <h4 class=""></h4>
+                                <div class="template-demo">
+                                    {{-- Bagian foto --}}
                                 </div>
-                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                     </div>
 
-                        <br><br>
+                    <br>
+
                     <div class="row">
-                        <div class="col-md-12 grid-margin stretch-card">
+                        <div class="col-md-7 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
-                                <h4 class="card-title">Hasil Pencarian</h4>
-                                {{-- <p class="card-description">
-                                  nama <code>.(mahasiswa)</code>
-                                </p> --}}
-                                <div class="table-responsive">
-                                  <table class="table table-striped" id=TabelMahasiswa>
-
-                                    {{-- HEAD --}}
-                                    <thead>
-                                      <tr>
-                                        <th>
-                                          No
-                                        </th>
-                                        <th>
-                                          Nama
-                                        </th>
-                                        <th>
-                                          NIM
-                                        </th>
-                                        <th>
-                                          Angkatan
-                                        </th>
-                                        <th>
-                                          Info
-                                        </th>
-                                      </tr>
-                                    </thead>
-
-                                    {{-- BODY --}}
-                                    @foreach ($mhs as $item)
-                                        <tbody>
-                                        <tr>
-                                            <td class="py-1">
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $item->nama }}
-                                            </td>
-                                            <td>
-                                                {{ $item->id }}
-                                            </td>
-                                            <td>
-                                                {{ $item->angkatan }}
-                                            </td>
-                                            <td>
-                                                <a href="" class="btn btn-primary btn-sm">Detail</a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    @endforeach
-
-                                    </table>
-                                    </div>
+                                <h4 class="card-title">Semester</h4>
+                                <div class="template-demo">
+                                    <button type="button" class="btn btn-primary btn-icon-text" >
+                                        1
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        2
+                                    </button>                                        
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        3
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        4
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        5
+                                    </button>
                                 </div>
+
+                                <div class="template-demo">
+                                    <button type="button" class="btn btn-warning btn-icon-text">
+                                        6 
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        7
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-icon-text">
+                                        8
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        9
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        10
+                                    </button>
                                 </div>
+
+                                <div class="template-demo">
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        11
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        12
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        13
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        14
+                                    </button>
+                                    <button type="button" class="btn btn-dark btn-icon-text">
+                                        15
+                                    </button>
+                                  
+                                </div>
+                              </div>
                             </div>
-                        </div>
+                          </div>
+                          <div class="col-md-5 grid-margin stretch-card">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Keterangan</h4>
+                                <div class="form-group">
+                                    <div class="form-check form-check-danger">
+                                        <label class="form-check-label">
+                                          <input type="checkbox" class="form-check-input" checked>
+                                          Belum diisikan (IRS dan KHS) atau tidak digunakan
+                                        </label>
+                                      </div>
+                                    <div class="form-check form-check-primary">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" checked>
+                                        Sudah diisikan (IRS dan KHS) 
+                                      </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label">
+                                          <input type="checkbox" class="form-check-input" checked>
+                                          Sudah Lulus PKL (IRS, KHS, dan PKL) 
+                                        </label>
+                                      </div>
+                                    <div class="form-check form-check-success">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" checked>
+                                        Sudah Lulus
+                                      </label>
+                                    </div>
+                                
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>    
+                    </div>
+                        
 
 
 
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <footer class="footer">
+                          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                          </div>
+                        </footer>
+                        <!-- partial -->
+                     
+
+                      
+                        
 
 
+                        
+                                
+                </div>
 
+                
+            </div>  
 
 
                                 <!-- page-body-wrapper ends -->
-                            </div>
-                            <!-- container-scroller -->
+                           <!-- container-scroller -->
 
 
                             <!-- plugins:js -->
@@ -337,38 +420,11 @@
                             <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-
-
-
-
-                <script>
-                    $(document).ready(function() {
-                        $('#search').keyup(function() {
-                            search_table($(this).val());
-                        });
-
-                        function search_table(value) {
-                            $('#TabelMahasiswa tr').each(function() {
-                                var found = 'false';
-                                $(this).each(function() {
-                                    if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                                        found = 'true';
-                                    }
-                                });
-                                if (found == 'true') {
-                                    $(this).show();
-                                } else {
-                                    $(this).hide();
-                                }
-                            });
-                        }
-                    });
-                </script>
+                            <!-- Modal PDF-->
 
 
 
 </body>
 
 </html>
+
