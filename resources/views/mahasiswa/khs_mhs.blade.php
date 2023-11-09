@@ -214,7 +214,7 @@
                         </div>
 
                         {{-- IRS --}}
-                        <div class="col-11 stretch-card" style="margin: auto">
+                        <div class="col-12 stretch-card" style="margin: auto">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="tabs">
@@ -380,14 +380,15 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Semester</th>
-                                                                            <th>SKS Kumulatif</th>
+                                                                            <th>SKS K</th>
                                                                             <th>File KHS</th>
                                                                             <th>Action</th>
+                                                                            <th>Verifikasi</th>
 
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        {{ $sum = 0 }}
+                                                                        <?php $sum= 0?>
                                                                         @foreach ($khs as $item)
                                                                             <tr>
                                                                                 <td>{{ $item->semester }}</td>
@@ -402,6 +403,9 @@
                                                                                 <td> <button type="button"
                                                                                     class="btn btn-inverse-danger btn-icon">
                                                                                     <i class="ti-trash"></i></td>
+                                                                                    <td> <button type="button"
+                                                                                        class="btn btn-success btn-rounded btn-ico ">
+                                                                                        <i class="ti-check"></i></td>
                                                                             </tr>
                                                                         @endforeach
 

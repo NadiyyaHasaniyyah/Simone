@@ -180,7 +180,6 @@
                             <h3 class="font-weight-bold">Generate</h3>
                             <a class="active" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
                                 style="color: black" href="{{ route('generate') }}">Generate Akun Mahasiswa</a>
-
                         </div>
                     </div>
                     <br>
@@ -287,14 +286,6 @@
                                                     @csrf
                                                     <div>
                                                         <div class="upload-files-container card stretch-card">
-                                                            {{-- <div class="drag-file-area card stretch-card">
-                                                                <span class="material-icons-outlined upload-icon">
-                                                                    file_upload </span>
-                                                                <img
-                                                                    href="https://assets.dryicons.com/uploads/icon/svg/6234/0a00ab7d-2cf8-432f-8b4e-54ffd56015b2.svg">
-                                                                <h3 class="dynamic-message"> Drag & Drop file here
-                                                                </h3>
-                                                            </div> --}}
                                                             <span class="cannot-upload-message">
                                                                 <span class="material-icons-outlined">error</span>
                                                                 Please select a file first <span

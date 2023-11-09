@@ -214,7 +214,7 @@
                         </div>
 
                         {{-- IRS --}}
-                        <div class="col-11 stretch-card" style="margin: auto">
+                        <div class="col-12 stretch-card" style="margin: auto">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="tabs">
@@ -294,6 +294,7 @@
                                                                 </div>
                                                             </div>
                                                             <br>
+
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">File
@@ -344,6 +345,7 @@
                                                                             <th>Semester</th>
                                                                             <th>Jumlah SKS</th>
                                                                             <th>File IRS</th>
+                                                                            <th>Action</th>
                                                                             <th>Verifikasi</th>
                                                                         </tr>
                                                                     </thead>
@@ -360,8 +362,10 @@
                                                                                 </a>
                                                                                     <span class="overlay"></span>
                                                                             </td>
-                                                                            <!-- pesan -->
-<!--                                                                        <!-- nanti buat kondisi ketika doswal udah klik verifikasi baru bagian td button sucsess ini muncul. Karna ada verifikasi IRS oleh dosen -->
+                                                                            <td> <button type="button"
+                                                                                class="btn btn-inverse-danger btn-icon">
+                                                                                <i class="ti-trash"></i></td>
+                                                                            <!-- pesan nanti buat kondisi ketika doswal udah klik verifikasi baru bagian td button sucsess ini muncul. Karna ada verifikasi IRS oleh dosen -->
                                                                             <td> <button type="button"
                                                                                     class="btn btn-success btn-rounded btn-ico ">
                                                                                     <i class="ti-check"></i></td>

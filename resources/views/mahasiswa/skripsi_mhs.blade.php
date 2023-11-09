@@ -244,17 +244,18 @@
                                                         <form action="{{ route('irs_import') }}" method="POST">
                                                             @csrf
 
-                                                            {{-- Judul --}}
+
                                                             <div class="form-group row" style="margin: auto">
-                                                                <label for="judul"
+                                                                <label for="Status"
                                                                     class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">Judul</label>
+                                                                    style="font-size: 16px; font-weight: bold; color: #000;">Status</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                        name="jumlah_sks" id="jumlah_sks"
-                                                                        value="{{ old('jumlah_sks') }}"  >
-                                                                    @error('jumlah_sks')
+                                                                    <select name="status" id="status" class="form-control @error('jumlah_sks') is-invalid @enderror" value="{{ old('status') }}">
+                                                                        <option value="Belum Ambil">Belum Ambil</option>
+                                                                        <option value="Sudah Ambil">Sudah Ambil</option>
+                                                                        <option value="Lulus">Lulus</option>
+                                                                    </select>
+                                                                    @error('status')
                                                                         <div class="invalid-feedback">{{ $message }}
                                                                         </div>
                                                                     @enderror
@@ -268,38 +269,20 @@
                                                                   style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
                                                               <div class="col-sm-7">
                                                                   <input type="text"
-                                                                      class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                      name="jumlah_sks" id="jumlah_sks"
-                                                                      value="{{ old('jumlah_sks') }}"  >
-                                                                  @error('jumlah_sks')
+                                                                      class="form-control @error('nilai') is-invalid @enderror"
+                                                                      name="nilai" id="nilai"
+                                                                      value="{{ old('nilai') }}"  >
+                                                                  @error('nilai')
                                                                       <div class="invalid-feedback">{{ $message }}
                                                                       </div>
                                                                   @enderror
                                                               </div>
                                                           </div>
-                                                          <br>
-                                                          {{-- Tanggal --}}
-                                                        {{-- <div class="form-group row" style="margin: auto">
-                                                            <label for="nilai"
-                                                                class="col-sm-3 col-form-label"
-                                                                style="font-size: 16px; font-weight: bold; color: #000;">Tanggal</label>
-                                                            <div class="col-sm-7">
-                                                                <input type="text"
-                                                                    class="form-control @error('jumlah_sks') is-invalid @enderror"
-                                                                    name="jumlah_sks" id="jumlah_sks"
-                                                                    value="{{ old('jumlah_sks') }}"  >
-                                                                @error('jumlah_sks')
-                                                                    <div class="invalid-feedback">{{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                            <br> --}}
-                                                            {{-- Progress --}}
-                                                            {{-- <div class="form-group row" style="margin: auto">
+                                                            <br>
+
+                                                            <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">File
-                                                                    upload</label>
+                                                                    style="font-size: 16px; font-weight: bold; color: #000;">Scan Berita Acara</label>
                                                                 <input type="file" name="file_irs"
                                                                     class="  file-upload-default  @error('file_irs') is-invalid @enderror"
                                                                     name="file_irs" id="file_irs" accept = ".pdf"
@@ -311,40 +294,13 @@
                                                                     <span class="input-group-append">
                                                                         <button
                                                                             class="file-upload-browse btn btn-primary"
-                                                                            type="button">Progress</button>
+                                                                            type="button">Upload</button>
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                            <br> --}}
 
 
 
-                                                        {{-- Semester --}}
-                                                        <div class="form-group row" style="margin: auto">
-                                                            <label for="semester" class="col-form-label col-sm-3"
-                                                                style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
-                                                            <div class="col-sm-7">
-                                                                <select
-                                                                    class="form-control @error('semester') is-invalid @enderror"
-                                                                    name="semester" id="semester">
-                                                                    <option>pilih semester </option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                    <option value="6">6</option>
-                                                                    <option value="7">7</option>
-                                                                    <option value="8">8</option>
-                                                                    <option value="9">9</option>
-                                                                    <option value="10">10</option>
-                                                                    <option value="11">11</option>
-                                                                    <option value="12">12</option>
-                                                                    <option value="13">13</option>
-                                                                    <option value="14">14</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
                                                             <br>
                                                             <div class=" submit ">
                                                                 <button type="submit" name="submit" value="submit"

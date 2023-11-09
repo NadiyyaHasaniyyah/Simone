@@ -4,164 +4,97 @@
 
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" style="display: flex; align-items: center;">
-              <a href="{{ route('dashboard_mhs') }}">
-                  <img style="margin-left: -5px;" src="https://i.ibb.co/yBG6mSK/Simone-4.png" width="50" height="50" alt="">
-              </a>
-            </a>
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_mhs') }}"><img
+                    style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
+                    class="mr-2" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"> <img
+                    src="{{ asset('style1/skydash/images/logo-mini.svg') }}" alt="logo" /></a>
         </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="icon-menu"></span>
+            </button>
+            <ul class="navbar-nav mr-lg-2">
 
-        {{-- logout --}}
-        <ul class="nav navbar-right top-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope"></i>
-                <b class="caret"></b>
-              </a>
-                <ul class="dropdown-menu message-dropdown">
-                    <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                        <span class="pull-left">
-                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                        </span>
-                        <div class="media-body">
-                            <h5 class="media-heading">
-                            <strong>Mahasiswa</strong>
-                            </h5>
-                            <p class="small text-muted">
-                            <i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                        </div>
-                        </div>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                        data-toggle="dropdown">
+                        <i class="icon-bell mx-0"></i>
+                        <span class="count"></span>
                     </a>
-                    </li>
-                    <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                        <span class="pull-left">
-                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                        </span>
-                        <div class="media-body">
-                            <h5 class="media-heading">
-                            <strong>Deepartemen</strong>
-                            </h5>
-                            <p class="small text-muted">
-                            <i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                        </div>
-                        </div>
-                    </a>
-                    </li>
-                    <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                        <span class="pull-left">
-                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                        </span>
-                        <div class="media-body">
-                            <h5 class="media-heading">
-                            <strong>Mahasiswa</strong>
-                            </h5>
-                            <p class="small text-muted">
-                            <i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                        </div>
-                        </div>
-                    </a>
-                    </li>
-                    <li class="message-footer">
-                    <a href="#">Read All New Messages</a>
-                    </li>
-                </ul>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                        aria-labelledby="notificationDropdown">
+                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-success">
+                                    <i class="fa fa-tasks mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-normal">IRS</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    IRS sudah diverifikasi
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-info">
+                                    <i class="fa fa-file-text-o  mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-normal"> KHS</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    Harap Isi KHS
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-warning">
+                                    <i class="fa fa-tasks mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-normal">IRS</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    Harap Isi IRS
+                                </p>
+                            </div>
+                        </a>
 
+                    </div>
                 </li>
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bell"></i>
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu alert-dropdown">
-                    <li>
-                    <a href="#">Alert Name <span class="label label-default">Alert Badge</span>
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        {{ $attribute->nama }} <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                        </i>
                     </a>
-                    </li>
-                    <li>
-                    <a href="#">Alert Name <span class="label label-primary">Alert Badge</span>
-                    </a>
-                    </li>
-                    <li>
-                    <a href="#">Alert Name <span class="label label-success">Alert Badge</span>
-                    </a>
-                    </li>
-                    <li>
-                    <a href="#">Alert Name <span class="label label-info">Alert Badge</span>
-                    </a>
-                    </li>
-                    <li>
-                    <a href="#">Alert Name <span class="label label-warning">Alert Badge</span>
-                    </a>
-                    </li>
-                    <li>
-                    <a href="#">Alert Name <span class="label label-danger">Alert Badge</span>
-                    </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                    <a href="#">View All</a>
-                    </li>
-                </ul>
-                </li>
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-user"></i> {{ $attribute -> nama }} <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                    <a href="/logout">
-                        <i class="fa fa-fw fa-power-off"></i> Log Out </a>
-                    </li>
-                </ul>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                        aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="/logout">
+                            <i class="ti-power-off text-primary"></i>
+                            Logout
+                        </a>
+                    </div>
                 </li>
             </ul>
-
-
+            {{-- <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                data-toggle="offcanvas">
+                <span class="icon-menu"></span>
+            </button> --}}
+        </div>
     </nav>
 
 
-    {{-- konten --}}
-    <div class="container">
-        {{-- header --}}
-        <div class="col-lg-12">
-            <div class="header pt-0">
-                <h1 class="page-header update mt-0">
-                    <a href="{{ route('update_mhs') }}">Update Data Diri</a>
-                </h1>
-            </div>
-            {{-- path --}}
-            <ol class="breadcrumb">
-                <li class="active">
-                    <a href="{{ route('dashboard_mhs') }}" >Dashboard / </a>
-                    <a href="{{ route('update_mhs') }}" style="color: dodgerblue"
-                        >Update Data Diri
-                    </a>
-                </li>
-            </ol>
-        </div>
-    </div>
-
+    <br>
+    <br> <br> <br> <br> <br>
     <div class="container">
         <div class="card">
             <form action="{{ route('update_mhs') }}" method="POST" enctype="multipart/form-data">
