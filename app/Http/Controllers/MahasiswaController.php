@@ -260,6 +260,7 @@ class MahasiswaController extends Controller
     {
         $id_provinsi = $request->id_provinsi;
         $kabupatens = Regency::where('province_id', $id_provinsi)->get();
+        dd($kabupatens);
         $options = "<option value=''>Pilih Kabupaten...</option>";
 
         foreach ($kabupatens as $kabupaten) {

@@ -279,7 +279,7 @@
                                                           </div>
                                                           <br>
                                                           {{-- Tanggal --}}
-                                                          <div class="form-group row" style="margin: auto">
+                                                        {{-- <div class="form-group row" style="margin: auto">
                                                             <label for="nilai"
                                                                 class="col-sm-3 col-form-label"
                                                                 style="font-size: 16px; font-weight: bold; color: #000;">Tanggal</label>
@@ -294,9 +294,9 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                            <br>
+                                                            <br> --}}
                                                             {{-- Progress --}}
-                                                            <div class="form-group row" style="margin: auto">
+                                                            {{-- <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">File
                                                                     upload</label>
@@ -315,7 +315,10 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                            <br>
+                                                            <br> --}}
+
+
+
                                                         {{-- Semester --}}
                                                         <div class="form-group row" style="margin: auto">
 
