@@ -123,6 +123,7 @@ class MahasiswaController extends Controller
         $attribute=Auth::guard('mhs')->user();
         $validateData = $request->validate([
             'status' => 'required',
+            'status' => 'required',
             'nilai'=> 'required',
         ]);
 
