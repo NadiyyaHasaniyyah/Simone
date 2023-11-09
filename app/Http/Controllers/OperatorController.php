@@ -81,10 +81,10 @@ class OperatorController extends Controller
         ]);
         $validateData['password']= '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
 
-        ddd($request);
+        dd($request);
 
-        // mahasiswa::created($validateData);
-        // return redirect()->route('import_mhs');
+        mahasiswa::create($validateData);
+        return redirect()->route('import_mhs');
     }
 
     /**

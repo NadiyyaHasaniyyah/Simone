@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\dosenwali::factory(5)->create();
         \App\Models\departemen::factory(2)->create();
         // \App\Models\semester::factory(10)->create();
-        \App\Models\Irs::factory(10)->create();
-        \App\Models\Skripsi::factory(3)->create();
-        \App\Models\Pkl::factory(5)->create();
-        \App\Models\Khs::factory(10)->create();
+        // \App\Models\Irs::factory(10)->create();
+        // \App\Models\Skripsi::factory(3)->create();
+        // \App\Models\Pkl::factory(5)->create();
+        // \App\Models\Khs::factory(10)->create();
 
     }
 }

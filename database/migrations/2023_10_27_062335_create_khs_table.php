@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('sks_smt');
             $table->integer('sks_komulatif');
-            $table->integer('ips');
-            $table->integer('ipk');
+            $table->double('ips');
+            $table->double('ipk');
             $table->string('file_khs')->nullable();
             $table->string('semester');
             $table->foreignId('mhs_id');
