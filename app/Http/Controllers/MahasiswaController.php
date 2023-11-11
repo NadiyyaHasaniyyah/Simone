@@ -58,7 +58,7 @@ class MahasiswaController extends Controller
 
         Irs::create($validateData);
 
-        return redirect()->route('dashboard_mhs');
+        return redirect()->route('irs_import');
 
         // $attribute=Auth::guard('mhs')->user();
     }
@@ -105,7 +105,7 @@ class MahasiswaController extends Controller
 
         Khs::create($validateData);
 
-        return redirect()->route('dashboard_mhs');
+        return redirect()->route('khs_import');
 
         // $attribute=Auth::guard('mhs')->user();
     }
@@ -126,10 +126,22 @@ class MahasiswaController extends Controller
 
             'status' => 'required',
             'nilai'=> 'required',
+            'file_pkl' => 'required|max:2048',
         ]);
 
-        $validateData['semester']= Irs::where('mhs_id', $attribute->id)->orderBy('semester','desc')->first();
+        $latestIrs = Irs::where('mhs_id', $attribute->id)
+            ->orderBy('semester', 'desc')
+            ->first();
+
+        if ($latestIrs) {
+            $validateData['semester'] = $latestIrs->semester;
+        }
+
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
+
+        if ($request->hasFile('file_pkl')) {
+            $validateData['file_pkl'] = $request->file('file_pkl')->store('importPKL');
+        }
 
         // dd($validateData);
         Pkl::create($validateData);
@@ -155,10 +167,22 @@ class MahasiswaController extends Controller
 
             'status' => 'required',
             'nilai'=> 'required',
+            'file_skripsi' => 'required|max:2048',
         ]);
 
-        $validateData['semester']= Irs::where('mhs_id', $attribute->id)->orderBy('semester','desc')->first();
+        $latestIrs = Irs::where('mhs_id', $attribute->id)
+            ->orderBy('semester', 'desc')
+            ->first();
+
+        if ($latestIrs) {
+            $validateData['semester'] = $latestIrs->semester;
+        }
+
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
+
+        if ($request->hasFile('file_skripsi')) {
+            $validateData['file_skripsi'] = $request->file('file_skripsi')->store('importSKRIPSI');
+        }
 
         // dd($validateData);
         Skripsi::create($validateData);
@@ -167,7 +191,7 @@ class MahasiswaController extends Controller
 
         // $attribute=Auth::guard('mhs')->user();
     }
-    
+
 
     // public function update_mhs()
     // {

@@ -241,7 +241,7 @@
                                                 <h2>Isi KHS</h2>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form action="{{ route('irs_import') }}" method="POST">
+                                                        <form action="{{ route('skripsi_import') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
 
 
@@ -284,7 +284,7 @@
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Scan Berita Acara</label>
                                                                 <input type="file" name="file_skripsi"
-                                                                    class="  file-upload-default  @error('file_skripsi') is-invalid @enderror"
+                                                                    class="  file-upload-default  @error('file_irs') is-invalid @enderror"
                                                                     name="file_skripsi" id="file_skripsi" accept = ".pdf"
                                                                     value="{{ old('file_skripsi') }}"  >
                                                                 <div class="input-group col-sm-7">
@@ -297,10 +297,7 @@
                                                                             type="button">Upload</button>
                                                                     </span>
                                                                 </div>
-                                                            </div>
-
-
-
+                                                            </div
                                                             <br>
                                                             <div class=" submit ">
                                                                 <button type="submit" name="submit" value="submit"
