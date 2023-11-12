@@ -205,9 +205,10 @@
                         <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Kartu Hasil Studi</h3>
-                                    <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
-                                        style="color: black" href="irs">Kartu Hasil Studi</a>
+                                    <h3 class="font-weight-bold">Isian Rencana Studi</h3>
+                                    <a href="{{ route('dashboard_mhs') }}">Dashboard/</a>
+                                    <a href="{{ route('irs_mhs') }}" style="color: black" href="irs">Isian Rencana Studi/</a>
+                                    <a class="active" href="{{ route('irs_mhs') }}" style="color: black" href="irs">Edit Isian Rencana Studi</a>
 
                                 </div>
                             </div>
@@ -225,49 +226,51 @@
                                                         viewBox="0 0 24 24">
                                                         <path
                                                             d="M14,2A8,8 0 0,0 6,10A8,8 0 0,0 14,18A8,8 0 0,0 22,10H20C20,13.32 17.32,16 14,16A6,6 0 0,1 8,10A6,6 0 0,1 14,4C14.43,4 14.86,4.05 15.27,4.14L16.88,2.54C15.96,2.18 15,2 14,2M20.59,3.58L14,10.17L11.62,7.79L10.21,9.21L14,13L22,5M4.93,5.82C3.08,7.34 2,9.61 2,12A8,8 0 0,0 10,20C10.64,20 11.27,19.92 11.88,19.77C10.12,19.38 8.5,18.5 7.17,17.29C5.22,16.25 4,14.21 4,12C4,11.7 4.03,11.41 4.07,11.11C4.03,10.74 4,10.37 4,10C4,8.56 4.32,7.13 4.93,5.82Z" />
-                                                    </svg><br><span>Isi KHS</span></label></li>
+                                                    </svg><br><span>Edit IRS</span></label></li>
                                             <li title="Delivery Contents"><label for="tab2" role="button"><svg
                                                         viewBox="0 0 24 24">
                                                         <path
                                                             d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19.55,8.72L13.27,12.35L13.85,13.36Z" />
-                                                    </svg><br><span>KHS </span></label></li>
+                                                    </svg><br><span>IRS </span></label></li>
                                         </ul>
 
                                         <div class="slider">
                                             <div class="indicator"></div>
                                         </div>
                                         <div class="content">
+
+                                            {{-- ISI IRS --}}
                                             <section>
-                                                <h2>Isi KHS</h2>
+                                                <h2>Edit IRS</h2>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form action="{{ route('khs_import') }}" method="POST" enctype="multipart/form-data">
+                                                        <form action="{{ route('irs_edit_import', ['semester' => $Irs->semester]) }}" method="POST" enctype="multipart/form-data">
+                                                            @method('PUT')
                                                             @csrf
                                                             <div class="form-group row" style="margin: auto">
 
                                                                 <label for="semester" class="col-form-label col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
-                                                                <div class="col-sm-7">
-                                                                    <select
-                                                                        class="form-control @error('semester') is-invalid @enderror"
-                                                                        name="semester" id="semester">
-                                                                        <option>pilih semester </option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                        <option value="11">11</option>
-                                                                        <option value="12">12</option>
-                                                                        <option value="13">13</option>
-                                                                        <option value="14">14</option>
-                                                                    </select>
-                                                                </div>
+                                                                    <div class="col-sm-7">
+                                                                        <select class="form-control @error('semester') is-invalid @enderror" name="semester" id="semester">
+                                                                            <option>pilih semester</option>
+                                                                            <option value="1" {{ $Irs->semester == 1 ? 'selected' : '' }}>1</option>
+                                                                            <option value="2" {{ $Irs->semester == 2 ? 'selected' : '' }}>2</option>
+                                                                            <option value="3" {{ $Irs->semester == 3 ? 'selected' : '' }}>3</option>
+                                                                            <option value="4" {{ $Irs->semester == 4 ? 'selected' : '' }}>4</option>
+                                                                            <option value="5" {{ $Irs->semester == 5 ? 'selected' : '' }}>5</option>
+                                                                            <option value="6" {{ $Irs->semester == 6 ? 'selected' : '' }}>6</option>
+                                                                            <option value="7" {{ $Irs->semester == 7 ? 'selected' : '' }}>7</option>
+                                                                            <option value="8" {{ $Irs->semester == 8 ? 'selected' : '' }}>8</option>
+                                                                            <option value="9" {{ $Irs->semester == 9 ? 'selected' : '' }}>9</option>
+                                                                            <option value="10" {{ $Irs->semester == 10 ? 'selected' : '' }}>10</option>
+                                                                            <option value="11" {{ $Irs->semester == 11 ? 'selected' : '' }}>11</option>
+                                                                            <option value="12" {{ $Irs->semester == 12 ? 'selected' : '' }}>12</option>
+                                                                            <option value="13" {{ $Irs->semester == 13 ? 'selected' : '' }}>13</option>
+                                                                            <option value="14" {{ $Irs->semester == 14 ? 'selected' : '' }}>14</option>
+                                                                        </select>
+                                                                    </div>
+
 
                                                                 @error('semester')
                                                                     <div class="invalid-feedback">{{ $message }}
@@ -276,72 +279,31 @@
                                                             </div>
                                                             <br>
                                                             <div class="form-group row" style="margin: auto">
-                                                                <label for="sks_smt"
+                                                                <label for="jumlah_sks"
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">SKS
-                                                                    Diambil</label>
+                                                                    diambil</label>
                                                                 <div class="col-sm-7">
                                                                     <input type="text"
-                                                                        class="form-control @error('sks_smt') is-invalid @enderror"
-                                                                        name="sks_smt" id="sks_smt">
-                                                                    @error('sks_smt')
-                                                                        <div class="invalid-feedback">{{ $message }}
-                                                                        </div>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{-- <div class="form-group row" style="margin: auto">
-                                                                <label for="sks_komulatif"
-                                                                    class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">SKS
-                                                                    Komulatif</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control @error('sks_komulatif') is-invalid @enderror"
-                                                                        name="sks_komulatif" id="sks_komulatif"  >
-                                                                    @error('sks_komulatif')
-                                                                        <div class="invalid-feedback">{{ $message }}
-                                                                        </div>
-                                                                    @enderror
-                                                                </div>
-                                                            </div> --}}
-                                                            <div class="form-group row" style="margin: auto">
-                                                                <label for="ips"
-                                                                    class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">IP Semester</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control @error('ips') is-invalid @enderror"
-                                                                        name="ips" id="ips"  >
-                                                                    @error('ips')
-                                                                        <div class="invalid-feedback">{{ $message }}
-                                                                        </div>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{-- <div class="form-group row" style="margin: auto">
-                                                                <label for="ipk"
-                                                                    class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">IP Komulatif</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control @error('ipk') is-invalid @enderror"
-                                                                        name="ipk" id="ipk"  >
+                                                                        class="form-control @error('jumlah_sks') is-invalid @enderror"
+                                                                        name="jumlah_sks" id="jumlah_sks"
+                                                                        value="{{ $Irs->jumlah_sks }}"  >
                                                                     @error('jumlah_sks')
                                                                         <div class="invalid-feedback">{{ $message }}
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                            </div> --}}
+                                                            </div>
                                                             <br>
+
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">File
                                                                     upload</label>
-                                                                <input type="file" name="file_khs"
-                                                                    class="  file-upload-default  @error('file_khs') is-invalid @enderror"
-                                                                    name="file_khs" id="file_khs" accept = ".pdf"
-                                                                    value="{{ old('file_khs') }}"  >
+                                                                <input type="file" name="file_irs"
+                                                                    class="  file-upload-default  @error('file_irs') is-invalid @enderror"
+                                                                    name="file_irs" id="file_irs" accept = ".pdf"
+                                                                    value="{{ old('file_irs') }}"  >
                                                                 <div class="input-group col-sm-7">
                                                                     <input type="text"
                                                                         class="form-control file-upload-info" disabled
@@ -359,79 +321,76 @@
                                                                     class="btn btn-primary "
                                                                     type="button">Simpan</button>
                                                             </div>
+
+                                                            <br>
+                                                            {{-- error success --}}
+                                                            <div class="form-group row col-sm-10" style="margin-left: 6px;">
+                                                                @if(session('error'))
+                                                                    <div class="alert alert-danger">
+                                                                        {{ session('error') }}
+                                                                    </div>
+                                                                @endif
+
+                                                                @if(session('success'))
+                                                                    <div class="alert alert-success">
+                                                                        {{ session('success') }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+
                                                         </form>
-
-                                                        <br>
-                                                           {{-- error success --}}
-                                                           <div class="form-group row col-sm-10" style="margin-left: 6px;">
-                                                            @if(session('error'))
-                                                                <div class="alert alert-danger">
-                                                                    {{ session('error') }}
-                                                                </div>
-                                                            @endif
-
-                                                            @if(session('success'))
-                                                                <div class="alert alert-success">
-                                                                    {{ session('success') }}
-                                                                </div>
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
 
                                             </section>
-                                            <section>
+
+                                            {{-- IRS --}}
+                                            {{-- <section>
                                                 <h2>IRS</h2>
                                                 <div class="grid-margin stretch-card" >
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <h4 class="card-title"> Proggres KHS</h4>
+                                                            <h4 class="card-title"> Proggres IRS</h4>
                                                             <p class="card-description">{{ $attribute->nama }} -
-                                                                {{ $attribute->id }}
+                                                                    {{ $attribute->id }}
                                                             </p>
                                                             <div class="table-responsive">
                                                                 <table class="table table-hover">
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Semester</th>
-                                                                            <th>SKS K</th>
-                                                                            <th>File KHS</th>
+                                                                            <th>Jumlah SKS</th>
+                                                                            <th>File IRS</th>
                                                                             <th>Action</th>
-                                                                            <th>Verifikasi</th>
-
                                                                         </tr>
                                                                     </thead>
+                                                                    @foreach ($irs as $item)
                                                                     <tbody>
-                                                                        <?php $sum= 0?>
-                                                                        @foreach ($khs as $item)
-                                                                            <tr>
-                                                                                <td>{{ $item->semester }}</td>
-                                                                                <td>{{ $sum=$sum+$item->sks_smt }}</td>
-                                                                                <td>
-                                                                                    <a href="{{ route('view_pdf_khs', ['semester' => $item->semester]) }}">
-                                                                                        <button
-                                                                                            class="btn btn-inverse-primary btn-fw trigger" >Semester {{ $item->semester }}
-                                                                                        </button>
-                                                                                    </a>
-                                                                                </td>
-                                                                                <td>
+                                                                        <tr>
+                                                                            <td>{{ $item->semester }}</td>
+                                                                            <td>{{ $item->jumlah_sks }}</td>
+                                                                            <td>
+                                                                                <a href="{{ route('view_pdf_irs', ['semester' => $item->semester]) }}">
+                                                                                    <button
+                                                                                        class="btn btn-inverse-primary btn-fw trigger" >Semester {{ $item->semester }}
+                                                                                    </button>
+                                                                                </a>
+                                                                                    <span class="overlay"></span>
+                                                                            </td>
+                                                                            <td>
 
-                                                                                    <a href="{{ route('khs_edit', ['semester' => $item->semester]) }}">
-                                                                                        <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
-                                                                                    </a>
+                                                                                <a href="{{ route('irs_edit', ['semester' => $item->semester]) }}">
+                                                                                    <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                                </a>
 
-                                                                                    <form action="{{ route('khs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
-                                                                                        @method('delete')
-                                                                                        @csrf
-                                                                                        <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
-                                                                                    </form>
-                                                                                </td>
-                                                                            </tr>
-                                                                        @endforeach
-
-
-
-                                                                    </tbody>
+                                                                                <form action="{{ route('irs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
+                                                                                    @method('delete')
+                                                                                    @csrf
+                                                                                    <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
+                                                                                </form>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
                                                                 </table>
 
 
@@ -439,34 +398,26 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </section>
-
-
-
-
-
-
+                                            </section>  --}}
                                         </div>
+
+                                        {{-- POP UP --}}
                                         <div class="modal-wrapper"  >
                                             <div class="modal">
-                                              <div class="head">
-                                                <a class="btn-close trigger" href="#">
-
-                                                </a>
-                                              </div>
-                                              <div class="content" >
-                                                <div class="good-job">
-                                                    <br>
-                                                    <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
+                                                <div class="head">
+                                                    <a class="btn-close trigger" href="#">
+                                                    </a>
                                                 </div>
-
-
-
-
-                                              </div>
+                                                <div class="content" >
+                                                    <div class="good-job">
+                                                        <br>
+                                                        {{-- <img xlink:href="{{ asset('storage/' . $irs->file_irs) }}" alt=""> --}}
+                                                        <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
+                                                    </div>
+                                                </div>
                                             </div>
-                                          </div>
-                                    </div>
+                                            </div>
+                                        </div>
 
                                 </div>
 
@@ -481,15 +432,15 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                {{-- <script>
-                                $(document).ready(function () {
-                                    $(".trigger").on("click", function () {
-                                    $(".modal-wrapper").toggleClass("open");
-                                    $(".page-wrapper").toggleClass("blur-it");
-                                    return false;
-                                    });
+                            {{-- <script>
+                              $(document).ready(function () {
+                                $(".trigger").on("click", function () {
+                                  $(".modal-wrapper").toggleClass("open");
+                                  $(".page-wrapper").toggleClass("blur-it");
+                                  return false;
                                 });
-                                </script> --}}
+                              });
+                            </script> --}}
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->

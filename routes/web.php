@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\dosenwali;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,10 +59,17 @@ Route::middleware(['isMahasiswa'])->group(function(){
     // IRS progress
     Route::post('mahasiswa/irs',[MahasiswaController::class, 'irs_import'])-> name('irs_import');
     Route::get('mahasiswa/irs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf_irs');
+    Route::delete('mahasiswa/irs/{semester}',[MahasiswaController::class, 'destroyIRS'])-> name('irs_destroy');
+    Route::get('mahasiswa/irs/{semester}/edit',[MahasiswaController::class, 'irs_edit'])-> name('irs_edit');
+    Route::put('mahasiswa/irs/{semester}/edit',[MahasiswaController::class, 'irs_edit_import'])-> name('irs_edit_import');
+
 
     // KHS progress
     Route::post('mahasiswa/khs',[MahasiswaController::class, 'khs_import'])-> name('khs_import');
+    Route::delete('mahasiswa/khs/{semester}',[MahasiswaController::class, 'destroyKHS'])-> name('khs_destroy');
     Route::get('mahasiswa/khs/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf_khs');
+    Route::get('mahasiswa/khs/{semester}/edit',[MahasiswaController::class, 'khs_edit'])-> name('khs_edit');
+    Route::put('mahasiswa/khs/{semester}/edit',[MahasiswaController::class, 'khs_edit_import'])-> name('khs_edit_import');
 
     // PKL progress
     Route::post('mahasiswa/pkl',[MahasiswaController::class, 'pkl_import'])-> name('pkl_import');

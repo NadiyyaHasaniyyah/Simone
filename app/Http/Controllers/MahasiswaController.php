@@ -56,9 +56,17 @@ class MahasiswaController extends Controller
             $validateData['file_irs'] = $request->file('file_irs')->store('importIRS');
         }
 
+        $existingIrs = Irs::where('semester', $validateData['semester'])
+                        ->where('mhs_id', $validateData['mhs_id'])
+                        ->first();
+
+        if ($existingIrs) {
+            return redirect()->route('irs_import')->with('error', 'IRS untuk semester tersebut sudah ada.');
+        }
+
         Irs::create($validateData);
 
-        return redirect()->route('irs_import');
+        return redirect()->route('irs_import')->with('success', 'IRS berhasil ditambahkan.');
 
         // $attribute=Auth::guard('mhs')->user();
     }
@@ -101,11 +109,18 @@ class MahasiswaController extends Controller
         if ($request->hasFile('file_khs')) {
             $validateData['file_khs'] = $request->file('file_khs')->store('importKHS');
         }
-        // dd($validateData);
+
+        $existingIrs = Khs::where('semester', $validateData['semester'])
+                        ->where('mhs_id', $validateData['mhs_id'])
+                        ->first();
+
+        if ($existingIrs) {
+            return redirect()->route('khs_import')->with('error', 'KHS untuk semester tersebut sudah ada.');
+        }
 
         Khs::create($validateData);
 
-        return redirect()->route('khs_import');
+        return redirect()->route('khs_import')->with('success', 'KHS berhasil ditambahkan.');
 
         // $attribute=Auth::guard('mhs')->user();
     }
@@ -124,18 +139,12 @@ class MahasiswaController extends Controller
         $attribute=Auth::guard('mhs')->user();
         $validateData = $request->validate([
 
-            'status' => 'required',
+            'semester' => 'required',
             'nilai'=> 'required',
             'file_pkl' => 'required|max:2048',
         ]);
 
-        $latestIrs = Irs::where('mhs_id', $attribute->id)
-            ->orderBy('semester', 'desc')
-            ->first();
-
-        if ($latestIrs) {
-            $validateData['semester'] = $latestIrs->semester;
-        }
+        $validateData['status'] = 'Lulus';
 
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
 
@@ -165,18 +174,12 @@ class MahasiswaController extends Controller
         $attribute=Auth::guard('mhs')->user();
         $validateData = $request->validate([
 
-            'status' => 'required',
+            'semester' => 'required',
             'nilai'=> 'required',
             'file_skripsi' => 'required|max:2048',
         ]);
 
-        $latestIrs = Irs::where('mhs_id', $attribute->id)
-            ->orderBy('semester', 'desc')
-            ->first();
-
-        if ($latestIrs) {
-            $validateData['semester'] = $latestIrs->semester;
-        }
+        $validateData['status'] = 'Lulus';
 
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
 
@@ -298,7 +301,6 @@ class MahasiswaController extends Controller
         'nomor_tlp' => 'required',
         'provinsi' => 'required',
         'kabupaten' => 'required',
-        'status' => 'required',
         'jalur_masuk' => 'required',
         'alamat' => 'required'
     ]);
@@ -345,9 +347,110 @@ class MahasiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(mahasiswa $mahasiswa)
+    public function destroyIRS($semester)
     {
-        //
+        $mahasiswa = Auth::guard('mhs')->user();
+        $Irs = Irs::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
+
+        if ($Irs) {
+            $Irs->delete();
+            return redirect()->route('irs_mhs')->with('success', 'IRS berhasil dihapus.');
+        }
+
+    }
+
+    public function destroyKHS($semester)
+    {
+        $mahasiswa = Auth::guard('mhs')->user();
+        $Khs = Khs::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
+
+        if ($Khs) {
+            $Khs->delete();
+            return redirect()->route('khs')->with('success', 'KHS berhasil dihapus.');
+        }
+
+    }
+
+    public function irs_edit($semester){
+        $attribute=Auth::guard('mhs')->user();
+        $irs = Irs::where('mhs_id', $attribute->id)->orderBy('semester')->get();
+
+        $Irs = Irs::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        return view('mahasiswa/irs_edit_mhs',[
+            'attribute'=>$attribute,
+            'irs'=>$irs,
+            'Irs'=>$Irs]);
+    }
+
+    public function irs_edit_import(Request $request, $semester){
+        $attribute=Auth::guard('mhs')->user();
+        $Irs = Irs::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        $validateData = $request->validate([
+            'semester' => 'required',
+            'jumlah_sks'=> 'required',
+            'file_irs' => 'required|max:2048',
+        ]);
+
+        if ($request->hasFile('file_irs')) {
+            $validateData['file_irs'] = $request->file('file_irs')->store('importIRS');
+        }
+
+        Irs::where('id', $Irs->id)->update($validateData);
+
+        return redirect()->route('irs_mhs')->with('success', 'IRS berhasil diubah.');
+        // return view('mahasiswa/irs_mhs',[
+        //     'attribute'=>$attribute,
+        //     'Irs'=>$Irs]);
+    }
+
+
+    public function khs_edit($semester){
+        $attribute=Auth::guard('mhs')->user();
+        $khs = Khs::where('mhs_id', $attribute->id)->orderBy('semester')->get();
+
+        $Khs = Khs::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        return view('mahasiswa/khs_edit_mhs',[
+            'attribute'=>$attribute,
+            'khs'=>$khs,
+            'Khs'=>$Khs]);
+    }
+
+    public function khs_edit_import(Request $request, $semester){
+        $attribute=Auth::guard('mhs')->user();
+        $Khs = Khs::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        $validateData = $request->validate([
+            'semester' => 'required',
+            'sks_smt'=> 'required',
+            'ips'=> 'required',
+            'file_khs' => 'required|max:2048',
+        ]);
+
+        if ($request->hasFile('file_khs')) {
+            $validateData['file_khs'] = $request->file('file_khs')->store('importKHS');
+        }
+
+        Khs::where('id', $Khs->id)->update($validateData);
+
+        return redirect()->route('khs')->with('success', 'KHS berhasil diubah.');
+        // return view('mahasiswa/irs_mhs',[
+        //     'attribute'=>$attribute,
+        //     'Irs'=>$Irs]);
     }
 
 }

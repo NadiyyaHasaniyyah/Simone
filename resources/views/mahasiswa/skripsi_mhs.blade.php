@@ -244,22 +244,37 @@
                                                         <form action="{{ route('skripsi_import') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
 
-
+                                                            {{-- semester --}}
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label for="Status"
                                                                     class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">Status</label>
+                                                                    style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
                                                                 <div class="col-sm-7">
-                                                                    <select name="status" id="status" class="form-control @error('jumlah_sks') is-invalid @enderror" value="{{ old('status') }}">
-                                                                        <option value="Belum Ambil">Belum Ambil</option>
-                                                                        <option value="Sudah Ambil">Sudah Ambil</option>
-                                                                        <option value="Lulus">Lulus</option>
+                                                                    <select
+                                                                        class="form-control @error('semester') is-invalid @enderror"
+                                                                        name="semester" id="semester">
+                                                                        <option>pilih semester </option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                        <option value="10">10</option>
+                                                                        <option value="11">11</option>
+                                                                        <option value="12">12</option>
+                                                                        <option value="13">13</option>
+                                                                        <option value="14">14</option>
                                                                     </select>
-                                                                    @error('status')
-                                                                        <div class="invalid-feedback">{{ $message }}
-                                                                        </div>
-                                                                    @enderror
                                                                 </div>
+
+                                                                @error('semester')
+                                                                    <div class="invalid-feedback">{{ $message }}
+                                                                    </div>
+                                                                @enderror
                                                             </div>
                                                             <br>
                                                             {{-- Nilai --}}

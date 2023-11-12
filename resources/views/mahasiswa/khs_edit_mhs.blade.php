@@ -238,10 +238,11 @@
                                         </div>
                                         <div class="content">
                                             <section>
-                                                <h2>Isi KHS</h2>
+                                                <h2>Edit KHS</h2>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form action="{{ route('khs_import') }}" method="POST" enctype="multipart/form-data">
+                                                        <form action="{{ route('khs_edit_import', ['semester' => $Khs->semester]) }}" method="POST" enctype="multipart/form-data">
+                                                            @method('PUT')
                                                             @csrf
                                                             <div class="form-group row" style="margin: auto">
 
@@ -251,21 +252,21 @@
                                                                     <select
                                                                         class="form-control @error('semester') is-invalid @enderror"
                                                                         name="semester" id="semester">
-                                                                        <option>pilih semester </option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                        <option value="11">11</option>
-                                                                        <option value="12">12</option>
-                                                                        <option value="13">13</option>
-                                                                        <option value="14">14</option>
+                                                                        <option>pilih semester</option>
+                                                                            <option value="1" {{ $Khs->semester == 1 ? 'selected' : '' }}>1</option>
+                                                                            <option value="2" {{ $Khs->semester == 2 ? 'selected' : '' }}>2</option>
+                                                                            <option value="3" {{ $Khs->semester == 3 ? 'selected' : '' }}>3</option>
+                                                                            <option value="4" {{ $Khs->semester == 4 ? 'selected' : '' }}>4</option>
+                                                                            <option value="5" {{ $Khs->semester == 5 ? 'selected' : '' }}>5</option>
+                                                                            <option value="6" {{ $Khs->semester == 6 ? 'selected' : '' }}>6</option>
+                                                                            <option value="7" {{ $Khs->semester == 7 ? 'selected' : '' }}>7</option>
+                                                                            <option value="8" {{ $Khs->semester == 8 ? 'selected' : '' }}>8</option>
+                                                                            <option value="9" {{ $Khs->semester == 9 ? 'selected' : '' }}>9</option>
+                                                                            <option value="10" {{ $Khs->semester == 10 ? 'selected' : '' }}>10</option>
+                                                                            <option value="11" {{ $Khs->semester == 11 ? 'selected' : '' }}>11</option>
+                                                                            <option value="12" {{ $Khs->semester == 12 ? 'selected' : '' }}>12</option>
+                                                                            <option value="13" {{ $Khs->semester == 13 ? 'selected' : '' }}>13</option>
+                                                                            <option value="14" {{ $Khs->semester == 14 ? 'selected' : '' }}>14</option>
                                                                     </select>
                                                                 </div>
 
@@ -283,28 +284,14 @@
                                                                 <div class="col-sm-7">
                                                                     <input type="text"
                                                                         class="form-control @error('sks_smt') is-invalid @enderror"
-                                                                        name="sks_smt" id="sks_smt">
+                                                                        name="sks_smt" id="sks_smt" value="{{ $Khs->sks_smt }}">
                                                                     @error('sks_smt')
                                                                         <div class="invalid-feedback">{{ $message }}
                                                                         </div>
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            {{-- <div class="form-group row" style="margin: auto">
-                                                                <label for="sks_komulatif"
-                                                                    class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">SKS
-                                                                    Komulatif</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control @error('sks_komulatif') is-invalid @enderror"
-                                                                        name="sks_komulatif" id="sks_komulatif"  >
-                                                                    @error('sks_komulatif')
-                                                                        <div class="invalid-feedback">{{ $message }}
-                                                                        </div>
-                                                                    @enderror
-                                                                </div>
-                                                            </div> --}}
+
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label for="ips"
                                                                     class="col-sm-3 col-form-label"
@@ -312,27 +299,14 @@
                                                                 <div class="col-sm-7">
                                                                     <input type="text"
                                                                         class="form-control @error('ips') is-invalid @enderror"
-                                                                        name="ips" id="ips"  >
+                                                                        name="ips" id="ips" value="{{ $Khs->ips }}" >
                                                                     @error('ips')
                                                                         <div class="invalid-feedback">{{ $message }}
                                                                         </div>
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            {{-- <div class="form-group row" style="margin: auto">
-                                                                <label for="ipk"
-                                                                    class="col-sm-3 col-form-label"
-                                                                    style="font-size: 16px; font-weight: bold; color: #000;">IP Komulatif</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text"
-                                                                        class="form-control @error('ipk') is-invalid @enderror"
-                                                                        name="ipk" id="ipk"  >
-                                                                    @error('jumlah_sks')
-                                                                        <div class="invalid-feedback">{{ $message }}
-                                                                        </div>
-                                                                    @enderror
-                                                                </div>
-                                                            </div> --}}
+
                                                             <br>
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
@@ -340,8 +314,7 @@
                                                                     upload</label>
                                                                 <input type="file" name="file_khs"
                                                                     class="  file-upload-default  @error('file_khs') is-invalid @enderror"
-                                                                    name="file_khs" id="file_khs" accept = ".pdf"
-                                                                    value="{{ old('file_khs') }}"  >
+                                                                    name="file_khs" id="file_khs" accept = ".pdf" >
                                                                 <div class="input-group col-sm-7">
                                                                     <input type="text"
                                                                         class="form-control file-upload-info" disabled
@@ -380,69 +353,6 @@
                                                 </div>
 
                                             </section>
-                                            <section>
-                                                <h2>IRS</h2>
-                                                <div class="grid-margin stretch-card" >
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title"> Proggres KHS</h4>
-                                                            <p class="card-description">{{ $attribute->nama }} -
-                                                                {{ $attribute->id }}
-                                                            </p>
-                                                            <div class="table-responsive">
-                                                                <table class="table table-hover">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Semester</th>
-                                                                            <th>SKS K</th>
-                                                                            <th>File KHS</th>
-                                                                            <th>Action</th>
-                                                                            <th>Verifikasi</th>
-
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <?php $sum= 0?>
-                                                                        @foreach ($khs as $item)
-                                                                            <tr>
-                                                                                <td>{{ $item->semester }}</td>
-                                                                                <td>{{ $sum=$sum+$item->sks_smt }}</td>
-                                                                                <td>
-                                                                                    <a href="{{ route('view_pdf_khs', ['semester' => $item->semester]) }}">
-                                                                                        <button
-                                                                                            class="btn btn-inverse-primary btn-fw trigger" >Semester {{ $item->semester }}
-                                                                                        </button>
-                                                                                    </a>
-                                                                                </td>
-                                                                                <td>
-
-                                                                                    <a href="{{ route('khs_edit', ['semester' => $item->semester]) }}">
-                                                                                        <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
-                                                                                    </a>
-
-                                                                                    <form action="{{ route('khs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
-                                                                                        @method('delete')
-                                                                                        @csrf
-                                                                                        <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
-                                                                                    </form>
-                                                                                </td>
-                                                                            </tr>
-                                                                        @endforeach
-
-
-
-                                                                    </tbody>
-                                                                </table>
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-
-
 
 
 

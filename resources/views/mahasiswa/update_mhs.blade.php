@@ -117,7 +117,7 @@
                                 <div class="form-group " id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class=" font-weight-bold " >NIM</label> <span class="grey"><i>*tidak dapat diubah</i></span>
                                     <div class="">
-                                        <input type="text" class="form-control" style="height: 20px" placeholder="{{ $attribute->id }}" id="nim" disabled />
+                                        <input type="text" class="form-control" style="height: 20px" value="{{ $attribute->id }}" id="nim" disabled />
                                     </div>
                                 </div><br>
 
@@ -166,10 +166,18 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div> <br>
+
+                                {{-- status --}}
+                                <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
+                                    <label for="" class="font-weight-bold">Status</label> <span class="grey">*tidak dapat diubah</span>
+                                    <input type="text" class="col-sm-12 form-control" style="height: 30px" name="status" type="status" class="form-control" id="status" value="{{ $attribute->status }}" disabled>
+                                </div> <br>
+
+                                {{-- jalur masuk --}}
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class="font-weight-bold">Jalur Masuk</label> <span class="grey"></span>
                                     <select class="col-sm-12 form-control @error('jalur_masuk') is-invalid @enderror" style="height: 30px" name="jalur_masuk" id="jalur_masuk">
-                                        <option value="">Pilih Jalur Masuk</option>
+                                        <option value="" selected disabled>Pilih Jalur Masuk</option>
                                         <option value="SBMPTN">SBMPTN</option>
                                         <option value="SNMPTN">SNMPTN</option>
                                         <option value="Mandiri">Mandiri</option>
@@ -179,26 +187,23 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div> <br>
-                                <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
-                                    <label for="" class="font-weight-bold">Status</label> <span class="grey"></span>
-                                    <select class="col-sm-12 form-control @error('status') is-invalid @enderror" style="height: 30px" name="status" type="status" class="form-control" id="status" value="{{ $attribute->status }}">
-                                        <option value="Aktif">Aktif</option>
-                                        <option value="Cuti">Cuti</option>
-                                        <option value="Mangkir">Mangkir</option>
-                                        <option value="DO">DO</option>
-                                        <option value="Undur Diri">Undur Diri</option>
-                                    </select>
-                                    @error('status')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div> <br>
                             </div>
 
                             <div class="col-md-4">
+                                {{-- alamat --}}
+                                <div class="form-group" id="">
+                                    <label for="" class="font-weight-bold">Alamat</label> <span class="grey"></span>
+                                    <textarea class="col-sm-12 form-control @error('alamat') is-invalid @enderror" name="alamat" class="form-control" id="alamat" cols="30" rows="5" value="{{ $attribute->alamat }}"></textarea>
+                                    @error('alamat')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- provinsi --}}
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="provinsi" class="font-weight-bold">Provinsi</label> <span class="grey"></span>
                                     <select class="col-sm-9 form-control @error('provinsi') is-invalid @enderror" style="height: 30px" name="provinsi" id="provinsi">
-                                        <option  value="">Pilih Provinsi...</option>
+                                        <option  value=""selected disabled>Pilih Provinsi...</option>
                                         @foreach ($provinces as $provinsi)
                                             <option value="{{ $provinsi->id }}" >{{ $provinsi->name }}</option>
                                         @endforeach
@@ -207,22 +212,19 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div> <br>
+
+                                {{-- kabupaten --}}
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
-                                    <label for="kabupaten" class="font-weight-bold">Kabupaten</label> <span class="grey"><i>*tidak dapat diubah</i></span>
+                                    <label for="kabupaten" class="font-weight-bold">Kabupaten</label> <span class="grey"></span>
                                     <select class="col-sm-9 form-control @error('kabupaten') is-invalid @enderror" style="height: 30px" name="kabupaten" id="kabupaten">
-                                        <option  value="">Pilih Kabupaten...</option>
+                                        <option  value="" selected disabled>Pilih Kabupaten...</option>
                                     </select>
                                     @error('kabupaten')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div> <br>
-                                <div class="form-group" id="">
-                                    <label for="" class="font-weight-bold">Alamat</label> <span class="grey"></span>
-                                    <textarea class="col-sm-12 form-control @error('alamat') is-invalid @enderror" name="alamat" class="form-control" id="alamat" cols="30" rows="5" value="{{ $attribute->alamat }}"></textarea>
-                                    @error('alamat')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div> <br>
+
+                                {{-- simpan --}}
                                 <br><br><br><br><br>
                                 <div class="form-group" id="">
                                     <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block" type="button">Simpan</button>

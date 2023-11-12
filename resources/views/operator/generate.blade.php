@@ -107,7 +107,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            Operator <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            {{ $operator->nama }} <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -396,12 +396,16 @@
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Angkatan </label>
                                                                         <div class="col-sm-9">
-                                                                            <input type="text"
-                                                                            class="form-control @error('angkatan') is-invalid @enderror"
-                                                                            name="angkatan" id="angkatan"
-                                                                            value="{{ old('angkatan') }}"  >
-                                                                        {{-- <input type="text" class="form-control"
-                                                                            style="height: 60%"> --}}
+                                                                            <select  class="form-control @error('angkatan') is-invalid @enderror" name="angkatan" id="angkatan">
+                                                                                <option value="" selected disabled>Pilih Angkatan</option>
+                                                                                <option value="2023">2023</option>
+                                                                                <option value="2023">2022</option>
+                                                                                <option value="2021">2021</option>
+                                                                                <option value="2020">2020</option>
+                                                                                <option value="2019">2019</option>
+                                                                                <option value="2018">2018</option>
+                                                                                <option value="2017">2017</option>
+                                                                            </select>
                                                                         @error('angkatan')
                                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                                         @enderror
@@ -412,23 +416,20 @@
 
 
                                                             <div class="col-md-6">
-                                                                {{-- Kolom kedua --}}
-                                                                {{-- Dosen ID --}}
-                                                                {{-- Dosen ID --}}
                                                                 <div class="form-group row" style="margin: auto">
-                                                                    <label for="dsn_id" class="col-sm-3 col-gen" name="dsn_id" id="dsn_id"
-                                                                        style="font-size: 13px; font-weight: bold; color: #000;">
-                                                                        Dosen ID</label>
+                                                                    <label for="dsn_id" class="col-sm-3 col-gen" name="dsn_id" id="dsn_id" style="font-size: 13px; font-weight: bold; color: #000;">
+                                                                        Dosen ID
+                                                                    </label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text"
-                                                                        class="form-control @error('dsn_id') is-invalid @enderror"
-                                                                        name="dsn_id" id="dsn_id"
-                                                                        value="{{ old('dsn_id') }}"  >
-                                                                    {{-- <input type="text" class="form-control"
-                                                                        style="height: 60%"> --}}
-                                                                    @error('dsn_id')
-                                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                                    @enderror
+                                                                        <select class="form-control @error('dsn_id') is-invalid @enderror" name="dsn_id" id="dsn_id">
+                                                                            <option value="" selected disabled>Pilih Dosen</option>
+                                                                            @foreach ($dosen as $item)
+                                                                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        @error('dsn_id')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <br>
@@ -469,10 +470,9 @@
                                                                 </div> --}}
 
                                                                 <br><br>
-                                                                <div class="simpan" style="margin: auto;">
-                                                                    <button type="submit" name="submit" value="submit" class="btn btn-primary" style="width: 20px" type="button">
-                                                                        Simpan
-                                                                    </button>
+                                                                <div class="simpan" style="margin: auto; margin-right: 15px;">
+                                                                    <button type="simpan" name="simpan" id="simpan" class="col-sm-3 btn btn-primary float-right">Simpan</button>
+                                                                </div>
                                                                 </div>
 
                                                             </div>

@@ -315,12 +315,28 @@
                                                                 </div>
                                                             </div>
                                                             <br>
-                                                            <div class=" submit ">
+                                                            <div class=" submit " style="margin-left: 15px">
                                                                 <button type="submit" name="submit" value="submit"
                                                                     class="btn btn-primary "
                                                                     type="button">Simpan</button>
-
                                                             </div>
+
+                                                            <br>
+                                                            {{-- error success --}}
+                                                            <div class="form-group row col-sm-10" style="margin-left: 6px;">
+                                                                @if(session('error'))
+                                                                    <div class="alert alert-danger">
+                                                                        {{ session('error') }}
+                                                                    </div>
+                                                                @endif
+
+                                                                @if(session('success'))
+                                                                    <div class="alert alert-success">
+                                                                        {{ session('success') }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+
                                                         </form>
                                                     </div>
                                                 </div>
@@ -334,9 +350,8 @@
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <h4 class="card-title"> Proggres IRS</h4>
-                                                            <p class="card-description">
-                                                                {{ $attribute->nama }}<code style="color: #3f499d">
-                                                                    {{ $attribute->nim }}</code>
+                                                            <p class="card-description">{{ $attribute->nama }} -
+                                                                    {{ $attribute->id }}
                                                             </p>
                                                             <div class="table-responsive">
                                                                 <table class="table table-hover">
@@ -346,7 +361,6 @@
                                                                             <th>Jumlah SKS</th>
                                                                             <th>File IRS</th>
                                                                             <th>Action</th>
-                                                                            <th>Verifikasi</th>
                                                                         </tr>
                                                                     </thead>
                                                                     @foreach ($irs as $item)
@@ -362,14 +376,18 @@
                                                                                 </a>
                                                                                     <span class="overlay"></span>
                                                                             </td>
-                                                                            <td> <button type="button"
-                                                                                class="btn btn-inverse-danger btn-icon">
-                                                                                <i class="ti-trash"></i></td>
-                                                                            <!-- pesan nanti buat kondisi ketika doswal udah klik verifikasi baru bagian td button sucsess ini muncul. Karna ada verifikasi IRS oleh dosen -->
-                                                                            <td> <button type="button"
-                                                                                    class="btn btn-success btn-rounded btn-ico ">
-                                                                                    <i class="ti-check"></i></td>
+                                                                            <td>
 
+                                                                                <a href="{{ route('irs_edit', ['semester' => $item->semester]) }}">
+                                                                                    <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                                </a>
+
+                                                                                <form action="{{ route('irs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
+                                                                                    @method('delete')
+                                                                                    @csrf
+                                                                                    <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
+                                                                                </form>
+                                                                            </td>
                                                                         </tr>
                                                                     @endforeach
                                                                 </table>

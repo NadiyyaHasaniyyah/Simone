@@ -11,6 +11,7 @@ use App\Http\Requests\StoreoperatorRequest;
 use App\Http\Requests\UpdateoperatorRequest;
 use App\Models\mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\dosenwali;
 
 
 class OperatorController extends Controller
@@ -28,8 +29,12 @@ class OperatorController extends Controller
     }
     public function generate()
     {
+        $operator=Auth::guard('opt')->user();
         $mahasiswa=mahasiswa::all();
-        return view('operator.generate',['mahasiswa'=>$mahasiswa]);
+        $dosen = dosenwali::all();
+        return view('operator.generate', ['operator'=>$operator,
+            'mahasiswa'=>$mahasiswa,
+            'dosen'=>$dosen]);
     }
 
     /**
@@ -49,6 +54,7 @@ class OperatorController extends Controller
         // ddd($request);
         // return $request->file('file')->store('ImportData');
 
+        $dosen = dosenwali::all();
         $validateData = $request->validate([
             'file' => 'required|max:2048',
         ]);
@@ -66,12 +72,12 @@ class OperatorController extends Controller
         }
 
         // $attribute=Auth::guard('opt')->user();
-        return redirect()->route('generate');
+        return redirect()->route('generate', ['dosen'=>$dosen]);
     }
 
-    public function import_manual(Request $request)
+        public function import_manual(Request $request)
     {
-
+        $dosen = dosenwali::all();
         $validateData = $request->validate([
             'nama' => 'required',
             'id' => 'required',
@@ -79,18 +85,19 @@ class OperatorController extends Controller
             'dsn_id' => 'required',
             'email' => 'required',
         ]);
-        $validateData['password']='$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
-        $validateData['status']='Aktif';
-        // dd($validateData);
+
+        $validateData['password'] = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $validateData['status'] = 'Aktif';
 
         mahasiswa::create($validateData);
-        return redirect()->route('generate');
+        return redirect()->route('import_manual', ['dosen'=>$dosen]);
     }
+
 
     /**
      * Display the specified resource.
-     */
-    public function show()
+        */
+        public function show()
     {
         //
     }
