@@ -27,7 +27,7 @@ body h1 {
     left: 40%;
     transform: translateX(-40%);
     position: relative;
-    width: 80%;
+    width: 100%;
     border-radius: 5px;
     min-width: 240px;
 }
@@ -329,74 +329,6 @@ body h1 {
 
 
 
-/* pop up */
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-
-
-.blur-it {
-  filter: blur(1px);
-}
-
-
-
-.modal-wrapper {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0; 
-  left: 0;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.25s ease-in-out;
-}
-
-.modal-wrapper.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal {
-
-  display: block;
-  margin:auto;
-  border-radius:20px;
-  border: 1px solid gray;
-  position: relative;
-  top: 50%; 
-  left: 0%;
-  background: white;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-
-.modal-wrapper.open .modal {
-  margin-top: -200px;
-  opacity: 1;
-}
-
-.head { 
-  width: 100%;
-  overflow: hidden;
-  background: skyblue;
-}
-
-.btn-close {
-  font-size: 38px;
-  display: block;
-  float: right;
-  color: white;
-}
-.good-job {
-    text-align: center;
-    font-family: 'Montserrat', Arial,       Helvetica, sans-serif;
-    color: skyblue;
-  }
-  .good-job .fa-thumbs-o-up {
-    font-size: 180px;
-  }
-  .good-job h1 {
-    font-size: 45px;
-  }
 
   /* Tabel */
 :after,
@@ -456,81 +388,3 @@ i {
     border-color: #aaa;
     transform: scale(1.1);
 }
-
-.pdf {
-    background-color: #dc2f2f !important;
-}
-
-.excel {
-    background-color: #3ca23c !important;
-}
-
-.csv {
-    background-color: #e86c3a !important;
-}
-
-.imprimir {
-    background-color: #8766b1 !important;
-}
-
-/*
-    Esto es opcional pero sirve para que todos los botones de exportacion se distribuyan de manera equitativa usando flexbox
-    
-    .flexcontent {
-        display: flex;
-        justify-content: space-around;
-    }
-    */
-
-.selectTable {
-    height: 40px;
-    float: right;
-}
-
-div.dataTables_wrapper div.dataTables_filter {
-    text-align: left;
-    margin-top: 15px;
-}
-
-.btn-secondary {
-    color: #fff;
-    background-color: #4682b4;
-    border-color: #4682b4;
-}
-
-.btn-secondary:hover {
-    color: #fff;
-    background-color: #315f86;
-    border-color: #545b62;
-}
-
-.titulo-tabla {
-    color: #606263;
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.inline {
-    display: inline-block;
-    padding: 0;
-}
-
-#ejemplo {
-    font-size: 16px; /* Atur ukuran font untuk tabel */
-}
-
-#ejemplo th {
-    font-size: 14px; /* Atur ukuran font untuk elemen-elemen <th> (header) dalam tabel */
-}
-
-#ejemplo td {
-    font-size: 14px; /* Atur ukuran font untuk elemen-elemen <td> (data) dalam tabel */
-}
-
-container{
-    height: 30%;
-}
-  
-
