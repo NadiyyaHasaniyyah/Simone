@@ -14,6 +14,10 @@
 
     <title>Simone</title>
     <!-- plugins:css -->
+    <!-- verif doswal -->
+    <link href="{{ asset('style1/verifikasi.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
+
     <link href="{{ asset('style1/skydash/vendors/feather/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/vendors/css/vendor.bundle.base.css') }}" rel="stylesheet">
@@ -33,11 +37,17 @@
     <!-- profile card -->
     <link rel="stylesheet" href="{{ asset('style1/skydash/css/operator/profile_opt.css') }}">
 
-    <!-- verif doswal -->
-    <link href="{{ asset('style1/verifikasi.css') }}" rel="stylesheet">
+
+
 
 </head>
 <style>
+    body {
+
+        color: #333;
+        font-family: "Raleway";
+    }
+
     /* CSS untuk tampilan layar dengan lebar kurang dari 768px */
     @media (max-width: 767px) {
         .row {
@@ -63,6 +73,7 @@
         .col-md-4 {
             width: 33.33%;
         }
+
     }
 </style>
 
@@ -225,10 +236,33 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-7  stretch-card transparent">
+                                    <div class="card ">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Cari Mahasiswa</h4>
+
+                                            {{-- FROM --}}
+                                            <form class="form-group" action="{{ route('verifikasi_dsn') }}"
+                                                method="get">
+                                                <div class="input-group">
+                                                    <input name="keyword" type="text" class="form-control"
+                                                        id="search" placeholder="Nama atau NIM">
+                                                    <div class="input-group-append">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
 
 
-                                {{-- IRS --}}
-                                <div class="col-12 stretch-card" style="margin: auto">
+
+                            {{-- IRS  KHS PKL Sjripsi --}}
+                            <div class="row">
+                                <div class="col-12 stretch-card">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="tabs">
@@ -238,13 +272,20 @@
                                                 <input type="radio" id="tab4" name="tab-control">
                                                 <ul>
                                                     <li title="IRS"><label for="tab1"
-                                                            role="button"><br><span>IRS</span></label></li>
+                                                            role="button"><br><span><i class="fa fa-tasks mx-0"></i>
+                                                                IRS</span></label></li>
                                                     <li title="KHS"><label for="tab2"
-                                                            role="button"><br><span>KHS </span></label></li>
+                                                            role="button"><br><span> <i
+                                                                    class="fa fa-file-text-o  mx-0"></i> KHS
+                                                            </span></label></li>
                                                     <li title="PKL"><label for="tab3"
-                                                            role="button"><br><span>PKL </span></label></li>
+                                                            role="button"><br><span> <i
+                                                                    class="fa fa-newspaper-o  menu-icon"></i> PKL
+                                                            </span></label></li>
                                                     <li title="Skripsi"><label for="tab4"
-                                                            role="button"><br><span>Skripsi </span></label></li>
+                                                            role="button"><br><span> <i
+                                                                    class="fa fa-columns menu-icon"></i> Skripsi
+                                                            </span></label></li>
                                                 </ul>
 
                                                 <div class="slider">
@@ -255,125 +296,141 @@
                                                     {{-- IRS --}}
                                                     <section>
                                                         <h2>IRS</h2>
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="strecth-card" style="margin: auto">
-                                                                    {{-- Pencarian  --}}
-                                                                    <div class="row">
-                                                                        <div
-                                                                            class="col-md-12  stretch-card transparent">
-                                                                            <div class="card ">
-                                                                                <div class="card-body">
-                                                                                    <h4 class="card-title">Cari
-                                                                                        Mahasiswa</h4>
-                                                                                    <form class="form-group">
-                                                                                        <div class="input-group">
-                                                                                            <input type="text"
-                                                                                                class="form-control"
-                                                                                                id="search"
-                                                                                                placeholder="Cari nama"
-                                                                                                style="height: 70%">
 
-                                                                                        </div>
-                                                                                    </form>
-                                                                                    <h4 class="card-title">Hasil
-                                                                                        Pencarian</h4>
-                                                                                    <div class="table-responsive">
-                                                                                        <table class="table"
-                                                                                            id="TabelMahasiswa">
-                                                                                            <thead>
-                                                                                                <tr>
-                                                                                                    <th>
-                                                                                                        No
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Nama
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        NIM
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Angkatan
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Action
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        SKS
-                                                                                                    </th>
-                                                                                                </tr>
-                                                                                            </thead>
-                                                                                            <tbody>
+                                                        {{-- Tabel  --}}
+
+                                                        <div class="row">
+                                                            <div class="col-md-12 grid-margin stretch-card">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        {{-- <h4 class="card-title">Hasil Pencarian</h4> --}}
+                                                                        {{-- <p class="card-description">
+                                                                                  nama <code>.(mahasiswa)</code>
+                                                                                </p> --}}
+                                                                        <div class="table-responsive">
+                                                                            <table class="table" id=TabelMahasiswa>
+
+                                                                                {{-- HEAD --}}
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            No
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Nama
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            NIM
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Angkatan
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Semester
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            SKS
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Info
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Action
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+
+                                                                                {{-- Tabel --}}
+                                                                                {{-- Pesan PesanRahasia --}}
+                                                                                {{-- nanti controllernya coba dicheck lagi.
+                                                                                 Ini dah kucoba sesuai dia input irs atau enggak, kalau mhs input irs otomatis ada, kalau blm brarti masih kosong
+                                                                                tp fungsi detail pdf sama verifikasinya blm jalan --}}
+
+                                                                                {{-- info --}}
+                                                                                {{--                                                                                   jadi waktu irs pada mhs_id nya diatas 0 pada mhs_id maka tampil tuh sksnya, kalau nol berati mhsnya blm update irs
+                                                                            
+                                                                                    --}}
+
+                                                                                @foreach ($mhs as $item)
+                                                                                    @php
+                                                                                        $itemirs = $irs->where('mhs_id', $item->id);
+                                                                                    @endphp
+
+                                                                                    @if ($itemirs->count() > 0)
+                                                                                        <tbody>
+                                                                                            @foreach ($itemirs as $sks)
                                                                                                 <tr>
                                                                                                     <td class="py-1">
-                                                                                                        1
+                                                                                                        {{ $loop->iteration }}
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        Jambi
+                                                                                                        {{ $item->nama }}
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        20001
+                                                                                                        {{ $item->nim }}
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        2021
+                                                                                                        {{ $item->angkatan }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $sks->semester }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $sks->jumlah_sks }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <a href="#"
+                                                                                                            class="btn btn-primary btn-sm">Detail</a>
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <button
-                                                                                                            class="btn btn-primary">
-                                                                                                            Action
-                                                                                                        </button>
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        20
+                                                                                                            class="btn btn-inverse-success btn-sm">Verifikasi</button>
                                                                                                     </td>
                                                                                                 </tr>
+                                                                                            @endforeach
+                                                                                        </tbody>
+                                                                                    @endif
+                                                                                @endforeach
 
-                                                                                                <tr>
-                                                                                                    <td class="py-1">
-                                                                                                        2
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        Natusha
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        20004
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        2022
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        <button
-                                                                                                            class="btn btn-primary">
-                                                                                                            Action
-                                                                                                        </button>
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        20
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
 
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+
+                                                                                {{-- asal isi just for preview --}}
+                                                                                {{-- <tbody>
+                                                                                <tr>
+                                                                                    <td class="py-1">
+
+                                                                                        1
+                                                                                    </td>
+                                                                                    <td> 
+                                                                                       joko
+                                                                                    </td>
+                                                                                    <td> 
+                                                                                       212
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        23
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        24
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <a href="#"
+                                                                                            class="btn btn-primary btn-sm">Detail</a>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <button
+                                                                                            class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody> --}}
+
+                                                                            </table>
                                                                         </div>
-
-
-
-
-
-
-
                                                                     </div>
                                                                 </div>
-
-
-
-
-
-
                                                             </div>
+                                                        </div>
+
                                                     </section>
 
 
@@ -383,123 +440,330 @@
                                                     {{-- KHS --}}
                                                     <section>
                                                         <h2>KHS</h2>
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="strecth-card" style="margin: auto">
-                                                                    {{-- Pencarian  --}}
-                                                                    <div class="row">
-                                                                        <div
-                                                                            class="col-md-12  stretch-card transparent">
-                                                                            <div class="card ">
-                                                                                <div class="card-body">
-                                                                                    <h4 class="card-title">Cari
-                                                                                        Mahasiswa</h4>
-                                                                                    <form class="form-group">
-                                                                                        <div class="input-group">
-                                                                                            <input type="text"
-                                                                                                class="form-control"
-                                                                                                id="search"
-                                                                                                placeholder="Cari nama"
-                                                                                                style="height: 70%">
+                                                        {{-- Tabel  --}}
 
-                                                                                        </div>
-                                                                                    </form>
-                                                                                    <h4 class="card-title">Hasil
-                                                                                        Pencarian</h4>
-                                                                                    <div class="table-responsive">
-                                                                                        <table class="table"
-                                                                                            id="TabelMahasiswa">
-                                                                                            <thead>
-                                                                                                <tr>
-                                                                                                    <th>
-                                                                                                        No
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Nama
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        NIM
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Angkatan
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Action
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        SKSK
-                                                                                                    </th>
-                                                                                                </tr>
-                                                                                            </thead>
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td class="py-1">
-                                                                                                        1
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        Jambi
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        20001
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        2021
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        <button
-                                                                                                            class="btn btn-primary">
-                                                                                                            Action
-                                                                                                        </button>
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        20
-                                                                                                    </td>
-                                                                                                </tr>
+                                                        <div class="row">
+                                                            <div class="col-md-12 grid-margin stretch-card">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        {{-- <h4 class="card-title">Hasil Pencarian</h4> --}}
+                                                                        {{-- <p class="card-description">
+                                                                                  nama <code>.(mahasiswa)</code>
+                                                                                </p> --}}
+                                                                        <div class="table-responsive">
+                                                                            <table class="table" id=TabelMahasiswa>
 
-                                                                                                <tr>
-                                                                                                    <td class="py-1">
-                                                                                                        2
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        Natusha
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        20004
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        2022
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        <button
-                                                                                                            class="btn btn-primary">
-                                                                                                            Action
-                                                                                                        </button>
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        20
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
+                                                                                {{-- HEAD --}}
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            No
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Nama
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            NIM
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Angkatan
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Semester
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            IPS
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            SKSK
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Info
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Action
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
 
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                                {{-- nanti controllernya sesuaiin lagi --}}
+
+                                                                                @foreach ($mhs as $item)
+                                                                                @php
+                                                                                    $itemkhs = $khs->where('mhs_id', $item->id);
+                                                                                @endphp
+                                                                            
+                                                                                @if($itemkhs->count() > 0)
+                                                                                    <tbody>
+                                                                                        @foreach ($itemkhs as $khsdata)
+                                                                                            <tr>
+                                                                                                <td class="py-1">
+                                                                                                    {{ $loop->iteration }}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    {{ $item->nama }}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    {{ $item->nim }}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    {{ $item->angkatan }}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    {{ $khsdata->semester}}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    {{ $khsdata->ips }}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    {{ $khsdata->sks_komulatif }}
+                                                                                                </td>
+                                          
+                                                                                                <td>
+                                                                                                    <a href="#" class="btn btn-primary btn-sm">Detail</a>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <button class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endforeach
+                                                                                    </tbody>
+                                                                                @endif
+                                                                            @endforeach
+                                                                            
+
+                                                                                {{-- asal isi just for preview --}}
+                                                                                {{-- <tbody>
+                                                                                <tr>
+                                                                                    <td class="py-1">
+
+                                                                                        1
+                                                                                    </td>
+                                                                                    <td> 
+                                                                                       joko
+                                                                                    </td>
+                                                                                    <td> 
+                                                                                       212
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        23
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        24
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <a href="#"
+                                                                                            class="btn btn-primary btn-sm">Detail</a>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <button
+                                                                                            class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody> --}}
+
+                                                                            </table>
                                                                         </div>
-
-
-
-
-
-
-
                                                                     </div>
                                                                 </div>
-
-
-
-
+                                                            </div>
+                                                        </div>
                                                     </section>
+
+                                                    <section>
+                                                   <h1>Blm koneksi DB</h1>
+                                                   <P>BTW AK BLM TAU FIX ISIAN PKL NI APAAN, HARAP DIKOREKSI DAN DICERAMAHI</P>
+                                                        {{-- Tabel  --}}
+
+                                                        <div class="row">
+                                                            <div class="col-md-12 grid-margin stretch-card">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        {{-- <h4 class="card-title">Hasil Pencarian</h4> --}}
+                                                                        {{-- <p class="card-description">
+                                                                                  nama <code>.(mahasiswa)</code>
+                                                                                </p> --}}
+                                                                        <div class="table-responsive">
+                                                                            <table class="table" id=TabelMahasiswa>
+
+                                                                                {{-- HEAD --}}
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            No
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Nama
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            NIM
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Angkatan
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Semester
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Nilai {{-- PesanRahasia:btw aku gatau ini nilainya mhs yg input apa dr doswalnya yg input --}}
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Status
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Info
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Action
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+
+
+                                                                                {{-- asal isi random data just for preview --}}
+                                                                                {{-- PesanRahasia ak blm tau isian skripsi apa aja tp taruh ini dulu nanti diskusiin lagi --}}
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="py-1">
+
+                                                                                            1
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            joko
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            212
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            23
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            7
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            A
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            Sudah Ambil
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <a href="#"
+                                                                                                class="btn btn-primary btn-sm">Detail</a>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button
+                                                                                                class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+
+                                                    <section>
+                                                      
+                                                        <h1>Blm koneksi DB</h1>
+                                                   <P>BTW AK BLM TAU FIX ISIAN SKRIPSI NI APAAN, HARAP DIKOREKSI DAN DICERAMAHI</P>
+                                                        {{-- Tabel  --}}
+
+                                                        <div class="row">
+                                                            <div class="col-md-12 grid-margin stretch-card">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        {{-- <h4 class="card-title">Hasil Pencarian</h4> --}}
+                                                                        {{-- <p class="card-description">
+                                                                                  nama <code>.(mahasiswa)</code>
+                                                                                </p> --}}
+                                                                        <div class="table-responsive">
+                                                                            <table class="table" id=TabelMahasiswa>
+
+                                                                                {{-- HEAD --}}
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            No
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Nama
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            NIM
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Angkatan
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Semester
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Nilai {{-- PesanRahasia:btw aku gatau ini nilainya mhs yg input apa dr doswalnya yg input --}}
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Status
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Info
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Action
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+
+
+                                                                                {{-- asal isi random data just for preview --}}
+                                                                                {{-- PesanRahasia ak blm tau isian skripsi apa aja tp taruh ini dulu nanti diskusiin lagi --}}
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="py-1">
+
+                                                                                            1
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            joko
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            212
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            23
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            7
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            A
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            Sudah Ambil
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <a href="#"
+                                                                                                class="btn btn-primary btn-sm">Detail</a>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button
+                                                                                                class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                    
+
+
+
                                                 </div>
 
                                             </div>
@@ -512,99 +776,90 @@
 
                                 </div>
                             </div>
-
-
-
                         </div>
+
+
 
                     </div>
 
-                    {{-- Card yang pertama campuran --}}
-
-
-
-
-
-
-
-
-
-                    <br><br><br><br>
-
-                    <!-- partial:partials/_footer.html -->
-                    <footer class="footer">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Proyek
-                                Perangkat Lunak © 2023. All rights reserved.</span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Tugas Besar
-                                Informatika <i class="ti-heart text-danger ml-1"></i></span>
-                        </div>
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Oleh: Alif,
-                                Adji, Ririn, Nadiyya</a></span>
-                        </div>
-                    </footer>
-                    <!-- partial -->
                 </div>
-                <!-- main-panel ends -->
+
+                {{-- Card yang pertama campuran --}}
+
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Proyek
+                            Perangkat Lunak © 2023. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Tugas Besar
+                            Informatika <i class="ti-heart text-danger ml-1"></i></span>
+                    </div>
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Oleh: Alif,
+                            Adji, Ririn, Nadiyya</a></span>
+                    </div>
+                </footer>
+                <!-- partial -->
             </div>
-            <!-- page-body-wrapper ends -->
+            <!-- main-panel ends -->
         </div>
-        <!-- container-scroller -->
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
 
 
-        <!-- plugins:js -->
-        <script src="vendors/js/vendor.bundle.base.js"></script>
-        <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
-        <script src="{{ asset('style1/skydash/vendors/chart.js/Chart.min.js') }}"></script>
-        <script src="{{ asset('style1/skydash/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-        <script src="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/dataTables.select.min.js') }}"></script>
-        <script src="vendors/chart.js/Chart.min.js"></script>
-        <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-        <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-        <script src="js/dataTables.select.min.js"></script>
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{ asset('style1/skydash/vendors/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('style1/skydash/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('style1/skydash/js/dataTables.select.min.js') }}"></script>
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="js/dataTables.select.min.js"></script>
 
-        <!-- End plugin js for this page -->
-        <!-- inject:js -->
-        <script src="{{ asset('style1/skydash/js/off-canvas.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/hoverable-collapse.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/template.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/settings.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/todolist.js') }}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('style1/skydash/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('style1/skydash/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('style1/skydash/js/template.js') }}"></script>
+    <script src="{{ asset('style1/skydash/js/settings.js') }}"></script>
+    <script src="{{ asset('style1/skydash/js/todolist.js') }}"></script>
 
-        <!-- endinject -->
-        <!-- Custom js for this page-->
-        <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
+    <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
-        <!-- Verifikasi -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#search').keyup(function() {
-                    search_table($(this).val());
-                });
+    <!-- Verifikasi -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search').keyup(function() {
+                search_table($(this).val());
+            });
 
-                function search_table(value) {
-                    $('#TabelMahasiswa tr').each(function() {
-                        var found = 'false';
-                        $(this).each(function() {
-                            if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                                found = 'true';
-                            }
-                        });
-                        if (found == 'true') {
-                            $(this).show();
-                        } else {
-                            $(this).hide();
+            function search_table(value) {
+                $('#TabelMahasiswa tr').each(function() {
+                    var found = 'false';
+                    $(this).each(function() {
+                        if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                            found = 'true';
                         }
                     });
-                }
-            });
-        </script>
+                    if (found == 'true') {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 
