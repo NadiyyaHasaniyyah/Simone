@@ -281,8 +281,8 @@
                                                 <link
                                                     href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined"
                                                     rel="stylesheet">
-                                                <form action="{{ route('generate') }}" class="form-container"
-                                                    enctype='multipart/form-data' method="POST">
+                                                <form action="generate/upload"  method="POST" class="form-container"
+                                                    enctype='multipart/form-data'>
                                                     @csrf
                                                     <div>
                                                         <div class="upload-files-container card stretch-card">

@@ -48,6 +48,8 @@ class DosenwaliController extends Controller
         return view('dosenwali/pencarian_dsn', ['attribute'=>$attribute, 'mhs'=>$mhs]);
     }
 
+
+    // hanya untuk view dan emnampilkan data
        public function verifikasi()
     {
         $attribute=Auth::guard('dsn')->user();
@@ -55,12 +57,34 @@ class DosenwaliController extends Controller
         $irs = irs::get();
         $khs = khs::get();
 
-        // dd($mhs);
+        // dd($irs);
         return view('dosenwali/verifikasi_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    // route klik button verif oleh dsn
+    public function verifikasiIRS($id)
+    {
+        $irs = irs::find($id);
+
+        $irs->update([
+            'flag' => '1',
+        ]);
+
+        return redirect()->route('verifikasi_dsn')->with('success', 'IRS berhasil diverifikasi');
+
+    }
+
+    public function verifikasiKHS($id)
+    {
+        $khs = khs::find($id);
+
+        $khs->update([
+            'flag' => '1',
+        ]);
+
+        return redirect()->route('verifikasi_dsn')->with('success', 'KHS berhasil diverifikasi');
+
+    }
     public function create()
     {
         //

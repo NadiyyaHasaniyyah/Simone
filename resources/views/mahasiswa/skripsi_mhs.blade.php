@@ -279,22 +279,37 @@
                                                             <br>
                                                             {{-- Nilai --}}
                                                             <div class="form-group row" style="margin: auto">
-                                                              <label for="nilai"
-                                                                  class="col-sm-3 col-form-label"
-                                                                  style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
-                                                              <div class="col-sm-7">
-                                                                  <input type="text"
-                                                                      class="form-control @error('nilai') is-invalid @enderror"
-                                                                      name="nilai" id="nilai"
-                                                                      value="{{ old('nilai') }}"  >
-                                                                  @error('nilai')
-                                                                      <div class="invalid-feedback">{{ $message }}
-                                                                      </div>
-                                                                  @enderror
-                                                              </div>
-                                                          </div>
+                                                                <label for="nilai"
+                                                                    class="col-sm-3 col-form-label"
+                                                                    style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text"
+                                                                        class="form-control @error('nilai') is-invalid @enderror"
+                                                                        name="nilai" id="nilai"
+                                                                        value="{{ old('nilai') }}"  >
+                                                                    @error('nilai')
+                                                                        <div class="invalid-feedback">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
                                                             <br>
 
+                                                            {{-- tanggal --}}
+                                                            <div class="form-group row" style="margin: auto">
+                                                                <label class="col-sm-3" style="font-size: 16px; font-weight: bold; color: #000;">Tanggal Lulus</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="date" class="form-control @error('tanggal_lulus') is-invalid @enderror" name="tanggal_lulus" id="tanggal_lulus" value="{{ old('tanggal_lulus') }}">
+                                                                </div>
+
+                                                                @error('tanggal_lulus')
+                                                                    <div class="invalid-feedback">{{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div
+                                                            <br><br>
+
+                                                            {{-- file --}}
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Scan Berita Acara</label>
@@ -313,12 +328,12 @@
                                                                     </span>
                                                                 </div>
                                                             </div
-                                                            <br>
-                                                            <div class=" submit ">
+
+                                                            <br> <br>
+                                                            <div class=" submit " style="margin-left: 15px">
                                                                 <button type="submit" name="submit" value="submit"
                                                                     class="btn btn-primary "
                                                                     type="button">Simpan</button>
-
                                                             </div>
 
                                                         </form>

@@ -59,19 +59,16 @@ class OperatorController extends Controller
             'file' => 'required|max:2048',
         ]);
 
-        // ddd($validateData);
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $fileExtension = $file->getClientOriginalExtension();
             $fileName = 'mhs' . '.' . $fileExtension;
             $validateData['file'] = $file->storeAs('ImportDataMhs', $fileName);
-
-            // $validateData['file'] = $request->file('file')->store('ImportDataMhs');
-
         }
 
-        // $attribute=Auth::guard('opt')->user();
+        // dd($validateData);
+
         return redirect()->route('generate', ['dosen'=>$dosen]);
     }
 

@@ -360,6 +360,7 @@
                                                                             <th>Semester</th>
                                                                             <th>Jumlah SKS</th>
                                                                             <th>File IRS</th>
+
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
@@ -378,15 +379,20 @@
                                                                             </td>
                                                                             <td>
 
-                                                                                <a href="{{ route('irs_edit', ['semester' => $item->semester]) }}">
-                                                                                    <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
-                                                                                </a>
+                                                                                @if ($item->flag == 0)
+                                                                                    <a href="{{ route('irs_edit', ['semester' => $item->semester]) }}">
+                                                                                        <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                                    </a>
 
-                                                                                <form action="{{ route('irs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
-                                                                                    @method('delete')
-                                                                                    @csrf
-                                                                                    <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
-                                                                                </form>
+                                                                                    <form action="{{ route('irs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
+                                                                                        @method('delete')
+                                                                                        @csrf
+                                                                                        <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
+                                                                                    </form>
+                                                                                @else
+                                                                                    <button type="button" class="btn btn-success btn-rounded btn-ico "><i class="ti-check"></i></button>
+                                                                                @endif
+
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach

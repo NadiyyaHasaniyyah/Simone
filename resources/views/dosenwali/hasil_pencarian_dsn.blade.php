@@ -176,7 +176,7 @@
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">Verifikasi Progress Studi</span>
                         </a>
-                        
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
@@ -188,7 +188,7 @@
             </nav>
 
 
-            
+
 
             <!-- Dashboard -->
             <div class="main-panel">
@@ -206,9 +206,9 @@
                         </div>
                     </div>
 
-                    
 
-                
+
+
                     {{-- Pencarian  --}}
                     <div class="col-12 grid-margin stretch-card">
                         <div class="card">
@@ -265,7 +265,7 @@
                                     </button>
                                     <button type="button" class="btn btn-primary btn-icon-text">
                                         2
-                                    </button>                                        
+                                    </button>
                                     <button type="button" class="btn btn-primary btn-icon-text">
                                         3
                                     </button>
@@ -279,7 +279,7 @@
 
                                 <div class="template-demo">
                                     <button type="button" class="btn btn-warning btn-icon-text">
-                                        6 
+                                        6
                                     </button>
                                     <button type="button" class="btn btn-primary btn-icon-text">
                                         7
@@ -308,10 +308,7 @@
                                     <button type="button" class="btn btn-danger btn-icon-text">
                                         14
                                     </button>
-                                    <button type="button" class="btn btn-dark btn-icon-text">
-                                        15
-                                    </button>
-                                  
+
                                 </div>
                               </div>
                             </div>
@@ -330,13 +327,13 @@
                                     <div class="form-check form-check-primary">
                                       <label class="form-check-label">
                                         <input type="checkbox" class="form-check-input" checked>
-                                        Sudah diisikan (IRS dan KHS) 
+                                        Sudah diisikan (IRS dan KHS)
                                       </label>
                                     </div>
                                     <div class="form-check form-check-warning">
                                         <label class="form-check-label">
                                           <input type="checkbox" class="form-check-input" checked>
-                                          Sudah Lulus PKL (IRS, KHS, dan PKL) 
+                                          Sudah Lulus PKL (IRS, KHS, dan PKL)
                                         </label>
                                       </div>
                                     <div class="form-check form-check-success">
@@ -345,14 +342,14 @@
                                         Sudah Lulus
                                       </label>
                                     </div>
-                                
+
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>    
+                          </div>
                     </div>
-                        
+
 
 
 
@@ -365,18 +362,18 @@
                           </div>
                         </footer>
                         <!-- partial -->
-                     
-
-                      
-                        
 
 
-                        
-                                
+
+
+
+
+
+
                 </div>
 
-                
-            </div>  
+
+            </div>
 
 
                                 <!-- page-body-wrapper ends -->

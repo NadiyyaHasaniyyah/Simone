@@ -341,7 +341,7 @@
 
 
                                                             <br>
-                                                            <div class=" submit ">
+                                                            <div class=" submit " style="margin-left: 15px">
                                                                 <button type="submit" name="submit" value="submit"
                                                                     class="btn btn-primary "
                                                                     type="button">Simpan</button>
@@ -367,11 +367,6 @@
                                                       </div>
                                             </section>
 
-
-
-
-
-
                                         </div>
                                         <div class="modal-wrapper"  >
                                             <div class="modal">
@@ -385,10 +380,6 @@
                                                     <br>
                                                     <img src="{{ asset('style1/skydash/images/logoo.png') }}" style="margin:auto; width:60%;">
                                                 </div>
-
-
-
-
                                               </div>
                                             </div>
                                           </div>

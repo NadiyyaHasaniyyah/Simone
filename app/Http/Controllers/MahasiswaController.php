@@ -88,21 +88,25 @@ class MahasiswaController extends Controller
         $attribute=Auth::guard('mhs')->user();
         $validateData = $request->validate([
             'sks_smt' => 'required',
+            'sks_komulatif' => 'required',
             'ips' => 'required',
+            'ipk' => 'required',
             'semester' => 'required',
             'file_khs' => 'required|max:2048',
         ]);
-        if ($validateData['semester']==1){
-            $validateData['sks_komulatif']=$validateData['sks_smt'];
-            $validateData['ipk']=$validateData['ips'];
-        }else{
-            $sks_komulatif=Khs::where('mhs_id', $attribute->id)->Where('semester',$validateData['semester']-1)->first()->sks_komulatif;
-            $totalIP = Khs::where('mhs_id', $attribute->id)->sum('ips');
-            $CountSMT = Khs::where('mhs_id', $attribute->id)->count();
 
-            $validateData['sks_komulatif'] = $sks_komulatif+$validateData['sks_smt'];
-            $validateData['ipk']=($totalIP+$validateData['ips'])/($CountSMT+1);
-        }
+
+        // if ($validateData['semester']==1){
+        //     $validateData['sks_komulatif']=$validateData['sks_smt'];
+        //     $validateData['ipk']=$validateData['ips'];
+        // }else{
+        //     $sks_komulatif=Khs::where('mhs_id', $attribute->id)->Where('semester',$validateData['semester']-1)->first()->sks_komulatif;
+        //     $totalIP = Khs::where('mhs_id', $attribute->id)->sum('ips');
+        //     $CountSMT = Khs::where('mhs_id', $attribute->id)->count();
+
+        //     $validateData['sks_komulatif'] = $sks_komulatif+$validateData['sks_smt'];
+        //     $validateData['ipk']=($totalIP+$validateData['ips'])/($CountSMT+1);
+        // }
 
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
 
@@ -176,6 +180,7 @@ class MahasiswaController extends Controller
 
             'semester' => 'required',
             'nilai'=> 'required',
+            'tanggal_lulus'=> 'required',
             'file_skripsi' => 'required|max:2048',
         ]);
 
@@ -437,7 +442,9 @@ class MahasiswaController extends Controller
         $validateData = $request->validate([
             'semester' => 'required',
             'sks_smt'=> 'required',
+            'sks_komulatif'=> 'required',
             'ips'=> 'required',
+            'ipk'=> 'required',
             'file_khs' => 'required|max:2048',
         ]);
 

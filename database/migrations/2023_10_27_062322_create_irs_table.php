@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('jumlah_sks');
             $table->binary('file_irs')->nullable();
             $table->string('semester');
-            $table->string('status_verif')->default('belum');
+            $table->boolean('flag')->default(0);
             $table->foreignId('mhs_id');
             $table->timestamps();
         });

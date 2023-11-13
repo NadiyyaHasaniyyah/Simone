@@ -244,6 +244,7 @@
                                             {{-- FROM --}}
                                             <form class="form-group" action="{{ route('verifikasi_dsn') }}"
                                                 method="get">
+                                                @method('PUT')
                                                 <div class="input-group">
                                                     <input name="keyword" type="text" class="form-control"
                                                         id="search" placeholder="Nama atau NIM">
@@ -266,6 +267,22 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="tabs">
+
+                                                {{-- session succes or error --}}
+                                                <div class="form-group " style="margin-left: 6px;">
+                                                    @if(session('error'))
+                                                        <div class="alert alert-danger">
+                                                            {{ session('error') }}
+                                                        </div>
+                                                    @endif
+
+                                                    @if(session('success'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('success') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+
                                                 <input type="radio" id="tab1" name="tab-control" checked>
                                                 <input type="radio" id="tab2" name="tab-control">
                                                 <input type="radio" id="tab3" name="tab-control">
@@ -296,9 +313,7 @@
                                                     {{-- IRS --}}
                                                     <section>
                                                         <h2>IRS</h2>
-
                                                         {{-- Tabel  --}}
-
                                                         <div class="row">
                                                             <div class="col-md-12 grid-margin stretch-card">
                                                                 <div class="card">
@@ -343,86 +358,58 @@
                                                                                 {{-- Tabel --}}
                                                                                 {{-- Pesan PesanRahasia --}}
                                                                                 {{-- nanti controllernya coba dicheck lagi.
-                                                                                 Ini dah kucoba sesuai dia input irs atau enggak, kalau mhs input irs otomatis ada, kalau blm brarti masih kosong
+                                                                                Ini dah kucoba sesuai dia input irs atau enggak, kalau mhs input irs otomatis ada, kalau blm brarti masih kosong
                                                                                 tp fungsi detail pdf sama verifikasinya blm jalan --}}
 
                                                                                 {{-- info --}}
-                                                                                {{--                                                                                   jadi waktu irs pada mhs_id nya diatas 0 pada mhs_id maka tampil tuh sksnya, kalau nol berati mhsnya blm update irs
-                                                                            
-                                                                                    --}}
+                                                                                {{-- jadi waktu irs pada mhs_id nya diatas 0 pada mhs_id maka tampil tuh sksnya, kalau nol berati mhsnya blm update irs --}}
 
                                                                                 @foreach ($mhs as $item)
                                                                                     @php
                                                                                         $itemirs = $irs->where('mhs_id', $item->id);
                                                                                     @endphp
 
-                                                                                    @if ($itemirs->count() > 0)
+                                                                                @if ($itemirs->count() > 0)
                                                                                         <tbody>
                                                                                             @foreach ($itemirs as $sks)
-                                                                                                <tr>
-                                                                                                    <td class="py-1">
-                                                                                                        {{ $loop->iteration }}
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        {{ $item->nama }}
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        {{ $item->nim }}
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        {{ $item->angkatan }}
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        {{ $sks->semester }}
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        {{ $sks->jumlah_sks }}
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        <a href="#"
-                                                                                                            class="btn btn-primary btn-sm">Detail</a>
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        <button
-                                                                                                            class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                                    </td>
-                                                                                                </tr>
+                                                                                                @if ($sks->flag == 0)
+                                                                                                    <tr>
+                                                                                                        <td class="py-1">
+                                                                                                            {{ $loop->iteration }}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            {{ $item->nama }}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            {{ $item->id }}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            {{ $item->angkatan }}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            {{ $sks->semester }}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            {{ $sks->jumlah_sks }}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <a href="#"
+                                                                                                                class="btn btn-primary btn-sm">Detail
+                                                                                                            </a>
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <form action="{{ route('verifikasiIRS', ['id' => $sks->id]) }}" method="POST">
+                                                                                                            @method('PUT')
+                                                                                                            @csrf
+                                                                                                                <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                            </form>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                @endif
                                                                                             @endforeach
                                                                                         </tbody>
                                                                                     @endif
                                                                                 @endforeach
-
-
-
-                                                                                {{-- asal isi just for preview --}}
-                                                                                {{-- <tbody>
-                                                                                <tr>
-                                                                                    <td class="py-1">
-
-                                                                                        1
-                                                                                    </td>
-                                                                                    <td> 
-                                                                                       joko
-                                                                                    </td>
-                                                                                    <td> 
-                                                                                       212
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        23
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        24
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a href="#"
-                                                                                            class="btn btn-primary btn-sm">Detail</a>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <button
-                                                                                            class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody> --}}
 
                                                                             </table>
                                                                         </div>
@@ -486,81 +473,55 @@
                                                                                     </tr>
                                                                                 </thead>
 
-                                                                                {{-- nanti controllernya sesuaiin lagi --}}
-
                                                                                 @foreach ($mhs as $item)
                                                                                 @php
                                                                                     $itemkhs = $khs->where('mhs_id', $item->id);
                                                                                 @endphp
-                                                                            
+
                                                                                 @if($itemkhs->count() > 0)
                                                                                     <tbody>
                                                                                         @foreach ($itemkhs as $khsdata)
-                                                                                            <tr>
-                                                                                                <td class="py-1">
-                                                                                                    {{ $loop->iteration }}
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    {{ $item->nama }}
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    {{ $item->nim }}
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    {{ $item->angkatan }}
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    {{ $khsdata->semester}}
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    {{ $khsdata->ips }}
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    {{ $khsdata->sks_komulatif }}
-                                                                                                </td>
-                                          
-                                                                                                <td>
-                                                                                                    <a href="#" class="btn btn-primary btn-sm">Detail</a>
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    <button class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                                </td>
-                                                                                            </tr>
+                                                                                            @if ($khsdata->flag == 0)
+                                                                                                <tr>
+                                                                                                    <td class="py-1">
+                                                                                                        {{ $loop->iteration }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->nama }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->id}}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->angkatan }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $khsdata->semester}}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $khsdata->ips }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $khsdata->sks_komulatif }}
+                                                                                                    </td>
+
+                                                                                                    <td>
+                                                                                                        <a href="#" class="btn btn-primary btn-sm">Detail</a>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <form action="{{ route('verifikasiKHS', ['id' => $khsdata->id]) }}" method="POST">
+                                                                                                        @method('PUT')
+                                                                                                        @csrf
+                                                                                                            <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                        </form>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            @endif
                                                                                         @endforeach
                                                                                     </tbody>
                                                                                 @endif
                                                                             @endforeach
-                                                                            
 
-                                                                                {{-- asal isi just for preview --}}
-                                                                                {{-- <tbody>
-                                                                                <tr>
-                                                                                    <td class="py-1">
-
-                                                                                        1
-                                                                                    </td>
-                                                                                    <td> 
-                                                                                       joko
-                                                                                    </td>
-                                                                                    <td> 
-                                                                                       212
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        23
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        24
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a href="#"
-                                                                                            class="btn btn-primary btn-sm">Detail</a>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <button
-                                                                                            class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody> --}}
 
                                                                             </table>
                                                                         </div>
@@ -666,7 +627,7 @@
                                                     </section>
 
                                                     <section>
-                                                      
+
                                                         <h1>Blm koneksi DB</h1>
                                                    <P>BTW AK BLM TAU FIX ISIAN SKRIPSI NI APAAN, HARAP DIKOREKSI DAN DICERAMAHI</P>
                                                         {{-- Tabel  --}}
@@ -760,7 +721,7 @@
                                                             </div>
                                                         </div>
                                                     </section>
-                                                    
+
 
 
 

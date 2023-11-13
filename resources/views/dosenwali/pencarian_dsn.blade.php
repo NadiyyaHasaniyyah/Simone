@@ -176,7 +176,7 @@
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">Verifikasi Progress Studi</span>
                         </a>
-                        
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
@@ -269,7 +269,7 @@
                                                 {{ $item->nama }}
                                             </td>
                                             <td>
-                                                {{ $item->nim }}
+                                                {{ $item->id }}
                                             </td>
                                             <td>
                                                 {{ $item->angkatan }}

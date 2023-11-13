@@ -195,11 +195,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">Verifikasi Progress Studi</span>
                         </a>
-                        
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">

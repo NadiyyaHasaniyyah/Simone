@@ -275,6 +275,8 @@
                                                                 @enderror
                                                             </div>
                                                             <br>
+
+                                                            {{-- sks diambil --}}
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label for="sks_smt"
                                                                     class="col-sm-3 col-form-label"
@@ -290,7 +292,9 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            {{-- <div class="form-group row" style="margin: auto">
+
+                                                            {{-- SKS komulatif --}}
+                                                            <div class="form-group row" style="margin: auto">
                                                                 <label for="sks_komulatif"
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">SKS
@@ -304,7 +308,9 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                            </div> --}}
+                                                            </div>
+
+                                                            {{-- ip semseter --}}
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label for="ips"
                                                                     class="col-sm-3 col-form-label"
@@ -319,7 +325,9 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            {{-- <div class="form-group row" style="margin: auto">
+
+                                                            {{-- ip komulatif --}}
+                                                            <div class="form-group row" style="margin: auto">
                                                                 <label for="ipk"
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">IP Komulatif</label>
@@ -332,8 +340,10 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                            </div> --}}
+                                                            </div>
                                                             <br>
+
+                                                            {{-- file --}}
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">File
@@ -397,7 +407,6 @@
                                                                             <th>SKS K</th>
                                                                             <th>File KHS</th>
                                                                             <th>Action</th>
-                                                                            <th>Verifikasi</th>
 
                                                                         </tr>
                                                                     </thead>
@@ -416,14 +425,20 @@
                                                                                 </td>
                                                                                 <td>
 
-                                                                                    <a href="{{ route('khs_edit', ['semester' => $item->semester]) }}">
-                                                                                        <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
-                                                                                    </a>
+                                                                                    @if ($item->flag == 0)
+                                                                                        <a href="{{ route('khs_edit', ['semester' => $item->semester]) }}">
+                                                                                            <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                                        </a>
 
-                                                                                    <form action="{{ route('khs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
-                                                                                        @method('delete')
-                                                                                        @csrf
-                                                                                        <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
+                                                                                        <form action="{{ route('khs_destroy', ['semester' => $item->semester]) }}" method="POST" class="d-inline">
+                                                                                            @method('delete')
+                                                                                            @csrf
+                                                                                            <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
+                                                                                        </form>
+                                                                                    @else
+                                                                                        <button type="button" class="btn btn-success btn-rounded btn-ico "><i class="ti-check"></i></button>
+                                                                                    @endif
+
                                                                                     </form>
                                                                                 </td>
                                                                             </tr>

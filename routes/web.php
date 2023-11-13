@@ -33,7 +33,7 @@ Route::middleware(['isOperator'])->group(function(){
     Route::get('operator/generate',[OperatorController::class, 'generate'])-> name('generate');
 
     // upload dan import
-    Route::post('operator/generate', [OperatorController::class, 'store'])->name('upload');
+    Route::post('operator/generate/upload', [OperatorController::class, 'store'])->name('upload');
     Route::post('operator/generate/import', function(){
         Artisan::call('db:seed', ['--class' => 'ImportMhsSeeder']);
         return redirect()->route('generate');
@@ -79,15 +79,17 @@ Route::middleware(['isMahasiswa'])->group(function(){
 
 });
 
-
+// dsn
 Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
     Route::get('dosenwali/hasil_pencarian_dsn',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
     Route::get('dosenwali/verifikasi_dsn',[DosenwaliController::class, 'verifikasi'])-> name('verifikasi_dsn');
+    Route::put('dosenwali/verifikasi_dsn/{id}/irs',[DosenwaliController::class, 'verifikasiIRS'])-> name('verifikasiIRS');
+    Route::put('dosenwali/verifikasi_dsn/{id}/khs',[DosenwaliController::class, 'verifikasiKHS'])-> name('verifikasiKHS');
 });
 
-
+// dpt
 Route::middleware(['isDepartemen'])->group(function(){
     Route::get('departemen/dashboard_dpt',[DepartemenController::class, 'index'])-> name('dashboard_dpt');
 });
