@@ -83,7 +83,7 @@ Route::middleware(['isMahasiswa'])->group(function(){
 Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
-    Route::get('dosenwali/hasi_pencarian_dsn',[DosenwaliController::class, 'hasi_pencarian_dsn'])-> name('hasi_pencarian_dsn');
+    Route::get('dosenwali/hasi_pencarian_dsn',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
     Route::get('dosenwali/verifikasi_dsn',[DosenwaliController::class, 'verifikasi'])-> name('verifikasi_dsn');
 });
 
