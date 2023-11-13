@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">Verifikasi Progress Studi</span>
                         </a>
@@ -215,12 +215,12 @@
                           <div class="row">
                             <div class="col-md-5">
                               <div class="card-body">
-                                <h4 class="card-title">Cari Mahasiswa</h4>
+                                <h4 class="card-title">Mahasiswa</h4>
                                 <table>
                                     <tr>
                                       <td class ="value">Nama</td>
                                       <td>&nbsp;:&nbsp;</td>
-                                      <td class="value"></td>
+                                      <td class="value"> </td>
                                     </tr>
                                     <tr>
                                       <td class="value">NIM</td>
