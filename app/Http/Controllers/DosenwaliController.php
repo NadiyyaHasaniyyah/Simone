@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\dosenwali;
 use App\Models\mahasiswa;
+use App\Models\irs;
+use App\Models\khs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,8 +51,12 @@ class DosenwaliController extends Controller
        public function verifikasi()
     {
         $attribute=Auth::guard('dsn')->user();
-        // dd($attribute);
-        return view('dosenwali/verifikasi_dsn',['attribute'=>$attribute]);
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+        $irs = irs::get();
+        $khs = khs::get();
+
+        // dd($mhs);
+        return view('dosenwali/verifikasi_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs]);
     }
     /**
      * Show the form for creating a new resource.
