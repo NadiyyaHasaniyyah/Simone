@@ -33,13 +33,12 @@ class ImportMhsSeeder extends Seeder
         ->each(function(LazyCollection $chunk){
             $records = $chunk->map(function($row){
                 return [
-                    'id'=>$row[2],
-                    'nama'=>$row[3],
-                    'email'=>$row[0],
-                    'password'=>Hash::make($row[1]),
+                    'id'=>$row[1],
+                    'nama'=>$row[2],
+                    'password'=>Hash::make($row[0]),
                     'nomor_tlp'=>null,
                     'role'=>'mahasiswa',
-                    'angkatan'=>$row[4],
+                    'angkatan'=>$row[3],
                     'status'=>'aktif',
                     'departemen'=>'Informatika',
                     'fakultas'=>'Fakultas Sains dan Matematika',
@@ -48,7 +47,7 @@ class ImportMhsSeeder extends Seeder
                     'kabupaten'=>null,
                     'alamat'=>null,
                     'foto'=>null,
-                    'dsn_id'=>$row[5],
+                    'dsn_id'=>$row[4],
 
                 ];
             })->toArray();

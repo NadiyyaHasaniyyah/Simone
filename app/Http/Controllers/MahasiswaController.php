@@ -23,7 +23,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $attribute=Auth::guard('mhs')->user();
-        if ($attribute->nama == null ||$attribute->email_pribadi == null ||$attribute->nomor_tlp == null||$attribute->status == null  ||$attribute->jalur_masuk == null  ||$attribute->provinsi == null||$attribute->kabupaten == null || $attribute->alamat == null){
+        if ($attribute->nama == null ||$attribute->email == null ||$attribute->nomor_tlp == null||$attribute->status == null  ||$attribute->jalur_masuk == null  ||$attribute->provinsi == null||$attribute->kabupaten == null || $attribute->alamat == null){
             return redirect()->route('update_mhs');
         }else{
             // dd($attribute);
@@ -302,7 +302,7 @@ class MahasiswaController extends Controller
     $validateData = $request->validate([
         'foto' => 'image|max:1024', // Hilangkan 'file', karena 'image' sudah termasuk 'file'
         'nama' => 'required',
-        'email_pribadi' => 'required',
+        'email' => 'required',
         'nomor_tlp' => 'required',
         'provinsi' => 'required',
         'kabupaten' => 'required',

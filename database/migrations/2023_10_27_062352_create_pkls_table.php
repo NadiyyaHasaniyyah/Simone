@@ -17,6 +17,7 @@ return new class extends Migration
             $table->char('nilai');
             $table->string('semester');
             $table->string('file_pkl')->nullable();
+            $table->boolean('flag')->default(0);
             $table->foreignId('mhs_id');
             $table->timestamps();
         });

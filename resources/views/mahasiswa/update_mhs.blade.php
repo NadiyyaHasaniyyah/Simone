@@ -136,8 +136,8 @@
 
                                 <div class="form-group" id="" style="margin: 0px; font-size: 11px; font-weight: bold; ">
                                     <label for="" class="font-weight-bold">Email</label> <span class="grey"></span>
-                                    <input type="text" class="form-control @error('email_pribadi') is-invalid @enderror" style="height: 20px" name='email_pribadi' id="email_pribadi" value="{{ $attribute->email_pribadi }}"/>
-                                    @error('email_pribadi')
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" style="height: 20px" name='email' id="email" value="{{ $attribute->email }}"/>
+                                    @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div> <br>
