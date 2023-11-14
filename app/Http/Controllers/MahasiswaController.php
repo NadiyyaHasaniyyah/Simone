@@ -132,8 +132,12 @@ class MahasiswaController extends Controller
     public function pkl()
     {
         $attribute=Auth::guard('mhs')->user();
+        $pkl = Pkl::all();
+        
         // dd($attribute);
-        return view('mahasiswa/pkl_mhs',['attribute'=>$attribute]);
+        return view('mahasiswa/pkl_mhs',[
+            'attribute'=>$attribute,
+            'pkl'=>$pkl]);
 
     }
 

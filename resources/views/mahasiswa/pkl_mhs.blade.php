@@ -358,10 +358,14 @@
                                                         <div class="card-body">
                                                             <h4 class="card-title"> Hasil PKL</h4>
                                                             <p class="card-description">
-                                                                {{ $attribute->nama }}<code style="color: #3f499d">
-                                                                    {{ $attribute->nim }}</code>
+                                                                {{ $attribute->nama }} - {{ $attribute->id }}
                                                             </p>
-                                                            <h5>Belum diverifikasi Dosen Wali</h5>
+
+                                                            @if ()
+                                                                
+                                                            @else
+                                                                <h5>Belum diverifikasi Dosen Wali</h5>
+                                                            @endif
                                                           </div>
                                                         </div>
                                                       </div>
