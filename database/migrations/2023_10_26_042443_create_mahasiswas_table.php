@@ -15,8 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id'); // Use unsignedBigInteger instead of id()
             $table->primary('id'); // Set id as the primary key
             $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('email_pribadi')->unique()->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->string('nomor_tlp')->nullable();
             $table->string('role')->default('mahasiswa');

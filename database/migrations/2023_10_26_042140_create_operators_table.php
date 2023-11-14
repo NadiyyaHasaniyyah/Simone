@@ -11,11 +11,8 @@ return new class extends Migration
         Schema::create('operators', function (Blueprint $table) {
             $table->unsignedBigInteger('id'); // Use unsignedBigInteger instead of id()
             $table->primary('id'); // Set id as the primary key
-            // $table->id();
-            // $table->bigInteger('nip')->unique();
             $table->string('nama');
             $table->string('email')->unique();
-            $table->string('email_pribadi')->unique();
             $table->string('password');
             $table->string('nomor_tlp')->nullable();
             $table->string('role')->default('operator');

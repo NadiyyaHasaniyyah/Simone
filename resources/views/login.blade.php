@@ -45,10 +45,10 @@
                     <div class="div">
                         <h5>email</h5>
                         {{-- <label for="email">email</label> --}}
-                        <input type="email" id="email" name="email"
-                            class="input @error('email') is-invalid @enderror" autofocus required
-                            value="{{ old('email') }}">
-                        @error('email')
+                        <input type="id" id="id" name="id"
+                            class="input @error('id') is-invalid @enderror" autofocus required
+                            value="{{ old('id') }}">
+                        @error('id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
