@@ -67,8 +67,6 @@ class MahasiswaController extends Controller
         Irs::create($validateData);
 
         return redirect()->route('irs_import')->with('success', 'IRS berhasil ditambahkan.');
-
-        // $attribute=Auth::guard('mhs')->user();
     }
 
     public function khs()
@@ -133,7 +131,7 @@ class MahasiswaController extends Controller
     {
         $attribute=Auth::guard('mhs')->user();
         $pkl = Pkl::all();
-        
+
         // dd($attribute);
         return view('mahasiswa/pkl_mhs',[
             'attribute'=>$attribute,
@@ -160,12 +158,16 @@ class MahasiswaController extends Controller
             $validateData['file_pkl'] = $request->file('file_pkl')->store('importPKL');
         }
 
-        // dd($validateData);
+        $existingPkl = Pkl::where('mhs_id', $attribute['id'])
+                        ->first();
+
+        if ($existingPkl) {
+            return redirect()->route('pkl_import')->with('error', 'Data PKL sudah ditambahkan.');
+        }
+
         Pkl::create($validateData);
 
-        return redirect()->route('pkl');
-
-        // $attribute=Auth::guard('mhs')->user();
+        return redirect()->route('pkl_import')->with('success', 'Data PKL berhasil ditambahkan.');
     }
 
     public function skripsi()
@@ -196,12 +198,15 @@ class MahasiswaController extends Controller
             $validateData['file_skripsi'] = $request->file('file_skripsi')->store('importSKRIPSI');
         }
 
-        // dd($validateData);
+        $existingSkripsi = Skripsi::where('mhs_id', $attribute['id'])
+                        ->first();
+
+        if ($existingSkripsi) {
+            return redirect()->route('skripsi_import')->with('error', 'Data Skripsi sudah ditambahkan.');
+        }
+
         Skripsi::create($validateData);
-
-        return redirect()->route('skripsi');
-
-        // $attribute=Auth::guard('mhs')->user();
+        return redirect()->route('skripsi_import')->with('success', 'Data Skripsi berhasil ditambahkan.');
     }
 
 

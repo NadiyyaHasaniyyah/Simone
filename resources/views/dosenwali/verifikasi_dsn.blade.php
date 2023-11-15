@@ -393,8 +393,8 @@
                                                                                                             {{ $sks->jumlah_sks }}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            <a href="#"
-                                                                                                                class="btn btn-primary btn-sm">Detail
+                                                                                                            <a href="{{ route('viewPDF_irs', ['id' => $sks->id]) }}" target="_blank">
+                                                                                                                <button class="btn btn-inverse-primary btn-sm trigger" >File</button>
                                                                                                             </a>
                                                                                                         </td>
                                                                                                         <td>
@@ -506,7 +506,9 @@
                                                                                                     </td>
 
                                                                                                     <td>
-                                                                                                        <a href="#" class="btn btn-primary btn-sm">Detail</a>
+                                                                                                        <a href="{{ route('viewPDF_khs', ['id' => $khsdata->id]) }}" target="_blank">
+                                                                                                            <button class="btn btn-inverse-primary btn-sm trigger" >File</button>
+                                                                                                        </a>
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <form action="{{ route('verifikasiKHS', ['id' => $khsdata->id]) }}" method="POST">
@@ -532,10 +534,11 @@
                                                     </section>
 
                                                     <section>
-                                                   <h1>Blm koneksi DB</h1>
+                                                   {{-- <h1>Blm koneksi DB</h1>
                                                    <P>BTW AK BLM TAU FIX ISIAN PKL NI APAAN, HARAP DIKOREKSI DAN DICERAMAHI</P>
-                                                        {{-- Tabel  --}}
+                                                        Tabel --}}
 
+                                                        {{-- PKL --}}
                                                         <div class="row">
                                                             <div class="col-md-12 grid-margin stretch-card">
                                                                 <div class="card">
@@ -566,10 +569,7 @@
                                                                                             Semester
                                                                                         </th>
                                                                                         <th>
-                                                                                            Nilai {{-- PesanRahasia:btw aku gatau ini nilainya mhs yg input apa dr doswalnya yg input --}}
-                                                                                        </th>
-                                                                                        <th>
-                                                                                            Status
+                                                                                            Nilai
                                                                                         </th>
                                                                                         <th>
                                                                                             Info
@@ -580,44 +580,53 @@
                                                                                     </tr>
                                                                                 </thead>
 
+                                                                                @foreach ($mhs as $item)
+                                                                                @php
+                                                                                    $itempkl = $pkl->where('mhs_id', $item->id);
+                                                                                @endphp
 
-                                                                                {{-- asal isi random data just for preview --}}
-                                                                                {{-- PesanRahasia ak blm tau isian skripsi apa aja tp taruh ini dulu nanti diskusiin lagi --}}
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="py-1">
+                                                                                @if ($itempkl->count()> 0)
+                                                                                    <tbody>
+                                                                                        @foreach ($itempkl as $pkldata)
+                                                                                            @if ($pkldata->flag == 0)
+                                                                                                <tr>
+                                                                                                    <td class="py-1">
+                                                                                                        {{ $loop->iteration }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->nama }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->id}}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->angkatan }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $pkldata->semester}}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $pkldata->nilai }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <a href="{{ route('viewPDF_pkl', ['id' => $pkldata->id]) }}" target="_blank">
+                                                                                                            <button class="btn btn-inverse-primary btn-sm trigger" >File</button>
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <form action="{{ route('verifikasiPKL', ['id' => $pkldata->id]) }}" method="POST">
+                                                                                                        @method('PUT')
+                                                                                                        @csrf
+                                                                                                            <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                        </form>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    </tbody>
+                                                                                @endif
 
-                                                                                            1
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            joko
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            212
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            23
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            7
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            A
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            Sudah Ambil
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <a href="#"
-                                                                                                class="btn btn-primary btn-sm">Detail</a>
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <button
-                                                                                                class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-
+                                                                                @endforeach
                                                                             </table>
                                                                         </div>
                                                                     </div>
@@ -628,10 +637,11 @@
 
                                                     <section>
 
-                                                        <h1>Blm koneksi DB</h1>
+                                                    {{-- <h1>Blm koneksi DB</h1>
                                                    <P>BTW AK BLM TAU FIX ISIAN SKRIPSI NI APAAN, HARAP DIKOREKSI DAN DICERAMAHI</P>
-                                                        {{-- Tabel  --}}
+                                                        Tabel --}}
 
+                                                        {{-- SKRIPSI --}}
                                                         <div class="row">
                                                             <div class="col-md-12 grid-margin stretch-card">
                                                                 <div class="card">
@@ -662,10 +672,10 @@
                                                                                             Semester
                                                                                         </th>
                                                                                         <th>
-                                                                                            Nilai {{-- PesanRahasia:btw aku gatau ini nilainya mhs yg input apa dr doswalnya yg input --}}
+                                                                                            Nilai
                                                                                         </th>
                                                                                         <th>
-                                                                                            Status
+                                                                                            Tanggal Lulus
                                                                                         </th>
                                                                                         <th>
                                                                                             Info
@@ -676,10 +686,61 @@
                                                                                     </tr>
                                                                                 </thead>
 
+                                                                                @foreach ($mhs as $item)
+                                                                                @php
+                                                                                    $itemskripsi = $skripsi->where('mhs_id', $item->id);
+                                                                                @endphp
+
+                                                                                @if ($itemskripsi->count()> 0)
+                                                                                    <tbody>
+                                                                                        @foreach ($itemskripsi as $skripsidata)
+                                                                                            @if ($skripsidata->flag == 0)
+                                                                                                <tr>
+                                                                                                    <td class="py-1">
+                                                                                                        {{ $loop->iteration }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->nama }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->id}}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $item->angkatan }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $skripsidata->semester}}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $skripsidata->nilai }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        {{ $skripsidata->tanggal_lulus }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <a href="{{ route('viewPDF_skripsi', ['id' => $skripsidata->id]) }}" target="_blank">
+                                                                                                            <button class="btn btn-inverse-primary btn-sm trigger" >File</button>
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <form action="{{ route('verifikasiSKRIPSI', ['id' => $skripsidata->id]) }}" method="POST">
+                                                                                                        @method('PUT')
+                                                                                                        @csrf
+                                                                                                            <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                        </form>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    </tbody>
+                                                                                @endif
+
+                                                                                @endforeach
+
 
                                                                                 {{-- asal isi random data just for preview --}}
                                                                                 {{-- PesanRahasia ak blm tau isian skripsi apa aja tp taruh ini dulu nanti diskusiin lagi --}}
-                                                                                <tbody>
+                                                                                {{-- <tbody>
                                                                                     <tr>
                                                                                         <td class="py-1">
 
@@ -712,7 +773,7 @@
                                                                                                 class="btn btn-inverse-success btn-sm">Verifikasi</button>
                                                                                         </td>
                                                                                     </tr>
-                                                                                </tbody>
+                                                                                </tbody> --}}
 
                                                                             </table>
                                                                         </div>

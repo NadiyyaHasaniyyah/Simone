@@ -275,7 +275,7 @@
                                                 {{ $item->angkatan }}
                                             </td>
                                             <td>
-                                                <a href="hasil_pencarian_dsn" class="btn btn-primary btn-sm">Detail</a>
+                                                <a href="{{ route('hasil_pencarian_dsn', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Detail</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -287,11 +287,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
 
 
 

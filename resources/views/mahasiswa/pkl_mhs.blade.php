@@ -346,6 +346,22 @@
                                                                     class="btn btn-primary "
                                                                     type="button">Simpan</button>
                                                             </div>
+
+                                                            <br>
+                                                            {{-- error success --}}
+                                                            <div class="form-group row col-sm-10" style="margin-left: 6px;">
+                                                                @if(session('error'))
+                                                                    <div class="alert alert-danger">
+                                                                        {{ session('error') }}
+                                                                    </div>
+                                                                @endif
+
+                                                                @if(session('success'))
+                                                                    <div class="alert alert-success">
+                                                                        {{ session('success') }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -361,11 +377,13 @@
                                                                 {{ $attribute->nama }} - {{ $attribute->id }}
                                                             </p>
 
-                                                            @if ()
-                                                                
+                                                            {{-- @if ()
+
                                                             @else
                                                                 <h5>Belum diverifikasi Dosen Wali</h5>
-                                                            @endif
+                                                            @endif --}}
+
+                                                            <h5>Belum diverifikasi Dosen Wali</h5>
                                                           </div>
                                                         </div>
                                                       </div>

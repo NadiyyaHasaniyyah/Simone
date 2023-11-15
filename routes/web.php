@@ -83,15 +83,28 @@ Route::middleware(['isMahasiswa'])->group(function(){
 Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
-    Route::get('dosenwali/hasil_pencarian_dsn',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
+    Route::get('dosenwali/hasil_pencarian_dsn/{id}',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
+
+    // verifikasi
     Route::get('dosenwali/verifikasi_dsn',[DosenwaliController::class, 'verifikasi'])-> name('verifikasi_dsn');
     Route::put('dosenwali/verifikasi_dsn/{id}/irs',[DosenwaliController::class, 'verifikasiIRS'])-> name('verifikasiIRS');
     Route::put('dosenwali/verifikasi_dsn/{id}/khs',[DosenwaliController::class, 'verifikasiKHS'])-> name('verifikasiKHS');
+    Route::put('dosenwali/verifikasi_dsn/{id}/pkl',[DosenwaliController::class, 'verifikasiPKL'])-> name('verifikasiPKL');
+    Route::put('dosenwali/verifikasi_dsn/{id}/skripsi',[DosenwaliController::class, 'verifikasiSKRIPSI'])-> name('verifikasiSKRIPSI');
+
+    //  view file
+    Route::get('mahasiswa/verifikasi_dsn/{id}/view_irs', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_irs');
+    Route::get('mahasiswa/verifikasi_dsn/{id}/view_khs', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_khs');
+    Route::get('mahasiswa/verifikasi_dsn/{id}/view_pkl', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_pkl');
+    Route::get('mahasiswa/verifikasi_dsn/{id}/view_skripsi', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_skripsi');
+
 });
 
 // dpt
 Route::middleware(['isDepartemen'])->group(function(){
     Route::get('departemen/dashboard_dpt',[DepartemenController::class, 'index'])-> name('dashboard_dpt');
+    Route::get('departemen/rekap_pkl',[DepartemenController::class, 'rekap_pkl'])-> name('rekap_pkl');
+    Route::get('departemen/rekap_skripsi',[DepartemenController::class, 'rekap_skripsi'])-> name('rekap_skripsi');
 });
 
 

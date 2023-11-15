@@ -18,9 +18,21 @@ class DepartemenController extends Controller
         return view('departemen/dashboard_dpt',['attribute'=>$attribute]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function rekap_pkl()
+    {
+        $attribute=Auth::guard('dpt')->user();
+        // dd($attribute);
+        return view('departemen/rekap_pkl');
+    }
+
+    public function rekap_skripsi()
+    {
+        $attribute=Auth::guard('dpt')->user();
+        // dd($attribute);
+        return view('departemen/rekap_skripsi');
+    }
+
+
     public function create()
     {
         //

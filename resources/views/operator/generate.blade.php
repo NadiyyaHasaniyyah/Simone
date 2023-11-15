@@ -206,7 +206,7 @@
                                                     <tr>
                                                         <th>Nama</th>
                                                         <th>NIM</th>
-                                                        <th>Email</th>
+                                                        {{-- <th>Email</th> --}}
                                                         <th>Angkatan</th>
                                                         <th>Password</th>
                                                         <th>Dosen ID</th>
@@ -217,7 +217,7 @@
                                                     <tr>
                                                       <td>{{ $item->nama }}</td>
                                                       <td>{{ $item->id }}</td>
-                                                      <td>{{ $item->email }}</td>
+                                                      {{-- <td>{{ $item->email }}</td> --}}
                                                       <td>{{ $item->angkatan }}</td>
                                                       <td>ini password</td>
                                                       <td>{{ $item->dsn_id }}</td>

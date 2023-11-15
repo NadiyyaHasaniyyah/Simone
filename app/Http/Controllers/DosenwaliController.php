@@ -6,6 +6,8 @@ use App\Models\dosenwali;
 use App\Models\mahasiswa;
 use App\Models\irs;
 use App\Models\khs;
+use App\Models\Pkl;
+use App\Models\Skripsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,10 +31,10 @@ class DosenwaliController extends Controller
         return view('dosenwali/pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs]);
     }
 
-    public function hasil_pencarian_dsn()
+    public function hasil_pencarian_dsn($id)
     {
         $attribute=Auth::guard('dsn')->user();
-        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+        $mhs = mahasiswa::find($id);
         // dd($mhs);
         return view('dosenwali/hasil_pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs]);
     }
@@ -56,9 +58,11 @@ class DosenwaliController extends Controller
         $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
         $irs = irs::get();
         $khs = khs::get();
+        $pkl = Pkl::get();
+        $skripsi = Skripsi::get();
 
         // dd($irs);
-        return view('dosenwali/verifikasi_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs]);
+        return view('dosenwali/verifikasi_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi]);
     }
 
     // route klik button verif oleh dsn
@@ -85,6 +89,85 @@ class DosenwaliController extends Controller
         return redirect()->route('verifikasi_dsn')->with('success', 'KHS berhasil diverifikasi');
 
     }
+
+    public function verifikasiPKL($id)
+    {
+        $pkl = Pkl::find($id);
+
+        $pkl->update([
+            'flag' => '1',
+        ]);
+
+        return redirect()->route('verifikasi_dsn')->with('success', 'PKL berhasil diverifikasi');
+
+    }
+    public function verifikasiSKRIPSI($id)
+    {
+        $skripsi = Skripsi::find($id);
+
+        $skripsi->update([
+            'flag' => '1',
+        ]);
+
+        return redirect()->route('verifikasi_dsn')->with('success', 'Skripsi berhasil diverifikasi');
+
+    }
+
+    public function viewPDF($id)
+    {
+        $irs = irs::find($id);
+        $khs = khs::find($id);
+        $pkl = Pkl::find($id);
+        $skripsi = Skripsi::find($id);
+
+        if ($irs) {
+            $pdfPath = public_path('storage/' . $irs->file_irs);
+
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="' . $irs->file_irs . '"',
+                ]);
+            }
+        }
+
+        elseif ($khs) {
+            $pdfPath = public_path('storage/' . $khs->file_khs);
+
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="' . $khs->file_khs . '"',
+                ]);
+            }
+        }
+
+        elseif ($pkl) {
+            $pdfPath = public_path('storage/' . $pkl->file_pkl);
+
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="' . $pkl->file_pkl . '"',
+                ]);
+            }
+        }
+
+        elseif ($skripsi) {
+            $pdfPath = public_path('storage/' . $skripsi->file_skripsi);
+
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="' . $skripsi->file_skripsi . '"',
+                ]);
+            }
+        }
+
+        // }
+    }
+
+
     public function create()
     {
         //
