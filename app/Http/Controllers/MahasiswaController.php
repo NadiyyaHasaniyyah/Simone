@@ -173,8 +173,9 @@ class MahasiswaController extends Controller
     public function skripsi()
     {
         $attribute=Auth::guard('mhs')->user();
-        // dd($attribute);
-        return view('mahasiswa/skripsi_mhs',['attribute'=>$attribute]);
+        $skripsi = Skripsi::all();
+
+        return view('mahasiswa/skripsi_mhs',['attribute'=>$attribute, 'skripsi'=>$skripsi]);
 
     }
 
@@ -275,6 +276,12 @@ class MahasiswaController extends Controller
         $khs = khs::where('semester', $semester)
                   ->where('mhs_id', $mahasiswa->id)
                   ->first();
+        $pkl = Pkl::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
+        $skripsi = Skripsi::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
 
         if ($irs) {
             $pdfPath = public_path('storage/' . $irs->file_irs);
@@ -284,6 +291,18 @@ class MahasiswaController extends Controller
             }
         }else if ($khs) {
             $pdfPath = public_path('storage/' . $khs->file_khs);
+
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath);
+            }
+        }else if ($pkl) {
+            $pdfPath = public_path('storage/' . $pkl->file_pkl);
+
+            if (file_exists($pdfPath)) {
+                return response()->file($pdfPath);
+            }
+        }else if ($skripsi) {
+            $pdfPath = public_path('storage/' . $skripsi->file_skripsi);
 
             if (file_exists($pdfPath)) {
                 return response()->file($pdfPath);
@@ -464,9 +483,103 @@ class MahasiswaController extends Controller
         Khs::where('id', $Khs->id)->update($validateData);
 
         return redirect()->route('khs')->with('success', 'KHS berhasil diubah.');
-        // return view('mahasiswa/irs_mhs',[
-        //     'attribute'=>$attribute,
-        //     'Irs'=>$Irs]);
+    }
+
+    public function Pkl_edit($semester){
+        $attribute=Auth::guard('mhs')->user();
+        $pkl = Pkl::where('mhs_id', $attribute->id)->orderBy('semester')->get();
+
+        $Pkl = Pkl::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        return view('mahasiswa/pkl_edit_mhs',[
+            'attribute'=>$attribute,
+            'pkl'=>$Pkl,
+            'Pkl'=>$Pkl]);
+    }
+
+    public function pkl_edit_import(Request $request, $semester){
+        $attribute=Auth::guard('mhs')->user();
+        $Pkl = Pkl::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        $validateData = $request->validate([
+            'semester' => 'required',
+            'nilai'=> 'required',
+            'file_pkl' => 'required|max:2048',
+        ]);
+
+        if ($request->hasFile('file_pkl')) {
+            $validateData['file_pkl'] = $request->file('file_pkl')->store('importPKL');
+        }
+
+        Pkl::where('id', $Pkl->id)->update($validateData);
+
+        return redirect()->route('pkl')->with('success', 'PKL berhasil diubah.');
+    }
+
+    public function destroyPKL($semester)
+    {
+        $mahasiswa = Auth::guard('mhs')->user();
+        $Pkl = Pkl::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
+
+        if ($Pkl) {
+            $Pkl->delete();
+            return redirect()->route('pkl')->with('success', 'PKL berhasil dihapus.');
+        }
+    }
+
+    public function skripsi_edit($semester){
+        $attribute=Auth::guard('mhs')->user();
+        $skripsi = Skripsi::where('mhs_id', $attribute->id)->orderBy('semester')->get();
+
+        $Skripsi = Skripsi::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        return view('mahasiswa/skripsi_edit_mhs',[
+            'attribute'=>$attribute,
+            'skripsi'=>$skripsi,
+            'Skripsi'=>$Skripsi]);
+    }
+
+    public function skripsi_edit_import(Request $request, $semester){
+        $attribute=Auth::guard('mhs')->user();
+        $Skripsi = Skripsi::where('semester', $semester)
+                  ->where('mhs_id', $attribute->id)
+                  ->first();
+
+        $validateData = $request->validate([
+            'semester' => 'required',
+            'nilai'=> 'required',
+            'tanggal_lulus'=> 'required',
+            'file_skripsi' => 'required|max:2048',
+        ]);
+
+        if ($request->hasFile('file_skripsi')) {
+            $validateData['file_skripsi'] = $request->file('file_skripsi')->store('importSKRIPSI');
+        }
+
+        Skripsi::where('id', $Skripsi->id)->update($validateData);
+
+        return redirect()->route('skripsi')->with('success', 'SKRIPSI berhasil diubah.');
+    }
+
+    public function destroySKRIPSI($semester)
+    {
+        $mahasiswa = Auth::guard('mhs')->user();
+        $Skripsi = Skripsi::where('semester', $semester)
+                  ->where('mhs_id', $mahasiswa->id)
+                  ->first();
+
+        if ($Skripsi) {
+            $Skripsi->delete();
+            return redirect()->route('skripsi')->with('success', 'SKRIPSI berhasil dihapus.');
+        }
     }
 
 }

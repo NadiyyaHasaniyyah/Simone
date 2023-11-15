@@ -366,7 +366,58 @@
                                                                 {{ $attribute->nama }}<code style="color: #3f499d">
                                                                     {{ $attribute->nim }}</code>
                                                             </p>
-                                                            <h5>Belum diverifikasi Dosen Wali</h5>
+
+                                                            @php
+                                                                $dataskripsi = DB::table('skripsis')->where('mhs_id', $attribute->id)->first();
+                                                            @endphp
+
+                                                            @if ($dataskripsi)
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Semester</th>
+                                                                                <th>Nilai</th>
+                                                                                <th>Tanggal Lulus</th>
+                                                                                <th>File Berita Acara</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>{{ $dataskripsi->semester }}</td>
+                                                                                <td>{{ $dataskripsi->nilai }}</td>
+                                                                                <td>{{ $dataskripsi->tanggal_lulus }}</td>
+                                                                                <td>
+                                                                                    <a href="{{ route('view_pdf_skripsi', ['semester' => $dataskripsi->semester]) }}">
+                                                                                        <button
+                                                                                            class="btn btn-inverse-primary btn-fw trigger" >File</button>
+                                                                                    </a>
+                                                                                        <span class="overlay"></span>
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    @if ($dataskripsi->flag == 0)
+                                                                                        <a href="{{ route('skripsi_edit', ['semester' => $dataskripsi->semester]) }}">
+                                                                                            <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                                        </a>
+
+                                                                                        <form action="{{ route('skripsi_destroy', ['semester' => $dataskripsi->semester]) }}" method="POST" class="d-inline">
+                                                                                            @method('delete')
+                                                                                            @csrf
+                                                                                            <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
+                                                                                        </form>
+                                                                                    @else
+                                                                                        <button type="button" class="btn btn-success btn-rounded btn-ico "><i class="ti-check"></i></button>
+                                                                                    @endif
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            @else
+                                                                <h5>Belum diverifikasi Dosen Wali</h5>
+                                                            @endif
                                                           </div>
                                                         </div>
                                                       </div>
@@ -412,7 +463,7 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script>
+                            {{-- <script>
                               $(document).ready(function () {
                                 $(".trigger").on("click", function () {
                                   $(".modal-wrapper").toggleClass("open");
@@ -420,7 +471,7 @@
                                   return false;
                                 });
                               });
-                            </script>
+                            </script> --}}
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\departemen;
+use App\Models\mahasiswa;
+use App\Models\Pkl;
+use Illuminate\Support\Facades\DB;
+use App\Models\Skripsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,8 +25,11 @@ class DepartemenController extends Controller
     public function rekap_pkl()
     {
         $attribute=Auth::guard('dpt')->user();
+        $mhs = mahasiswa::get();
+        $pkl = Pkl::get();
+
         // dd($attribute);
-        return view('departemen/rekap_pkl');
+        return view('departemen/rekap_pkl', ['attribute'=>$attribute, 'mhs'=>$mhs, 'pkl'=>$pkl]);
     }
 
     public function rekap_skripsi()
@@ -30,6 +37,19 @@ class DepartemenController extends Controller
         $attribute=Auth::guard('dpt')->user();
         // dd($attribute);
         return view('departemen/rekap_skripsi');
+    }
+
+    public function count_sudah_pkl($angkatan)
+    {
+        $angkatan = (int) $angkatan;
+        $jumlahMahasiswaLulusPKL = DB::table('mhs')
+            ->join('pkl', 'mhs.id', '=', 'pkl.mhs_id')
+            ->where('mhs.angkatan', '=', $angkatan)
+            ->where('mhs.status', '=', 'lulus')
+            ->count();
+
+        // dd($jumlahMahasiswaLulusPKL);
+        return response()->json(['jumlahMahasiswaLulusPKL' => $jumlahMahasiswaLulusPKL]);
     }
 
 

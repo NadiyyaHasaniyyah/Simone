@@ -73,9 +73,17 @@ Route::middleware(['isMahasiswa'])->group(function(){
 
     // PKL progress
     Route::post('mahasiswa/pkl',[MahasiswaController::class, 'pkl_import'])-> name('pkl_import');
+    Route::get('mahasiswa/pkl/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf_pkl');
+    Route::get('mahasiswa/pkl/{semester}/edit',[MahasiswaController::class, 'pkl_edit'])-> name('pkl_edit');
+    Route::put('mahasiswa/pkl/{semester}/edit',[MahasiswaController::class, 'pkl_edit_import'])-> name('pkl_edit_import');
+    Route::delete('mahasiswa/pkl/{semester}',[MahasiswaController::class, 'destroyPKL'])-> name('pkl_destroy');
 
     // Skripsi progress
     Route::post('mahasiswa/skripsi',[MahasiswaController::class, 'skripsi_import'])-> name('skripsi_import');
+    Route::get('mahasiswa/skripsi/view-pdf/{semester}', [MahasiswaController::class, 'viewPDF'])->name('view_pdf_skripsi');
+    Route::get('mahasiswa/skripsi/{semester}/edit',[MahasiswaController::class, 'skripsi_edit'])-> name('skripsi_edit');
+    Route::put('mahasiswa/skripsi/{semester}/edit',[MahasiswaController::class, 'skripsi_edit_import'])-> name('skripsi_edit_import');
+    Route::delete('mahasiswa/skripsi/{semester}',[MahasiswaController::class, 'destroySKRIPSI'])-> name('skripsi_destroy');
 
 });
 
@@ -105,6 +113,10 @@ Route::middleware(['isDepartemen'])->group(function(){
     Route::get('departemen/dashboard_dpt',[DepartemenController::class, 'index'])-> name('dashboard_dpt');
     Route::get('departemen/rekap_pkl',[DepartemenController::class, 'rekap_pkl'])-> name('rekap_pkl');
     Route::get('departemen/rekap_skripsi',[DepartemenController::class, 'rekap_skripsi'])-> name('rekap_skripsi');
+
+
+    // count
+    Route::post('departemen/count_sudah_pkl/{angkatan}',[DepartemenController::class, 'count_sudah_pkl'])-> name('count_sudah_pkl');
 });
 
 

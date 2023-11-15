@@ -40,6 +40,7 @@
     <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
     <!-- irs tabcss -->
     <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/rekap.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 </head>
 
@@ -218,30 +219,33 @@
                                 <h4 class="card-title" style="text-align: center">Angkatan</h4>
                                 <div class="table-responsive pt-3">
                                   <table class="table table-bordered">
-                                    <thead>
-                                      <tr>
-                                        <th colspan="2">
-                                            2016
-                                          </th>
-                                          <th colspan="2">
-                                            2017
-                                          </th>
-                                          <th colspan="2">
-                                            2018
-                                          </th>
-                                          <th colspan="2">
-                                            2019
-                                          </th>
-                                          <th colspan="2">
-                                            2020
-                                          </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
+                                    <thead class="tahun">
                                         <tr>
-                                            <td id="2016">sudah</td>
-                                            <td id="2016">belum</td>
-
+                                            <th colspan="2">
+                                                2017
+                                            </th>
+                                            <th colspan="2">
+                                                2018
+                                            </th>
+                                            <th colspan="2">
+                                                2019
+                                            </th>
+                                            <th colspan="2">
+                                                2020
+                                            </th>
+                                            <th colspan="2">
+                                                2021
+                                            </th>
+                                            <th colspan="2">
+                                                2022
+                                            </th>
+                                            <th colspan="2">
+                                                2023
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="status">
+                                        <tr>
                                             <td id="2017">sudah</td>
                                             <td id="2017">belum</td>
 
@@ -253,22 +257,73 @@
 
                                             <td id="2020">sudah</td>
                                             <td id="2020">belum</td>
+
+                                            <td id="2021">sudah</td>
+                                            <td id="2021">belum</td>
+
+                                            <td id="2022">sudah</td>
+                                            <td id="2022">belum</td>
+
+                                            <td id="2023">sudah</td>
+                                            <td id="2023">belum</td>
                                         </tr>
-                                        <tr>
-                                            <td id="2016">45</td>
-                                            <td id="2016">87</td>
+                                        <tr class="data">
 
-                                            <td id="2017">45</td>
-                                            <td id="2017">87</td>
+                                            {{-- 2017 --}}
+                                            <td>
+                                                <a href="#" class="text-decoration-none">{{ route('count_sudah_pkl', ['angkatan' => 2017]) }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none">87</a>
+                                            </td>
 
-                                            <td id="2018">45</td>
-                                            <td id="2018">87</td>
+                                            {{-- 2018 --}}
+                                            <td>
+                                                <a href="#" class="text-decoration-none">45</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none">87</a>
+                                            </td>
 
-                                            <td id="2019">45</td>
-                                            <td id="2019">87</td>
+                                            {{-- 2019 --}}
+                                            <td>
+                                                <a href="#" class="text-decoration-none">45</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none">87</a>
+                                            </td>
 
-                                            <td id="2020">45</td>
-                                            <td id="2020">87</td>
+                                            {{-- 2020 --}}
+                                            <td>
+                                                <a href="#" class="text-decoration-none">45</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none">87</a>
+                                            </td>
+
+                                            {{-- 2021 --}}
+                                            <td>
+                                                <a href="#" class="text-decoration-none">45</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none">87</a>
+                                            </td>
+
+                                            {{-- 2022 --}}
+                                            <td>
+                                                <a href="#" class="text-decoration-none">45</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none">87</a>
+                                            </td>
+
+                                            {{-- 2023 --}}
+                                            <td>
+                                                <a href="#" class="text-decoration-none">45</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none">87</a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                   </table>
