@@ -259,62 +259,7 @@
                             <div class="card">
                               <div class="card-body">
                                 <h4 class="card-title">Semester</h4>
-                                {{-- <div class="template-demo">
-
-                                    
-                                    
-                                    {{ dd($irs->where('semester', 1)->first()->flag == 1) }}
-
-                                    <button type="button" class="btn btn-primary btn-icon-text" >
-                                        1
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-icon-text">
-                                        2
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-icon-text">
-                                        3
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-icon-text">
-                                        4
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-icon-text">
-                                        5
-                                    </button>
-                                </div>
-
-                                <div class="template-demo">
-                                    <button type="button" class="btn btn-warning btn-icon-text">
-                                        6
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-icon-text">
-                                        7
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-icon-text">
-                                        8
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-icon-text">
-                                        9
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-icon-text">
-                                        10
-                                    </button>
-                                </div>
-
-                                <div class="template-demo">
-                                    <button type="button" class="btn btn-danger btn-icon-text">
-                                        11
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-icon-text">
-                                        12
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-icon-text">
-                                        13
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-icon-text">
-                                        14
-                                    </button>
-
-                                </div> --}}
+                                
                                 <div class="template-demo">
                                     @for ($i = 1; $i <= 5; $i++)
                                         @php
