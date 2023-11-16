@@ -40,6 +40,7 @@
     <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
     <!-- irs tabcss -->
     <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/rekap.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 </head>
 
@@ -218,30 +219,33 @@
                                 <h4 class="card-title" style="text-align: center">Angkatan</h4>
                                 <div class="table-responsive pt-3">
                                   <table class="table table-bordered">
-                                    <thead>
-                                      <tr>
-                                        <th colspan="2">
-                                            2016
-                                          </th>
-                                          <th colspan="2">
-                                            2017
-                                          </th>
-                                          <th colspan="2">
-                                            2018
-                                          </th>
-                                          <th colspan="2">
-                                            2019
-                                          </th>
-                                          <th colspan="2">
-                                            2020
-                                          </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
+                                    <thead class="tahun">
                                         <tr>
-                                            <td id="2016">sudah</td>
-                                            <td id="2016">belum</td>
-
+                                            <th colspan="2">
+                                                2017
+                                            </th>
+                                            <th colspan="2">
+                                                2018
+                                            </th>
+                                            <th colspan="2">
+                                                2019
+                                            </th>
+                                            <th colspan="2">
+                                                2020
+                                            </th>
+                                            <th colspan="2">
+                                                2021
+                                            </th>
+                                            <th colspan="2">
+                                                2022
+                                            </th>
+                                            <th colspan="2">
+                                                2023
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="status">
+                                        <tr>
                                             <td id="2017">sudah</td>
                                             <td id="2017">belum</td>
 
@@ -253,22 +257,66 @@
 
                                             <td id="2020">sudah</td>
                                             <td id="2020">belum</td>
+
+                                            <td id="2021">sudah</td>
+                                            <td id="2021">belum</td>
+
+                                            <td id="2022">sudah</td>
+                                            <td id="2022">belum</td>
+
+                                            <td id="2023">sudah</td>
+                                            <td id="2023">belum</td>
                                         </tr>
-                                        <tr>
-                                            <td id="2016">45</td>
-                                            <td id="2016">87</td>
+                                        <tr class="data">
 
-                                            <td id="2017">45</td>
-                                            <td id="2017">87</td>
+                                            <td id="2017">
+                                                <a href="{{ route('list_skripsi_sudah', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countsudah['2017'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countbelum['2017'] ?? 0 }}</a>
+                                            </td>
 
-                                            <td id="2018">45</td>
-                                            <td id="2018">87</td>
+                                            <td id="2018">
+                                                <a href="{{ route('list_skripsi_sudah', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
+                                            </td>
 
-                                            <td id="2019">45</td>
-                                            <td id="2019">87</td>
+                                            <td id="2019">
+                                                <a href="{{ route('list_skripsi_sudah', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
+                                            </td>
 
-                                            <td id="2020">45</td>
-                                            <td id="2020">87</td>
+                                            <td id="2020">
+                                                <a href="{{ route('list_skripsi_sudah', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
+                                            </td>
+
+                                            <td id="2021">
+                                                <a href="{{ route('list_skripsi_sudah', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
+                                            </td>
+
+                                            <td id="2022">
+                                                <a href="{{ route('list_skripsi_sudah', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
+                                            </td>
+
+                                            <td id="2023">
+                                                <a href="{{ route('list_skripsi_sudah', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                   </table>
@@ -287,42 +335,14 @@
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
-                              <div class="card-body">
-                                <h4 class="card-title">List Mahasiswa</h4>
+                              {{-- <div class="card-body"> --}}
+                                {{-- <h4 class="card-title">List Mahasiswa</h4> --}}
                                 {{-- <p class="card-description">
                                   nama <code>.(mahasiswa)</code>
                                 </p> --}}
                                 <div class="table-responsive">
                                   <table class="table table-striped" id=TabelMahasiswa>
 
-                                    {{-- HEAD --}}
-                                    <thead>
-                                      <tr>
-                                        <th>
-                                          No
-                                        </th>
-                                        <th>
-                                          NIM
-                                        </th>
-                                        <th>
-                                          Nama
-                                        </th>
-                                        <th>
-                                          Angkatan
-                                        </th>
-                                        <th>
-                                          nilai
-                                        </th>
-                                      </tr>
-                                    </thead>
-
-                                    {{-- BODY --}}
-
-                                    </table>
-                                    </div>
-                                    {{-- button --}}
-                                    <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
                                 </div>
                                 </div>
                             </div>

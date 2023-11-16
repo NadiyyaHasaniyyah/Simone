@@ -39,6 +39,7 @@ class DepartemenController extends Controller
             $countsudah[$angkatan] = $this->count_sudah_pkl($angkatan) ?? 0;
             $countbelum[$angkatan] = $this->count_belum_pkl($angkatan) ?? 0;
             $list_pkl_sudah[$angkatan] = $this->list_pkl_sudah($angkatan);
+            $list_pkl_belum[$angkatan] = $this->list_pkl_belum($angkatan);
         }
 
         return view('departemen/rekap_pkl', [
@@ -48,14 +49,40 @@ class DepartemenController extends Controller
             'countsudah' => $countsudah,
             'countbelum' => $countbelum,
             'list_sudah' => $list_pkl_sudah,
+            'list_belum' => $list_pkl_belum,
         ]);
     }
 
     public function rekap_skripsi()
     {
-        $attribute=Auth::guard('dpt')->user();
-        // dd($attribute);
-        return view('departemen/rekap_skripsi');
+        $attribute = Auth::guard('dpt')->user();
+        $mhs = mahasiswa::get();
+        $skripsi = Skripsi::get();
+
+        // dd($mhs);
+
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $countsudah = [];
+        $countbelum = [];
+        $list_pkl_sudah = [];
+        $list_pkl_belum = [];
+
+        foreach ($angkatanList as $angkatan) {
+            $countsudah[$angkatan] = $this->count_sudah_pkl($angkatan) ?? 0;
+            $countbelum[$angkatan] = $this->count_belum_pkl($angkatan) ?? 0;
+            $list_pkl_sudah[$angkatan] = $this->list_pkl_sudah($angkatan);
+            $list_pkl_belum[$angkatan] = $this->list_pkl_belum($angkatan);
+        }
+
+        return view('departemen/rekap_skripsi', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+            'skripsi' => $skripsi,
+            'countsudah' => $countsudah,
+            'countbelum' => $countbelum,
+            'list_sudah' => $list_pkl_sudah,
+            'list_belum' => $list_pkl_belum,
+        ]);
     }
 
     public function count_sudah_pkl($angkatan)
@@ -81,15 +108,64 @@ class DepartemenController extends Controller
     }
 
     public function list_pkl_sudah($angkatan) {
+        $attribute=Auth::guard('dpt')->user();
         $mhs = mahasiswa::where('angkatan', $angkatan)
             ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
             ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai')
             ->get();
 
         // dd($mhs);
-        return $mhs;
+
+        return view('departemen/list_pkl_sudah', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
     }
 
+    public function list_pkl_belum($angkatan) {
+        $attribute = Auth::guard('dpt')->user();
+
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->leftJoin('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->whereNull('pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->get();
+        // dd($mhs);
+
+        return view('departemen/list_pkl_belum', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+    }
+
+    public function list_skripsi_sudah($angkatan) {
+        $attribute=Auth::guard('dpt')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->join('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'skripsis.nilai', 'skripsis.tanggal_lulus')
+            ->get();
+
+        return view('departemen/list_skripsi_sudah', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+    }
+
+    public function list_skripsi_belum($angkatan) {
+        $attribute = Auth::guard('dpt')->user();
+
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->leftJoin('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
+            ->whereNull('skripsis.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->get();
+        // dd($mhs);
+
+        return view('departemen/list_skripsi_belum', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+    }
 
     public function create()
     {

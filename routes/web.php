@@ -122,7 +122,9 @@ Route::middleware(['isDepartemen'])->group(function(){
     // list
     // sudah
     Route::get('departemen/list_pkl/sudah/{angkatan}',[DepartemenController::class, 'list_pkl_sudah'])-> name('list_pkl_sudah');
-    // Route::get('departemen/list_pkl/belum/{angkatan}',[DepartemenController::class, 'list_pkl_belum'])-> name('list_pkl_belum');
+    Route::get('departemen/list_pkl/belum/{angkatan}',[DepartemenController::class, 'list_pkl_belum'])-> name('list_pkl_belum');
+    Route::get('departemen/list_skripsi/sudah/{angkatan}',[DepartemenController::class, 'list_skripsi_sudah'])-> name('list_skripsi_sudah');
+    Route::get('departemen/list_skripsi/belum/{angkatan}',[DepartemenController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum');
 });
 
 
