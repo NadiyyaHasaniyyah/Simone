@@ -35,8 +35,14 @@ class DosenwaliController extends Controller
     {
         $attribute=Auth::guard('dsn')->user();
         $mhs = mahasiswa::find($id);
-        // dd($mhs);
-        return view('dosenwali/hasil_pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs]);
+        $irs = Irs::Where('mhs_id',$mhs->id)->get();
+        $khs = khs::Where('mhs_id',$mhs->id)->get();
+        $pkl = pkl::Where('mhs_id',$mhs->id)->get();
+        $skripsi = skripsi::Where('mhs_id',$mhs->id);
+        $semester = Irs::Where('mhs_id',$mhs->id)->get('semester')->count();
+        // $irs = Irs::Where('mhs_id',$mhs->id)->Where('semester',1)->get('flag');
+        // dd($semester);
+        return view('dosenwali/hasil_pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi,'semester'=>$semester]);
     }
 
     public function search(Request $request)
