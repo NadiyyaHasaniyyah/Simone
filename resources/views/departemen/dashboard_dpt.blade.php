@@ -195,10 +195,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">Monitoring dan Evaluasi Progress Perkuliahan Mahasiswa</span>
-                        </a>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_pkl') }}">
                             <i class="fa fa-tasks menu-icon"></i>
@@ -265,7 +261,7 @@
                                             </span><span></span></div>
                                     </a>
                                 </div>
-                                <h3 class="namep value">Departemen</h3>
+                                <h2 class="namep value">Departemen</h2>
                                 <div class="titlep value">{{ $attribute->nama }}</div>
                                 <div class="descp">
                                     <tr>

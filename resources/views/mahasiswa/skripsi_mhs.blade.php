@@ -206,15 +206,29 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Skripsi</h3>
-                                    <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
-                                        style="color: black" href="irs">Skripsi</a>
+                                    <a style="color: black" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
+                                         class="active" href="irs">Skripsi</a>
 
                                 </div>
                             </div>
                         </div>
 
                         {{-- IRS --}}
-                        <div class="col-11 stretch-card" style="margin: auto">
+                        {{-- error success --}}
+                        <div class="form-group row col-sm-10" style="margin-left: 6px;">
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-12 stretch-card" style="margin: auto">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="tabs">
@@ -243,6 +257,7 @@
                                                     <div class="card-body">
                                                         <form action="{{ route('skripsi_import') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
+
 
                                                             {{-- semester --}}
                                                             <div class="form-group row" style="margin: auto">
@@ -283,14 +298,24 @@
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text"
+                                                                    {{-- <input type="text"
                                                                         class="form-control @error('nilai') is-invalid @enderror"
                                                                         name="nilai" id="nilai"
                                                                         value="{{ old('nilai') }}"  >
                                                                     @error('nilai')
                                                                         <div class="invalid-feedback">{{ $message }}
                                                                         </div>
-                                                                    @enderror
+                                                                    @enderror --}}
+                                                                    <select
+                                                                        class="form-control @error('nilai') is-invalid @enderror"
+                                                                        name="nilai" id="nilai" value="{{ old('nilai') }}">
+                                                                        <option>pilih nilai </option>
+                                                                        <option value="A">A</option>
+                                                                        <option value="B">B</option>
+                                                                        <option value="C">C</option>
+                                                                        <option value="D">D</option>
+                                                                        <option value="E">E</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <br>
@@ -306,7 +331,7 @@
                                                                     <div class="invalid-feedback">{{ $message }}
                                                                     </div>
                                                                 @enderror
-                                                            </div
+                                                                </div>
                                                             <br><br>
 
                                                             {{-- file --}}
@@ -327,7 +352,7 @@
                                                                             type="button">Upload</button>
                                                                     </span>
                                                                 </div>
-                                                            </div
+                                                            </div>
 
                                                             <br> <br>
                                                             <div class=" submit " style="margin-left: 15px">
@@ -337,90 +362,80 @@
                                                             </div>
 
                                                             <br>
-                                                            {{-- error success --}}
-                                                            <div class="form-group row col-sm-10" style="margin-left: 6px;">
-                                                                @if(session('error'))
-                                                                    <div class="alert alert-danger">
-                                                                        {{ session('error') }}
-                                                                    </div>
-                                                                @endif
 
-                                                                @if(session('success'))
-                                                                    <div class="alert alert-success">
-                                                                        {{ session('success') }}
-                                                                    </div>
-                                                                @endif
-                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
 
                                             </section>
                                             <section>
-                                                <h2>IRS</h2>
-                                                <div class="grid-margin stretch-card" >
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title"> Hasil PKL</h4>
-                                                            <p class="card-description">
-                                                                {{ $attribute->nama }}<code style="color: #3f499d">
-                                                                    {{ $attribute->nim }}</code>
-                                                            </p>
+                                                <h2>Skripsi</h2>
+                                                <div class="row">
+                                                    <div class="grid-margin stretch-card col-md-12"  >
+                                                        <div class="card" >
+                                                            <div class="card-body">
+                                                                <h4 class="card-title"> Hasil Skripsi</h4>
+                                                                <p class="card-description">
+                                                                    {{ $attribute->nama }}<code style="color: #3f499d">
+                                                                        {{ $attribute->nim }}</code>
+                                                                </p>
 
-                                                            @php
-                                                                $dataskripsi = DB::table('skripsis')->where('mhs_id', $attribute->id)->first();
-                                                            @endphp
+                                                                @php
+                                                                    $dataskripsi = DB::table('skripsis')->where('mhs_id', $attribute->id)->first();
+                                                                @endphp
 
-                                                            @if ($dataskripsi)
-                                                                <div class="table-responsive">
-                                                                    <table class="table table-hover">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Semester</th>
-                                                                                <th>Nilai</th>
-                                                                                <th>Tanggal Lulus</th>
-                                                                                <th>File Berita Acara</th>
-                                                                                <th>Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>{{ $dataskripsi->semester }}</td>
-                                                                                <td>{{ $dataskripsi->nilai }}</td>
-                                                                                <td>{{ $dataskripsi->tanggal_lulus }}</td>
-                                                                                <td>
-                                                                                    <a href="{{ route('view_pdf_skripsi', ['semester' => $dataskripsi->semester]) }}">
-                                                                                        <button
-                                                                                            class="btn btn-inverse-primary btn-fw trigger" >File</button>
-                                                                                    </a>
-                                                                                        <span class="overlay"></span>
-                                                                                </td>
-
-                                                                                <td>
-                                                                                    @if ($dataskripsi->flag == 0)
-                                                                                        <a href="{{ route('skripsi_edit', ['semester' => $dataskripsi->semester]) }}">
-                                                                                            <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                @if ($dataskripsi)
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Semester</th>
+                                                                                    <th>Nilai</th>
+                                                                                    <th>Tanggal Lulus</th>
+                                                                                    <th>File Berita Acara</th>
+                                                                                    <th>Action</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>{{ $dataskripsi->semester }}</td>
+                                                                                    <td>{{ $dataskripsi->nilai }}</td>
+                                                                                    <td>{{ $dataskripsi->tanggal_lulus }}</td>
+                                                                                    <td>
+                                                                                        <a href="{{ route('view_pdf_skripsi', ['semester' => $dataskripsi->semester]) }}">
+                                                                                            <button
+                                                                                                class="btn btn-inverse-primary btn-fw trigger" >File</button>
                                                                                         </a>
+                                                                                            <span class="overlay"></span>
+                                                                                    </td>
 
-                                                                                        <form action="{{ route('skripsi_destroy', ['semester' => $dataskripsi->semester]) }}" method="POST" class="d-inline">
-                                                                                            @method('delete')
-                                                                                            @csrf
-                                                                                            <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
-                                                                                        </form>
-                                                                                    @else
-                                                                                        <button type="button" class="btn btn-success btn-rounded btn-ico "><i class="ti-check"></i></button>
-                                                                                    @endif
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            @else
-                                                                <h5>Belum diverifikasi Dosen Wali</h5>
-                                                            @endif
+                                                                                    <td>
+                                                                                        @if ($dataskripsi->flag == 0)
+                                                                                            <a href="{{ route('skripsi_edit', ['semester' => $dataskripsi->semester]) }}">
+                                                                                                <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                                            </a>
+
+                                                                                            <form action="{{ route('skripsi_destroy', ['semester' => $dataskripsi->semester]) }}" method="POST" class="d-inline">
+                                                                                                @method('delete')
+                                                                                                @csrf
+                                                                                                <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
+                                                                                            </form>
+                                                                                        @else
+                                                                                            <button type="button" class="btn btn-success btn-rounded btn-ico "><i class="ti-check"></i></button>
+                                                                                        @endif
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                @else
+                                                                    <h5>Belum mengisi Skripsi</h5>
+                                                                @endif
+                                                              </div>
+                                                            </div>
                                                           </div>
-                                                        </div>
-                                                      </div>
+                                                </div>
+
                                             </section>
 
 

@@ -35,6 +35,7 @@
     <link href="{{ asset('style1/skydash/css/vertical-layout-light/style.css') }}" rel="stylesheet">
     <!-- dashboard css -->
     <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/irs_edit.css') }}" rel="stylesheet">
 
 </head>
 
@@ -240,7 +241,7 @@
                                 <div class="titlep value">{{ $attribute->nama }}</div>
                                 <div class="descp">
                                     <tr>
-                                        <td class="value">{{ $attribute->nim }}</td><br>
+                                        <td class="value">{{ $attribute->id }}</td><br>
                                         <td class="value">{{ $attribute->email }}</td><br>
 
                                         @if ($attribute->email_pribadi === null)
@@ -283,7 +284,7 @@
                                     <div class="card card-light-blue"><a href="pkl" style="color: white">
                                             <div class="card-body">
                                                 <p class="mb-4">Progress Akademik</p>
-                                                <i class="fa fa-newspaper-o "> PKL</i>
+                                                <i class="fa fa-newspaper-o  fa-2x"> PKL</i>
                                             </div>
                                         </a>
                                     </div>
@@ -292,7 +293,7 @@
                                     <div class="card card-light-danger"><a href="skripsi" style="color: white">
                                             <div class="card-body">
                                                 <p class="mb-4">Progress Akademik</p>
-                                                <i class="fa fa-columns"> Skripsi</i>
+                                                <i class="fa fa-columns  fa-2x"> Skripsi</i>
                                         </a>
                                     </div>
                                 </div>

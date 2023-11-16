@@ -586,7 +586,7 @@
                     sLengthMenu: " MENU ",
                     sZeroRecords: "Tidak Ada ",
                     sEmptyTable: "Kosong",
-                    sInfo: " Halaman START dari total  TOTAL Mahasiswa",
+                    sInfo: " Halaman _START_ dari total  _TOTAL_ Mahasiswa",
                     sInfoEmpty: "Mahasiswa 0 dari 0 total 0 ",
                     sInfoFiltered: "(total  MAX Mahasiswa)",
                     sInfoPostFix: "",

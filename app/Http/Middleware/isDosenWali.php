@@ -17,7 +17,8 @@ class isDosenWali
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::guard('dsn')->check() || Auth::guard('dsn')->user()->role !== 'dosenwali') {
-            abort(403);
+            //abort(403);
+            return response()->view('forbidden',[],403);
         }
 
         return $next($request);

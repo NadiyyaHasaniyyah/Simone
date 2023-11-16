@@ -206,11 +206,25 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Praktik Kerja Lapangan</h3>
-                                    <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
-                                        style="color: black" href="irs">Praktik Kerja Lapangan</a>
+                                    <a style="color: black" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
+                                         class="active"  href="irs">Praktik Kerja Lapangan</a>
 
                                 </div>
                             </div>
+                        </div>
+                        {{-- error success --}}
+                        <div class="form-group row col-sm-10" style="margin-left: 6px;">
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                         </div>
 
                         {{-- IRS --}}
@@ -252,6 +266,7 @@
                                                         {{-- FORM --}}
                                                         <form action="{{ route('pkl') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
+
 
                                                             {{-- Semester --}}
                                                             <div class="form-group row" style="margin: auto">
@@ -308,10 +323,21 @@
                                                                   class="col-sm-3 col-form-label"
                                                                   style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
                                                               <div class="col-sm-7">
-                                                                  <input type="text"
+                                                                  {{-- <input type="text"
                                                                       class="form-control @error('nilai') is-invalid @enderror"
                                                                       name="nilai" id="nilai"
-                                                                      value="{{ old('nilai') }}"  >
+                                                                      value="{{ old('nilai') }}"  > --}}
+                                                                      <select
+                                                                        class="form-control @error('nilai') is-invalid @enderror"
+                                                                        name="nilai" id="nilai" value="{{ old('nilai') }}">
+                                                                        <option>pilih nilai </option>
+                                                                        <option value="A">A</option>
+                                                                        <option value="B">B</option>
+                                                                        <option value="C">C</option>
+                                                                        <option value="D">D</option>
+                                                                        <option value="E">E</option>
+                                                                    </select>
+
                                                                   @error('nilai')
                                                                       <div class="invalid-feedback">{{ $message }}
                                                                       </div>
@@ -348,20 +374,7 @@
                                                             </div>
 
                                                             <br>
-                                                            {{-- error success --}}
-                                                            <div class="form-group row col-sm-10" style="margin-left: 6px;">
-                                                                @if(session('error'))
-                                                                    <div class="alert alert-danger">
-                                                                        {{ session('error') }}
-                                                                    </div>
-                                                                @endif
 
-                                                                @if(session('success'))
-                                                                    <div class="alert alert-success">
-                                                                        {{ session('success') }}
-                                                                    </div>
-                                                                @endif
-                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -423,7 +436,7 @@
                                                                     </table>
                                                                 </div>
                                                             @else
-                                                                <h5>Belum diverifikasi Dosen Wali</h5>
+                                                                <h5>Belum mengisi PKL</h5>
                                                             @endif
                                                           </div>
                                                         </div>

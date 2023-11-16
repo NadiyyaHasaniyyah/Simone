@@ -207,23 +207,24 @@
             <!-- Dashboard -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    
+
                     <div class="row">
                         <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Dashboard</h3>
                                     <h6 class="font-weight-normal mb-0">
-                                        <ol class="breadcrumb dashboard_opt">
-                                            <li class="active">
-                                                <a href="{{ route('dashboard_opt') }}">Dashboard</a>
-                                            </li>
-                                        </ol>
+                                        {{-- <ol class=" dashboard_opt"> --}}
+
+                                                <a  class="active" href="{{ route('dashboard_opt') }}">Dashboard</a>
+
+                                        {{-- </ol> --}}
                                     </h6>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-6 grid-margin stretch-card">
                             <div class="card kotak_profile">
@@ -267,11 +268,11 @@
                                                 <tr>
 
                                                 </tr>
-                                                <tr>
+                                                {{-- <tr>
                                                     <td class="value">Private </td>
                                                     <td>&nbsp;: </td>
                                                     <td class="value"> {{ $attribute->email_pribadi }}</td>
-                                                </tr>
+                                                </tr> --}}
                                             </table>
 
                                         </div>
@@ -298,7 +299,7 @@
                             </div>
                         </div>
                     </div>
-                    <br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
                     <div class="row">
                         <div class="col-md-12 grid-margin">
                             <div class="row">
@@ -394,7 +395,7 @@
 
                         </div>
                     </div>
-                    <br><br>
+                    <br><br><br><br><br><br><br><br><br><br>
                     <div class="row">
                         <div class="col-md-12 grid-margin">
                             <div class="row">

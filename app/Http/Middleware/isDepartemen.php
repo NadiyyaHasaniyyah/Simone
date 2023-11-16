@@ -18,6 +18,8 @@ class isDepartemen
     {
         if (!Auth::guard('dpt')->check() || Auth::guard('dpt')->user()->role !== 'departemen') {
             abort(403);
+            dd(Auth::guard('dpt')->user()->role);
+            // return response()->view('forbidden',[],403);
         }
 
         return $next($request);

@@ -18,7 +18,7 @@ class isOperator
     {
         // dd(!Auth::guard('opt')->check() || Auth::guard('opt')->user()->role !== 'operator');
         if (!Auth::guard('opt')->check() || Auth::guard('opt')->user()->role !== 'operator') {
-            // abort(403);
+            //abort(403);
             return response()->view('forbidden',[],403);
         }
 

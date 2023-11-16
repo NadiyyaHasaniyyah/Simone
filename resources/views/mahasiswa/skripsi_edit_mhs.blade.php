@@ -39,7 +39,7 @@
     <!-- dashboard css -->
     <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
     <!-- irs tabcss -->
-    <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/irs_edit.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 </head>
 
@@ -161,8 +161,6 @@
 
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-
-            {{-- nanti --}}
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
@@ -172,31 +170,33 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="irs">
+                        <a class="nav-link" href="{{ route('irs_mhs') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">IRS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="khs">
+                        <a class="nav-link" href="{{ route('khs') }}">
                             <i class="fa fa-file-text-o menu-icon"></i>
                             <span class="menu-title">KHS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pkl">
+                        <a class="nav-link" href="{{ route('pkl') }}">
                             <i class="fa fa-newspaper-o  menu-icon"></i>
                             <span class="menu-title">PKL</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="skripsi">
+                        <a class="nav-link" href="{{ route('skripsi') }}">
                             <i class="fa fa-columns menu-icon"></i>
                             <span class="menu-title">Skripsi</span>
                         </a>
                     </li>
                 </ul>
             </nav>
+            {{-- nanti --}}
+
 
             <!-- Dashboard -->
             <div class="main-panel">
@@ -206,9 +206,9 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Skripsi</h3>
-                                    <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
-                                        style="color: black" href="irs">Skripsi</a>
-
+                                    <a style="color: black" href="{{ route('dashboard_mhs') }}">Dashboard/</a>
+                                    <a style="color: black" href="{{ route('skripsi') }}">Skripsi/</a>
+                                    <a class="active">Edit Skripsi</a>
                                 </div>
                             </div>
                         </div>
@@ -246,24 +246,22 @@
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
                                                                 <div class="col-sm-7">
-                                                                    <select
-                                                                        class="form-control @error('semester') is-invalid @enderror"
-                                                                        name="semester" id="semester">
-                                                                        <option>pilih semester </option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                        <option value="11">11</option>
-                                                                        <option value="12">12</option>
-                                                                        <option value="13">13</option>
-                                                                        <option value="14">14</option>
+                                                                    <select class="form-control @error('semester') is-invalid @enderror" name="semester" id="semester">
+                                                                        <option>pilih semester</option>
+                                                                        <option value="1" {{ $Skripsi->semester == 1 ? 'selected' : '' }}>1</option>
+                                                                        <option value="2" {{ $Skripsi->semester == 2 ? 'selected' : '' }}>2</option>
+                                                                        <option value="3" {{ $Skripsi->semester == 3 ? 'selected' : '' }}>3</option>
+                                                                        <option value="4" {{ $Skripsi->semester == 4 ? 'selected' : '' }}>4</option>
+                                                                        <option value="5" {{ $Skripsi->semester == 5 ? 'selected' : '' }}>5</option>
+                                                                        <option value="6" {{ $Skripsi->semester == 6 ? 'selected' : '' }}>6</option>
+                                                                        <option value="7" {{ $Skripsi->semester == 7 ? 'selected' : '' }}>7</option>
+                                                                        <option value="8" {{ $Skripsi->semester == 8 ? 'selected' : '' }}>8</option>
+                                                                        <option value="9" {{ $Skripsi->semester == 9 ? 'selected' : '' }}>9</option>
+                                                                        <option value="10" {{ $Skripsi->semester == 10 ? 'selected' : '' }}>10</option>
+                                                                        <option value="11" {{ $Skripsi->semester == 11 ? 'selected' : '' }}>11</option>
+                                                                        <option value="12" {{ $Skripsi->semester == 12 ? 'selected' : '' }}>12</option>
+                                                                        <option value="13" {{ $Skripsi->semester == 13 ? 'selected' : '' }}>13</option>
+                                                                        <option value="14" {{ $Skripsi->semester == 14 ? 'selected' : '' }}>14</option>
                                                                     </select>
                                                                 </div>
 
@@ -279,14 +277,23 @@
                                                                     class="col-sm-3 col-form-label"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text"
+                                                                    {{-- <input type="text"
                                                                         class="form-control @error('nilai') is-invalid @enderror"
                                                                         name="nilai" id="nilai"
-                                                                        value="{{ old('nilai') }}"  >
+                                                                        value="{{ old('nilai') }}"  > --}}
+                                                                        <select class="form-control @error('nilai') is-invalid @enderror" name="nilai" id="nilai">
+                                                                            <option>pilih nilai</option>
+                                                                            <option value="A" {{ $Skripsi->nilai == "A" ? 'selected' : '' }}>A</option>
+                                                                            <option value="B" {{ $Skripsi->nilai == "B" ? 'selected' : '' }}>B</option>
+                                                                            <option value="C" {{ $Skripsi->nilai == "C" ? 'selected' : '' }}>C</option>
+                                                                            <option value="D" {{ $Skripsi->nilai == "D" ? 'selected' : '' }}>D</option>
+                                                                            <option value="E" {{ $Skripsi->nilai == "E" ? 'selected' : '' }}>E</option>
+                                                                        </select>
                                                                     @error('nilai')
                                                                         <div class="invalid-feedback">{{ $message }}
                                                                         </div>
                                                                     @enderror
+
                                                                 </div>
                                                             </div>
                                                             <br>
@@ -295,15 +302,15 @@
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3" style="font-size: 16px; font-weight: bold; color: #000;">Tanggal Lulus</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="date" class="form-control @error('tanggal_lulus') is-invalid @enderror" name="tanggal_lulus" id="tanggal_lulus" value="{{ old('tanggal_lulus') }}">
+                                                                    <input type="date" class="form-control @error('tanggal_lulus') is-invalid @enderror" name="tanggal_lulus" id="tanggal_lulus" value="{{ $Skripsi->tanggal_lulus }}">
                                                                 </div>
 
                                                                 @error('tanggal_lulus')
                                                                     <div class="invalid-feedback">{{ $message }}
                                                                     </div>
                                                                 @enderror
-                                                            </div
-                                                            <br><br>
+                                                                </div>
+                                                            <br>
 
                                                             {{-- file --}}
                                                             <div class="form-group row" style="margin: auto">

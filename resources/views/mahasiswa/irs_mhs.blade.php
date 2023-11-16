@@ -172,25 +172,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="irs">
+                        <a class="nav-link" href="{{ route('irs_mhs') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">IRS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="khs">
+                        <a class="nav-link" href="{{ route('khs') }}">
                             <i class="fa fa-file-text-o menu-icon"></i>
                             <span class="menu-title">KHS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pkl">
+                        <a class="nav-link" href="{{ route('pkl') }}">
                             <i class="fa fa-newspaper-o  menu-icon"></i>
                             <span class="menu-title">PKL</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="skripsi">
+                        <a class="nav-link" href="{{ route('skripsi') }}">
                             <i class="fa fa-columns menu-icon"></i>
                             <span class="menu-title">Skripsi</span>
                         </a>
@@ -206,14 +206,28 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Isian Rencana Studi</h3>
-                                    <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
-                                        style="color: black" href="irs">Isian Rencana Studi</a>
+                                    <a style="color: black"   href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
+                                    class="active" href="irs">Isian Rencana Studi</a>
 
                                 </div>
                             </div>
                         </div>
 
                         {{-- IRS --}}
+                        {{-- error success --}}
+                        <div class="form-group row col-sm-10" style="margin-left: 6px;">
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        </div>
                         <div class="col-12 stretch-card" style="margin: auto">
                             <div class="card">
                                 <div class="card-body">
@@ -240,11 +254,13 @@
 
                                             {{-- ISI IRS --}}
                                             <section>
+
                                                 <h2>Isi IRS</h2>
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <form action="{{ route('irs_import') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
+
                                                             <div class="form-group row" style="margin: auto">
 
                                                                 <label for="semester" class="col-form-label col-sm-3"
@@ -322,20 +338,7 @@
                                                             </div>
 
                                                             <br>
-                                                            {{-- error success --}}
-                                                            <div class="form-group row col-sm-10" style="margin-left: 6px;">
-                                                                @if(session('error'))
-                                                                    <div class="alert alert-danger">
-                                                                        {{ session('error') }}
-                                                                    </div>
-                                                                @endif
 
-                                                                @if(session('success'))
-                                                                    <div class="alert alert-success">
-                                                                        {{ session('success') }}
-                                                                    </div>
-                                                                @endif
-                                                            </div>
 
                                                         </form>
                                                     </div>

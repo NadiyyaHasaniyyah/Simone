@@ -39,7 +39,7 @@
     <!-- dashboard css -->
     <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
     <!-- irs tabcss -->
-    <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/irs_edit.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 </head>
 
@@ -172,25 +172,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="irs">
+                        <a class="nav-link" href="{{ route('irs_mhs') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">IRS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="khs">
+                        <a class="nav-link" href="{{ route('khs') }}">
                             <i class="fa fa-file-text-o menu-icon"></i>
                             <span class="menu-title">KHS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pkl">
+                        <a class="nav-link" href="{{ route('pkl') }}">
                             <i class="fa fa-newspaper-o  menu-icon"></i>
                             <span class="menu-title">PKL</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="skripsi">
+                        <a class="nav-link" href="{{ route('skripsi') }}">
                             <i class="fa fa-columns menu-icon"></i>
                             <span class="menu-title">Skripsi</span>
                         </a>
@@ -206,8 +206,10 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Praktik Kerja Lapangan</h3>
-                                    <a class="active" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
-                                        style="color: black" href="irs">Praktik Kerja Lapangan</a>
+                                    <a style="color: black" href="{{ route('dashboard_mhs') }}">Dashboard/</a><a
+                                    style="color: black"  href="{{ route('pkl') }}">Praktik Kerja Lapangan/</a>
+                                    <a
+                                         class="active">Edit Praktik Kerja Lapangan</a>
 
                                 </div>
                             </div>
@@ -287,10 +289,21 @@
                                                                   class="col-sm-3 col-form-label"
                                                                   style="font-size: 16px; font-weight: bold; color: #000;">Nilai</label>
                                                               <div class="col-sm-7">
-                                                                  <input type="text"
+                                                                  {{-- <input type="text"
                                                                       class="form-control @error('nilai') is-invalid @enderror"
                                                                       name="nilai" id="nilai"
-                                                                      value="{{ $Pkl->nilai }}"  >
+                                                                      value="{{ $Pkl->nilai }}"  > --}}
+                                                                  <select class="form-control @error('nilai') is-invalid @enderror" name="nilai" id="nilai">
+                                                                    <option>pilih nilai</option>
+                                                                    <option value="A" {{ $Pkl->nilai == "A" ? 'selected' : '' }}>A</option>
+                                                                    <option value="B" {{ $Pkl->nilai == "B" ? 'selected' : '' }}>B</option>
+                                                                    <option value="C" {{ $Pkl->nilai == "C" ? 'selected' : '' }}>C</option>
+                                                                    <option value="D" {{ $Pkl->nilai == "D" ? 'selected' : '' }}>D</option>
+                                                                    <option value="E" {{ $Pkl->nilai == "E" ? 'selected' : '' }}>E</option>
+                                                                </select>
+
+
+
                                                                   @error('nilai')
                                                                       <div class="invalid-feedback">{{ $message }}
                                                                       </div>

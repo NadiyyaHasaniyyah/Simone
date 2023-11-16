@@ -43,7 +43,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-                        <h5>email</h5>
+                        <h5>Nomor Identitas</h5>
                         {{-- <label for="email">email</label> --}}
                         <input type="id" id="id" name="id"
                             class="input @error('id') is-invalid @enderror" autofocus required

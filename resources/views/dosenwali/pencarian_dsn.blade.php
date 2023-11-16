@@ -174,7 +174,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">Verifikasi Progress Studi</span>
+                            <span class="menu-title">Verifikasi Progress</span>
                         </a>
 
                     </li>
@@ -196,8 +196,8 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Pencarian Mahasiswa</h3>
-                                    <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard/</a><a
-                                        style="color: black" href="pencarian_dsn">Pencarian Mahasiswa</a>
+                                    <a style="color: black" href="{{ route('dashboard_dsn') }}">Dashboard/</a><a
+                                        class="active" href="pencarian_dsn">Pencarian Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +235,7 @@
                                   nama <code>.(mahasiswa)</code>
                                 </p> --}}
                                 <div class="table-responsive">
-                                  <table class="table table-striped" id=TabelMahasiswa>
+                                  <table class="table " id=TabelMahasiswa>
 
                                     {{-- HEAD --}}
                                     <thead>
