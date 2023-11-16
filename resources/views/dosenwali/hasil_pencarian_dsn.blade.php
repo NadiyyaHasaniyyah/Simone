@@ -259,7 +259,12 @@
                             <div class="card">
                               <div class="card-body">
                                 <h4 class="card-title">Semester</h4>
-                                <div class="template-demo">
+                                {{-- <div class="template-demo">
+
+                                    
+                                    
+                                    {{ dd($irs->where('semester', 1)->first()->flag == 1) }}
+
                                     <button type="button" class="btn btn-primary btn-icon-text" >
                                         1
                                     </button>
@@ -309,7 +314,82 @@
                                         14
                                     </button>
 
+                                </div> --}}
+                                <div class="template-demo">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @php
+                                        $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
+                                        $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
+                                        $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
+                                        $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
+                                        @endphp
+                                
+                                        @if ($flag1 == 1 && $flag2 == 1)
+                                            @if ($flag4 == 1)
+                                                <button type="button" class="btn btn-success btn-icon-text">
+                                            @elseif ($flag3)
+                                                <button type="button" class="btn btn-warning btn-icon-text">
+                                            @else
+                                                <button type="button" class="btn btn-primary btn-icon-text">
+                                            @endif
+                                        @else
+                                            <button type="button" class="btn btn-danger btn-icon-text">
+                                        @endif
+                                            {{ $i }}
+                                        </button>
+                                    @endfor
                                 </div>
+                                
+                                <div class="template-demo">
+                                    @for ($i = 6; $i <= 10; $i++)
+                                        @php
+                                        $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
+                                        $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
+                                        $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
+                                        $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
+                                        @endphp
+                                
+                                        @if ($flag1 == 1 && $flag2 == 1)
+                                            @if ($flag4 == 1)
+                                                <button type="button" class="btn btn-success btn-icon-text">
+                                            @elseif ($flag3)
+                                                <button type="button" class="btn btn-warning btn-icon-text">
+                                            @else
+                                                <button type="button" class="btn btn-primary btn-icon-text">
+                                            @endif
+                                        @else
+                                            <button type="button" class="btn btn-danger btn-icon-text">
+                                        @endif
+                                            {{ $i }}
+                                        </button>
+                                    @endfor
+                                </div>
+                                
+                                <div class="template-demo">
+                                    @for ($i = 11; $i <= 14; $i++)
+                                        @php
+                                        $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
+                                        $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
+                                        $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
+                                        $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
+                                        @endphp
+                                
+                                        @if ($flag1 == 1 && $flag2 == 1)
+                                            @if ($flag4 == 1)
+                                                <button type="button" class="btn btn-success btn-icon-text">
+                                            @elseif ($flag3)
+                                                <button type="button" class="btn btn-warning btn-icon-text">
+                                            @else
+                                                <button type="button" class="btn btn-primary btn-icon-text">
+                                            @endif
+                                        @else
+                                            <button type="button" class="btn btn-danger btn-icon-text">
+                                        @endif
+                                            {{ $i }}
+                                        </button>
+                                    @endfor
+                                </div>
+                                
                               </div>
                             </div>
                           </div>
