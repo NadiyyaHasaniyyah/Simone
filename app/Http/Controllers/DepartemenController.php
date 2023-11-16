@@ -24,12 +24,31 @@ class DepartemenController extends Controller
 
     public function rekap_pkl()
     {
-        $attribute=Auth::guard('dpt')->user();
+        $attribute = Auth::guard('dpt')->user();
         $mhs = mahasiswa::get();
         $pkl = Pkl::get();
 
-        // dd($attribute);
-        return view('departemen/rekap_pkl', ['attribute'=>$attribute, 'mhs'=>$mhs, 'pkl'=>$pkl]);
+        // dd($mhs);
+
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $countsudah = [];
+        $countbelum = [];
+        $list_pkl_sudah = [];
+
+        foreach ($angkatanList as $angkatan) {
+            $countsudah[$angkatan] = $this->count_sudah_pkl($angkatan) ?? 0;
+            $countbelum[$angkatan] = $this->count_belum_pkl($angkatan) ?? 0;
+            $list_pkl_sudah[$angkatan] = $this->list_pkl_sudah($angkatan);
+        }
+
+        return view('departemen/rekap_pkl', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+            'pkl' => $pkl,
+            'countsudah' => $countsudah,
+            'countbelum' => $countbelum,
+            'list_sudah' => $list_pkl_sudah,
+        ]);
     }
 
     public function rekap_skripsi()
@@ -41,15 +60,34 @@ class DepartemenController extends Controller
 
     public function count_sudah_pkl($angkatan)
     {
-        $angkatan = (int) $angkatan;
-        $jumlahMahasiswaLulusPKL = DB::table('mhs')
-            ->join('pkl', 'mhs.id', '=', 'pkl.mhs_id')
-            ->where('mhs.angkatan', '=', $angkatan)
-            ->where('mhs.status', '=', 'lulus')
+        $jumlahMahasiswaLulusPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
             ->count();
 
-        // dd($jumlahMahasiswaLulusPKL);
-        return response()->json(['jumlahMahasiswaLulusPKL' => $jumlahMahasiswaLulusPKL]);
+        return $jumlahMahasiswaLulusPKL;
+    }
+
+    public function count_belum_pkl($angkatan)
+    {
+        $jumlahMahasiswaBelumPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('pkls')
+                    ->whereRaw('mahasiswas.id = pkls.mhs_id');
+            })
+            ->count();
+
+        return $jumlahMahasiswaBelumPKL;
+    }
+
+    public function list_pkl_sudah($angkatan) {
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai')
+            ->get();
+
+        // dd($mhs);
+        return $mhs;
     }
 
 

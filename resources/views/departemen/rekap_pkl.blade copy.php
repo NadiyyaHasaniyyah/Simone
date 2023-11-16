@@ -274,10 +274,7 @@
                                                 {{-- <a href="javascript:void(0);" class="toggle-link text-decoration-none" data-target="tableBody">
                                                     {{ $countsudah['2017'] ?? 0 }}
                                                 </a> --}}
-                                                {{-- <a href="{{ route('list_pkl_sudah', ['angkatan' => '2017']) }}">
-                                                    {{ $countsudah['2017'] ?? 0 }}
-                                                </a> --}}
-                                                <a href="{{ route('list_pkl_sudah', ['angkatan'=>'2017']) }}">
+                                                <a href="{{ route('list_pkl_sudah', ['angkatan' => '2017']) }}">
                                                     {{ $countsudah['2017'] ?? 0 }}
                                                 </a>
                                             </td>>
@@ -287,7 +284,7 @@
 
                                             {{-- 2018 --}}
                                             <td>
-                                                <a href="{{ route('list_pkl_sudah', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
+                                                <a href="#" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
                                             </td>
                                             <td>
                                                 <a href="#" class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
@@ -295,7 +292,7 @@
 
                                             {{-- 2019 --}}
                                             <td>
-                                                <a href="{{ route('list_pkl_sudah', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
+                                                <a href="#" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
                                             </td>
                                             <td>
                                                 <a href="#" class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
@@ -303,7 +300,7 @@
 
                                             {{-- 2020 --}}
                                             <td>
-                                                <a href="{{ route('list_pkl_sudah', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
+                                                <a href="#" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
                                             </td>
                                             <td>
                                                 <a href="#" class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
@@ -311,7 +308,7 @@
 
                                             {{-- 2021 --}}
                                             <td>
-                                                <a href="{{ route('list_pkl_sudah', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
+                                                <a href="#" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
                                             </td>
                                             <td>
                                                 <a href="#" class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
@@ -319,7 +316,7 @@
 
                                             {{-- 2022 --}}
                                             <td>
-                                                <a href="{{ route('list_pkl_sudah', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
+                                                <a href="#" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
                                             </td>
                                             <td>
                                                 <a href="#" class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
@@ -327,7 +324,7 @@
 
                                             {{-- 2023 --}}
                                             <td>
-                                                <a href="{{ route('list_pkl_sudah', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
+                                                <a href="#" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
                                             </td>
                                             <td>
                                                 <a href="#" class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>

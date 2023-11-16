@@ -111,12 +111,18 @@ Route::middleware(['isDosenWali'])->group(function(){
 // dpt
 Route::middleware(['isDepartemen'])->group(function(){
     Route::get('departemen/dashboard_dpt',[DepartemenController::class, 'index'])-> name('dashboard_dpt');
+
+    // rekap
     Route::get('departemen/rekap_pkl',[DepartemenController::class, 'rekap_pkl'])-> name('rekap_pkl');
     Route::get('departemen/rekap_skripsi',[DepartemenController::class, 'rekap_skripsi'])-> name('rekap_skripsi');
 
-
     // count
-    Route::post('departemen/count_sudah_pkl/{angkatan}',[DepartemenController::class, 'count_sudah_pkl'])-> name('count_sudah_pkl');
+    Route::get('departemen/count_sudah_pkl/{angkatan}',[DepartemenController::class, 'count_sudah_pkl'])-> name('count_sudah_pkl');
+
+    // list
+    // sudah
+    Route::get('departemen/list_pkl/sudah/{angkatan}',[DepartemenController::class, 'list_pkl_sudah'])-> name('list_pkl_sudah');
+    // Route::get('departemen/list_pkl/belum/{angkatan}',[DepartemenController::class, 'list_pkl_belum'])-> name('list_pkl_belum');
 });
 
 

@@ -189,7 +189,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard_dsn') }}">
+                        <a class="nav-link" href="{{ route('dashboard_dpt') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -199,7 +199,19 @@
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title">Monitoring dan Evaluasi Progress Perkuliahan Mahasiswa</span>
                         </a>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_pkl') }}">
+                            <i class="fa fa-tasks menu-icon"></i>
+                            <span class="menu-title"> Rekap PKL</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_skripsi') }}">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title">Rekap Skripsi</span>
+                            </a>
+                        </li>
+
                     </li>
                 </ul>
             </nav>
@@ -208,7 +220,7 @@
             <!-- Dashboard -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    
+
                     <div class="row">
                         <div class="col-md-12 grid-margin">
                             <div class="row">
@@ -217,7 +229,7 @@
                                         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                             <h3 class="font-weight-bold"> Dashboard</h3>
                                             <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard</a>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -264,14 +276,14 @@
                                     </tr>
                                 </div>
                             </div>
-                           
+
                         </div>
 
 
                          <!-- GENERATE-->
                          <div class="col-md-7 grid-margin transparent">
                             <div class="row">
-                                <div class="col-md-6 mb-4 stretch-card transparent">
+                                <div class="col-md-7 mb-4 stretch-card transparent">
                                     <div class="card card-tale">
                                         <a href="rekap_pkl" style="color: white">
                                             <div class="card-body">
@@ -282,45 +294,22 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mb-4 stretch-card transparent">
-                                    <div class="card card-dark-blue">
-                                        <a href="list_pkl" style="color: white">
-                                            <div class="card-body">
-                                                <p class="mb-4">Monitoring dan Evaluasi</p>
-                                                <i class="fa fa-file-text-o fa-2x"> List PKL</i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                            <br>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                                <div class="col-md-7 mb-4 mb-lg-0 stretch-card transparent">
                                     <div class="card card-light-blue"><a href="rekap_skripsi" style="color: white">
                                             <div class="card-body">
                                                 <p class="mb-4">Monitoring dan Evaluasi</p>
-                                                <i class="fa fa-newspaper-o  fa-2x">Rekap Skripsi</i>
+                                                <i class="fa fa-newspaper-o  fa-2x"> Rekap Skripsi</i>
                                             </div>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-6 stretch-card transparent">
-                                    <div class="card card-light-danger"><a href="list_skripsi" style="color: white">
-                                            <div class="card-body">
-                                                <p class="mb-4">Monitoring dan Evaluasi</p>
-                                                <i class="fa fa-columns fa-2x"> List Skripsi</i>
-                                        </a>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
-
-
                     </div>
-
-
-
-
-
                     <br><br><br><br>
 
                     <!-- partial:partials/_footer.html -->
