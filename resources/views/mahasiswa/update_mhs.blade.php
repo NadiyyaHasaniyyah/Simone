@@ -1,3 +1,17 @@
+<head>
+    <style>
+        /* .file-input-container {
+            display: flex;
+            flex-direction: column;
+
+        } */
+
+        /* .file-input-container input {
+            margin-bottom: 5px;
+        } */
+    </style>
+</head>
+
 @extends('template')
 @section('content')
 <body id="update">
@@ -105,8 +119,9 @@
                         <div class="row " >
                             <div class="col-md-2" >
                                 <img src="https://sso.undip.ac.id/assets/app/images/user.png" style="max-width: 150px;width: 100%;" alt="foto">
-                                <div class = "round">
-                                    <input class=" @error('foto') is-invalid @enderror" type="file" name="foto" id ="foto" accept = ".jpg, .jpeg, .png" onchange="previewImage()">
+                                <div class = "round file-input-container">
+                                    <input class=" @error('foto') is-invalid @enderror" type="file" name="foto" id ="foto" accept = ".jpg, .jpeg, .png "  onchange="previewImage()">
+                                    {{-- <span>No file chosen</span> --}}
                                     @error('foto')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

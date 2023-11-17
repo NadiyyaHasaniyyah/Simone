@@ -391,6 +391,12 @@
                                                                 <br>
 
                                                                 {{-- Angkatan --}}
+
+                                                            </div>
+
+
+
+                                                            <div class="col-md-6">
                                                                 <div class="form-group row" style="margin: auto">
                                                                     <label for="angkatan" class="col-sm-3 col-gen" name="angkatan" id="angkatan"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
@@ -411,11 +417,7 @@
                                                                         @enderror
                                                                         </div>
                                                                 </div>
-                                                            </div>
-
-
-
-                                                            <div class="col-md-6">
+                                                                <br>
                                                                 <div class="form-group row" style="margin: auto">
                                                                     <label for="dsn_id" class="col-sm-3 col-gen" name="dsn_id" id="dsn_id" style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Dosen ID
@@ -435,7 +437,7 @@
                                                                 <br>
 
                                                                 {{-- Email --}}
-                                                                <div class="form-group row" style="margin: auto">
+                                                                {{-- <div class="form-group row" style="margin: auto">
                                                                     <label for="email" class="col-sm-3 col-gen" name="email" id="email"
                                                                         style="font-size: 13px; font-weight: bold; color: #000;">
                                                                         Email</label>
@@ -444,13 +446,11 @@
                                                                             class="form-control @error('email') is-invalid @enderror"
                                                                             name="email" id="email"
                                                                             value="{{ old('email') }}"  >
-                                                                        {{-- <input type="text" class="form-control"
-                                                                            style="height: 60%"> --}}
                                                                         @error('email')
                                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                                         @enderror
                                                                         </div>
-                                                                </div>
+                                                                </div> --}}
 
                                                                 {{-- Password --}}
                                                                 {{-- <div class="form-group row" style="margin: auto">
