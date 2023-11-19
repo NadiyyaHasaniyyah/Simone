@@ -115,6 +115,7 @@ Route::middleware(['isDepartemen'])->group(function(){
     // rekap
     Route::get('departemen/rekap_pkl',[DepartemenController::class, 'rekap_pkl'])-> name('rekap_pkl');
     Route::get('departemen/rekap_skripsi',[DepartemenController::class, 'rekap_skripsi'])-> name('rekap_skripsi');
+    Route::get('departemen/rekap_mahasiswa',[DepartemenController::class, 'rekap_mahasiswa'])-> name('rekap_mahasiswa');
 
     // count
     Route::get('departemen/count_sudah_pkl/{angkatan}',[DepartemenController::class, 'count_sudah_pkl'])-> name('count_sudah_pkl');
