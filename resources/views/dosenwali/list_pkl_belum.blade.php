@@ -198,145 +198,82 @@
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Rekap PKL Mahasiswa</h3>
+                                    <h3 class="font-weight-bold">List PKL Mahasiswa</h3>
                                     <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
-                                        style="color: black" href="pkl_dpt">Rekap PKL Mahasiswa</a>
+                                        style="color: black" href="pkl_dpt">List PKL Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
-                    {{-- Rekap Mahasiswa  --}}
+                    {{-- List Mahasiswa --}}
                     <div class="row">
-                        <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Angkatan</h4>
-                                <div class="table-responsive pt-3">
-                                  <table class="table table-bordered">
-                                    <thead class="tahun">
-                                        <tr>
-                                            <th colspan="2">
-                                                2017
-                                            </th>
-                                            <th colspan="2">
-                                                2018
-                                            </th>
-                                            <th colspan="2">
-                                                2019
-                                            </th>
-                                            <th colspan="2">
-                                                2020
-                                            </th>
-                                            <th colspan="2">
-                                                2021
-                                            </th>
-                                            <th colspan="2">
-                                                2022
-                                            </th>
-                                            <th colspan="2">
-                                                2023
-                                            </th>
-                                        </tr>
+                                <h4 class="card-title">List Mahasiswa</h4>
+                                <div class="table-responsive">
+                                  <table class="table table-striped" id=TabelMahasiswa>
+
+                                    {{-- HEAD --}}
+                                    <thead>
+                                      <tr>
+                                        <th>
+                                          No
+                                        </th>
+                                        <th>
+                                          Nama
+                                        </th>
+                                        <th>
+                                          NIM
+                                        </th>
+                                        <th>
+                                          Angkatan
+                                        </th>
+                                        <th>
+                                          nilai
+                                        </th>
+                                      </tr>
                                     </thead>
-                                    <tbody class="status">
+
+                                    {{-- BODY --}}
+                                    {{-- @if ($status) --}}
+                                        {{-- list_pkl --}}
+                                        @foreach ($mhs as $item)
                                         <tr>
-                                            <td id="2017">sudah</td>
-                                            <td id="2017">belum</td>
-
-                                            <td id="2018">sudah</td>
-                                            <td id="2018">belum</td>
-
-                                            <td id="2019">sudah</td>
-                                            <td id="2019">belum</td>
-
-                                            <td id="2020">sudah</td>
-                                            <td id="2020">belum</td>
-
-                                            <td id="2021">sudah</td>
-                                            <td id="2021">belum</td>
-
-                                            <td id="2022">sudah</td>
-                                            <td id="2022">belum</td>
-
-                                            <td id="2023">sudah</td>
-                                            <td id="2023">belum</td>
+                                            <td>1</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->angkatan }}</td>
+                                            <td>Belum memiliki PKL</td>
                                         </tr>
-                                        <tr class="data">
+                                        @endforeach
 
-                                            {{-- 2017 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countsudah['2017'] ?? 0 }}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countbelum['2017'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2018 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2019 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2020 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2021 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2022 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2023 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>
-                                            </td>
+                                    {{-- @else
+                                        @foreach ($mhs as $item)
+                                        <tr>
+                                            <td>1</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->angkatan }}</td>
+                                            <td>Belum memiliki PKL</td>
                                         </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                                {{-- button  --}}
-                                <br><br>
+                                        @endforeach
+                                    @endif --}}
+
+
+
+
+                                    </table>
+                                    </div>
+                                    <br><br>
                                 <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
-                              </div>
+                                </div>
+                                </div>
                             </div>
-                          </div>
-                    </div>
-
-
-                                <!-- page-body-wrapper ends -->
+                        </div>
                             </div>
-                            <!-- container-scroller -->
 
 
                             <!-- plugins:js -->

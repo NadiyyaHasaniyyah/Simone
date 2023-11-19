@@ -356,7 +356,7 @@
                             <div class="col-md-6 mb-4 stretch-card transparent">
                                 <div class="card card-light-blue"><a href="pkl" style="color: white">
                                     <div class="card-body">
-                                        <p class="mb-4">Verifikasi Progress Studi</p>
+                                        <p class="mb-4">Rekap</p>
                                         <i class="fa fa-newspaper-o  fa-2x"> PKL</i>
                                     </div>
                                 </a>
@@ -367,7 +367,7 @@
                                 <div class="card card-light-danger">
                                     <a href="skripsi" style="color: white">
                                         <div class="card-body">
-                                            <p class="mb-4">Verifikasi Progress Studi</p>
+                                            <p class="mb-4">Rekap</p>
                                             <i class="fa fa-columns fa-2x"> Skripsi</i>
                                         </div>
                                     </a>

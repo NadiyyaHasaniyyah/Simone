@@ -11,16 +11,6 @@ use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Artisan;
 use App\Models\dosenwali;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/',[LoginController::class,'index']);
 Route::post('/',[LoginController::class,'authenticate']);
@@ -108,6 +98,11 @@ Route::middleware(['isDosenWali'])->group(function(){
 
     // rekap list
     Route::get('dosenwali/rekap_pkl_dsn',[DosenwaliController::class, 'rekap_pkl_dsn'])-> name('rekap_pkl_dsn');
+    Route::get('dosenwali/rekap_skripsi_dsn',[DosenwaliController::class, 'rekap_skripsi_dsn'])-> name('rekap_skripsi_dsn');
+    Route::get('dosenwali/list_pkl/sudah/{angkatan}',[DosenwaliController::class, 'list_pkl_sudah'])-> name('list_pkl_sudah_dsn');
+    Route::get('dosenwali/list_pkl/belum/{angkatan}',[DosenwaliController::class, 'list_pkl_belum'])-> name('list_pkl_belum_dsn');
+    Route::get('dosenwali/list_skripsi/sudah/{angkatan}',[DosenwaliController::class, 'list_skripsi_sudah'])-> name('list_skripsi_sudah_dsn');
+    Route::get('dosenwali/list_skripsi/belum/{angkatan}',[DosenwaliController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum_dsn');
 
 });
 

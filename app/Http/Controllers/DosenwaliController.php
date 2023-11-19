@@ -8,6 +8,7 @@ use App\Models\irs;
 use App\Models\khs;
 use App\Models\Pkl;
 use App\Models\Skripsi;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -174,8 +175,167 @@ class DosenwaliController extends Controller
     }
 
     public function rekap_pkl_dsn(){
-        
+        $attribute = Auth::guard('dsn')->user();
+        $mhs = mahasiswa::get();
+        $pkl = Pkl::get();
+
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $countsudah = [];
+        $countbelum = [];
+        $list_pkl_sudah = [];
+        $list_pkl_belum = [];
+
+        foreach ($angkatanList as $angkatan) {
+            $countsudah[$angkatan] = $this->count_sudah_pkl($angkatan) ?? 0;
+            $countbelum[$angkatan] = $this->count_belum_pkl($angkatan) ?? 0;
+            $list_pkl_sudah[$angkatan] = $this->list_pkl_sudah($angkatan);
+            $list_pkl_belum[$angkatan] = $this->list_pkl_belum($angkatan);
+        }
+
+        return view ('dosenwali/rekap_pkl_dsn', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+            'pkl' => $pkl,
+            'countsudah' => $countsudah,
+            'countbelum' => $countbelum,
+            'list_sudah' => $list_pkl_sudah,
+            'list_belum' => $list_pkl_belum,
+        ]);
     }
+
+    public function count_sudah_pkl($angkatan)
+    {
+        $jumlahMahasiswaLulusPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->count();
+
+        return $jumlahMahasiswaLulusPKL;
+    }
+
+    public function count_belum_pkl($angkatan)
+    {
+        $jumlahMahasiswaBelumPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('pkls')
+                    ->whereRaw('mahasiswas.id = pkls.mhs_id');
+            })
+            ->count();
+
+        return $jumlahMahasiswaBelumPKL;
+    }
+
+    public function list_pkl_sudah($angkatan) {
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai')
+            ->get();
+
+        // dd($mhs);
+
+        return view('dosenwali/list_pkl_sudah', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+    }
+
+    public function list_pkl_belum($angkatan) {
+        $attribute = Auth::guard('dsn')->user();
+
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->leftJoin('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->whereNull('pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->get();
+        // dd($mhs);
+
+        return view('dosenwali/list_pkl_belum', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+    }
+
+    public function rekap_skripsi_dsn(){
+        $attribute = Auth::guard('dsn')->user();
+        $mhs = mahasiswa::get();
+        $skripsi = Skripsi::get();
+
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $countsudah = [];
+        $countbelum = [];
+        $list_skripsi_sudah = [];
+        $list_skripsi_belum = [];
+
+        foreach ($angkatanList as $angkatan) {
+            $countsudah[$angkatan] = $this->count_sudah_skripsi($angkatan) ?? 0;
+            $countbelum[$angkatan] = $this->count_belum_skripsi($angkatan) ?? 0;
+            $list_skripsi_sudah[$angkatan] = $this->list_skripsi_sudah($angkatan);
+            $list_skripsi_belum[$angkatan] = $this->list_skripsi_belum($angkatan);
+        }
+
+        return view('dosenwali/rekap_skripsi_dsn', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+            'skripsi' => $skripsi,
+            'countsudah' => $countsudah,
+            'countbelum' => $countbelum,
+            'list_sudah' => $list_skripsi_sudah,
+            'list_belum' => $list_skripsi_belum,
+        ]);
+    }
+
+    public function count_sudah_skripsi($angkatan)
+    {
+        $jumlahMahasiswaLulusSKRIPSI = Mahasiswa::where('angkatan', $angkatan)
+            ->join('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
+            ->count();
+
+        return $jumlahMahasiswaLulusSKRIPSI;
+    }
+
+    public function count_belum_skripsi($angkatan)
+    {
+        $jumlahMahasiswaBelumSKRIPSI = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('skripsis')
+                    ->whereRaw('mahasiswas.id = skripsis.mhs_id');
+            })
+            ->count();
+
+        return $jumlahMahasiswaBelumSKRIPSI;
+    }
+
+    public function list_skripsi_sudah($angkatan) {
+        $attribute=Auth::guard('dpt')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->join('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'skripsis.nilai', 'skripsis.tanggal_lulus')
+            ->get();
+
+        return view('dosenwali/list_skripsi_sudah', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+    }
+
+    public function list_skripsi_belum($angkatan) {
+        $attribute = Auth::guard('dpt')->user();
+
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->leftJoin('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
+            ->whereNull('skripsis.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->get();
+        // dd($mhs);
+
+        return view('dosenwali/list_skripsi_belum', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+    }
+
 
 
     public function create()
