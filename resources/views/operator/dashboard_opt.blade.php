@@ -200,6 +200,15 @@
                             <span class="menu-title">Generate Akun</span>
                         </a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('managemen') }}">
+                            <i class="ti-id-badge
+                            menu-icon"></i>
+                            <span class="menu-title">Manajemen Akun</span>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
 
@@ -289,15 +298,30 @@
                                 <div class="course-info">
 
                                 </div>
-                                <div class="course-progress">
+                                <div class="course-progress"  >
                                     <h6>Generate</h6>
                                     <h3>Generate Akun Mahasiswa </h3>
-                                    <i class="fa fa-id-card-o fa-2x" aria-hidden="true"
+                                    <i class="ti-user fa-2x" aria-hidden="true"
+                                        style="color:#7da0fa"></i><br><br>
+                                    <a href="{{ route('generate') }}">Mulai <i class="fa fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="course " style="height: 150px; ">
+                                <div class="course-info">
+
+                                </div>
+                                <div class="course-progress" >
+                                    <h6>Managemen</h6>
+                                    <h3>Managemen Akun Mahasiswa </h3>
+                                    <i class="ti-id-badge fa-2x" aria-hidden="true"
                                         style="color:#7da0fa"></i><br><br>
                                     <a href="{{ route('generate') }}">Mulai <i class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
+                       
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                     <div class="row">

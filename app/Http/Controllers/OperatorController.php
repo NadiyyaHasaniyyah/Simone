@@ -37,6 +37,36 @@ class OperatorController extends Controller
             'dosen'=>$dosen]);
     }
 
+    public function managemen()
+    {
+        $operator=Auth::guard('opt')->user();
+        $mhs=mahasiswa::all();
+        $dsn = dosenwali::all();
+        return view('operator.managemen', ['operator'=>$operator,
+            'mhs'=>$mhs,
+            'dsn'=>$dsn]);
+    }
+
+    public function managemenStatus(Request $request, $id)
+    {
+        
+
+        $request->validate([
+            'status' => 'required|in:aktif,cuti,mangkir,drop out,meninggal,undur diri,lulus',
+        ]);
+    
+        $mhs = Mahasiswa::find($id);
+    
+        $mhs->update([
+            'status' => $request->status,
+        ]);
+    
+
+
+
+        // return redirect()->route('managemen')->with('success', 'Status berhasil dirubah');
+
+    }
     /**
      * Show the form for creating a new resource.
      */

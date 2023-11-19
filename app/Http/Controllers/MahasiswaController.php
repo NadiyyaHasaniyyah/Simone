@@ -362,15 +362,32 @@ class MahasiswaController extends Controller
 
     public function getKabupaten(Request $request)
 {
+    $attribute=Auth::guard('mhs')->user();
     $id_provinsi = $request->id_provinsi;
     $kabupatens = Regency::where('province_id', $id_provinsi)->get();
-    $options = "<option value=''>Pilih Kabupaten...</option>";
+    $options = "<option value='' selected disabled>Pilih Kabupaten...</option>";
+
+    if ($attribute->kabupaten !== null) {
+        $options = "<option value='$attribute->kabupaten' selected disabled>$attribute->kabupaten</option>";
+    } else {
+        $options = "<option value='' selected disabled>Pilih Kabupaten...</option>";
+    }
+    
+
+
+    // foreach ($kabupatens as $kabupaten) {
+    //     // Append each new option to the $options string
+    //     $options .= "<option value='$kabupaten->id'>$kabupaten->name </option>";
+    // }
+
 
     foreach ($kabupatens as $kabupaten) {
         // Append each new option to the $options string
-        $options .= "<option value='$kabupaten->id'>$kabupaten->name</option>";
+        $options .= "<option value='$kabupaten->id' " . ($attribute->kabupaten == $kabupaten->name ? 'selected' : '') . ">
+                        $kabupaten->name
+                    </option>";
     }
-
+    
     // Return the options string as a response
     return response()->json($options);
 }

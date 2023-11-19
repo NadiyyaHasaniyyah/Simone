@@ -29,6 +29,10 @@ Route::middleware(['isOperator'])->group(function(){
         return redirect()->route('generate');
     })->name('import_mhs');
     Route::post('operator/generate', [OperatorController::class, 'import_manual'])->name('import_manual');
+
+    //management
+     Route::get('operator/managemen',[OperatorController::class, 'managemen'])-> name('managemen');
+     Route::put('operator/managemen/{id}', [OperatorController::class, 'managemenStatus'])->name('managemenStatus');
 });
 
 //mhs
