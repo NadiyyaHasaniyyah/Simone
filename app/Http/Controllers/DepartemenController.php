@@ -52,6 +52,12 @@ class DepartemenController extends Controller
             'list_belum' => $list_pkl_belum,
         ]);
     }
+    public function rekap_mahasiswa()
+    {
+        $attribute=Auth::guard('dpt')->user();
+        // dd($attribute);
+        return view('departemen/rekap_mahasiswa');
+    }
 
     public function rekap_skripsi()
     {
