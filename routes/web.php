@@ -106,6 +106,9 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('mahasiswa/verifikasi_dsn/{id}/view_pkl', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_pkl');
     Route::get('mahasiswa/verifikasi_dsn/{id}/view_skripsi', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_skripsi');
 
+    // rekap list
+    Route::get('dosenwali/rekap_pkl_dsn',[DosenwaliController::class, 'rekap_pkl_dsn'])-> name('rekap_pkl_dsn');
+
 });
 
 // dpt

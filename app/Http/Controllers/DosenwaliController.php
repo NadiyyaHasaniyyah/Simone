@@ -173,6 +173,10 @@ class DosenwaliController extends Controller
         // }
     }
 
+    public function rekap_pkl_dsn(){
+        
+    }
+
 
     public function create()
     {

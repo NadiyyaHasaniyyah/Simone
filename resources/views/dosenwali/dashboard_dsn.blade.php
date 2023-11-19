@@ -14,7 +14,6 @@
 
     <title>Simone</title>
     <!-- plugins:css -->
-
     <link href="{{ asset('style1/skydash/vendors/feather/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/vendors/css/vendor.bundle.base.css') }}" rel="stylesheet">
@@ -198,10 +197,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">Verifikasi Progress</span>
+                            <span class="menu-title">Verifikasi Progress Studi</span>
                         </a>
 
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
+                        <i class="fa fa-tasks menu-icon"></i>
+                        <span class="menu-title"> Rekap PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
                             <i class="fa fa-user menu-icon"></i>
@@ -217,7 +230,7 @@
                 <div class="content-wrapper">
 
                     <div class="row">
-                        <div class="">
+                        <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-lg-12 grid-margin">
                                     <div class="row">
@@ -260,15 +273,13 @@
                                             </span><span></span></div>
                                     </a>
                                 </div>
-                                <h2 class="namep value">Dosen Wali</h2>
+                                <h3 class="namep value">Dosen Wali</h3>
                                 <div class="titlep value">{{ $attribute->nama }}</div>
-                                <br>
                                 <div class="descp">
-
                                     <tr>
-                                        <td class="value">{{ $attribute->id }}</td><br>
+                                        <td class="value">{{ $attribute->nim }}</td><br>
                                         <td class="value">{{ $attribute->email }}</td><br>
-
+                                        <td class="value">{{ $attribute->email_pribadi }} -</td><br>
                                         <td class="value">{{ $attribute->status }}</td>
                                     </tr>
                                 </div>
@@ -277,46 +288,108 @@
                         </div>
 
 
+                        {{-- nyoba --}}
+
+
+
+
+
+
+
+
+
                          <!-- GENERATE-->
                          <div class="col-md-7 grid-margin transparent">
                             <div class="row">
-                                <div class="col-md-12 mb-4 stretch-card transparent">
-                                    <div class="card card-light-blue">
-                                        <a href="{{ route('verifikasi_dsn') }}" style="color: white">
-                                            <div class="card-body">
-                                                <p class="mb-4">Verifikasi</p>
-                                                <i class="fa fa-tasks fa-2x"> Verifikasi Progress Studi</i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 grid-margin stretch-card">
+                                <div class="col-md-6 mb-4 stretch-card transparent">
                                     <div class="card card-tale">
-                                        <a href="{{ route('pencarian_dsn') }}" style="color: white">
+                                        <a href="irs" style="color: white">
                                             <div class="card-body">
-                                                <p class="mb-4">Pencarian</p>
-                                                <i class="fa fa-user fa-2x"> Pencarian Mahasiswa</i>
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-tasks fa-2x"> IRS</i>
                                             </div>
                                         </a>
                                     </div>
                                 </div>
 
+                                <div class="col-md-6 mb-4 stretch-card transparent">
+                                    <div class="card card-dark-blue">
+                                        <a href="khs" style="color: white">
+                                            <div class="card-body">
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-file-text-o fa-2x"> KHS</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                                    <div class="card card-light-blue"><a href="pkl" style="color: white">
+                                            <div class="card-body">
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-newspaper-o  fa-2x"> PKL</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 stretch-card transparent">
+                                    <div class="card card-light-danger">
+                                        <a href="skripsi" style="color: white">
+                                            <div class="card-body">
+                                                <p class="mb-4">Verifikasi Progress Studi</p>
+                                                <i class="fa fa-columns fa-2x"> Skripsi</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
 
-                    {{-- <div class="col-12 grid-margin stretch-card">
-                        <div class="card card-tale">
-                            <a href="{{ route('pencarian_dsn') }}" style="color: white">
-                                <div class="card-body">
-                                    <p class="mb-4">Pencarian</p>
-                                    <i class="fa fa-user fa-2x"> Pencarian Mahasiswa</i>
+                    {{-- Rekap --}}
+
+                    <div class="col-md-12 grid-margin transparent">
+                        <div class="row">
+                            <div class="col-md-6 mb-4 stretch-card transparent">
+                                <div class="card card-light-blue"><a href="pkl" style="color: white">
+                                    <div class="card-body">
+                                        <p class="mb-4">Verifikasi Progress Studi</p>
+                                        <i class="fa fa-newspaper-o  fa-2x"> PKL</i>
+                                    </div>
+                                </a>
+                            </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4 stretch-card transparent">
+                                <div class="card card-light-danger">
+                                    <a href="skripsi" style="color: white">
+                                        <div class="card-body">
+                                            <p class="mb-4">Verifikasi Progress Studi</p>
+                                            <i class="fa fa-columns fa-2x"> Skripsi</i>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    </div> --}}
+                        <div class="row">
+                            <div class="col-md-12 mb-4 mb-lg-0 stretch-card transparent">
+                                <div class="card card-tale">
+                                    <a href="{{ route('pencarian_dsn') }}" style="color: white">
+                                        <div class="card-body">
+                                            <p class="mb-4">Pencarian</p>
+                                            <i class="fa fa-user fa-2x"> Pencarian Mahasiswa</i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
 
 
 
