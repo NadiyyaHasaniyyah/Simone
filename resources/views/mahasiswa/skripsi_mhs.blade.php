@@ -257,6 +257,7 @@
                                                     <div class="card-body">
                                                         <form action="{{ route('skripsi_import') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
+                                                            {{-- {{ dd($valid) }} --}}
 
 
                                                             {{-- semester --}}
@@ -267,7 +268,8 @@
                                                                 <div class="col-sm-7">
                                                                     <select
                                                                         class="form-control @error('semester') is-invalid @enderror"
-                                                                        name="semester" id="semester">
+                                                                        name="semester" id="semester"
+                                                                        {{ $valid ? 'enabled' : 'disabled' }}>
                                                                         <option>pilih semester </option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
@@ -308,7 +310,9 @@
                                                                     @enderror --}}
                                                                     <select
                                                                         class="form-control @error('nilai') is-invalid @enderror"
-                                                                        name="nilai" id="nilai" value="{{ old('nilai') }}">
+                                                                        name="nilai" id="nilai" 
+                                                                        {{ $valid ? 'enabled' : 'disabled' }}
+                                                                        value="{{ old('nilai') }}">
                                                                         <option>pilih nilai </option>
                                                                         <option value="A">A</option>
                                                                         <option value="B">B</option>
@@ -324,7 +328,7 @@
                                                             <div class="form-group row" style="margin: auto">
                                                                 <label class="col-sm-3" style="font-size: 16px; font-weight: bold; color: #000;">Tanggal Lulus</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="date" class="form-control @error('tanggal_lulus') is-invalid @enderror" name="tanggal_lulus" id="tanggal_lulus" value="{{ old('tanggal_lulus') }}">
+                                                                    <input type="date" class="form-control @error('tanggal_lulus') is-invalid @enderror" name="tanggal_lulus" id="tanggal_lulus" {{ $valid ? 'enabled' : 'disabled' }} value="{{ old('tanggal_lulus') }}">
                                                                 </div>
 
                                                                 @error('tanggal_lulus')
@@ -349,7 +353,8 @@
                                                                     <span class="input-group-append">
                                                                         <button
                                                                             class="file-upload-browse btn btn-primary"
-                                                                            type="button">Upload</button>
+                                                                            type="button"
+                                                                            {{ $valid ? 'enabled' : 'disabled' }}>Upload</button>
                                                                     </span>
                                                                 </div>
                                                             </div>

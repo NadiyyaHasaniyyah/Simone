@@ -264,6 +264,7 @@
                                                     <div class="card-body">
 
                                                         {{-- FORM --}}
+                                                        {{-- {{dd($valid)}} --}}
                                                         <form action="{{ route('pkl') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
 
@@ -276,7 +277,7 @@
                                                                 <div class="col-sm-7">
                                                                     <select
                                                                         class="form-control @error('semester') is-invalid @enderror"
-                                                                        name="semester" id="semester">
+                                                                        name="semester" id="semester" {{ $valid ? 'enabled' : 'disabled' }}>
                                                                         <option>pilih semester </option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
@@ -329,7 +330,9 @@
                                                                       value="{{ old('nilai') }}"  > --}}
                                                                       <select
                                                                         class="form-control @error('nilai') is-invalid @enderror"
-                                                                        name="nilai" id="nilai" value="{{ old('nilai') }}">
+                                                                        name="nilai" id="nilai"
+                                                                        {{ $valid ? 'enabled' : 'disabled' }} 
+                                                                        value="{{ old('nilai') }}">
                                                                         <option>pilih nilai </option>
                                                                         <option value="A">A</option>
                                                                         <option value="B">B</option>
@@ -352,7 +355,7 @@
                                                                 <input type="file" name="file_pkl"
                                                                     class="  file-upload-default  @error ('file_pkl') is-invalid @enderror"
                                                                     name="file_pkl" id="file_pkl" accept = ".pdf"
-                                                                    value="{{ old('file_pkl') }}"  >
+                                                                    value="{{ old('file_pkl') }} "  >
                                                                 <div class="input-group col-sm-7">
                                                                     <input type="text"
                                                                         class="form-control file-upload-info" disabled
@@ -360,7 +363,8 @@
                                                                     <span class="input-group-append">
                                                                         <button
                                                                             class="file-upload-browse btn btn-primary"
-                                                                            type="button">Upload</button>
+                                                                            type="button"
+                                                                            {{ $valid ? 'enabled' : 'disabled' }}>Upload</button>
                                                                     </span>
                                                                 </div>
                                                             </div>

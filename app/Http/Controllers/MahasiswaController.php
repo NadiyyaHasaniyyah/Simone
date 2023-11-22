@@ -33,6 +33,7 @@ class MahasiswaController extends Controller
 
     public function irs()
     {
+        
         $attribute=Auth::guard('mhs')->user();
         $irs = Irs::where('mhs_id', $attribute->id)->orderBy('semester')->get();
         return view('mahasiswa/irs_mhs',[
@@ -43,6 +44,7 @@ class MahasiswaController extends Controller
 
     public function irs_import(Request $request)
     {
+        
         // ddd($request);
         $validateData = $request->validate([
             'semester' => 'required',
@@ -131,11 +133,14 @@ class MahasiswaController extends Controller
     {
         $attribute=Auth::guard('mhs')->user();
         $pkl = Pkl::all();
+        $valid = $this->validPKL();
+        
 
         // dd($attribute);
         return view('mahasiswa/pkl_mhs',[
             'attribute'=>$attribute,
-            'pkl'=>$pkl]);
+            'pkl'=>$pkl,
+            'valid'=>$valid]);
 
     }
 
@@ -174,8 +179,9 @@ class MahasiswaController extends Controller
     {
         $attribute=Auth::guard('mhs')->user();
         $skripsi = Skripsi::all();
+        $valid = $this->validSkripsi();
 
-        return view('mahasiswa/skripsi_mhs',['attribute'=>$attribute, 'skripsi'=>$skripsi]);
+        return view('mahasiswa/skripsi_mhs',['attribute'=>$attribute, 'skripsi'=>$skripsi, 'valid'=>$valid]);
 
     }
 
@@ -597,6 +603,33 @@ class MahasiswaController extends Controller
             $Skripsi->delete();
             return redirect()->route('skripsi')->with('success', 'SKRIPSI berhasil dihapus.');
         }
+    }
+
+    public function IRSKomulatif(){
+        $attribute=Auth::guard('mhs')->user();
+        $irs = Irs::where('mhs_id', $attribute->id)->where('flag',1)->sum('jumlah_sks');
+        return $irs;
+    }
+    public function validPKL(){
+        $attribute=Auth::guard('mhs')->user();
+        $irs = $this->IRSKomulatif();
+        $semester = Irs::where('mhs_id', $attribute->id)->where('flag',1)->max('semester');
+        $valid = false;
+        if(($irs>=100)&&($semester>=5)){
+            $valid = true;
+        }
+        return $valid;
+    }
+    public function validSkripsi(){
+        $attribute=Auth::guard('mhs')->user();
+        $irs = $this->IRSKomulatif();
+        $pkl = Pkl::where('mhs_id', $attribute->id)->first()->flag;
+        $valid = false;
+        // dd($pkl);
+        if(($irs>=144)&&($pkl==1)){
+            $valid = true;
+        }
+        return $valid;
     }
 
 }
