@@ -399,11 +399,19 @@
                                                                                                             </a>
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            <form action="{{ route('verifikasiIRS', ['id' => $sks->id]) }}" method="POST">
-                                                                                                            @method('PUT')
-                                                                                                            @csrf
-                                                                                                                <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                                            </form>
+                                                                                                            <div class="button-container">
+                                                                                                                <form action="{{ route('verifikasiIRS', ['id' => $sks->id]) }}" method="POST">
+                                                                                                                    @method('PUT')
+                                                                                                                    @csrf
+                                                                                                                        <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                                </form>
+
+                                                                                                                <form action="{{ route('rejectIRS', ['id' => $sks->id]) }}" method="POST">
+                                                                                                                    @method('PUT')
+                                                                                                                    @csrf
+                                                                                                                        <button type="submit" class="btn btn-inverse-danger btn-sm">Reject</button>
+                                                                                                                </form>
+                                                                                                            </div>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 @endif
@@ -512,11 +520,19 @@
                                                                                                         </a>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <form action="{{ route('verifikasiKHS', ['id' => $khsdata->id]) }}" method="POST">
-                                                                                                        @method('PUT')
-                                                                                                        @csrf
-                                                                                                            <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                                        </form>
+                                                                                                        <div class="button-container">
+                                                                                                            <form action="{{ route('verifikasiKHS', ['id' => $khsdata->id]) }}" method="POST">
+                                                                                                            @method('PUT')
+                                                                                                            @csrf
+                                                                                                                <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                            </form>
+
+                                                                                                            <form action="{{ route('rejectKHS', ['id' => $khsdata->id]) }}" method="POST">
+                                                                                                                @method('PUT')
+                                                                                                                @csrf
+                                                                                                                    <button type="submit" class="btn btn-inverse-danger btn-sm">Reject</button>
+                                                                                                            </form>
+                                                                                                        </div>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             @endif
@@ -615,11 +631,20 @@
                                                                                                         </a>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <form action="{{ route('verifikasiPKL', ['id' => $pkldata->id]) }}" method="POST">
-                                                                                                        @method('PUT')
-                                                                                                        @csrf
-                                                                                                            <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                                        </form>
+                                                                                                        <div class="button-container">
+                                                                                                            <form action="{{ route('verifikasiPKL', ['id' => $pkldata->id]) }}" method="POST">
+                                                                                                            @method('PUT')
+                                                                                                            @csrf
+                                                                                                                <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                            </form>
+
+                                                                                                            <form action="{{ route('rejectPKL', ['id' => $pkldata->id]) }}" method="POST">
+                                                                                                                @method('PUT')
+                                                                                                                @csrf
+                                                                                                                    <button type="submit" class="btn btn-inverse-danger btn-sm">Reject</button>
+                                                                                                            </form>
+
+                                                                                                        </div>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             @endif
@@ -724,11 +749,20 @@
                                                                                                         </a>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <form action="{{ route('verifikasiSKRIPSI', ['id' => $skripsidata->id]) }}" method="POST">
-                                                                                                        @method('PUT')
-                                                                                                        @csrf
-                                                                                                            <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
-                                                                                                        </form>
+                                                                                                        <div class="button-container">
+                                                                                                            <form action="{{ route('verifikasiSKRIPSI', ['id' => $skripsidata->id]) }}" method="POST">
+                                                                                                            @method('PUT')
+                                                                                                            @csrf
+                                                                                                                <button type="submit" class="btn btn-inverse-success btn-sm">Verifikasi</button>
+                                                                                                            </form>
+
+                                                                                                            <form action="{{ route('rejectSKRIPSI', ['id' => $skripsidata->id]) }}" method="POST">
+                                                                                                                @method('PUT')
+                                                                                                                @csrf
+                                                                                                                    <button type="submit" class="btn btn-inverse-danger btn-sm">Reject</button>
+                                                                                                            </form>
+
+                                                                                                        </div>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             @endif

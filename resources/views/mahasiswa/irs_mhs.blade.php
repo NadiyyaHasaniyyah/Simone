@@ -392,8 +392,13 @@
                                                                                         @csrf
                                                                                         <button type="submit" class="btn btn-inverse-danger btn-icon"> <i class="ti-trash"></i></button>
                                                                                     </form>
-                                                                                @else
+                                                                                @elseif ($item->flag == 1)
                                                                                     <button type="button" class="btn btn-success btn-rounded btn-ico "><i class="ti-check"></i></button>
+                                                                                @elseif ($item->flag == -1)
+                                                                                    <button type="button" class="btn btn-danger btn-rounded btn-ico "><i class="ti-close"></i></button>
+                                                                                    <a href="{{ route('irs_edit', ['semester' => $item->semester]) }}">
+                                                                                        <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
+                                                                                    </a>
                                                                                 @endif
 
                                                                             </td>

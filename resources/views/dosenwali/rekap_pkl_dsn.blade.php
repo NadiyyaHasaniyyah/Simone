@@ -368,14 +368,6 @@
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-
-
-
-
-
-
-
 </body>
 
 </html>

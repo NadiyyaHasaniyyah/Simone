@@ -94,6 +94,13 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::put('dosenwali/verifikasi_dsn/{id}/pkl',[DosenwaliController::class, 'verifikasiPKL'])-> name('verifikasiPKL');
     Route::put('dosenwali/verifikasi_dsn/{id}/skripsi',[DosenwaliController::class, 'verifikasiSKRIPSI'])-> name('verifikasiSKRIPSI');
 
+    // reject
+    Route::put('dosenwali/reject_dsn/{id}/irs',[DosenwaliController::class, 'rejectIRS'])-> name('rejectIRS');
+    Route::put('dosenwali/reject_dsn/{id}/khs',[DosenwaliController::class, 'rejectKHS'])-> name('rejectKHS');
+    Route::put('dosenwali/reject_dsn/{id}/pkl',[DosenwaliController::class, 'rejectPKL'])-> name('rejectPKL');
+    Route::put('dosenwali/reject_dsn/{id}/skripsi',[DosenwaliController::class, 'rejectSKRIPSI'])-> name('rejectSKRIPSI');
+
+
     //  view file
     Route::get('mahasiswa/verifikasi_dsn/{id}/view_irs', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_irs');
     Route::get('mahasiswa/verifikasi_dsn/{id}/view_khs', [DosenwaliController::class, 'viewPDF'])->name('viewPDF_khs');

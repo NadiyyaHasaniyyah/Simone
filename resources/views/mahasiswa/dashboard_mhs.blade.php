@@ -34,7 +34,7 @@
     <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/css/vertical-layout-light/style.css') }}" rel="stylesheet">
     <!-- dashboard css -->
-    <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/css/irs_edit.css') }}" rel="stylesheet">
 
 </head>
@@ -215,15 +215,15 @@
                             <div class="cardp">
                                 <div class="bannerp" style="">
                                     {{-- <svg  viewBox="0 0 100 100" alt="Profile Image" preserveAspectRatio="xMidYMid meet">
-                                        {{-- PROFILE PICTURE 
+                                        {{-- PROFILE PICTURE
                                         @if ($attribute->foto != null)
-                                            {{-- jika melakukan update foto 
+                                            {{-- jika melakukan update foto
 
                                             <image width="100" height="100" preserveAspectRatio="xMidYMid meet"
                                                 xlink:href="{{ asset('storage/' . $attribute->foto) }}"
                                                 class=" rounded" alt="{{ $attribute->nama }}" >
                                             @else
-                                                {{-- jika tdk upadate foto 
+                                                {{-- jika tdk upadate foto
                                                 <image width="100" height="100"
                                                     xlink:href="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
                                                     alt="{{ $attribute->nama }}">
@@ -237,14 +237,14 @@
                                                 background-image: url(https://sso.undip.ac.id/assets/app/images/user.png);
                                             @endif ">
                                                 <!-- PROFILE PICTURE -->
-                                                
-                                                
+
+
                                             </div>
 
                                         </div>
                                     </div>
-                                   
-                                    
+
+
                                 </div>
 
                                 <div class="menup">
@@ -258,8 +258,8 @@
                                 <div class="descp">
                                     <tr>
                                         <td class="value">{{ $attribute->id }}</td><br>
-                                        <td class="value">{{ $attribute->email }}</td><br>  
-                                        <td class="value">{{ $attribute->nomor_tlp }}</td><br> 
+                                        <td class="value">{{ $attribute->email }}</td><br>
+                                        <td class="value">{{ $attribute->nomor_tlp }}</td><br>
                                         <td class="value">{{ $attribute->status }}</td>
                                     </tr>
                                 </div>
