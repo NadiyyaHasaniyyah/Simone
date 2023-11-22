@@ -58,4 +58,8 @@ class LoginController extends Controller
         return Redirect::to('/');
     }
 
+    public function resetPassword(){
+        return view('reset_pass');
+    }
+
 }

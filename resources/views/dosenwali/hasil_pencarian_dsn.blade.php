@@ -259,7 +259,7 @@
                             <div class="card">
                               <div class="card-body">
                                 <h4 class="card-title">Semester</h4>
-                                
+
                                 <div class="template-demo">
                                     @for ($i = 1; $i <= 5; $i++)
                                         @php
@@ -268,7 +268,7 @@
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-                                
+
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
                                                 <button type="button" class="btn btn-success btn-icon-text">
@@ -284,7 +284,7 @@
                                         </button>
                                     @endfor
                                 </div>
-                                
+
                                 <div class="template-demo">
                                     @for ($i = 6; $i <= 10; $i++)
                                         @php
@@ -293,7 +293,7 @@
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-                                
+
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
                                                 <button type="button" class="btn btn-success btn-icon-text">
@@ -309,7 +309,7 @@
                                         </button>
                                     @endfor
                                 </div>
-                                
+
                                 <div class="template-demo">
                                     @for ($i = 11; $i <= 14; $i++)
                                         @php
@@ -318,7 +318,7 @@
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-                                
+
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
                                                 <button type="button" class="btn btn-success btn-icon-text">
@@ -334,7 +334,7 @@
                                         </button>
                                     @endfor
                                 </div>
-                                
+
                               </div>
                             </div>
                           </div>
@@ -449,4 +449,3 @@
 </body>
 
 </html>
-
