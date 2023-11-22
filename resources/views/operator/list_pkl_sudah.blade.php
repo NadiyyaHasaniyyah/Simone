@@ -2,15 +2,23 @@
 <html lang="en">
 
 <head>
+
     <link rel="shortcut icon" href="{{ asset('style1/skydash/images/logo-mini.svg') }}">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description">
+    <meta name="author">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
 
     <title>Simone</title>
     <!-- plugins:css -->
@@ -28,51 +36,20 @@
     <!-- inject:css -->
     <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/css/vertical-layout-light/style.css') }}" rel="stylesheet">
-    <!-- endinject -->
-
-    <!-- profile card -->
-    <link rel="stylesheet" href="{{ asset('style1/skydash/css/operator/profile_opt.css') }}">
-
-    <!-- dashboard_opt -->
-    <link rel="stylesheet" href="{{ asset('style1/skydash/css/operator/dashboard_opt.css') }}">
+    <!-- dashboard css -->
     <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
-
+    <!-- irs tabcss -->
+    <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/skydash/css/rekap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 </head>
-<style>
-    /* CSS untuk tampilan layar dengan lebar kurang dari 768px */
-    @media (max-width: 767px) {
-        .row {
-            flex-direction: column;
-        }
-
-        .col-md-6,
-        .col-md-4 {
-            width: 100%;
-        }
-    }
-
-    /* CSS untuk tampilan layar dengan lebar 768px atau lebih */
-    @media (min-width: 768px) {
-        .row {
-            display: flex;
-        }
-
-        .col-md-6 {
-            width: 50%;
-        }
-
-        .col-md-4 {
-            width: 33.33%;
-        }
-    }
-</style>
 
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_mhs') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_dpt') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -139,7 +116,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            {{ $attribute->nama }} <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                             <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -160,7 +137,7 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_settings-panel.html -->
-            <div class="theme-setting-wrapper">
+            <div class="theme-setting-wraper">
                 <div id="settings-trigger"><i class="ti-settings"></i></div>
                 <div id="theme-settings" class="settings-panel">
                     <i class="settings-close ti-close"></i>
@@ -186,6 +163,7 @@
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
 
+            {{-- nanti --}}
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
@@ -198,19 +176,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_pkl') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title"> Rekap PKL</span>
+                            <span class="menu-title">PKL</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_skripsi') }}">
                                 <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Rekap Skripsi</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_mahasiswa') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Rekap Mahasiswa</span>
+                                <span class="menu-title">Skripsi</span>
                             </a>
                         </li>
 
@@ -222,148 +194,126 @@
             <!-- Dashboard -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
                     <div class="row">
-                        <div class="col-md-12 grid-margin">
+                        <div class="col-lg-9 grid-margin">
                             <div class="row">
-                                <div class="col-lg-12 grid-margin">
-                                    <div class="row">
-                                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                            <h3 class="font-weight-bold"> Dashboard</h3>
-                                            <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard</a>
-
-                                        </div>
-                                    </div>
+                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                    <h3 class="font-weight-bold">List PKL Mahasiswa</h3>
+                                    <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
+                                        style="color: black" href="pkl_dpt">List PKL Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{-- Card yang pertama campuran --}}
-                     <!-- profile -->
-                     <div class=row>
-                        <div class="col-md-5 grid-margin ">
-                            <div class="cardp">
-                                <div class="bannerp">
-                                    <svg class="imgpr" viewBox="0 0 100 100" alt="Profile Image">
-                                        {{-- PROFILE PICTURE --}}
-                                        @if ($attribute->foto != null)
-                                            {{-- jika melakukan update foto --}}
-
-                                            <image width="100" height="100"
-                                                xlink:href="{{ asset('storage/' . $attribute->foto) }}"
-                                                class=" imgpr rounded" alt="{{ $attribute->nama }}">
-                                            @else
-                                                {{-- jika tdk upadate foto --}}
-                                                <image width="100" height="100"
-                                                    xlink:href="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
-                                                    alt="{{ $attribute->nama }}">
-                                        @endif
-                                    </svg>
-                                </div>
-
-                                <div class="menup">
-                                    <a href="{{ route('update_mhs') }}">
-                                        <div class="openerp"><span></span><span>
-                                            </span><span></span></div>
-                                    </a>
-                                </div>
-                                <h2 class="namep value">Departemen</h2>
-                                <div class="titlep value">{{ $attribute->nama }}</div>
-                                <div class="descp">
-                                    <tr>
-                                        <td class="value">{{ $attribute->nim }}</td><br>
-                                        <td class="value">{{ $attribute->email }}</td><br>
-                                        <td class="value">{{ $attribute->email_pribadi }} -</td><br>
-                                        <td class="value">{{ $attribute->status }}</td>
-                                    </tr>
-                                </div>
-                            </div>
-
-                        </div>
 
 
-                         <!-- GENERATE-->
-                         <div class="col-md-7 grid-margin transparent">
-                            <div class="row">
-                                <div class="col-md-7 mb-4 stretch-card transparent">
-                                    <div class="card card-tale">
-                                        <a href="rekap_pkl" style="color: white">
-                                            <div class="card-body">
-                                                <p class="mb-4">Monitoring dan Evaluasi</p>
-                                                <i class="fa fa-tasks fa-2x"> Rekap PKL</i>
-                                            </div>
-                                        </a>
+                    {{-- List Mahasiswa --}}
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">List Mahasiswa</h4>
+                                <div class="table-responsive">
+                                  <table class="table table-striped" id=TabelMahasiswa>
+
+                                    {{-- HEAD --}}
+                                    <thead>
+                                      <tr>
+                                        <th>
+                                          No
+                                        </th>
+                                        <th>
+                                          Nama
+                                        </th>
+                                        <th>
+                                          NIM
+                                        </th>
+                                        <th>
+                                          Angkatan
+                                        </th>
+                                        <th>
+                                          nilai
+                                        </th>
+                                      </tr>
+                                    </thead>
+
+                                    {{-- BODY --}}
+                                    {{-- @if ($status) --}}
+                                        @foreach ($mhs as $angkatan => $items)
+                                            @foreach ($items->pkls as $item)
+                                            {{-- @dd($sudah) --}}
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>{{ $items->nama }}</td>
+                                                    <td>{{ $items->id }}</td>
+                                                    <td>{{ $items->angkatan }}</td>
+                                                    <td>{{ $item->nilai }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    {{-- @else
+                                        @foreach ($mhs as $item)
+                                        <tr>
+                                            <td>1</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->angkatan }}</td>
+                                            <td>Belum memiliki PKL</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif --}}
+
+
+
+
+                                    </table>
                                     </div>
+                                    <br><br>
+                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
                                 </div>
-
-                            <br>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-7 mb-4 mb-lg-0 stretch-card transparent">
-                                    <div class="card card-light-blue"><a href="rekap_skripsi" style="color: white">
-                                            <div class="card-body">
-                                                <p class="mb-4">Monitoring dan Evaluasi</p>
-                                                <i class="fa fa-newspaper-o  fa-2x"> Rekap Skripsi</i>
-                                            </div>
-                                        </a>
-                                    </div>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <br><br><br><br>
-
-                    <!-- partial:partials/_footer.html -->
-                    <footer class="footer">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Proyek
-                                Perangkat Lunak © 2023. All rights reserved.</span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Tugas Besar
-                                Informatika <i class="ti-heart text-danger ml-1"></i></span>
-                        </div>
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Oleh: Alif,
-                                Adji, Ririn, Nadiyya</a></span>
-                        </div>
-                    </footer>
-                    <!-- partial -->
-                </div>
-                <!-- main-panel ends -->
-            </div>
-            <!-- page-body-wrapper ends -->
-        </div>
-        <!-- container-scroller -->
+                            </div>
 
 
-        <!-- plugins:js -->
-        <script src="vendors/js/vendor.bundle.base.js"></script>
-        <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
-        <script src="{{ asset('style1/skydash/vendors/chart.js/Chart.min.js') }}"></script>
-        <script src="{{ asset('style1/skydash/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-        <script src="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/dataTables.select.min.js') }}"></script>
-        <script src="vendors/chart.js/Chart.min.js"></script>
-        <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-        <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-        <script src="js/dataTables.select.min.js"></script>
+                            <!-- plugins:js -->
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script src="vendors/js/vendor.bundle.base.js"></script>
+                            <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
+                            <!-- endinject -->
+                            <!-- Plugin js for this page -->
+                            <script src="{{ asset('style1/skydash/vendors/chart.js/Chart.min.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/js/file-upload.js') }}"></script>
+                            <script src="vendors/chart.js/Chart.min.js"></script>
+                            <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+                            <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+                            <script src="js/dataTables.select.min.js"></script>
 
-        <!-- End plugin js for this page -->
-        <!-- inject:js -->
-        <script src="{{ asset('style1/skydash/js/off-canvas.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/hoverable-collapse.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/template.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/settings.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/todolist.js') }}"></script>
+                            <!-- End plugin js for this page -->
+                            <!-- inject:js -->
+                            <script src="{{ asset('style1/skydash/js/off-canvas.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/js/hoverable-collapse.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/js/template.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/js/settings.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/js/todolist.js') }}"></script>
 
-        <!-- endinject -->
-        <!-- Custom js for this page-->
-        <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
-        <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
+                            <!-- endinject -->
+                            <!-- Custom js for this page-->
+                            <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
+                            <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
-        <!-- End custom js for this page-->
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+
+
+
+
+
+
 </body>
 
 </html>

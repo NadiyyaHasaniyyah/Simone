@@ -82,7 +82,6 @@ class DosenwaliController extends Controller
         ]);
 
         return redirect()->route('verifikasi_dsn')->with('success', 'IRS berhasil diverifikasi');
-
     }
 
     public function verifikasiKHS($id)
@@ -94,7 +93,6 @@ class DosenwaliController extends Controller
         ]);
 
         return redirect()->route('verifikasi_dsn')->with('success', 'KHS berhasil diverifikasi');
-
     }
 
     public function verifikasiPKL($id)

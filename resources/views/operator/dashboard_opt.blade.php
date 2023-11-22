@@ -202,13 +202,13 @@
                     </li>
                     <li class="nav-item">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_pkl') }}">
+                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title"> Rekap PKL</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_skripsi') }}">
+                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
                                 <i class="fa fa-newspaper-o  menu-icon"></i>
                                 <span class="menu-title"> Rekap Skripsi</span>
                             </a>

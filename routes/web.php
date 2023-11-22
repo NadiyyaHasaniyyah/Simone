@@ -33,7 +33,16 @@ Route::middleware(['isOperator'])->group(function(){
     //management
      Route::get('operator/managemen',[OperatorController::class, 'managemen'])-> name('managemen');
      Route::put('operator/managemen/{id}', [OperatorController::class, 'managemenStatus'])->name('managemenStatus');
+
+    //  rekap
+    Route::get('operator/rekap_pkl_opt',[OperatorController::class, 'rekap_pkl_opt'])-> name('rekap_pkl_opt');
+    Route::get('operator/rekap_skripsi_opt',[OperatorController::class, 'rekap_skripsi'])-> name('rekap_skripsi_opt');
+    Route::get('operator/list_pkl/sudah/{angkatan}',[OperatorController::class, 'list_pkl_sudah'])-> name('list_pkl_sudah_opt');
+    Route::get('operator/list_pkl/belum/{angkatan}',[OperatorController::class, 'list_pkl_belum'])-> name('list_pkl_belum_opt');
+    Route::get('operator/list_skripsi/sudah/{angkatan}',[OperatorController::class, 'list_skripsi_sudah'])-> name('list_skripsi_sudah_opt');
+    Route::get('operator/list_skripsi/belum/{angkatan}',[OperatorController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum_opt');
 });
+
 
 //mhs
 Route::middleware(['isMahasiswa'])->group(function(){
@@ -86,6 +95,7 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
     Route::get('dosenwali/hasil_pencarian_dsn/{id}',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
+    Route::get('dosenwali/rekap_mahasiswa',[DosenwaliController::class, 'rekap_mhs'])-> name('rekap_mhs');
 
     // verifikasi
     Route::get('dosenwali/verifikasi_dsn',[DosenwaliController::class, 'verifikasi'])-> name('verifikasi_dsn');
@@ -124,10 +134,11 @@ Route::middleware(['isDepartemen'])->group(function(){
     // rekap
     Route::get('departemen/rekap_pkl',[DepartemenController::class, 'rekap_pkl'])-> name('rekap_pkl');
     Route::get('departemen/rekap_skripsi',[DepartemenController::class, 'rekap_skripsi'])-> name('rekap_skripsi');
-    Route::get('departemen/rekap_mahasiswa',[DepartemenController::class, 'rekap_mahasiswa'])-> name('rekap_mahasiswa');
+    Route::get('departemen/rekap_mahasiswa',[DepartemenController::class, 'rekap_mhs'])-> name('rekap_mahasiswa');
+    Route::get('departemen/rekap_angkatan/{angkatan}',[DepartemenController::class, 'rekap_angkatan'])-> name('rekap_angkatan');
 
     // count
-    Route::get('departemen/count_sudah_pkl/{angkatan}',[DepartemenController::class, 'count_sudah_pkl'])-> name('count_sudah_pkl');
+    // Route::get('departemen/count_sudah_pkl/{angkatan}',[DepartemenController::class, 'count_sudah_pkl'])-> name('count_sudah_pkl');
 
     // list
     // sudah
