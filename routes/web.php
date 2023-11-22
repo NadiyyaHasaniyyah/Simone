@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Artisan;
 use App\Models\dosenwali;
 
 
+// LOGIN
 Route::get('/',[LoginController::class,'index']);
 Route::post('/',[LoginController::class,'authenticate']);
-
 Route::get('/logout',[LoginController::class,'getLogout'])->middleware('guest');
+Route::get('/reset_password',[LoginController::class,'resetPassword'])->middleware('guest')->name('reset_password');
+
+
 
 //opt
 Route::middleware(['isOperator'])->group(function(){
