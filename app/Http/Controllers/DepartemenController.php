@@ -195,6 +195,75 @@ class DepartemenController extends Controller
         ]);
     }
 
+    public function rekap_mhs(){
+        $attribute=Auth::guard('dpt')->user();
+        $mhs = mahasiswa::get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+
+        $status_count = [];
+        $mhs_count = [];
+
+        foreach ($statusList as $status) {
+            $status_count[$status] = $this->count_status($status) ?? 0;
+            foreach ($angkatanList as $angkatan) {
+                $mhs_count[$angkatan][$status] = $this->count_mhs($angkatan, $status) ?? 0;
+            }
+        }
+
+        // dd($mhs_count);
+
+        return view('departemen/rekap_mahasiswa', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'status_count'=>$status_count,
+            'mhs_count'=>$mhs_count,
+        ]);
+    }
+
+    public function count_status($status){
+        $status_count = mahasiswa::where('status', $status)
+            ->count();
+        return $status_count;
+
+    }
+
+    public function count_mhs($angkatan, $status){
+        $mhs_count = mahasiswa::where('angkatan', $angkatan)
+            ->where('status', $status)
+            ->count();
+        return $mhs_count;
+
+    }
+
+    public function rekap_angkatan($angkatan){
+        $attribute=Auth::guard('dpt')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)->get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $angkatan_count = [];
+
+        foreach ($statusList as $status) {
+            $angkatan_count[$status] = $this->count_angkatan($status) ?? 0;
+        }
+
+        return view('departemen/rekap_angkatan', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'angkatan_count'=>$angkatan_count,
+            'angkatan'=>$angkatan,
+        ]);
+    }
+
+    public function count_angkatan($status){
+        $angkatan_count = mahasiswa::where('status', $status)
+            ->count();
+        return $angkatan_count;
+
+    }
+
     public function create()
     {
         //

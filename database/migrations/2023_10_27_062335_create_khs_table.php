@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('ipk');
             $table->string('file_khs')->nullable();
             $table->string('semester');
-            $table->boolean('flag')->default(0);
+            $table->integer('flag')->default(0);
             $table->foreignId('mhs_id');
             $table->timestamps();
         });

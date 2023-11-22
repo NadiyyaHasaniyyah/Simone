@@ -198,9 +198,9 @@
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Rekap PKL Mahasiswa</h3>
+                                    <h3 class="font-weight-bold">Rekap Skripsi Mahasiswa</h3>
                                     <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
-                                        style="color: black" href="pkl_dpt">Rekap PKL Mahasiswa</a>
+                                        style="color: black" href="pkl_dpt">Rekap Skripsi Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
@@ -265,61 +265,53 @@
                                         </tr>
                                         <tr class="data">
 
-                                            {{-- 2017 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countsudah['2017'] ?? 0 }}
-                                                </a>
+                                            <td id="2017">
+                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countsudah['2017'] ?? 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countbelum['2017'] ?? 0 }}</a>
+                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countbelum['2017'] ?? 0 }}</a>
                                             </td>
 
-                                            {{-- 2018 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
+                                            <td id="2018">
+                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2019 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
+                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
                                             </td>
 
-                                            {{-- 2020 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
+                                            <td id="2019">
+                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
-                                            </td>
-
-                                            {{-- 2021 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
+                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
                                             </td>
 
-                                            {{-- 2022 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
+                                            <td id="2020">
+                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
+                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
                                             </td>
 
-                                            {{-- 2023 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_dsn', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
+                                            <td id="2021">
+                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('list_pkl_belum_dsn', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>
+                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
+                                            </td>
+
+                                            <td id="2022">
+                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
+                                            </td>
+
+                                            <td id="2023">
+                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -334,6 +326,31 @@
                     </div>
 
 
+                    {{-- List Mahasiswa --}}
+                        <br><br>
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                              {{-- <div class="card-body"> --}}
+                                {{-- <h4 class="card-title">List Mahasiswa</h4> --}}
+                                {{-- <p class="card-description">
+                                  nama <code>.(mahasiswa)</code>
+                                </p> --}}
+                                <div class="table-responsive">
+                                  <table class="table table-striped" id=TabelMahasiswa>
+
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+
+
+
+
+
+
+
+
                                 <!-- page-body-wrapper ends -->
                             </div>
                             <!-- container-scroller -->
@@ -341,6 +358,15 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                              $(document).ready(function () {
+                                $(".trigger").on("click", function () {
+                                  $(".modal-wrapper").toggleClass("open");
+                                  $(".page-wrapper").toggleClass("blur-it");
+                                  return false;
+                                });
+                              });
+                            </script>
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->
@@ -368,6 +394,14 @@
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+
+
+
+
+
+
 </body>
 
 </html>

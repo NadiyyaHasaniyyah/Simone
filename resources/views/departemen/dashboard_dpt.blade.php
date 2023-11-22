@@ -207,6 +207,12 @@
                                 <span class="menu-title">Rekap Skripsi</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_mahasiswa') }}">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title">Rekap Mahasiswa</span>
+                            </a>
+                        </li>
 
                     </li>
                 </ul>

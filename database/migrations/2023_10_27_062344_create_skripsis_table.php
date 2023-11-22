@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('semester');
             $table->string('file_skripsi')->nullable();
             $table->date('tanggal_lulus');
-            $table->boolean('flag')->default(0);
+            $table->integer('flag')->default(0);
             $table->foreignId('mhs_id');
             $table->timestamps();
         });

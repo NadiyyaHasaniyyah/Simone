@@ -82,7 +82,6 @@ class DosenwaliController extends Controller
         ]);
 
         return redirect()->route('verifikasi_dsn')->with('success', 'IRS berhasil diverifikasi');
-
     }
 
     public function verifikasiKHS($id)
@@ -94,7 +93,6 @@ class DosenwaliController extends Controller
         ]);
 
         return redirect()->route('verifikasi_dsn')->with('success', 'KHS berhasil diverifikasi');
-
     }
 
     public function verifikasiPKL($id)
@@ -118,6 +116,42 @@ class DosenwaliController extends Controller
 
         return redirect()->route('verifikasi_dsn')->with('success', 'Skripsi berhasil diverifikasi');
 
+    }
+
+    public function rejectIRS($id){
+        $irs = irs::find($id);
+
+        $irs->update([
+            'flag' => '-1',
+        ]);
+        return redirect()->route('verifikasi_dsn');
+    }
+
+    public function rejectKHS($id){
+        $khs = khs::find($id);
+
+        $khs->update([
+            'flag' => '-1',
+        ]);
+        return redirect()->route('verifikasi_dsn');
+    }
+
+    public function rejectPKL($id){
+        $pkl = Pkl::find($id);
+
+        $pkl->update([
+            'flag' => '-1',
+        ]);
+        return redirect()->route('verifikasi_dsn');
+    }
+
+    public function rejectSKRIPSI($id){
+        $skripsi = Skripsi::find($id);
+
+        $skripsi->update([
+            'flag' => '-1',
+        ]);
+        return redirect()->route('verifikasi_dsn');
     }
 
     public function viewPDF($id)

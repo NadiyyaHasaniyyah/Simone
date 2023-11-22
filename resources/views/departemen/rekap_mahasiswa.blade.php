@@ -223,7 +223,7 @@
                     <div class="col-lg-12 grid-margin text-center">
                         <div class="card mx-auto" style="width: 40rem;">
                             <div class="card-body">
-                                <h4 class="card-title">Angkatan 2017</h4>
+                                <h4 class="card-title">Angkatan Keseluruhan</h4>
                                 <canvas id="doughnutChart"></canvas>
                             </div>
                         </div>
@@ -232,7 +232,7 @@
                     <script>
                         var doughnutPieData = {
                             datasets: [{
-                                data: [120, 6, 12, 8, 20, 5, 10],
+                                data: [{{ $status_count['aktif'] ?? 0 }}, {{ $status_count['mangkir'] }}, {{ $status_count['cuti'] }}, {{ $status_count['drop out'] }}, {{ $status_count['lulus'] }}, {{ $status_count['undur diri'] }}, {{ $status_count['meninggal']  }}],
                                 backgroundColor: [
                                     'rgba(0, 255, 0, 0.5)',   // Warna hijau untuk Aktif
                                     'rgba(255, 255, 0, 0.5)', // Warna kuning untuk Mangkir
@@ -252,7 +252,7 @@
                                     'rgba(0, 0, 255, 1)'
                                 ],
                             }],
-                    
+
                             labels: [
                                 'Aktif',
                                 'Mangkir',
@@ -263,7 +263,7 @@
                                 'Meninggal',
                             ]
                         };
-                    
+
                         var doughnutPieOptions = {
                             responsive: true,
                             animation: {
@@ -271,7 +271,7 @@
                                 animateRotate: true
                             }
                         };
-                    
+
                         $(document).ready(function () {
                             if ($("#doughnutChart").length) {
                                 var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
@@ -298,102 +298,102 @@
                                             <th>
                                                 Status
                                             </th>
-                                            
+
                                             <th >
-                                                2017
+                                                <a href="{{ route('rekap_angkatan', ['angkatan'=>'2017']) }}" class="text-decoration-none">2017</a>
                                             </th>
                                             <th >
-                                                2018
+                                                <a href="{{ route('rekap_angkatan', ['angkatan'=>'2018']) }}" class="text-decoration-none">2018</a>
                                             </th>
                                             <th >
-                                                2019
+                                                <a href="{{ route('rekap_angkatan', ['angkatan'=>'2019']) }}" class="text-decoration-none">2019</a>
                                             </th>
                                             <th >
-                                                2020
+                                                <a href="{{ route('rekap_angkatan', ['angkatan'=>'2020']) }}" class="text-decoration-none">2020</a>
                                             </th>
                                             <th >
-                                                2021
+                                                <a href="{{ route('rekap_angkatan', ['angkatan'=>'2021']) }}" class="text-decoration-none">2021</a>
                                             </th>
                                             <th >
-                                                2022
+                                                <a href="{{ route('rekap_angkatan', ['angkatan'=>'2022']) }}" class="text-decoration-none">2022</a>
                                             </th>
                                             <th >
-                                                2023
+                                                <a href="{{ route('rekap_angkatan', ['angkatan'=>'2023']) }}" class="text-decoration-none">2023</a>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="status">
                                         <tr>
                                             <td  id="aktif">Aktif</td>
-                                            <td id="2017">120</td>
-                                            <td id="2018">120</td>
-                                            <td id="2019">120</td>
-                                            <td id="2020">120</td>
-                                            <td id="2021">120</td>
-                                            <td id="2022">120</td>
-                                            <td id="2023">120</td>
+                                            <td id="2017">{{ $mhs_count['2017']['aktif'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['aktif'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['aktif'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['aktif'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['aktif'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['aktif'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['aktif'] }}</td>
                                         </tr>
                                         <tr>
                                             <td  id="do">DO</td>
-                                            <td id="2017">6</td>
-                                            <td id="2018">2</td>
-                                            <td id="2019">2</td>
-                                            <td id="2020">2</td>
-                                            <td id="2021">2</td>
-                                            <td id="2022">0</td>
-                                            <td id="2023">0</td>
+                                            <td id="2017">{{ $mhs_count['2017']['drop out'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['drop out'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['drop out'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['drop out'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['drop out'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['drop out'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['drop out'] }}</td>
                                         </tr>
                                         <tr>
                                             <td  id="meninggal">Mangkir</td>
-                                            <td id="2017">6</td>
-                                            <td id="2018">7</td>
-                                            <td id="2019">8</td>
-                                            <td id="2020">9</td>
-                                            <td id="2021">10</td>
-                                            <td id="2022">11</td>
-                                            <td id="2023">12</td>
+                                            <td id="2017">{{ $mhs_count['2017']['mangkir'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['mangkir'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['mangkir'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['mangkir'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['mangkir'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['mangkir'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['mangkir'] }}</td>
                                         </tr>
                                         <tr>
                                             <td  id="cuti">Cuti</td>
-                                            <td id="2017">6</td>
-                                            <td id="2018">7</td>
-                                            <td id="2019">8</td>
-                                            <td id="2020">9</td>
-                                            <td id="2021">10</td>
-                                            <td id="2022">11</td>
-                                            <td id="2023">12</td>
+                                            <td id="2017">{{ $mhs_count['2017']['cuti'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['cuti'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['cuti'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['cuti'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['cuti'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['cuti'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['cuti'] }}</td>
                                         </tr>
                                         <tr>
                                             <td  id="lulus">Lulus</td>
-                                            <td id="2017">6</td>
-                                            <td id="2018">7</td>
-                                            <td id="2019">8</td>
-                                            <td id="2020">9</td>
-                                            <td id="2021">10</td>
-                                            <td id="2022">11</td>
-                                            <td id="2023">12</td>
+                                            <td id="2017">{{ $mhs_count['2017']['lulus'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['lulus'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['lulus'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['lulus'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['lulus'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['lulus'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['lulus'] }}</td>
                                         </tr>
                                         <tr>
                                             <td  id="cuti">Undur Diri </td>
-                                            <td id="2017">6</td>
-                                            <td id="2018">7</td>
-                                            <td id="2019">8</td>
-                                            <td id="2020">9</td>
-                                            <td id="2021">10</td>
-                                            <td id="2022">11</td>
-                                            <td id="2023">12</td>
+                                            <td id="2017">{{ $mhs_count['2017']['undur diri'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['undur diri'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['undur diri'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['undur diri'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['undur diri'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['undur diri'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['undur diri'] }}</td>
                                         </tr>
                                         <tr>
                                             <td  id="meninggal">Meninggal</td>
-                                            <td id="2017">12</td>
-                                            <td id="2018">13</td>
-                                            <td id="2019">14</td>
-                                            <td id="2020">15</td>
-                                            <td id="2021">16</td>
-                                            <td id="2022">17</td>
-                                            <td id="2023">18</td>
+                                            <td id="2017">{{ $mhs_count['2017']['meninggal'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['meninggal'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['meninggal'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['meninggal'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['meninggal'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['meninggal'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['meninggal'] }}</td>
                                         </tr>
-                                        
+
                                     </tbody>
                                   </table>
                                 </div>
@@ -474,7 +474,7 @@
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                            
+
 
 
 
