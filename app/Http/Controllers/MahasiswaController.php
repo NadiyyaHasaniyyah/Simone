@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Validation\Rules\Password as PasswordRules;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
@@ -372,7 +374,7 @@ class MahasiswaController extends Controller
     } else {
         $options = "<option value='' selected disabled>Pilih Kabupaten...</option>";
     }
-    
+
 
 
     // foreach ($kabupatens as $kabupaten) {
@@ -387,7 +389,7 @@ class MahasiswaController extends Controller
                         $kabupaten->name
                     </option>";
     }
-    
+
     // Return the options string as a response
     return response()->json($options);
 }
@@ -598,5 +600,35 @@ class MahasiswaController extends Controller
             return redirect()->route('skripsi')->with('success', 'SKRIPSI berhasil dihapus.');
         }
     }
+
+
+    // reset password
+    public function reset_password(){
+        $attribute=Auth::guard('mhs')->user();
+
+        return view('reset_pass', [
+            'attribute'=>$attribute,
+        ]);
+    }
+
+    public function reset_password_update(Request $request){
+        $attribute = Auth::guard('mhs')->user();
+
+        $validateData = $request->validate([
+            'password' => ['required', PasswordRules::min(8)],
+            'password_baru' => 'required|same:password_baru_confirmation',
+        ]);
+
+        if (!Hash::check($validateData['password'], $attribute->password)) {
+            return redirect()->route('reset_password_mhs')->with('error', 'Password Lama tidak sesuai.');
+        }
+
+        $hashedPasswordBaru = bcrypt($validateData['password_baru']);
+
+        mahasiswa::where('id', $attribute->id)->update(['password' => $hashedPasswordBaru]);
+
+        return redirect()->route('dashboard_mhs')->with('success', 'Password berhasil diubah.');
+    }
+
 
 }

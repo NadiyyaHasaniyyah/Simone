@@ -16,7 +16,7 @@ use App\Models\dosenwali;
 Route::get('/',[LoginController::class,'index']);
 Route::post('/',[LoginController::class,'authenticate']);
 Route::get('/logout',[LoginController::class,'getLogout'])->middleware('guest');
-Route::get('/reset_password',[LoginController::class,'resetPassword'])->middleware('guest')->name('reset_password');
+// Route::get('/reset_password',[LoginController::class,'resetPassword'])->middleware('guest')->name('reset_password');
 
 
 
@@ -52,6 +52,10 @@ Route::middleware(['isMahasiswa'])->group(function(){
     Route::get('mahasiswa/dashboard_mhs',[MahasiswaController::class, 'index'])-> name('dashboard_mhs');
     Route::get('mahasiswa/update_mhs',[MahasiswaController::class, 'edit'])-> name('update_mhs');
     Route::put('mahasiswa/update_mhs',[MahasiswaController::class, 'update'])-> name('update_mhs');
+
+    // reset password
+    Route::get('mahasiswa/reset_password',[MahasiswaController::class, 'reset_password'])-> name('reset_password_mhs');
+    Route::put('mahasiswa/reset_password',[MahasiswaController::class, 'reset_password_update'])-> name('reset_password_update');
 
     // getKabupaten
     Route::post('mahasiswa/kabupaten',[MahasiswaController::class, 'getKabupaten'])-> name('getKabupaten');

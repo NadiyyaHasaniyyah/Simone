@@ -67,7 +67,7 @@
                         <input type="password" id="password" name="password" class="input" required>
                     </div>
                 </div>
-                <a href="{{ route('reset_password') }}">Reset Password?</a>
+                <a href="#">Lupa Password?</a>
                 <input type="submit" class="btn btn-secondary" value="Login">
             </form>
         </div>

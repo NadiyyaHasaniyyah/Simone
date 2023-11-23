@@ -36,9 +36,11 @@
     <!-- inject:css -->
     <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/css/vertical-layout-light/style.css') }}" rel="stylesheet">
-
+    <!-- dashboard css -->
+    <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
     <!-- irs tabcss -->
     <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 </head>
 
 <body>
@@ -102,17 +104,34 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Reset Password</h4>
                                     <br>
-                                  <form class="forms-sample">
-                                    <div class="form-group">
-                                      <label for="exampleInputName1">Password Lama</label>
-                                      <input type="password" id="password_baru" name="password" class="form-control" required placeholder="Password Lama">
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="exampleInputEmail3">Password Baru</label>
-                                      <input type="password" id="password_baru" name="password" class="form-control" required placeholder="Password Baru">
-                                    </div>
+                                  <form class="forms-sample" action="{{ route('reset_password_update') }}" method="POST">
+                                    @method('PUT')
+                                    @csrf
+                                        <div class="form-group">
+                                        <label for="password">Password Lama</label>
+                                        <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required placeholder="Password Lama">
+                                        @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        </div>
 
-                                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                        <div class="form-group">
+                                        <label for="password_baru">Password Baru</label>
+                                        <input type="password" id="password_baru" name="password_baru" class="form-control  @error('password_baru') is-invalid @enderror" required placeholder="Password Baru">
+                                        @error('password_baru')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="password_baru_confirmation">Konfirmasi Password Baru</label>
+                                            <input type="password" id="password_baru_confirmation" name="password_baru_confirmation" class="form-control @error('password_baru_confimation') is-invalid @enderror" required placeholder="Konfirmasi Password Baru">
+                                        @error('password_baru_confirmation')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                                   </form>
                                 </div>
                               </div>

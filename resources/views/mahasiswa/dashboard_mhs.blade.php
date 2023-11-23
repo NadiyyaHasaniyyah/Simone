@@ -120,6 +120,11 @@
                                 <i class="ti-power-off text-primary"></i>
                                 Logout
                             </a>
+
+                            <a class="dropdown-item" href="{{ route('reset_password_mhs') }}">
+                                <i class="ti-power-off text-primary"></i>
+                                Reset Password
+                            </a>
                         </div>
                     </li>
                 </ul>
@@ -206,6 +211,22 @@
                                     </h6>
                                 </div>
                             </div>
+
+                            {{-- error success --}}
+                            <div class="form-group row col-sm-10" style="margin-left: 6px;">
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                            </div>
+                            
                         </div>
                     </div>
 
