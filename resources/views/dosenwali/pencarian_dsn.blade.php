@@ -178,6 +178,20 @@
                         </a>
 
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
+                        <i class="fa fa-tasks menu-icon"></i>
+                        <span class="menu-title"> Rekap PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
                             <i class="fa fa-user menu-icon"></i>
@@ -215,9 +229,9 @@
                                     <form class="form-group" action="{{ route('pencarian_dsn') }}" method="get">
                                         <div class="input-group">
                                             <input name="keyword" type="text" class="form-control" id="search" placeholder="Nama atau NIM">
-                                            <div class="input-group-append">
+                                            {{-- <div class="input-group-append">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </form>
                                 </div>

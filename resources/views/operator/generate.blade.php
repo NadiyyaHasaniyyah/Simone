@@ -125,17 +125,31 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('generate') }}">
+                        <a class="nav-link" href="{{ route('generate') }}">
                             <i class="ti-user menu-icon"></i>
                             <span class="menu-title">Generate Akun</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('managemen') }}">
-                            <i class="ti-id-badge
-                            menu-icon"></i>
-                            <span class="menu-title">Manajemen Akun</span>
-                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
+                            <i class="fa fa-tasks menu-icon"></i>
+                            <span class="menu-title"> Rekap PKL</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title"> Rekap Skripsi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_mahasiswa') }}">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title">Rekap Mahasiswa</span>
+                            </a>
+                        </li>
+
                     </li>
                 </ul>
             </nav>
@@ -148,8 +162,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h3 class="font-weight-bold">Generate</h3>
-                            <a class="active" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
-                                style="color: black" href="{{ route('generate') }}">Generate Akun Mahasiswa</a>
+                            <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
+                            class="active" href="{{ route('generate') }}">Generate Akun Mahasiswa</a>
                         </div>
                     </div>
                     <br>

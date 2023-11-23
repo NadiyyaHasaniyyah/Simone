@@ -195,7 +195,6 @@
 
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
@@ -207,8 +206,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">Verifikasi Progres</span>
+                            <span class="menu-title">Verifikasi Progress</span>
                         </a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
+                        <i class="fa fa-tasks menu-icon"></i>
+                        <span class="menu-title"> Rekap PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
                             <i class="fa fa-user menu-icon"></i>
@@ -218,6 +233,7 @@
                 </ul>
             </nav>
 
+        
 
             <!-- Dashboard -->
             <div class="main-panel">
@@ -249,9 +265,9 @@
                                                 <div class="input-group">
                                                     <input name="keyword" type="text" class="form-control"
                                                         id="search" placeholder="Nama atau NIM">
-                                                    <div class="input-group-append">
+                                                    {{-- <div class="input-group-append">
                                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </form>
                                         </div>

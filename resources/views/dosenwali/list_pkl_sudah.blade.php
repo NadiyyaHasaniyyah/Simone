@@ -167,25 +167,37 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard_dpt') }}">
+                        <a class="nav-link" href="{{ route('dashboard_dsn') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_pkl') }}">
+                        <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">PKL</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_skripsi') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Skripsi</span>
-                            </a>
-                        </li>
+                            <span class="menu-title">Verifikasi Progress</span>
+                        </a>
 
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
+                        <i class="fa fa-tasks menu-icon"></i>
+                        <span class="menu-title"> Rekap PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pencarian_dsn') }}">
+                            <i class="fa fa-user menu-icon"></i>
+                            <span class="menu-title">Pencarian</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -197,10 +209,16 @@
                     <div class="row">
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                {{-- <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">List PKL Mahasiswa</h3>
                                     <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
                                         style="color: black" href="pkl_dpt">List PKL Mahasiswa</a>
+                                </div> --}}
+                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                    <h3 class="font-weight-bold">List PKL Mahasiswa</h3>
+                                    <a style="color: black" href="{{ route('dashboard_dsn') }}">Dashboard/</a>
+                                    <a class="active" href="#">List PKL Mahasiswa
+                                        Progress</a>
                                 </div>
                             </div>
                         </div>

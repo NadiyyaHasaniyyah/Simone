@@ -174,24 +174,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">Verifikasi Progress</span>
+                            <span class="menu-title">Verifikasi Progress Studi</span>
                         </a>
 
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
-                        <i class="fa fa-tasks menu-icon"></i>
-                        <span class="menu-title"> Rekap PKL</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
-                            <i class="fa fa-newspaper-o  menu-icon"></i>
-                            <span class="menu-title"> Rekap Skripsi</span>
-                        </a>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
                             <i class="fa fa-user menu-icon"></i>
@@ -212,9 +198,9 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold"> Hasil Pencarian Mahasiswa</h3>
-                                    <a style="color: black"  href="{{ route('dashboard_dsn') }}">Dashboard/</a>
-                                    <a style="color: black" href="{{ route('pencarian_dsn') }}">Pencarian Mahasiswa/</a>
-                                    <a class="active" href="#"> Hasil Pencarian Mahasiswa</a>
+                                    <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard/</a>
+                                    <a style="color: black" href="pencarian_dsn">Pencarian Mahasiswa/</a>
+                                    <a style="color: black" href="hasil_pencarian_dsn"> Hasil Pencarian Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
@@ -273,86 +259,60 @@
                             <div class="card">
                               <div class="card-body">
                                 <h4 class="card-title">Semester</h4>
-
                                 <div class="template-demo">
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        @php
-                                        $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
-                                        $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
-                                        $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
-                                        $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
-                                        @endphp
-
-                                        @if ($flag1 == 1 && $flag2 == 1)
-                                            @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text">
-                                            @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text">
-                                            @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text">
-                                            @endif
-                                        @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text">
-                                        @endif
-                                            {{ $i }}
-                                        </button>
-                                    @endfor
+                                    <button type="button" class="open btn btn-primary btn-icon-text" >
+                                        1
+                                    </button>
+                                    <button type="button" class="btn btn-info btn-icon-text">
+                                        2
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        3
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        4
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        5
+                                    </button>
                                 </div>
 
                                 <div class="template-demo">
-                                    @for ($i = 6; $i <= 10; $i++)
-                                        @php
-                                        $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
-                                        $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
-                                        $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
-                                        $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
-                                        @endphp
-
-                                        @if ($flag1 == 1 && $flag2 == 1)
-                                            @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text">
-                                            @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text">
-                                            @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text">
-                                            @endif
-                                        @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text">
-                                        @endif
-                                            {{ $i }}
-                                        </button>
-                                    @endfor
+                                    <button type="button" class="btn btn-warning btn-icon-text">
+                                        6
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-text">
+                                        7
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-icon-text">
+                                        8
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        9
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        10
+                                    </button>
                                 </div>
 
                                 <div class="template-demo">
-                                    @for ($i = 11; $i <= 14; $i++)
-                                        @php
-                                        $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
-                                        $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
-                                        $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
-                                        $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
-                                        @endphp
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        11
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        12
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        13
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                        14
+                                    </button>
 
-                                        @if ($flag1 == 1 && $flag2 == 1)
-                                            @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text">
-                                            @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text">
-                                            @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text">
-                                            @endif
-                                        @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text">
-                                        @endif
-                                            {{ $i }}
-                                        </button>
-                                    @endfor
                                 </div>
-
                               </div>
                             </div>
                           </div>
-                          
                           <div class="col-md-5 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
@@ -397,9 +357,11 @@
                                 </div>
                               </div>
                             </div>
+                          </div>
                     </div>
-
-                    <div class="modals ">
+           
+                      
+                      <div class="modals ">
                         <div class="modal-content ">
                            
                                 
@@ -529,7 +491,12 @@
 
                         <!-- content-wrapper ends -->
                         <!-- partial:../../partials/_footer.html -->
-                        
+                        <footer class="footer">
+                          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                          </div>
+                        </footer>
                         <!-- partial -->
 
 
@@ -551,6 +518,7 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
                             <script>
                               $(document).ready(function () {
                                 $(".trigger").on("click", function () {
@@ -587,81 +555,40 @@
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
                             <!-- Modal PDF-->
-                            <script>
-                            // var num = 15;
+                            <script>var num = 15;
 
-                            //     var modalBtn = document.querySelector('.open');
-                            //     var closeBtn = document.querySelector('.close');
+                                var modalBtn = document.querySelector('.open');
+                                var closeBtn = document.querySelector('.close');
                                 
-                            //     var modalContainer = document.querySelector('.modals');
-                            //     var holdModals = document.createDocumentFragment();
+                                var modalContainer = document.querySelector('.modals');
+                                var holdModals = document.createDocumentFragment();
                                 
-                            //     for (var i = 0; i < num; i++) {
-                            //       var div = document.createElement('div');
-                            //       div.classList.add('modal-drop');
-                            //       div.style.top = Math.floor((Math.random() * 100)) + 'vh';
-                            //       div.style.left = Math.floor((Math.random() * 100)) + 'vw';
-                            //       div.style.transitionDelay = Math.random() + 's';
-                            //       holdModals.appendChild(div);
-                            //     }
-                            //     console.log();
-                            //     modalContainer.appendChild(holdModals);
+                                for (var i = 0; i < num; i++) {
+                                  var div = document.createElement('div');
+                                  div.classList.add('modal-drop');
+                                  div.style.top = Math.floor((Math.random() * 100)) + 'vh';
+                                  div.style.left = Math.floor((Math.random() * 100)) + 'vw';
+                                  div.style.transitionDelay = Math.random() + 's';
+                                  holdModals.appendChild(div);
+                                }
+                                console.log();
+                                modalContainer.appendChild(holdModals);
                                 
-                            //     modalBtn.addEventListener('click',function(){
-                            //       modalContainer.style.display = 'block';  
-                            //       window.setTimeout(function(){
-                            //         modalContainer.classList.add('active');
-                            //       },0.1);
-                            //     });
+                                modalBtn.addEventListener('click',function(){
+                                  modalContainer.style.display = 'block';  
+                                  window.setTimeout(function(){
+                                    modalContainer.classList.add('active');
+                                  },0.1);
+                                });
                                 
-                            //     closeBtn.addEventListener('click',function(){
-                            //        modalContainer.classList.remove('active');
+                                closeBtn.addEventListener('click',function(){
+                                   modalContainer.classList.remove('active');
                                   
-                            //        window.setTimeout(function(){
-                            //         modalContainer.style.display = 'none';
-                            //       },3000);
-                            //     });
-
-                            
-                            document.addEventListener('DOMContentLoaded', function() {
-    var num = 15;
-
-    var modalButtons = document.querySelectorAll('.open');
-    var closeBtn = document.querySelector('.close');
-    var modalContainer = document.querySelector('.modals');
-    var holdModals = document.createDocumentFragment();
-
-    for (var i = 0; i < num; i++) {
-        var div = document.createElement('div');
-        div.classList.add('modal-drop');
-        div.style.top = Math.floor((Math.random() * 100)) + 'vh';
-        div.style.left = Math.floor((Math.random() * 100)) + 'vw';
-        div.style.transitionDelay = Math.random() + 's';
-        holdModals.appendChild(div);
-    }
-
-    modalButtons.forEach(function(modalBtn) {
-        modalBtn.addEventListener('click', function() {
-            modalContainer.style.display = 'block';
-            window.setTimeout(function() {
-                modalContainer.classList.add('active');
-            }, 0.1);
-        });
-    });
-
-    closeBtn.addEventListener('click', function() {
-        modalContainer.classList.remove('active');
-
-        window.setTimeout(function() {
-            modalContainer.style.display = 'none';
-        }, 3000);
-    });
-
-    modalContainer.appendChild(holdModals);
-});
-
+                                   window.setTimeout(function(){
+                                    modalContainer.style.display = 'none';
+                                  },3000);
+                                });
                               </script>
-
 
 
 
