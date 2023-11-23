@@ -49,7 +49,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_dpt') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_opt') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -179,6 +179,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('managemen') }}">
+                            <i class="ti-id-badge
+                            menu-icon"></i>
+                            <span class="menu-title"> Manajemen Akun</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
                             <i class="fa fa-tasks menu-icon"></i>
@@ -192,7 +199,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_mahasiswa') }}">
+                            <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
                                 <i class="fa fa-newspaper-o  menu-icon"></i>
                                 <span class="menu-title">Rekap Mahasiswa</span>
                             </a>
@@ -216,7 +223,10 @@
                                 </div> --}}
                                 <div class="col-lg-12">
                                     <h3 class="font-weight-bold">List Skripsi Mahasiswa</h3>
-                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
+                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a>
+                                    <a
+                                    style="color: black" href="{{ route('rekap_skripsi_opt') }}">Rekap Skripsi Mahasiswa/</a>
+                                    <a
                                     class="active" href="#">List Skripsi Mahasiswa</a>
                                 </div>
                             </div>
@@ -227,9 +237,9 @@
                     {{-- List Mahasiswa --}}
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
-                            <div class="card">
+                            <div class="card" id="printableTable">
                               <div class="card-body">
-                                <h4 class="card-title">List Mahasiswa</h4>
+                                <h4 class="card-title">List Mahasiswa belum Skripsi</h4>
                                 <div class="table-responsive">
                                   <table class="table table-striped" id=TabelMahasiswa>
 
@@ -285,7 +295,7 @@
                                     </table>
                                     </div>
                                     <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
+                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
                                 </div>
                                 </div>
                             </div>
@@ -322,6 +332,75 @@
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+                            <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+                            <script>
+                                function printDiv() {
+                                    var printFrame = window.frames["print_frame"];
+                                    var printDocument = printFrame.document;
+            
+                                    // Menyalin HTML tabel ke dalam dokumen di dalam iframe
+                                    printDocument.body.innerHTML = document.getElementById("printableTable").outerHTML;
+            
+                                    // Menambahkan gaya CSS ke dalam dokumen di dalam iframe
+                                    var styleElement = printDocument.createElement("style");
+                                    styleElement.innerHTML = `
+                                              @import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
+                                              html {
+                                                width: 100%;
+                                                height: 100%;
+                                            }
+                                            body {
+                                                color: #333;
+                                                font-family: "Raleway";
+                                            }
+                                            body h4 {
+                                                text-align: center;
+                                                color: #428bff;
+                                                font-size: 40px;
+                                                padding: 0px 0 0px 0;
+                                                margin: 0;
+                                            }
+            
+                                              
+            
+            
+            
+                                                table {
+                                                  border-collapse: collapse;
+                                                  width: 100%;
+                                                }
+                                        
+                                                th, td {
+                                                  border: 1px solid #ddd;
+                                                  padding: 8px;
+                                                  text-align: left;
+                                                }
+                                        
+                                                tr:nth-child(even) {
+                                                  background-color: #f2f2f2;
+                                                }
+                                        
+                                                th {
+                                                  background-color: #4CAF50;
+                                                  color: white;
+                                                }
+                                        
+                                                td {
+                                                  padding: 12px;
+                                                }
+                                        
+                                                tr:hover {
+                                                  background-color: #f5f5f5;
+                                                }
+                                              `;
+                                    printDocument.head.appendChild(styleElement);
+            
+                                    // Fokus dan cetak dokumen di dalam iframe
+                                    printFrame.window.focus();
+                                    printFrame.window.print();
+                                }
+                            </script>
+
 
 
 
