@@ -285,14 +285,14 @@
 
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text">
+                                                <button type="button" class="open btn btn-success btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text">
+                                                <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text">
+                                                <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @endif
                                         @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text">
+                                            <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                         @endif
                                             {{ $i }}
                                         </button>
@@ -310,14 +310,14 @@
 
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text">
+                                                <button type="button" class="open btn btn-success btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text">
+                                                <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text">
+                                                <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @endif
                                         @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text">
+                                            <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                         @endif
                                             {{ $i }}
                                         </button>
@@ -332,21 +332,22 @@
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-
+                                        
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text">
+                                                <button type="button" class="open btn btn-success btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text">
+                                                <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text">
+                                                <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @endif
                                         @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text">
+                                            <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                         @endif
                                             {{ $i }}
                                         </button>
                                     @endfor
+
                                 </div>
 
                               </div>
@@ -432,10 +433,16 @@
                                                     <section>
                                                         <h2>IRS</h2>
                                                         <div>
+                                                            @php
+                                                            $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
+                                                            $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
+                                                            $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
+                                                            $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
+                                                            @endphp
                                                             <link
                                                                 href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined"
                                                                 rel="stylesheet">
-                                                                <p style="text-align: right; font-weight: bold; font-size: 40px">1</p>
+                                                                <p id="modalContent" style="text-align: right; font-weight: bold; font-size: 40px">test</p>
                                                                 <br><br>
                                                                 <p style="text-align: center; font-weight: bold; font-size: 35px"> 24 SKS</p>
                                                                 <br>
@@ -551,7 +558,7 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script>
+                            {{-- <script>
                               $(document).ready(function () {
                                 $(".trigger").on("click", function () {
                                   $(".modal-wrapper").toggleClass("open");
@@ -559,7 +566,58 @@
                                   return false;
                                 });
                               });
+                            </script> --}}
+
+                            <script>
+                                $(document).ready(function () {
+                                    $(".trigger").on("click", function () {
+                                        var semester = $(this).data("semester");
+                                        openModal(semester);
+                                        return false;
+                                    });
+                            
+                                    function openModal(semester) {
+                                        // You can use the value of 'semester' to customize the content of the popup
+                                        console.log("Opening popup for Semester " + semester);
+                                        
+                                        // For demonstration purposes, toggling classes as in your original script
+                                        $(".modal-wrapper").toggleClass("open");
+                                        $(".page-wrapper").toggleClass("blur-it");
+                                    }
+                                });
                             </script>
+
+                            {{-- <script>
+                                $(document).ready(function () {
+                                    $(".trigger").on("click", function () {
+                                        var semester = $(this).data("semester");
+                                        var dataUrl = $(this).data("url");
+                            
+                                        openModal(semester, dataUrl);
+                                        return false;
+                                    });
+                            
+                                    function openModal(semester, dataUrl) {
+                                        // Fetch data for the selected semester using AJAX
+                                        $.ajax({
+                                            url: dataUrl,
+                                            method: 'GET',
+                                            success: function (data) {
+                                                // Update modal content with the fetched data
+                                                $(".modal-content").html(data);
+                            
+                                                // For demonstration purposes, toggling classes as in your original script
+                                                $(".modals").toggleClass("open");
+                                                $(".page-wrapper").toggleClass("blur-it");
+                                            },
+                                            error: function (error) {
+                                                console.error("Error fetching data:", error);
+                                            }
+                                        });
+                                    }
+                                });
+                            </script> --}}
+                              
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->
