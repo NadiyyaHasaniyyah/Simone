@@ -167,22 +167,34 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard_dpt') }}">
+                        <a class="nav-link" href="{{ route('dashboard_opt') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('generate') }}">
+                            <i class="ti-user menu-icon"></i>
+                            <span class="menu-title">Generate Akun</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_pkl') }}">
+                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">PKL</span>
+                            <span class="menu-title"> Rekap PKL</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_skripsi') }}">
+                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
                                 <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Skripsi</span>
+                                <span class="menu-title"> Rekap Skripsi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_mahasiswa') }}">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title">Rekap Mahasiswa</span>
                             </a>
                         </li>
 
@@ -197,10 +209,15 @@
                     <div class="row">
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                {{-- <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Rekap PKL Mahasiswa</h3>
                                     <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
                                         style="color: black" href="pkl_dpt">Rekap PKL Mahasiswa</a>
+                                </div> --}}
+                                <div class="col-lg-12">
+                                    <h3 class="font-weight-bold">Rekap PKL Mahasiswa</h3>
+                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
+                                    class="active" href="{{ route('rekap_pkl_opt') }}">Rekap PKL Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
