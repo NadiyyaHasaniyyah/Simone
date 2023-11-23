@@ -41,7 +41,7 @@
     <!-- irs tabcss -->
     <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/css/rekap.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 </head>
 
 <body>
@@ -49,7 +49,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_dpt') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_opt') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -116,7 +116,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                             <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -179,24 +179,31 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
+                        <a class="nav-link" href="{{ route('managemen') }}">
+                            <i class="ti-id-badge
+                            menu-icon"></i>
+                            <span class="menu-title"> Manajemen Akun</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title"> Rekap PKL</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title"> Rekap Skripsi</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_mahasiswa') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Rekap Mahasiswa</span>
-                            </a>
-                        </li>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title">Rekap Mahasiswa</span>
+                        </a>
+                    </li>
 
                     </li>
                 </ul>
@@ -217,7 +224,7 @@
                                 <div class="col-lg-12">
                                     <h3 class="font-weight-bold">Rekap PKL Mahasiswa</h3>
                                     <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
-                                    class="active" href="{{ route('rekap_pkl_opt') }}">Rekap PKL Mahasiswa</a>
+                                        class="active" href="{{ route('rekap_pkl_opt') }}">Rekap PKL Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
@@ -227,164 +234,294 @@
                     {{-- Rekap Mahasiswa  --}}
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card">
-                              <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Angkatan</h4>
-                                <div class="table-responsive pt-3">
-                                  <table class="table table-bordered">
-                                    <thead class="tahun">
-                                        <tr>
-                                            <th colspan="2">
-                                                2017
-                                            </th>
-                                            <th colspan="2">
-                                                2018
-                                            </th>
-                                            <th colspan="2">
-                                                2019
-                                            </th>
-                                            <th colspan="2">
-                                                2020
-                                            </th>
-                                            <th colspan="2">
-                                                2021
-                                            </th>
-                                            <th colspan="2">
-                                                2022
-                                            </th>
-                                            <th colspan="2">
-                                                2023
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="status">
-                                        <tr>
-                                            <td id="2017">sudah</td>
-                                            <td id="2017">belum</td>
+                            <div class="card" id="printableTable">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="text-align: center">Rekap PKL Per-Angkatan</h4>
+                                    <div class="table-responsive pt-3">
+                                        <table class="table table-bordered">
+                                            <thead class="tahun">
+                                                <tr>
+                                                    <th colspan="2">
+                                                        2017
+                                                    </th>
+                                                    <th colspan="2">
+                                                        2018
+                                                    </th>
+                                                    <th colspan="2">
+                                                        2019
+                                                    </th>
+                                                    <th colspan="2">
+                                                        2020
+                                                    </th>
+                                                    <th colspan="2">
+                                                        2021
+                                                    </th>
+                                                    <th colspan="2">
+                                                        2022
+                                                    </th>
+                                                    <th colspan="2">
+                                                        2023
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="status">
+                                                <tr>
+                                                    <td id="2017">sudah</td>
+                                                    <td id="2017">belum</td>
 
-                                            <td id="2018">sudah</td>
-                                            <td id="2018">belum</td>
+                                                    <td id="2018">sudah</td>
+                                                    <td id="2018">belum</td>
 
-                                            <td id="2019">sudah</td>
-                                            <td id="2019">belum</td>
+                                                    <td id="2019">sudah</td>
+                                                    <td id="2019">belum</td>
 
-                                            <td id="2020">sudah</td>
-                                            <td id="2020">belum</td>
+                                                    <td id="2020">sudah</td>
+                                                    <td id="2020">belum</td>
 
-                                            <td id="2021">sudah</td>
-                                            <td id="2021">belum</td>
+                                                    <td id="2021">sudah</td>
+                                                    <td id="2021">belum</td>
 
-                                            <td id="2022">sudah</td>
-                                            <td id="2022">belum</td>
+                                                    <td id="2022">sudah</td>
+                                                    <td id="2022">belum</td>
 
-                                            <td id="2023">sudah</td>
-                                            <td id="2023">belum</td>
-                                        </tr>
-                                        <tr class="data">
+                                                    <td id="2023">sudah</td>
+                                                    <td id="2023">belum</td>
+                                                </tr>
+                                                <tr class="data">
 
-                                            {{-- 2017 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countsudah['2017'] ?? 0 }}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countbelum['2017'] ?? 0 }}</a>
-                                            </td>
+                                                    {{-- 2017 --}}
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_sudah_opt', ['angkatan' => '2017']) }}"
+                                                            class="text-decoration-none">{{ $countsudah['2017'] ?? 0 }}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_belum_opt', ['angkatan' => '2017']) }}"
+                                                            class="text-decoration-none">{{ $countbelum['2017'] ?? 0 }}</a>
+                                                    </td>
 
-                                            {{-- 2018 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_opt', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_opt', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
-                                            </td>
+                                                    {{-- 2018 --}}
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_sudah_opt', ['angkatan' => '2018']) }}"
+                                                            class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_belum_opt', ['angkatan' => '2018']) }}"
+                                                            class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
+                                                    </td>
 
-                                            {{-- 2019 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_opt', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_opt', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
-                                            </td>
+                                                    {{-- 2019 --}}
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_sudah_opt', ['angkatan' => '2019']) }}"
+                                                            class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_belum_opt', ['angkatan' => '2019']) }}"
+                                                            class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
+                                                    </td>
 
-                                            {{-- 2020 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_opt', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_opt', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
-                                            </td>
+                                                    {{-- 2020 --}}
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_sudah_opt', ['angkatan' => '2020']) }}"
+                                                            class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_belum_opt', ['angkatan' => '2020']) }}"
+                                                            class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
+                                                    </td>
 
-                                            {{-- 2021 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_opt', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_opt', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
-                                            </td>
+                                                    {{-- 2021 --}}
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_sudah_opt', ['angkatan' => '2021']) }}"
+                                                            class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_belum_opt', ['angkatan' => '2021']) }}"
+                                                            class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
+                                                    </td>
 
-                                            {{-- 2022 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_opt', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_opt', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
-                                            </td>
+                                                    {{-- 2022 --}}
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_sudah_opt', ['angkatan' => '2022']) }}"
+                                                            class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_belum_opt', ['angkatan' => '2022']) }}"
+                                                            class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
+                                                    </td>
 
-                                            {{-- 2023 --}}
-                                            <td>
-                                                <a href="{{ route('list_pkl_sudah_opt', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_pkl_belum_opt', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                  </table>
+                                                    {{-- 2023 --}}
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_sudah_opt', ['angkatan' => '2023']) }}"
+                                                            class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('list_pkl_belum_opt', ['angkatan' => '2023']) }}"
+                                                            class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {{-- button  --}}
+                                    <br><br>
+                                    <button type="button" class="btn btn-primary btn-rounded btn-fw float-right"
+                                        onclick="printDiv()">Cetak</button>
                                 </div>
-                                {{-- button  --}}
-                                <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
-                              </div>
                             </div>
-                          </div>
+                        </div>
                     </div>
 
 
-                                <!-- page-body-wrapper ends -->
-                            </div>
-                            <!-- container-scroller -->
+                    <!-- page-body-wrapper ends -->
+                </div>
+                <iframe name="print_frame" width="0" height="0" frameborder="0"
+                    src="about:blank"></iframe>
+                <!-- container-scroller -->
+                <style>
+                    @media print {
+                        iframe {
+                            /* Gaya untuk tampilan cetak di sini */
+                            border: none;
+                        }
+
+                        table {
+                            border-collapse: collapse;
+                            width: 100%;
+                        }
+
+                        th,
+                        td {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                            text-align: left;
+                        }
+
+                        tr:nth-child(even) {
+                            background-color: #f2f2f2;
+                        }
+
+                        th {
+                            background-color: #4CAF50;
+                            color: white;
+                        }
+
+                        td {
+                            padding: 12px;
+                        }
+
+                        tr:hover {
+                            background-color: #f5f5f5;
+                        }
+                    }
+                </style>
 
 
-                            <!-- plugins:js -->
-                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script src="vendors/js/vendor.bundle.base.js"></script>
-                            <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
-                            <!-- endinject -->
-                            <!-- Plugin js for this page -->
-                            <script src="{{ asset('style1/skydash/vendors/chart.js/Chart.min.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/js/file-upload.js') }}"></script>
-                            <script src="vendors/chart.js/Chart.min.js"></script>
-                            <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-                            <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-                            <script src="js/dataTables.select.min.js"></script>
+                <!-- plugins:js -->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="vendors/js/vendor.bundle.base.js"></script>
+                <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
+                <!-- endinject -->
+                <!-- Plugin js for this page -->
+                <script src="{{ asset('style1/skydash/vendors/chart.js/Chart.min.js') }}"></script>
+                <script src="{{ asset('style1/skydash/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+                <script src="{{ asset('style1/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+                <script src="{{ asset('style1/skydash/js/file-upload.js') }}"></script>
+                {{-- <script> function printDiv() {
+                                window.frames[
+                                  "print_frame"
+                                ].document.body.innerHTML = document.getElementById(
+                                  "printableTable"
+                                ).innerHTML;
+                                window.frames["print_frame"].window.focus();
+                                window.frames["print_frame"].window.print();
+                              }</script> --}}
+                <script>
+                    function printDiv() {
+                        var printFrame = window.frames["print_frame"];
+                        var printDocument = printFrame.document;
 
-                            <!-- End plugin js for this page -->
-                            <!-- inject:js -->
-                            <script src="{{ asset('style1/skydash/js/off-canvas.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/js/hoverable-collapse.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/js/template.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/js/settings.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/js/todolist.js') }}"></script>
+                        // Menyalin HTML tabel ke dalam dokumen di dalam iframe
+                        printDocument.body.innerHTML = document.getElementById("printableTable").outerHTML;
 
-                            <!-- endinject -->
-                            <!-- Custom js for this page-->
-                            <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
-                            <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
+                        // Menambahkan gaya CSS ke dalam dokumen di dalam iframe
+                        var styleElement = printDocument.createElement("style");
+                        styleElement.innerHTML = `
+                                  @import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
+                                  html {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                                body {
+                                    color: #333;
+                                    font-family: "Raleway";
+                                }
+                                body h4 {
+                                    text-align: center;
+                                    color: #428bff;
+                                    font-size: 40px;
+                                    padding: 0px 0 0px 0;
+                                    margin: 0;
+                                }
 
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+                                  
+
+
+
+                                    table {
+                                      border-collapse: collapse;
+                                      width: 100%;
+                                    }
+                            
+                                    th, td {
+                                      border: 1px solid #ddd;
+                                      padding: 8px;
+                                      text-align: left;
+                                    }
+                            
+                                    tr:nth-child(even) {
+                                      background-color: #f2f2f2;
+                                    }
+                            
+                                    th {
+                                      background-color: #4CAF50;
+                                      color: white;
+                                    }
+                            
+                                    td {
+                                      padding: 12px;
+                                    }
+                            
+                                    tr:hover {
+                                      background-color: #f5f5f5;
+                                    }
+                                  `;
+                        printDocument.head.appendChild(styleElement);
+
+                        // Fokus dan cetak dokumen di dalam iframe
+                        printFrame.window.focus();
+                        printFrame.window.print();
+                    }
+                </script>
+
+                <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+                <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+                <script src="js/dataTables.select.min.js"></script>
+
+                <!-- End plugin js for this page -->
+                <!-- inject:js -->
+                <script src="{{ asset('style1/skydash/js/off-canvas.js') }}"></script>
+                <script src="{{ asset('style1/skydash/js/hoverable-collapse.js') }}"></script>
+                <script src="{{ asset('style1/skydash/js/template.js') }}"></script>
+                <script src="{{ asset('style1/skydash/js/settings.js') }}"></script>
+                <script src="{{ asset('style1/skydash/js/todolist.js') }}"></script>
+
+                <!-- endinject -->
+                <!-- Custom js for this page-->
+                <script src="{{ asset('style1/skydash/js/dashboard.js') }}"></script>
+                <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </body>
 
 </html>
