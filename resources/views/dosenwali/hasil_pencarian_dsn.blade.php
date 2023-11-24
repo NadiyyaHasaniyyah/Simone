@@ -258,7 +258,6 @@
                                 <div class="card-body">
                                 <h4 class=""></h4>
                                 <div class="template-demo">
-                                    {{-- Bagian foto --}}
                                 </div>
                               </div>
                             </div>
@@ -285,7 +284,7 @@
 
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @elseif ($flag3)
                                                 <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @else
@@ -332,7 +331,7 @@
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-                                        
+
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
                                                 <button type="button" class="open btn btn-success btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
@@ -353,34 +352,34 @@
                               </div>
                             </div>
                           </div>
-                          
+
                           <div class="col-md-5 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
                                 <h4 class="card-title">Keterangan</h4>
                                 <div class="form-group">
-                                    
+
                                       <div class="form-check form-check-danger">
                                         <label class="form-check-label">
                                           <input type="radio" class="form-check-input" name="ExampleRadio4" id="ExampleRadio4" checked>
                                           Belum diisikan (IRS dan KHS) atau tidak digunakan
                                         </label>
                                       </div>
-                                    
+
                                       <div class="form-check form-check-info">
                                         <label class="form-check-label">
                                           <input type="radio" class="form-check-input" name="ExampleRadio3" id="ExampleRadio3" checked>
                                           Sudah diisikan IRS
                                         </label>
                                       </div>
-        
+
                                       <div class="form-check form-check-primary">
                                         <label class="form-check-label">
                                           <input type="radio" class="form-check-input" name="ExampleRadio1" id="ExampleRadio1" checked>
                                           Sudah diisikan (IRS dan KHS)
                                         </label>
                                       </div>
-    
+
                                     <div class="form-check form-check-warning">
                                         <label class="form-check-label">
                                           <input type="radio" class="form-check-input" name="ExampleRadio5" id="ExampleRadio5" checked>
@@ -402,10 +401,8 @@
 
                     <div class="modals ">
                         <div class="modal-content ">
-                           
-                                
                           <div class="card col-md-7">
-                            <p>  {{-- Generate --}}
+                            <p>
                                 <div class=" stretch-card">
                                     <div class="card">
                                         <div class="card-body">
@@ -424,12 +421,12 @@
                                                                     d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19.55,8.72L13.27,12.35L13.85,13.36Z" />
                                                             </svg><br><span> KHS </span></label></li>
                                                 </ul>
-            
+
                                                 <div class="slider">
                                                     <div class="indicator"></div>
                                                 </div>
                                                 <div class="content">
-            
+
                                                     <section>
                                                         <h2>IRS</h2>
                                                         <div>
@@ -438,27 +435,30 @@
                                                             $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
                                                             $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                                             $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
+
+                                                            // dd($flag1, $flag2, $flag3, $flag4);
+
+                                                            // $semesterData = $irs->where('semester', $i)->first();
+                                                            $sks =$irs->jumlah_sks;
                                                             @endphp
+
                                                             <link
                                                                 href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined"
                                                                 rel="stylesheet">
                                                                 <p id="modalContent" style="text-align: right; font-weight: bold; font-size: 40px">test</p>
                                                                 <br><br>
-                                                                <p style="text-align: center; font-weight: bold; font-size: 35px"> 24 SKS</p>
+                                                                <p style="text-align: center; font-weight: bold; font-size: 35px"> {{ $sks }}</p>
                                                                 <br>
                                                                 <div style="text-align: center;">
                                                                     <button type="button" class="btn btn-primary btn-rounded btn-fw float-center">View Detail</button>
                                                                 </div>
-                                                            
                                                             <br>
-            
                                                             <br>
                                                             <br>
                                                         </div>
-            
                                                     </section>
-            
-                                                
+
+
                                                     <section>
                                                         <h2>KHS</h2>
                                                         <div class="card">
@@ -467,10 +467,8 @@
                                                                     @csrf
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            {{-- Kolom pertama --}}
-                                                                            {{-- Nama --}}
                                                                             <p style="text-align: right; font-weight: bold; font-size: 40px">1</p>
-                                                                           
+
                                                                             <table>
                                                                                 <tr>
                                                                                     <td style="font-size: 20px">SKS Semester</td>
@@ -485,44 +483,30 @@
                                                                                     <td style="font-size: 20px">IP Kumulatif</td>
                                                                                 </tr>
                                                                             </table>
-                                                                            
+
                                                                             <br><br>
                                                                             <div style="text-align: center;">
                                                                                 <button type="button" class="btn btn-primary btn-rounded btn-fw float-center">View Detail</button>
                                                                             </div>
-
-
-                                
-                                                                            
                                                                         </div>
-            
+
                                                                     </div>
-                                                                    
-            
-            
-            
-            
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </section>
                                                 </div>
-            
-            
-            
+
+
+
                                             </div>
-            
+
                                             <br>
                                         </div>
-            
-            
-            
-                                        <!-- partial:partials/_footer.html -->
-            
-                                        <!-- partial -->
+
                                     </div>
                                 </div>
-                            
+
 
 </p>
                             <button type="button" class="close btn btn-close position-absolute" style="position: absolute;
@@ -531,42 +515,9 @@
                           </div>
                         </div>
                       </div>
-
-
-
-                        <!-- content-wrapper ends -->
-                        <!-- partial:../../partials/_footer.html -->
-                        
-                        <!-- partial -->
-
-
-
-
-
-
-
-
                 </div>
-
-
             </div>
-
-
-                                <!-- page-body-wrapper ends -->
-                           <!-- container-scroller -->
-
-
-                            <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            {{-- <script>
-                              $(document).ready(function () {
-                                $(".trigger").on("click", function () {
-                                  $(".modal-wrapper").toggleClass("open");
-                                  $(".page-wrapper").toggleClass("blur-it");
-                                  return false;
-                                });
-                              });
-                            </script> --}}
 
                             <script>
                                 $(document).ready(function () {
@@ -575,49 +526,29 @@
                                         openModal(semester);
                                         return false;
                                     });
-                            
-                                    function openModal(semester) {
-                                        // You can use the value of 'semester' to customize the content of the popup
-                                        console.log("Opening popup for Semester " + semester);
-                                        
-                                        // For demonstration purposes, toggling classes as in your original script
-                                        $(".modal-wrapper").toggleClass("open");
-                                        $(".page-wrapper").toggleClass("blur-it");
-                                    }
-                                });
-                            </script>
 
-                            {{-- <script>
-                                $(document).ready(function () {
-                                    $(".trigger").on("click", function () {
-                                        var semester = $(this).data("semester");
-                                        var dataUrl = $(this).data("url");
-                            
-                                        openModal(semester, dataUrl);
-                                        return false;
-                                    });
-                            
-                                    function openModal(semester, dataUrl) {
-                                        // Fetch data for the selected semester using AJAX
+                                    function openModal(semester) {
+                                        // Kirim permintaan AJAX ke backend
                                         $.ajax({
-                                            url: dataUrl,
-                                            method: 'GET',
+                                            type: "GET",
+                                            url: "/getMahasiswaBySemester/" + semester, // Ganti dengan URL yang sesuai di Laravel
                                             success: function (data) {
-                                                // Update modal content with the fetched data
-                                                $(".modal-content").html(data);
-                            
-                                                // For demonstration purposes, toggling classes as in your original script
-                                                $(".modals").toggleClass("open");
+                                                // Manipulasi DOM atau tampilkan data di modal
+                                                console.log("Data Mahasiswa Semester " + semester + ":", data);
+
+                                                // Tampilkan modal atau lakukan manipulasi DOM lainnya
+                                                $(".modal-wrapper").toggleClass("open");
                                                 $(".page-wrapper").toggleClass("blur-it");
+
                                             },
                                             error: function (error) {
-                                                console.error("Error fetching data:", error);
+                                                console.error("Error:", error);
                                             }
                                         });
                                     }
                                 });
-                            </script> --}}
-                              
+                            </script>
+
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->
@@ -646,83 +577,45 @@
 
                             <!-- Modal PDF-->
                             <script>
-                            // var num = 15;
 
-                            //     var modalBtn = document.querySelector('.open');
-                            //     var closeBtn = document.querySelector('.close');
-                                
-                            //     var modalContainer = document.querySelector('.modals');
-                            //     var holdModals = document.createDocumentFragment();
-                                
-                            //     for (var i = 0; i < num; i++) {
-                            //       var div = document.createElement('div');
-                            //       div.classList.add('modal-drop');
-                            //       div.style.top = Math.floor((Math.random() * 100)) + 'vh';
-                            //       div.style.left = Math.floor((Math.random() * 100)) + 'vw';
-                            //       div.style.transitionDelay = Math.random() + 's';
-                            //       holdModals.appendChild(div);
-                            //     }
-                            //     console.log();
-                            //     modalContainer.appendChild(holdModals);
-                                
-                            //     modalBtn.addEventListener('click',function(){
-                            //       modalContainer.style.display = 'block';  
-                            //       window.setTimeout(function(){
-                            //         modalContainer.classList.add('active');
-                            //       },0.1);
-                            //     });
-                                
-                            //     closeBtn.addEventListener('click',function(){
-                            //        modalContainer.classList.remove('active');
-                                  
-                            //        window.setTimeout(function(){
-                            //         modalContainer.style.display = 'none';
-                            //       },3000);
-                            //     });
-
-                            
                             document.addEventListener('DOMContentLoaded', function() {
-    var num = 15;
+                                var num = 15;
 
-    var modalButtons = document.querySelectorAll('.open');
-    var closeBtn = document.querySelector('.close');
-    var modalContainer = document.querySelector('.modals');
-    var holdModals = document.createDocumentFragment();
+                                var modalButtons = document.querySelectorAll('.open');
+                                var closeBtn = document.querySelector('.close');
+                                var modalContainer = document.querySelector('.modals');
+                                var holdModals = document.createDocumentFragment();
 
-    for (var i = 0; i < num; i++) {
-        var div = document.createElement('div');
-        div.classList.add('modal-drop');
-        div.style.top = Math.floor((Math.random() * 100)) + 'vh';
-        div.style.left = Math.floor((Math.random() * 100)) + 'vw';
-        div.style.transitionDelay = Math.random() + 's';
-        holdModals.appendChild(div);
-    }
+                                for (var i = 0; i < num; i++) {
+                                    var div = document.createElement('div');
+                                    div.classList.add('modal-drop');
+                                    div.style.top = Math.floor((Math.random() * 100)) + 'vh';
+                                    div.style.left = Math.floor((Math.random() * 100)) + 'vw';
+                                    div.style.transitionDelay = Math.random() + 's';
+                                    holdModals.appendChild(div);
+                                }
 
-    modalButtons.forEach(function(modalBtn) {
-        modalBtn.addEventListener('click', function() {
-            modalContainer.style.display = 'block';
-            window.setTimeout(function() {
-                modalContainer.classList.add('active');
-            }, 0.1);
-        });
-    });
+                                modalButtons.forEach(function(modalBtn) {
+                                    modalBtn.addEventListener('click', function() {
+                                        modalContainer.style.display = 'block';
+                                        window.setTimeout(function() {
+                                            modalContainer.classList.add('active');
+                                        }, 0.1);
+                                    });
+                                });
 
-    closeBtn.addEventListener('click', function() {
-        modalContainer.classList.remove('active');
+                                closeBtn.addEventListener('click', function() {
+                                    modalContainer.classList.remove('active');
 
-        window.setTimeout(function() {
-            modalContainer.style.display = 'none';
-        }, 3000);
-    });
+                                    window.setTimeout(function() {
+                                        modalContainer.style.display = 'none';
+                                    }, 3000);
+                                });
 
-    modalContainer.appendChild(holdModals);
-});
+                                modalContainer.appendChild(holdModals);
+                            });
 
-                              </script>
-
-
-
-
+                            </script>
 </body>
 
 </html>

@@ -46,6 +46,16 @@ class DosenwaliController extends Controller
         return view('dosenwali/hasil_pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi,'semester'=>$semester]);
     }
 
+    public function getMahasiswaBySemester($semester)
+    {
+        // Ambil data mahasiswa dari database berdasarkan semester
+        $mahasiswa = Irs::where('semester', $semester)->get();
+        dd($mahasiswa);
+
+        // Anda dapat mengembalikan data dalam format yang sesuai (misalnya, JSON)
+        return response()->json($mahasiswa);
+    }
+
     public function search(Request $request)
     {
         $keyword = $request->keyword;

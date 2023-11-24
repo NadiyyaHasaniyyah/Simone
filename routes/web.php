@@ -103,6 +103,7 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
     Route::get('dosenwali/hasil_pencarian_dsn/{id}',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
     Route::get('dosenwali/rekap_mahasiswa',[DosenwaliController::class, 'rekap_mhs'])-> name('rekap_mhs');
+    Route::get('dosenwali//getMahasiswaBySemester/{semester}',[DosenwaliController::class, 'getMahasiswaBySemester'])-> name('getMahasiswaBySemester');
 
     // verifikasi
     Route::get('dosenwali/verifikasi_dsn',[DosenwaliController::class, 'verifikasi'])-> name('verifikasi_dsn');
