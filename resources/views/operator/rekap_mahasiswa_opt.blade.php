@@ -42,6 +42,12 @@
     <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
     <link href="{{ asset('style1/skydash/css/rekap.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
+    {{-- Diagram bulet --}}
+    <link href="{{ asset('style1/skydash/js/chart.js') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -52,7 +58,7 @@
                 <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_opt') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"> <img
+                <a class="navbar-brand brand-logo-mini" > <img
                         src="{{ asset('style1/skydash/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -116,7 +122,8 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                             <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            {{-- {{ $attribute->nama }}  --}}
+                            <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -201,13 +208,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
                                 <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Rekap Mahasiswa </span>
+                                <span class="menu-title">Rekap Mahasiswa</span>
                             </a>
                         </li>
-
                     </li>
                 </ul>
             </nav>
+           
 
 
             <!-- Dashboard -->
@@ -216,19 +223,79 @@
                     <div class="row">
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
-                                {{-- <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Rekap Skripsi Mahasiswa</h3>
-                                    <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
-                                        style="color: black" href="pkl_dpt">Rekap Skripsi Mahasiswa</a>
-                                </div> --}}
-                                <div class="col-lg-12">
-                                    <h3 class="font-weight-bold">Rekap Skripsi Mahasiswa</h3>
-                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
-                                    class="active" href="#">Rekap Skripsi Mahasiswa</a>
+                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                    <h3 class="font-weight-bold">Rekap Mahasiswa</h3>
+                                    <a style="color: black" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
+                                    class="active"  href="#">Rekap Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {{-- Diagram Bulet --}}
+                    <div class="col-lg-12 grid-margin text-center">
+                        <div class="card mx-auto" style="width: 40rem;">
+                            <div class="card-body">
+                                <h4 class="card-title">Angkatan Keseluruhan</h4>
+                                <canvas id="doughnutChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        var doughnutPieData = {
+                            datasets: [{
+                                data: [{{ $status_count['aktif'] ?? 0 }}, {{ $status_count['mangkir'] }}, {{ $status_count['cuti'] }}, {{ $status_count['drop out'] }}, {{ $status_count['lulus'] }}, {{ $status_count['undur diri'] }}, {{ $status_count['meninggal']  }}],
+                                backgroundColor: [
+                                    'rgba(0, 255, 0, 0.5)',   // Warna hijau untuk Aktif
+                                    'rgba(255, 255, 0, 0.5)', // Warna kuning untuk Mangkir
+                                    'rgba(255, 165, 0, 0.5)', // Warna oren untuk Cuti
+                                    'rgba(255, 0, 0, 0.5)',   // Warna merah untuk DO
+                                    'rgba(139, 69, 19, 0.5)', // Warna coklat untuk Lulus
+                                    'rgba(128, 0, 128, 0.5)', // Warna ungu untuk Undur Diri
+                                    'rgba(0, 0, 255, 0.5)'    // Warna biru untuk Meninggal
+                                ],
+                                borderColor: [
+                                    'rgba(0, 255, 0, 1)',
+                                    'rgba(255, 255, 0, 1)',
+                                    'rgba(255, 165, 0, 1)',
+                                    'rgba(255, 0, 0, 1)',
+                                    'rgba(139, 69, 19, 1)',
+                                    'rgba(128, 0, 128, 1)',
+                                    'rgba(0, 0, 255, 1)'
+                                ],
+                            }],
+
+                            labels: [
+                                'Aktif',
+                                'Mangkir',
+                                'Cuti',
+                                'DO',
+                                'Lulus',
+                                'Undur Diri',
+                                'Meninggal',
+                            ]
+                        };
+
+                        var doughnutPieOptions = {
+                            responsive: true,
+                            animation: {
+                                animateScale: true,
+                                animateRotate: true
+                            }
+                        };
+
+                        $(document).ready(function () {
+                            if ($("#doughnutChart").length) {
+                                var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
+                                var doughnutChart = new Chart(doughnutChartCanvas, {
+                                    type: 'doughnut',
+                                    data: doughnutPieData,
+                                    options: doughnutPieOptions
+                                });
+                            }
+                        });
+                    </script>
 
 
                     {{-- Rekap Mahasiswa  --}}
@@ -236,114 +303,118 @@
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card" id="printableTable">
                               <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Rekap Skripsi Per-Angkatan</h4>
+                                <h4 class="card-title" style="text-align: center">Rekap Mahasiswa</h4>
                                 <div class="table-responsive pt-3">
                                   <table class="table table-bordered">
                                     <thead class="tahun">
+                                        <tr> <th rowspan="2"  style="text-align: center; vertical-align: middle;" >
+                                            Status
+                                        </th> <th colspan="7" style="text-align: center;">Angkatan</th></tr>
+
                                         <tr>
-                                            <th colspan="2">
-                                                2017
+
+                                            
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">2017</a>
                                             </th>
-                                            <th colspan="2">
-                                                2018
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2018']) }}" class="text-decoration-none">2018</a>
                                             </th>
-                                            <th colspan="2">
-                                                2019
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2019']) }}" class="text-decoration-none">2019</a>
                                             </th>
-                                            <th colspan="2">
-                                                2020
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2020']) }}" class="text-decoration-none">2020</a>
                                             </th>
-                                            <th colspan="2">
-                                                2021
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2021']) }}" class="text-decoration-none">2021</a>
                                             </th>
-                                            <th colspan="2">
-                                                2022
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2022']) }}" class="text-decoration-none">2022</a>
                                             </th>
-                                            <th colspan="2">
-                                                2023
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2023']) }}" class="text-decoration-none">2023</a>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="status">
                                         <tr>
-                                            <td id="2017">sudah</td>
-                                            <td id="2017">belum</td>
-
-                                            <td id="2018">sudah</td>
-                                            <td id="2018">belum</td>
-
-                                            <td id="2019">sudah</td>
-                                            <td id="2019">belum</td>
-
-                                            <td id="2020">sudah</td>
-                                            <td id="2020">belum</td>
-
-                                            <td id="2021">sudah</td>
-                                            <td id="2021">belum</td>
-
-                                            <td id="2022">sudah</td>
-                                            <td id="2022">belum</td>
-
-                                            <td id="2023">sudah</td>
-                                            <td id="2023">belum</td>
+                                            <td  id="aktif">Aktif</td>
+                                            <td id="2017">{{ $mhs_count['2017']['aktif'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['aktif'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['aktif'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['aktif'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['aktif'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['aktif'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['aktif'] }}</td>
                                         </tr>
-                                        <tr class="data">
-
-                                            <td id="2017">
-                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countsudah['2017'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">{{ $countbelum['2017'] ?? 0 }}</a>
-                                            </td>
-
-                                            <td id="2018">
-                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countsudah['2018'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2018']) }}" class="text-decoration-none">{{ $countbelum['2018'] ?? 0 }}</a>
-                                            </td>
-
-                                            <td id="2019">
-                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countsudah['2019'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2019']) }}" class="text-decoration-none">{{ $countbelum['2019'] ?? 0 }}</a>
-                                            </td>
-
-                                            <td id="2020">
-                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countsudah['2020'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2020']) }}" class="text-decoration-none">{{ $countbelum['2020'] ?? 0 }}</a>
-                                            </td>
-
-                                            <td id="2021">
-                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countsudah['2021'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2021']) }}" class="text-decoration-none">{{ $countbelum['2021'] ?? 0 }}</a>
-                                            </td>
-
-                                            <td id="2022">
-                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countsudah['2022'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2022']) }}" class="text-decoration-none">{{ $countbelum['2022'] ?? 0 }}</a>
-                                            </td>
-
-                                            <td id="2023">
-                                                <a href="{{ route('list_skripsi_sudah_opt', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countsudah['2023'] ?? 0 }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('list_skripsi_belum_opt', ['angkatan'=>'2023']) }}" class="text-decoration-none">{{ $countbelum['2023'] ?? 0 }}</a>
-                                            </td>
+                                        <tr>
+                                            <td  id="do">DO</td>
+                                            <td id="2017">{{ $mhs_count['2017']['drop out'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['drop out'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['drop out'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['drop out'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['drop out'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['drop out'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['drop out'] }}</td>
                                         </tr>
+                                        <tr>
+                                            <td  id="meninggal">Mangkir</td>
+                                            <td id="2017">{{ $mhs_count['2017']['mangkir'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['mangkir'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['mangkir'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['mangkir'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['mangkir'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['mangkir'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['mangkir'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  id="cuti">Cuti</td>
+                                            <td id="2017">{{ $mhs_count['2017']['cuti'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['cuti'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['cuti'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['cuti'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['cuti'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['cuti'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['cuti'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  id="lulus">Lulus</td>
+                                            <td id="2017">{{ $mhs_count['2017']['lulus'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['lulus'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['lulus'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['lulus'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['lulus'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['lulus'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['lulus'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  id="cuti">Undur Diri </td>
+                                            <td id="2017">{{ $mhs_count['2017']['undur diri'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['undur diri'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['undur diri'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['undur diri'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['undur diri'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['undur diri'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['undur diri'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  id="meninggal">Meninggal</td>
+                                            <td id="2017">{{ $mhs_count['2017']['meninggal'] }}</td>
+                                            <td id="2018">{{ $mhs_count['2018']['meninggal'] }}</td>
+                                            <td id="2019">{{ $mhs_count['2019']['meninggal'] }}</td>
+                                            <td id="2020">{{ $mhs_count['2020']['meninggal'] }}</td>
+                                            <td id="2021">{{ $mhs_count['2021']['meninggal'] }}</td>
+                                            <td id="2022">{{ $mhs_count['2022']['meninggal'] }}</td>
+                                            <td id="2023">{{ $mhs_count['2023']['meninggal'] }}</td>
+                                        </tr>
+
                                     </tbody>
                                   </table>
                                 </div>
                                 {{-- button  --}}
                                 <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()" >Cetak</button>
+                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
                               </div>
                             </div>
                           </div>
@@ -366,8 +437,15 @@
 
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            
-                            
+                            <script>
+                              $(document).ready(function () {
+                                $(".trigger").on("click", function () {
+                                  $(".modal-wrapper").toggleClass("open");
+                                  $(".page-wrapper").toggleClass("blur-it");
+                                  return false;
+                                });
+                              });
+                            </script>
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>
                             <!-- endinject -->
@@ -464,6 +542,8 @@
                                     printFrame.window.print();
                                 }
                             </script>
+
+
 
 
 

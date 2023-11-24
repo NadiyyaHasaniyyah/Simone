@@ -44,6 +44,11 @@ Route::middleware(['isOperator'])->group(function(){
     Route::get('operator/list_pkl/belum/{angkatan}',[OperatorController::class, 'list_pkl_belum'])-> name('list_pkl_belum_opt');
     Route::get('operator/list_skripsi/sudah/{angkatan}',[OperatorController::class, 'list_skripsi_sudah'])-> name('list_skripsi_sudah_opt');
     Route::get('operator/list_skripsi/belum/{angkatan}',[OperatorController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum_opt');
+
+     // rekap mhs
+    Route::get('operator/rekap_mahasiswa_opt',[OperatorController::class, 'rekap_mhs'])-> name('rekap_mahasiswa_opt');
+    Route::get('operator/rekap_angkatan_opt/{angkatan}',[OperatorController::class, 'rekap_angkatan'])-> name('rekap_angkatan_opt');
+
 });
 
 

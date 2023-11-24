@@ -40,7 +40,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_mhs') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_opt') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -131,6 +131,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('managemen') }}">
+                            <i class="ti-id-badge
+                            menu-icon"></i>
+                            <span class="menu-title"> Manajemen Akun</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
                             <i class="fa fa-tasks menu-icon"></i>
@@ -144,7 +151,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_mahasiswa') }}">
+                            <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
                                 <i class="fa fa-newspaper-o  menu-icon"></i>
                                 <span class="menu-title">Rekap Mahasiswa</span>
                             </a>
