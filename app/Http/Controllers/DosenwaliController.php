@@ -48,9 +48,13 @@ class DosenwaliController extends Controller
 
     public function getMahasiswaBySemester($semester)
     {
-        // Ambil data mahasiswa dari database berdasarkan semester
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+        // dd($mhs);
+
         $mahasiswa = Irs::where('semester', $semester)->get();
-        dd($mahasiswa);
+
+        // dd($mahasiswa);
 
         // Anda dapat mengembalikan data dalam format yang sesuai (misalnya, JSON)
         return response()->json($mahasiswa);

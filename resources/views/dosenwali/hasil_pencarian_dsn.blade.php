@@ -282,6 +282,19 @@
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
 
+                                            {{-- @if ($flag1 == 1)
+                                                <button type="button" class="open btn btn-info btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
+                                            @elseif ($flag4 == 1)
+                                                <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
+                                            @elseif ($flag3)
+                                                <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                            @else
+                                                <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+
+                                            @else
+                                            <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                            @endif --}}
+
                                         @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
                                                 <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
@@ -439,7 +452,7 @@
                                                             // dd($flag1, $flag2, $flag3, $flag4);
 
                                                             // $semesterData = $irs->where('semester', $i)->first();
-                                                            $sks =$irs->jumlah_sks;
+                                                            // $sks =$irs->jumlah_sks;
                                                             @endphp
 
                                                             <link
@@ -447,7 +460,9 @@
                                                                 rel="stylesheet">
                                                                 <p id="modalContent" style="text-align: right; font-weight: bold; font-size: 40px">test</p>
                                                                 <br><br>
-                                                                <p style="text-align: center; font-weight: bold; font-size: 35px"> {{ $sks }}</p>
+                                                                <p style="text-align: center; font-weight: bold; font-size: 35px">
+                                                                    {{-- {{ $sks }} --}}
+                                                                </p>
                                                                 <br>
                                                                 <div style="text-align: center;">
                                                                     <button type="button" class="btn btn-primary btn-rounded btn-fw float-center">View Detail</button>

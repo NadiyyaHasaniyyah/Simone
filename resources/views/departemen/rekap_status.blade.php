@@ -223,7 +223,7 @@
                     <div class="col-lg-12 grid-margin text-center">
                         <div class="card mx-auto" style="width: 40rem;">
                             <div class="card-body">
-                                <h4 class="card-title">Angkatan {{ $angkatan }}</h4>
+                                <h4 class="card-title">Status {{ $status }}</h4>
                                 <canvas id="doughnutChart"></canvas>
                             </div>
                         </div>
@@ -232,7 +232,7 @@
                     <script>
                         var doughnutPieData = {
                             datasets: [{
-                                data: [{{ $angkatan_count['aktif'][$angkatan] ?? 0 }}, {{ $angkatan_count['mangkir'][$angkatan] ?? 0 }}, {{ $angkatan_count['cuti'][$angkatan] ?? 0 }}, {{ $angkatan_count['drop out'][$angkatan] ?? 0 }}, {{ $angkatan_count['lulus'][$angkatan] ?? 0 }}, {{ $angkatan_count['undur diri'][$angkatan] ?? 0 }}, {{ $angkatan_count['meninggal'][$angkatan] ?? 0  }}],
+                                data: [{{ $status_count['2017'][$status] ?? 0 }}, {{ $status_count['2018'][$status] ?? 0 }}, {{ $status_count['2019'][$status] ?? 0 }}, {{ $status_count['2020'][$status] ?? 0 }}, {{ $status_count['2021'][$status] ?? 0 }}, {{ $status_count['2022'][$status] ?? 0 }}, {{ $status_count['2023'][$status] ?? 0  }}],
                                 backgroundColor: [
                                     'rgba(0, 255, 0, 0.5)',   // Warna hijau untuk Aktif
                                     'rgba(255, 255, 0, 0.5)', // Warna kuning untuk Mangkir
@@ -290,7 +290,7 @@
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Data Angkatan {{ $angkatan }}</h4>
+                                <h4 class="card-title" style="text-align: center">Data Status {{ $status }}</h4>
                                 <div class="table-responsive pt-3">
                                   <table class="table table-bordered">
                                     <thead class="tahun">

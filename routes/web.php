@@ -149,9 +149,9 @@ Route::middleware(['isDepartemen'])->group(function(){
     Route::get('departemen/rekap_skripsi',[DepartemenController::class, 'rekap_skripsi'])-> name('rekap_skripsi');
     Route::get('departemen/rekap_mahasiswa',[DepartemenController::class, 'rekap_mhs'])-> name('rekap_mahasiswa');
     Route::get('departemen/rekap_angkatan/{angkatan}',[DepartemenController::class, 'rekap_angkatan'])-> name('rekap_angkatan');
+    Route::get('departemen/rekap_status/{status}',[DepartemenController::class, 'rekap_status'])-> name('rekap_status');
+    Route::get('departemen/rekap_mahasiswa/{angkatan}-{status}',[DepartemenController::class, 'rekap_tahun_status'])-> name('rekap_tahun_status');
 
-    // count
-    // Route::get('departemen/count_sudah_pkl/{angkatan}',[DepartemenController::class, 'count_sudah_pkl'])-> name('count_sudah_pkl');
 
     // list
     // sudah

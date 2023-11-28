@@ -653,10 +653,10 @@ class MahasiswaController extends Controller
     public function validSkripsi(){
         $attribute=Auth::guard('mhs')->user();
         $irs = $this->IRSKomulatif();
-        $pkl = Pkl::where('mhs_id', $attribute->id)->first()->flag;
+        $pkl = Pkl::where('mhs_id', $attribute->id)->where('flag',1)->first();
         $valid = false;
         // dd($pkl);
-        if(($irs>=144)&&($pkl==1)){
+        if(($irs>=138)&&($pkl==1)){
             $valid = true;
         }
         return $valid;

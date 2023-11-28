@@ -219,78 +219,12 @@
                         </div>
                     </div>
 
-                    {{-- Diagram Bulet --}}
-                    <div class="col-lg-12 grid-margin text-center">
-                        <div class="card mx-auto" style="width: 40rem;">
-                            <div class="card-body">
-                                <h4 class="card-title">Angkatan {{ $angkatan }}</h4>
-                                <canvas id="doughnutChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <script>
-                        var doughnutPieData = {
-                            datasets: [{
-                                data: [{{ $angkatan_count['aktif'][$angkatan] ?? 0 }}, {{ $angkatan_count['mangkir'][$angkatan] ?? 0 }}, {{ $angkatan_count['cuti'][$angkatan] ?? 0 }}, {{ $angkatan_count['drop out'][$angkatan] ?? 0 }}, {{ $angkatan_count['lulus'][$angkatan] ?? 0 }}, {{ $angkatan_count['undur diri'][$angkatan] ?? 0 }}, {{ $angkatan_count['meninggal'][$angkatan] ?? 0  }}],
-                                backgroundColor: [
-                                    'rgba(0, 255, 0, 0.5)',   // Warna hijau untuk Aktif
-                                    'rgba(255, 255, 0, 0.5)', // Warna kuning untuk Mangkir
-                                    'rgba(255, 165, 0, 0.5)', // Warna oren untuk Cuti
-                                    'rgba(255, 0, 0, 0.5)',   // Warna merah untuk DO
-                                    'rgba(139, 69, 19, 0.5)', // Warna coklat untuk Lulus
-                                    'rgba(128, 0, 128, 0.5)', // Warna ungu untuk Undur Diri
-                                    'rgba(0, 0, 255, 0.5)'    // Warna biru untuk Meninggal
-                                ],
-                                borderColor: [
-                                    'rgba(0, 255, 0, 1)',
-                                    'rgba(255, 255, 0, 1)',
-                                    'rgba(255, 165, 0, 1)',
-                                    'rgba(255, 0, 0, 1)',
-                                    'rgba(139, 69, 19, 1)',
-                                    'rgba(128, 0, 128, 1)',
-                                    'rgba(0, 0, 255, 1)'
-                                ],
-                            }],
-
-                            labels: [
-                                'Aktif',
-                                'Mangkir',
-                                'Cuti',
-                                'DO',
-                                'Lulus',
-                                'Undur Diri',
-                                'Meninggal',
-                            ]
-                        };
-
-                        var doughnutPieOptions = {
-                            responsive: true,
-                            animation: {
-                                animateScale: true,
-                                animateRotate: true
-                            }
-                        };
-
-                        $(document).ready(function () {
-                            if ($("#doughnutChart").length) {
-                                var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
-                                var doughnutChart = new Chart(doughnutChartCanvas, {
-                                    type: 'doughnut',
-                                    data: doughnutPieData,
-                                    options: doughnutPieOptions
-                                });
-                            }
-                        });
-                    </script>
-
-
                     {{-- Rekap Mahasiswa  --}}
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Data Angkatan {{ $angkatan }}</h4>
+                                <h4 class="card-title" style="text-align: center">Data Angkatan {{ $angkatan }} - {{ $status }}</h4>
                                 <div class="table-responsive pt-3">
                                   <table class="table table-bordered">
                                     <thead class="tahun">
@@ -362,11 +296,6 @@
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
-                              {{-- <div class="card-body"> --}}
-                                {{-- <h4 class="card-title">List Mahasiswa</h4> --}}
-                                {{-- <p class="card-description">
-                                  nama <code>.(mahasiswa)</code>
-                                </p> --}}
                                 <div class="table-responsive">
                                   <table class="table table-striped" id=TabelMahasiswa>
 
