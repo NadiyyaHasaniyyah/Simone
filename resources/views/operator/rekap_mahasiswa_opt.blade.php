@@ -123,7 +123,7 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                             {{-- {{ $attribute->nama }}  --}}
-                            <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            {{ $attribute->nama }}<i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -214,7 +214,7 @@
                     </li>
                 </ul>
             </nav>
-           
+
 
 
             <!-- Dashboard -->
@@ -226,7 +226,7 @@
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Rekap Mahasiswa</h3>
                                     <a style="color: black" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
-                                    class="active"  href="#">Rekap Mahasiswa</a>
+                                    class="active"  href="">Rekap Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
@@ -313,7 +313,7 @@
 
                                         <tr>
 
-                                            
+
                                             <th >
                                                 <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">2017</a>
                                             </th>
@@ -421,7 +421,7 @@
                     </div>
 
 
-                   
+
 
 
 
@@ -479,10 +479,10 @@
                                 function printDiv() {
                                     var printFrame = window.frames["print_frame"];
                                     var printDocument = printFrame.document;
-            
+
                                     // Menyalin HTML tabel ke dalam dokumen di dalam iframe
                                     printDocument.body.innerHTML = document.getElementById("printableTable").outerHTML;
-            
+
                                     // Menambahkan gaya CSS ke dalam dokumen di dalam iframe
                                     var styleElement = printDocument.createElement("style");
                                     styleElement.innerHTML = `
@@ -502,41 +502,41 @@
                                                 padding: 0px 0 0px 0;
                                                 margin: 0;
                                             }
-            
-                                              
-            
-            
-            
+
+
+
+
+
                                                 table {
                                                   border-collapse: collapse;
                                                   width: 100%;
                                                 }
-                                        
+
                                                 th, td {
                                                   border: 1px solid #ddd;
                                                   padding: 8px;
                                                   text-align: left;
                                                 }
-                                        
+
                                                 tr:nth-child(even) {
                                                   background-color: #f2f2f2;
                                                 }
-                                        
+
                                                 th {
                                                   background-color: #4CAF50;
                                                   color: white;
                                                 }
-                                        
+
                                                 td {
                                                   padding: 12px;
                                                 }
-                                        
+
                                                 tr:hover {
                                                   background-color: #f5f5f5;
                                                 }
                                               `;
                                     printDocument.head.appendChild(styleElement);
-            
+
                                     // Fokus dan cetak dokumen di dalam iframe
                                     printFrame.window.focus();
                                     printFrame.window.print();

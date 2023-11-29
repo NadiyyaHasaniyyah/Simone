@@ -139,6 +139,8 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/list_skripsi/sudah/{angkatan}',[DosenwaliController::class, 'list_skripsi_sudah'])-> name('list_skripsi_sudah_dsn');
     Route::get('dosenwali/list_skripsi/belum/{angkatan}',[DosenwaliController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum_dsn');
 
+    // rekap mhs
+    Route::get('dosenwali/rekap_mahasiswa_dsn',[DosenwaliController::class, 'rekap_mhs_dsn'])-> name('rekap_mhs_dsn');
 });
 
 // dpt

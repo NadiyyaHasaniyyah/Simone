@@ -120,6 +120,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="{{ route('reset_password_mhs') }}">
+                                <i class="ti-lock text-primary"></i>
+                                Reset Password
+                            </a>
                             <a class="dropdown-item" href="/logout">
                                 <i class="ti-power-off text-primary"></i>
                                 Logout
@@ -440,7 +444,7 @@
                                                                                         <button type="button" class="btn btn-success btn-rounded btn-ico "><i class="ti-check"></i></button>
                                                                                     @elseif ($item->flag == -1)
                                                                                         <button type="button" class="btn btn-danger btn-rounded btn-ico "><i class="ti-close"></i></button>
-                                                                                        
+
                                                                                         <a href="{{ route('khs_edit', ['semester' => $item->semester]) }}">
                                                                                             <button type="button" class="btn btn-success btn-ico " style="margin-right: 10px">Edit</button>
                                                                                         </a>

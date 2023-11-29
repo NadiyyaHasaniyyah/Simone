@@ -116,7 +116,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            {{ $attribute->nama }}<i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -186,25 +186,24 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
                             <i class="fa fa-tasks menu-icon"></i>
                             <span class="menu-title"> Rekap PKL</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
-                            <i class="fa fa-newspaper-o  menu-icon"></i>
-                            <span class="menu-title"> Rekap Skripsi</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
-                            <i class="fa fa-newspaper-o  menu-icon"></i>
-                            <span class="menu-title">Rekap Mahasiswa</span>
-                        </a>
-                    </li>
-
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title"> Rekap Skripsi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
+                                <i class="fa fa-newspaper-o  menu-icon"></i>
+                                <span class="menu-title">Rekap Mahasiswa</span>
+                            </a>
+                        </li>
                     </li>
                 </ul>
             </nav>
@@ -464,7 +463,7 @@
                                     margin: 0;
                                 }
 
-                                  
+
 
 
 
@@ -472,26 +471,26 @@
                                       border-collapse: collapse;
                                       width: 100%;
                                     }
-                            
+
                                     th, td {
                                       border: 1px solid #ddd;
                                       padding: 8px;
                                       text-align: left;
                                     }
-                            
+
                                     tr:nth-child(even) {
                                       background-color: #f2f2f2;
                                     }
-                            
+
                                     th {
                                       background-color: #4CAF50;
                                       color: white;
                                     }
-                            
+
                                     td {
                                       padding: 12px;
                                     }
-                            
+
                                     tr:hover {
                                       background-color: #f5f5f5;
                                     }

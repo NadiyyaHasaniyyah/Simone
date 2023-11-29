@@ -193,6 +193,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_mhs_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Mahasiswa</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
                             <i class="fa fa-user menu-icon"></i>
                             <span class="menu-title">Pencarian</span>
@@ -211,7 +218,7 @@
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Pencarian Mahasiswa</h3>
                                     <a style="color: black" href="{{ route('dashboard_dsn') }}">Dashboard/</a><a
-                                        class="active" href="pencarian_dsn">Pencarian Mahasiswa</a>
+                                        class="active" href="">Pencarian Mahasiswa</a>
                                 </div>
                             </div>
                         </div>

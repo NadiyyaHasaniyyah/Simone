@@ -123,7 +123,7 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                             {{-- {{ $attribute->nama }}  --}}
-                            <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            {{ $attribute->nama }}<i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -183,13 +183,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_pkl') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title">Rekap PKL</span>
+                            <span class="menu-title"> Rekap PKL</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rekap_skripsi') }}">
                                 <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title"> Rekap Skripsi</span>
+                                <span class="menu-title">Rekap Skripsi</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -213,7 +213,7 @@
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Rekap Mahasiswa</h3>
                                     <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
-                                        style="color: black" href="pkl_dpt">Rekap Mahasiswa</a>
+                                        style="color: black" href="">Rekap Mahasiswa</a>
                                 </div>
                             </div>
                         </div>

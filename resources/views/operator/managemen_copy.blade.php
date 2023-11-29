@@ -203,7 +203,6 @@
                                 <span class="menu-title">Rekap Mahasiswa</span>
                             </a>
                         </li>
-
                     </li>
                 </ul>
             </nav>
@@ -314,7 +313,7 @@
                                                 <form id="updateStatusForm" action="{{ route('managemenStatus', ['id' => $item->id]) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
-                                            
+
                                                     {{-- <input type="hidden" name="id" value="{{ $item->id }}">
                                                     {{ $item->id }} --}}
                                                 {{-- <a class="btn btn-primary dropdown-toggle">Detail</a> --}}
@@ -327,7 +326,7 @@
                                                     <option value="undur diri" {{ $item->status == "undur diri" ? 'selected' : '' }}>Undur Diri</option>
                                                     <option value="lulus" {{ $item->status == "lulus" ? 'selected' : '' }}>Lulus</option>
                                                 </select>
-                                                
+
                                                 </form>
                                             </td>
                                         </tr>
@@ -428,7 +427,7 @@
             // Tambahkan logika lain yang Anda perlukan di sini
             $('.pesan').html('<div class="alert alert-success">Status berhasil diubah!</div>');
         },
-        
+
     });
 }
 

@@ -117,6 +117,8 @@
                     </div>
                 </div>
             </div>
+
+
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
@@ -157,7 +159,6 @@
                                 <span class="menu-title">Rekap Mahasiswa</span>
                             </a>
                         </li>
-
                     </li>
                 </ul>
             </nav>
@@ -171,8 +172,8 @@
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Update Akun Mahasiswa</h3>
                                     <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a>
-                                    <a class="active" href="#">Manajemen Akun Mahasiswa/</a>
-                                    <a href="#">Update Akun Mahasiswa</a>
+                                    <a class="active" href="{{ route('managemen') }}">Manajemen Akun Mahasiswa/</a>
+                                    <a href="">Update Akun Mahasiswa</a>
                                 </div>
                             </div>
                         </div>

@@ -116,7 +116,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                             <i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
+                            {{ $attribute->nama }}<i style="margin-left: 5px" class="fa fa-solid fa-caret-down">
                             </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -194,6 +194,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_mhs_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Mahasiswa</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('pencarian_dsn') }}">
                             <i class="fa fa-user menu-icon"></i>
                             <span class="menu-title">Pencarian</span>
@@ -217,7 +224,7 @@
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">List PKL Mahasiswa</h3>
                                     <a style="color: black" href="{{ route('dashboard_dsn') }}">Dashboard/</a>
-                                    <a class="active" href="#">List PKL Mahasiswa
+                                    <a class="active" href="">List PKL Mahasiswa
                                         Progress</a>
                                 </div>
                             </div>

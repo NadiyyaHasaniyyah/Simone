@@ -230,7 +230,7 @@
                                     <div class="row">
                                         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                             <h3 class="font-weight-bold"> Dashboard</h3>
-                                            <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard</a>
+                                            <a class="active" href="{{ route('rekap_mahasiswa') }}">Dashboard</a>
 
                                         </div>
                                     </div>

@@ -118,7 +118,7 @@
                             aria-labelledby="profileDropdown">
 
                             <a class="dropdown-item" href="{{ route('reset_password_mhs') }}">
-                                <i class="ti-power-off text-primary"></i>
+                                <i class="ti-lock text-primary"></i>
                                 Reset Password
                             </a>
 

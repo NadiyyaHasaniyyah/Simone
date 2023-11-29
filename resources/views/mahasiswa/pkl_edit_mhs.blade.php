@@ -121,6 +121,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="{{ route('reset_password_mhs') }}">
+                                <i class="ti-lock text-primary"></i>
+                                Reset Password
+                            </a>
                             <a class="dropdown-item" href="/logout">
                                 <i class="ti-power-off text-primary"></i>
                                 Logout

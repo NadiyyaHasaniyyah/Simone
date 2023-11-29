@@ -164,7 +164,6 @@
                                 <span class="menu-title">Rekap Mahasiswa</span>
                             </a>
                         </li>
-
                     </li>
                 </ul>
             </nav>
@@ -180,7 +179,7 @@
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Manajemen Akun Mahasiswa</h3>
                                     <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
-                                        class="active" href="#">Manajemen Akun Mahasiswa</a>
+                                        class="active" href="">Manajemen Akun Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
