@@ -226,42 +226,46 @@
                     {{-- Pencarian  --}}
                     <div class="col-12 grid-margin stretch-card">
                         <div class="card">
-                          <div class="row">
-                            <div class="col-md-5">
-                              <div class="card-body">
-                                <h4 class="card-title">Mahasiswa</h4>
-                                <table>
-                                    <tr>
-                                        <td class ="value">Nama</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;</td>
-                                        <td class="value"> {{ $mhs->nama }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="value">NIM</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;</td>
-                                        <td class="value"> {{ $mhs->id }}</td>
-                                        <br>
-                                    <tr>
-                                        <td class="value">Angkatan</td>
-                                        <td>&nbsp;&nbsp;&nbsp;: &nbsp;</td>
-                                        <td class="value"> {{ $mhs->angkatan }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="value">Dosen Wali</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp; </td>
-                                        <td class="value"> {{ $attribute->nama }}</td>
-                                    </tr>
-                                </table>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="card-body">
-                                <h4 class=""></h4>
-                                <div class="template-demo">
+                                    {{-- <h4 class="card-title">Mahasiswa</h4> --}}
+                                    <div class="row">
+                                        {{-- table --}}
+                                        <div class="col-md-5">
+                                            <h4 class="card-title">Mahasiswa</h4>
+                                            <table>
+                                                <tr>
+                                                    <td class="value">Nama</td>
+                                                    <td>&nbsp;&nbsp;&nbsp;:&nbsp;</td>
+                                                    <td class="value">{{ $mhs->nama }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="value">NIM</td>
+                                                    <td>&nbsp;&nbsp;&nbsp;:&nbsp;</td>
+                                                    <td class="value">{{ $mhs->id }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="value">Angkatan</td>
+                                                    <td>&nbsp;&nbsp;&nbsp;:&nbsp;</td>
+                                                    <td class="value">{{ $mhs->angkatan }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="value">Dosen Wali</td>
+                                                    <td>&nbsp;&nbsp;&nbsp;:&nbsp;</td>
+                                                    <td class="value">{{ $attribute->nama }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        {{-- foto --}}
+                                        <div class="col-md-7">
+                                            <div id="imagePreview">
+                                                <img class="rounded float-start" src="{{ $mhs->foto != null ? asset('storage/'.$mhs->foto) : 'https://sso.undip.ac.id/assets/app/images/user.png' }}" alt="{{ $mhs->nama }}" style="width: 120px; height: auto;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                     </div>
 
@@ -282,20 +286,25 @@
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
 
-                                            {{-- @if ($flag1 == 1)
+                                        @if ($flag1 == 1)
+                                            @if ($flag2 == 1)
+                                                @if ($flag4 == 1)
+                                                    <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @elseif ($flag3)
+                                                    <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @else
+                                                    <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @endif
+                                            @else
                                                 <button type="button" class="open btn btn-info btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
-                                            @elseif ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
-                                            @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
-                                            @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
-
-                                            @else
+                                            @endif
+                                        @else
                                             <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
-                                            @endif --}}
+                                        @endif
+                                            {{ $i }}
+                                        </button>
 
-                                        @if ($flag1 == 1 && $flag2 == 1)
+                                        {{-- @if ($flag1 == 1 && $flag2 == 1)
                                             @if ($flag4 == 1)
                                                 <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @elseif ($flag3)
@@ -307,7 +316,7 @@
                                             <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                         @endif
                                             {{ $i }}
-                                        </button>
+                                        </button> --}}
                                     @endfor
                                 </div>
 
@@ -320,19 +329,24 @@
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
 
-                                        @if ($flag1 == 1 && $flag2 == 1)
-                                            @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
-                                            @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                        @if ($flag1 == 1)
+                                            @if ($flag2 == 1)
+                                                @if ($flag4 == 1)
+                                                    <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @elseif ($flag3)
+                                                    <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @else
+                                                    <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @endif
                                             @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                <button type="button" class="open btn btn-info btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @endif
                                         @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                        <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                         @endif
-                                            {{ $i }}
+                                        {{ $i }}
                                         </button>
+
                                     @endfor
                                 </div>
 
@@ -345,18 +359,22 @@
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
 
-                                        @if ($flag1 == 1 && $flag2 == 1)
-                                            @if ($flag4 == 1)
-                                                <button type="button" class="open btn btn-success btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
-                                            @elseif ($flag3)
-                                                <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                        @if ($flag1 == 1)
+                                            @if ($flag2 == 1)
+                                                @if ($flag4 == 1)
+                                                    <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @elseif ($flag3)
+                                                    <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @else
+                                                    <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @endif
                                             @else
-                                                <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                <button type="button" class="open btn btn-info btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
                                             @endif
                                         @else
-                                            <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                        <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
                                         @endif
-                                            {{ $i }}
+                                        {{ $i }}
                                         </button>
                                     @endfor
 
