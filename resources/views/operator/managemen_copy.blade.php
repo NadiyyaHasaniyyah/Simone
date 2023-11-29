@@ -71,6 +71,45 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                             aria-labelledby="notificationDropdown">
                             <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                            {{-- <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="fa fa-tasks mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">IRS</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        IRS sudah diverifikasi
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-info">
+                                        <i class="fa fa-file-text-o  mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal"> KHS</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Harap Isi KHS
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-warning">
+                                        <i class="fa fa-tasks mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">IRS</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Harap Isi IRS
+                                    </p>
+                                </div>
+                            </a> --}}
 
                         </div>
                     </li>
@@ -228,6 +267,9 @@
                             <div class="card">
                               <div class="card-body">
                                 <h4 class="card-title"></h4>
+                                {{-- <p class="card-description">
+                                  nama <code>.(mahasiswa)</code>
+                                </p> --}}
                                 <div class="table-responsive">
                                   <table class="table " id=TabelMahasiswa>
 
@@ -243,15 +285,12 @@
                                         <th>
                                           NIM
                                         </th>
-                                        <th>Email</th>
-                                        <th>No.Telp</th>
                                         <th>
                                           Angkatan
                                         </th>
                                         <th>
                                           Status
                                         </th>
-                                        <th>Detail</th>
                                       </tr>
                                     </thead>
 
@@ -268,21 +307,33 @@
                                             <td>
                                                 {{ $item->id }}
                                             </td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->nomor_tlp }}</td>
                                             <td>
                                                 {{ $item->angkatan }}
                                             </td>
                                             <td>
-                                                {{ $item->status }}
-                                            </td>
-                                            <td><a href="{{ route('managemenView', ['id' => $item->id]) }}">
-                                                    <button type="button" name="edit" value="edit"class="btn btn-inverse-success btn-fw">Edit</button>
-                                                </a>
+                                                <form id="updateStatusForm" action="{{ route('managemenStatus', ['id' => $item->id]) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                            
+                                                    {{-- <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    {{ $item->id }} --}}
+                                                {{-- <a class="btn btn-primary dropdown-toggle">Detail</a> --}}
+                                                <select class="form-control @error('status') is-invalid @enderror" name="status" id="status" onchange="updateStatus(this, {{ $item->id }})">
+                                                    <option value="aktif" {{ $item->status == "aktif" ? 'selected' : '' }}>Aktif</option>
+                                                    <option value="cuti" {{ $item->status == "cuti" ? 'selected' : '' }}>Cuti</option>
+                                                    <option value="mangkir" {{ $item->status == "mangkir" ? 'selected' : '' }}>Mangkir</option>
+                                                    <option value="drop out" {{ $item->status == "drop out" ? 'selected' : '' }}>Drop Out</option>
+                                                    <option value="meninggal" {{ $item->status == "meninggal" ? 'selected' : '' }}>Meninggal</option>
+                                                    <option value="undur diri" {{ $item->status == "undur diri" ? 'selected' : '' }}>Undur Diri</option>
+                                                    <option value="lulus" {{ $item->status == "lulus" ? 'selected' : '' }}>Lulus</option>
+                                                </select>
+                                                
+                                                </form>
                                             </td>
                                         </tr>
                                         </tbody>
                                     @endforeach
+
                                     </table>
                                     </div>
                                 </div>
@@ -377,7 +428,7 @@
             // Tambahkan logika lain yang Anda perlukan di sini
             $('.pesan').html('<div class="alert alert-success">Status berhasil diubah!</div>');
         },
-
+        
     });
 }
 

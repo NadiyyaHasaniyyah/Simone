@@ -26,7 +26,7 @@
                 <ul class="navbar-nav mr-lg-2">
 
                 </ul>
-                <ul class="navbar-nav navbar-nav-right">
+                <ul class="navbar-nav navbar-npav-right">
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                             data-toggle="dropdown">
@@ -141,7 +141,7 @@
                                     {{-- <img src="https://sso.undip.ac.id/assets/app/images/user.png" style="max-width: 150px;width: 100%;" alt="foto">
                                 <div class = "round file-input-container">
                                     <input class=" @error('foto') is-invalid @enderror" type="file" name="foto" id ="foto" accept = ".jpg, .jpeg, .png "  onchange="previewImage()">
-                                 
+
                                     @error('foto')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -292,10 +292,10 @@
                                         <select class="col-sm-9 form-control @error('provinsi') is-invalid @enderror"
                                             style="height: 30px" name="provinsi" id="provinsi">
 
-                                            
+
 
                                             <option value="" selected disabled>Pilih Provinsi...</option>
-                                           
+
                                             {{-- yang lama --}}
                                             {{-- @foreach ($provinces as $provinsi)
                                                 <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
@@ -322,7 +322,7 @@
                                             class="grey"></span>
                                         <select class="col-sm-9 form-control @error('kabupaten') is-invalid @enderror"
                                             style="height: 30px" name="kabupaten" id="kabupaten">
-                                        
+
                                              <option value="" selected disabled>Pilih Kabupaten...</option>
 
 
@@ -390,23 +390,23 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-        
+
                 // Periksa apakah value provinsi telah terisi saat halaman dimuat
                 if ($('#provinsi').val()) {
                     updateKabupaten($('#provinsi').val());
                 }
-        
+
                 // Tanggapi saat value provinsi berubah
                 $('#provinsi').on('change', function() {
                     let id_provinsi = $(this).val();
                     updateKabupaten(id_provinsi);
                 });
-        
+
                 // Tanggapi saat elemen provinsi diklik
                 $('#provinsi').on('click', function() {
                     // Logika yang ingin Anda lakukan saat elemen provinsi diklik
                 });
-        
+
                 // Fungsi untuk memperbarui kabupaten
                 function updateKabupaten(id_provinsi) {
                     $.ajax({
@@ -416,11 +416,11 @@
                             id_provinsi: id_provinsi
                         },
                         cache: false,
-        
+
                         success: function(msg) {
                             $('#kabupaten').html(msg);
                         },
-        
+
                         error: function(data) {
                             console.log(data);
                         },
@@ -428,8 +428,8 @@
                 }
             });
         </script>
-        
-        
+
+
 
 
 

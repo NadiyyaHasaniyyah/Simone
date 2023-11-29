@@ -40,10 +40,6 @@ class OperatorController extends Controller
             'dosen'=>$dosen]);
     }
 
-
-   
-
-
     public function managemen()
     {
         $operator=Auth::guard('opt')->user();
@@ -54,26 +50,38 @@ class OperatorController extends Controller
             'dsn'=>$dsn]);
     }
 
-
-
-
-    public function managemenStatus(Request $request, $id)
+    public function managemenView(Request $request, $id)
     {
-        $request->validate([
-            'status' => 'required|in:aktif,cuti,mangkir,drop out,meninggal,undur diri,lulus',
+        // $request->validate([
+        //     'status' => 'required|in:aktif,cuti,mangkir,drop out,meninggal,undur diri,lulus',
+        // ]);
+
+        // $mhs = Mahasiswa::find($id);
+
+        // $mhs->update([
+        //     'status' => $request->status,
+        // ]);
+
+        $operator=Auth::guard('opt')->user();
+        $mhs=mahasiswa::find($id);
+        return view('operator.managemenView', ['operator'=>$operator,
+            'mhs'=>$mhs]);
+    }
+
+    public function updateManagemen(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'nama' => 'required',
+            'id' => 'required',
+            'email' => 'required',
+            'nomor_tlp' => 'required',
+            'status' => 'required',
         ]);
 
         $mhs = Mahasiswa::find($id);
 
-        $mhs->update([
-            'status' => $request->status,
-        ]);
-
-
-
-
-        // return redirect()->route('managemen')->with('success', 'Status berhasil dirubah');
-
+        Mahasiswa::where('id',$id)->update($validateData);
+        return redirect()->route('managemen')->with('success', 'Data berhasil dirubah');
     }
     /**
      * Show the form for creating a new resource.
@@ -329,7 +337,7 @@ class OperatorController extends Controller
     }
 
 
-    
+
     public function rekap_mhs(){
         $attribute=Auth::guard('opt')->user();
         $mhs = mahasiswa::get();

@@ -35,7 +35,8 @@ Route::middleware(['isOperator'])->group(function(){
 
     //management
      Route::get('operator/managemen',[OperatorController::class, 'managemen'])-> name('managemen');
-     Route::put('operator/managemen/{id}', [OperatorController::class, 'managemenStatus'])->name('managemenStatus');
+     Route::get('operator/managemen/upadate/{id}', [OperatorController::class, 'managemenView'])->name('managemenView');
+     Route::put('operator/managemen/{id}', [OperatorController::class, 'updateManagemen'])->name('updateManagemen');
 
     //  rekap
     Route::get('operator/rekap_pkl_opt',[OperatorController::class, 'rekap_pkl_opt'])-> name('rekap_pkl_opt');

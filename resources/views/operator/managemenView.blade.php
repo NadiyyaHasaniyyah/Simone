@@ -71,7 +71,6 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                             aria-labelledby="notificationDropdown">
                             <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-
                         </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
@@ -96,7 +95,6 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_settings-panel.html -->
             <div class="theme-setting-wraper">
                 <div id="settings-trigger"><i class="ti-settings"></i></div>
                 <div id="theme-settings" class="settings-panel">
@@ -119,11 +117,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
-
-            <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
@@ -169,8 +162,6 @@
                 </ul>
             </nav>
 
-
-
             <!-- Dashboard -->
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -178,37 +169,14 @@
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Manajemen Akun Mahasiswa</h3>
-                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
-                                        class="active" href="#">Manajemen Akun Mahasiswa</a>
+                                    <h3 class="font-weight-bold">Update Akun Mahasiswa</h3>
+                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a>
+                                    <a class="active" href="#">Manajemen Akun Mahasiswa/</a>
+                                    <a href="#">Update Akun Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    {{-- Pencarian  --}}
-                    <div class="row">
-                        <div class="col-md-7  stretch-card transparent">
-                            <div class="card ">
-                                <div class="card-body">
-                                    <h4 class="card-title">Cari Mahasiswa</h4>
-
-                                    {{-- FROM --}}
-                                    <form class="form-group" action="#" method="get">
-                                        <div class="input-group">
-                                            <input name="keyword" type="text" class="form-control" id="search" placeholder="Nama atau NIM">
-                                            {{-- <div class="input-group-append">
-                                                <button type="submit" class="btn btn-primary">  </button>
-                                            </div> --}}
-                                        </div>
-                                    </form>
-                                </div>
-                                </div>
-                        </div>
-                    </div>
-
-                        <br>
                          {{-- session succes or error --}}
                          <div class="form-group pesan " style="margin-left: 6px;">
                             @if(session('error'))
@@ -223,80 +191,88 @@
                                 </div>
                             @endif
                         </div>
-                    <div class="row">
-                        <div class="col-md-12 grid-margin stretch-card">
-                            <div class="card">
-                              <div class="card-body">
-                                <h4 class="card-title"></h4>
-                                <div class="table-responsive">
-                                  <table class="table " id=TabelMahasiswa>
 
-                                    {{-- HEAD --}}
-                                    <thead>
-                                      <tr>
-                                        <th>
-                                          No
-                                        </th>
-                                        <th>
-                                          Nama
-                                        </th>
-                                        <th>
-                                          NIM
-                                        </th>
-                                        <th>Email</th>
-                                        <th>No.Telp</th>
-                                        <th>
-                                          Angkatan
-                                        </th>
-                                        <th>
-                                          Status
-                                        </th>
-                                        <th>Detail</th>
-                                      </tr>
-                                    </thead>
+                    {{-- UPDATE --}}
+                    <div class="container" style="margin: 30px;">
+                        <div class="row">
+                            <div class="col-md-12 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form action="{{ route('updateManagemen',['id'=>$mhs->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{-- nama --}}
+                                                    <div class="form-group">
+                                                        <label for="nama" class="font-weight-bold @error('nama') is-invalid @enderror">Nama</label>
+                                                        <input type="text" name="nama" id="nama" class="form-control" value="{{ $mhs->nama }}">
+                                                        @error('nama')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
 
-                                    {{-- BODY --}}
-                                    @foreach ($mhs as $item)
-                                        <tbody>
-                                        <tr>
-                                            <td class="py-1">
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $item->nama }}
-                                            </td>
-                                            <td>
-                                                {{ $item->id }}
-                                            </td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->nomor_tlp }}</td>
-                                            <td>
-                                                {{ $item->angkatan }}
-                                            </td>
-                                            <td>
-                                                {{ $item->status }}
-                                            </td>
-                                            <td><a href="{{ route('managemenView', ['id' => $item->id]) }}">
-                                                    <button type="button" name="edit" value="edit"class="btn btn-inverse-success btn-fw">Edit</button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    @endforeach
-                                    </table>
+                                                    {{-- nim --}}
+                                                    <div class="form-group">
+                                                        <label for="id" class="font-weight-bold @error('id') is-invalid @enderror">NIM</label>
+                                                        <input type="text" name="id" id="id" class="form-control" value="{{ $mhs->id }}">
+                                                        @error('id')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+
+                                                    {{-- email --}}
+                                                    <div class="form-group">
+                                                        <label for="email" class="font-weight-bold @error('email') is-invalid @enderror">Email</label>
+                                                        <input type="text" name="email" id="email" class="form-control" value="{{ $mhs->email }}">
+                                                        @error('email')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{-- nomor telepon --}}
+                                                    <div class="form-group">
+                                                        <label for="nomor_tlp" class="font-weight-bold @error('nomor_tlp') is-invalid @enderror">Nomor Telepon</label>
+                                                        <input type="text" name="nomor_tlp" id="nomor_tlp" class="form-control" value="{{ $mhs->nomor_tlp }}">
+                                                        @error('nomor_tlp')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+
+                                                    {{-- status --}}
+                                                    <div class="form-group @error('status') is-invalid @enderror">
+                                                        <label for="status" class="font-weight-bold">Status </label>
+                                                        <select class="form-control" name="status" id="status">
+                                                            <option value="aktif" {{ $mhs->status == "aktif" ? 'selected' : '' }}>Aktif</option>
+                                                            <option value="cuti" {{ $mhs->status == "cuti" ? 'selected' : '' }}>Cuti</option>
+                                                            <option value="mangkir" {{ $mhs->status == "mangkir" ? 'selected' : '' }}>Mangkir</option>
+                                                            <option value="drop out" {{ $mhs->status == "drop out" ? 'selected' : '' }}>Drop Out</option>
+                                                            <option value="meninggal" {{ $mhs->status == "meninggal" ? 'selected' : '' }}>Meninggal</option>
+                                                            <option value="undur diri" {{ $mhs->status == "undur diri" ? 'selected' : '' }}>Undur Diri</option>
+                                                            <option value="lulus" {{ $mhs->status == "lulus" ? 'selected' : '' }}>Lulus</option>
+                                                        </select>
+                                                        @error('status')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+
+                                                    {{-- button --}}
+                                                    <br><br>
+                                                    <div class="form-group" id="" >
+                                                        <button type="submit" name="submit" value="submit"
+                                                            class="btn btn-primary btn-block" type="button">Simpan</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-                                <!-- page-body-wrapper ends -->
-                            </div>
-                            <!-- container-scroller -->
-
-
+                    </div>
                             <!-- plugins:js -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script>
