@@ -45,10 +45,12 @@ Route::middleware(['isOperator'])->group(function(){
     Route::get('operator/list_pkl/belum/{angkatan}',[OperatorController::class, 'list_pkl_belum'])-> name('list_pkl_belum_opt');
     Route::get('operator/list_skripsi/sudah/{angkatan}',[OperatorController::class, 'list_skripsi_sudah'])-> name('list_skripsi_sudah_opt');
     Route::get('operator/list_skripsi/belum/{angkatan}',[OperatorController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum_opt');
+    Route::get('operator/rekap_status/{status}',[OperatorController::class, 'rekap_status'])-> name('rekap_status_opt');
 
      // rekap mhs
     Route::get('operator/rekap_mahasiswa_opt',[OperatorController::class, 'rekap_mhs'])-> name('rekap_mahasiswa_opt');
     Route::get('operator/rekap_angkatan_opt/{angkatan}',[OperatorController::class, 'rekap_angkatan'])-> name('rekap_angkatan_opt');
+    Route::get('operator/rekap_mahasiswa/{angkatan}-{status}',[OperatorController::class, 'rekap_tahun_status_opt'])-> name('rekap_tahun_status_opt');
 
 });
 
@@ -108,7 +110,7 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
     Route::get('dosenwali/hasil_pencarian_dsn/{id}',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
-    Route::get('dosenwali/rekap_mahasiswa',[DosenwaliController::class, 'rekap_mhs'])-> name('rekap_mhs');
+    // Route::get('dosenwali/rekap_mahasiswa',[DosenwaliController::class, 'rekap_mhs'])-> name('rekap_mhs');
     Route::get('dosenwali//getMahasiswaBySemester/{semester}',[DosenwaliController::class, 'getMahasiswaBySemester'])-> name('getMahasiswaBySemester');
 
     // verifikasi
@@ -140,7 +142,10 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/list_skripsi/belum/{angkatan}',[DosenwaliController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum_dsn');
 
     // rekap mhs
-    Route::get('dosenwali/rekap_mahasiswa_dsn',[DosenwaliController::class, 'rekap_mhs_dsn'])-> name('rekap_mhs_dsn');
+    Route::get('dosenwali/rekap_mahasiswa_dsn',[DosenwaliController::class, 'rekap_mhs'])-> name('rekap_mhs_dsn');
+    Route::get('dosenwali/rekap_angkatan_dsn/{angkatan}',[DosenwaliController::class, 'rekap_angkatan'])-> name('rekap_angkatan_dsn');
+    Route::get('dosenwali/rekap_status/{status}',[DosenwaliController::class, 'rekap_status'])-> name('rekap_status_dsn');
+    Route::get('dosenwali/rekap_mahasiswa/{angkatan}-{status}',[DosenwaliController::class, 'rekap_tahun_status_dsn'])-> name('rekap_tahun_status_dsn');
 });
 
 // dpt

@@ -389,7 +389,9 @@ class OperatorController extends Controller
         $angkatan_count = [];
 
         foreach ($statusList as $status) {
-            $angkatan_count[$status] = $this->count_angkatan($status) ?? 0;
+            foreach ($angkatanList as $angkatan) {
+                $angkatan_count[$status][$angkatan] = $this->count_angkatan($status, $angkatan) ?? 0;
+            }
         }
 
         return view('operator/rekap_angkatan_opt', [
@@ -400,11 +402,57 @@ class OperatorController extends Controller
         ]);
     }
 
-    public function count_angkatan($status){
+    public function count_angkatan($status, $angkatan){
         $angkatan_count = mahasiswa::where('status', $status)
+            ->where('angkatan', $angkatan)
             ->count();
         return $angkatan_count;
 
+    }
+
+    public function count_status_mhs($angkatan, $status){
+        $status_count = mahasiswa::where('angkatan', $angkatan)
+            ->where('status', $status)
+            ->count();
+        return $status_count;
+
+    }
+
+    public function rekap_status($status){
+        $attribute=Auth::guard('opt')->user();
+        $mhs = mahasiswa::where('status', $status)->get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $status_count = [];
+
+        foreach ($statusList as $status) {
+            foreach ($angkatanList as $angkatan) {
+                $status_count[$angkatan][$status] = $this->count_status_mhs($angkatan, $status) ?? 0;
+            }
+        }
+
+        return view('operator/rekap_status', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'status_count'=>$status_count,
+            'status'=>$status,
+        ]);
+    }
+
+    public function rekap_tahun_status_opt($angkatan, $status){
+        $attribute=Auth::guard('opt')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('status', $status)
+            ->get();
+        // dd($mhs);
+
+        return view('operator/rekap_tahun_status', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'angkatan'=>$angkatan,
+            'status'=>$status,
+        ]);
     }
 
     /**

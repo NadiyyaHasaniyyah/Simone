@@ -384,7 +384,133 @@ class DosenwaliController extends Controller
         ]);
     }
 
+    public function rekap_mhs(){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
 
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+
+        $status_count = [];
+        $mhs_count = [];
+
+        foreach ($statusList as $status) {
+            $status_count[$status] = $this->count_status($status) ?? 0;
+            foreach ($angkatanList as $angkatan) {
+                $mhs_count[$angkatan][$status] = $this->count_mhs($angkatan, $status) ?? 0;
+            }
+        }
+
+        // dd($mhs_count);
+
+        return view('dosenwali/rekap_mahasiswa_dsn', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'status_count'=>$status_count,
+            'mhs_count'=>$mhs_count,
+        ]);
+    }
+
+    public function count_status($status){
+        $attribute=Auth::guard('dsn')->user();
+        $status_count = mahasiswa::where('dsn_id', $attribute->id)
+            ->where('status', $status)
+            ->count();
+        return $status_count;
+
+    }
+
+    public function count_mhs($angkatan, $status){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs_count = mahasiswa::where('dsn_id', $attribute->id)
+            ->where('angkatan', $angkatan)
+            ->where('status', $status)
+            ->count();
+        return $mhs_count;
+
+    }
+
+    public function rekap_angkatan($angkatan){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)
+            ->where('angkatan', $angkatan)->get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $angkatan_count = [];
+
+        foreach ($statusList as $status) {
+            foreach ($angkatanList as $angkatan) {
+                $angkatan_count[$status][$angkatan] = $this->count_angkatan($status, $angkatan) ?? 0;
+            }
+        }
+
+        return view('dosenwali/rekap_angkatan_dsn', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'angkatan_count'=>$angkatan_count,
+            'angkatan'=>$angkatan,
+        ]);
+    }
+
+    public function count_angkatan($status, $angkatan){
+        $attribute=Auth::guard('dsn')->user();
+        $angkatan_count = mahasiswa::where('dsn_id', $attribute->id)
+            ->where('status', $status)
+            ->where('angkatan', $angkatan)
+            ->count();
+        return $angkatan_count;
+
+    }
+
+    public function count_status_mhs($angkatan, $status){
+        $attribute=Auth::guard('dsn')->user();
+        $status_count = mahasiswa::where('dsn_id', $attribute->id)
+            ->where('angkatan', $angkatan)
+            ->where('status', $status)
+            ->count();
+        return $status_count;
+
+    }
+
+    public function rekap_status($status){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)
+            ->where('status', $status)->get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $status_count = [];
+
+        foreach ($statusList as $status) {
+            foreach ($angkatanList as $angkatan) {
+                $status_count[$angkatan][$status] = $this->count_status_mhs($angkatan, $status) ?? 0;
+            }
+        }
+
+        return view('dosenwali/rekap_status_dsn', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'status_count'=>$status_count,
+            'status'=>$status,
+        ]);
+    }
+
+    public function rekap_tahun_status_dsn($angkatan, $status){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)
+            ->where('angkatan', $angkatan)
+            ->where('status', $status)
+            ->get();
+        // dd($mhs);
+
+        return view('dosenwali/rekap_tahun_status_dsn', [
+            'mhs'=>$mhs,
+            'attribute'=>$attribute,
+            'angkatan'=>$angkatan,
+            'status'=>$status,
+        ]);
+    }
 
     public function create()
     {

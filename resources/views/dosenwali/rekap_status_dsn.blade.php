@@ -55,7 +55,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_opt') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_dpt') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -174,43 +174,44 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard_opt') }}">
+                        <a class="nav-link" href="{{ route('dashboard_dsn') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('generate') }}">
-                            <i class="ti-user menu-icon"></i>
-                            <span class="menu-title">Generate Akun</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('managemen') }}">
-                            <i class="ti-id-badge
-                            menu-icon"></i>
-                            <span class="menu-title"> Manajemen Akun</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
+                        <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title"> Rekap PKL</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title"> Rekap Skripsi</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Rekap Mahasiswa</span>
-                            </a>
-                        </li>
+                            <span class="menu-title">Verifikasi Progress</span>
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
+                        <i class="fa fa-tasks menu-icon"></i>
+                        <span class="menu-title"> Rekap PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_mhs_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Mahasiswa</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pencarian_dsn') }}">
+                            <i class="fa fa-user menu-icon"></i>
+                            <span class="menu-title">Pencarian</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -223,11 +224,9 @@
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Rekap Angkatan </h3>
-                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a>
-                                    <a style="color: black" href="{{ route('rekap_mahasiswa_opt') }}">Rekap Mahasiswa/</a>
-                                    <a
-                                        class="active" href="">Rekap Angkatan</a>
+                                    <h3 class="font-weight-bold">Rekap Status</h3>
+                                    <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard/</a><a
+                                        style="color: black" href="">Rekap Status</a>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +236,7 @@
                     <div class="col-lg-12 grid-margin text-center">
                         <div class="card mx-auto" style="width: 40rem;">
                             <div class="card-body">
-                                <h4 class="card-title">Angkatan {{ $angkatan }}</h4>
+                                <h4 class="card-title">Status {{ $status }}</h4>
                                 <canvas id="doughnutChart"></canvas>
                             </div>
                         </div>
@@ -246,7 +245,7 @@
                     <script>
                         var doughnutPieData = {
                             datasets: [{
-                                data: [{{ $angkatan_count['aktif'][$angkatan] ?? 0 }}, {{ $angkatan_count['mangkir'][$angkatan] ?? 0 }}, {{ $angkatan_count['cuti'][$angkatan] ?? 0 }}, {{ $angkatan_count['drop out'][$angkatan] ?? 0 }}, {{ $angkatan_count['lulus'][$angkatan] ?? 0 }}, {{ $angkatan_count['undur diri'][$angkatan] ?? 0 }}, {{ $angkatan_count['meninggal'][$angkatan] ?? 0  }}],
+                                data: [{{ $status_count['2017'][$status] ?? 0 }}, {{ $status_count['2018'][$status] ?? 0 }}, {{ $status_count['2019'][$status] ?? 0 }}, {{ $status_count['2020'][$status] ?? 0 }}, {{ $status_count['2021'][$status] ?? 0 }}, {{ $status_count['2022'][$status] ?? 0 }}, {{ $status_count['2023'][$status] ?? 0  }}],
                                 backgroundColor: [
                                     'rgba(0, 255, 0, 0.5)',   // Warna hijau untuk Aktif
                                     'rgba(255, 255, 0, 0.5)', // Warna kuning untuk Mangkir
@@ -302,9 +301,9 @@
                     {{-- Rekap Mahasiswa  --}}
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card" id="printableTable">
+                            <div class="card">
                               <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Data Angkatan {{ $angkatan }}</h4>
+                                <h4 class="card-title" style="text-align: center">Data Status {{ $status }}</h4>
                                 <div class="table-responsive pt-3">
                                   <table class="table table-bordered">
                                     <thead class="tahun">
@@ -364,7 +363,7 @@
                                 </div>
                                 {{-- button  --}}
                                 <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
+                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
                               </div>
                             </div>
                           </div>
@@ -439,76 +438,6 @@
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                            <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
-
-                            <script>
-                                function printDiv() {
-                                    var printFrame = window.frames["print_frame"];
-                                    var printDocument = printFrame.document;
-
-                                    // Menyalin HTML tabel ke dalam dokumen di dalam iframe
-                                    printDocument.body.innerHTML = document.getElementById("printableTable").outerHTML;
-
-                                    // Menambahkan gaya CSS ke dalam dokumen di dalam iframe
-                                    var styleElement = printDocument.createElement("style");
-                                    styleElement.innerHTML = `
-                                              @import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
-                                              html {
-                                                width: 100%;
-                                                height: 100%;
-                                            }
-                                            body {
-                                                color: #333;
-                                                font-family: "Raleway";
-                                            }
-                                            body h4 {
-                                                text-align: center;
-                                                color: #428bff;
-                                                font-size: 40px;
-                                                padding: 0px 0 0px 0;
-                                                margin: 0;
-                                            }
-
-
-
-
-
-                                                table {
-                                                  border-collapse: collapse;
-                                                  width: 100%;
-                                                }
-
-                                                th, td {
-                                                  border: 1px solid #ddd;
-                                                  padding: 8px;
-                                                  text-align: left;
-                                                }
-
-                                                tr:nth-child(even) {
-                                                  background-color: #f2f2f2;
-                                                }
-
-                                                th {
-                                                  background-color: #4CAF50;
-                                                  color: white;
-                                                }
-
-                                                td {
-                                                  padding: 12px;
-                                                }
-
-                                                tr:hover {
-                                                  background-color: #f5f5f5;
-                                                }
-                                              `;
-                                    printDocument.head.appendChild(styleElement);
-
-                                    // Fokus dan cetak dokumen di dalam iframe
-                                    printFrame.window.focus();
-                                    printFrame.window.print();
-                                }
-                            </script>
-
 
 
 

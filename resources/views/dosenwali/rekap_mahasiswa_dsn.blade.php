@@ -55,7 +55,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_opt') }}"><img
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('dashboard_dpt') }}"><img
                         style="width: 80%; height:1%; " src="{{ asset('style1/skydash/images/logoo.png') }}"
                         class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"> <img
@@ -174,43 +174,44 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard_opt') }}">
+                        <a class="nav-link" href="{{ route('dashboard_dsn') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('generate') }}">
-                            <i class="ti-user menu-icon"></i>
-                            <span class="menu-title">Generate Akun</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('managemen') }}">
-                            <i class="ti-id-badge
-                            menu-icon"></i>
-                            <span class="menu-title"> Manajemen Akun</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
+                        <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title"> Rekap PKL</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title"> Rekap Skripsi</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Rekap Mahasiswa</span>
-                            </a>
-                        </li>
+                            <span class="menu-title">Verifikasi Progress</span>
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
+                        <i class="fa fa-tasks menu-icon"></i>
+                        <span class="menu-title"> Rekap PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_mhs_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Mahasiswa</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pencarian_dsn') }}">
+                            <i class="fa fa-user menu-icon"></i>
+                            <span class="menu-title">Pencarian</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -223,11 +224,9 @@
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Rekap Angkatan </h3>
-                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a>
-                                    <a style="color: black" href="{{ route('rekap_mahasiswa_opt') }}">Rekap Mahasiswa/</a>
-                                    <a
-                                        class="active" href="">Rekap Angkatan</a>
+                                    <h3 class="font-weight-bold">Rekap Mahasiswa</h3>
+                                    <a class="active" href="{{ route('dashboard_dsn') }}">Dashboard/</a><a
+                                        style="color: black" href="">Rekap Mahasiswa</a>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +236,7 @@
                     <div class="col-lg-12 grid-margin text-center">
                         <div class="card mx-auto" style="width: 40rem;">
                             <div class="card-body">
-                                <h4 class="card-title">Angkatan {{ $angkatan }}</h4>
+                                <h4 class="card-title">Angkatan Keseluruhan</h4>
                                 <canvas id="doughnutChart"></canvas>
                             </div>
                         </div>
@@ -246,7 +245,7 @@
                     <script>
                         var doughnutPieData = {
                             datasets: [{
-                                data: [{{ $angkatan_count['aktif'][$angkatan] ?? 0 }}, {{ $angkatan_count['mangkir'][$angkatan] ?? 0 }}, {{ $angkatan_count['cuti'][$angkatan] ?? 0 }}, {{ $angkatan_count['drop out'][$angkatan] ?? 0 }}, {{ $angkatan_count['lulus'][$angkatan] ?? 0 }}, {{ $angkatan_count['undur diri'][$angkatan] ?? 0 }}, {{ $angkatan_count['meninggal'][$angkatan] ?? 0  }}],
+                                data: [{{ $status_count['aktif'] ?? 0 }}, {{ $status_count['mangkir'] }}, {{ $status_count['cuti'] }}, {{ $status_count['drop out'] }}, {{ $status_count['lulus'] }}, {{ $status_count['undur diri'] }}, {{ $status_count['meninggal']  }}],
                                 backgroundColor: [
                                     'rgba(0, 255, 0, 0.5)',   // Warna hijau untuk Aktif
                                     'rgba(255, 255, 0, 0.5)', // Warna kuning untuk Mangkir
@@ -302,69 +301,118 @@
                     {{-- Rekap Mahasiswa  --}}
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card" id="printableTable">
+                            <div class="card">
                               <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Data Angkatan {{ $angkatan }}</h4>
+                                <h4 class="card-title" style="text-align: center">Angkatan</h4>
                                 <div class="table-responsive pt-3">
                                   <table class="table table-bordered">
                                     <thead class="tahun">
                                         <tr>
                                             <th>
-                                                No
-                                            </th>
-                                            <th>
-                                                Nama
-                                            </th>
-                                            <th>
-                                                NIM
-                                            </th>
-                                            <th >
-                                                Dosen Wali
-                                            </th>
-                                            <th >
-                                                Jalur Masuk
-                                            </th>
-                                            <th >
                                                 Status
+                                            </th>
+
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_dsn', ['angkatan'=>'2017']) }}" class="text-decoration-none">2017</a>
+                                            </th>
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_dsn', ['angkatan'=>'2018']) }}" class="text-decoration-none">2018</a>
+                                            </th>
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_dsn', ['angkatan'=>'2019']) }}" class="text-decoration-none">2019</a>
+                                            </th>
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_dsn', ['angkatan'=>'2020']) }}" class="text-decoration-none">2020</a>
+                                            </th>
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_dsn', ['angkatan'=>'2021']) }}" class="text-decoration-none">2021</a>
+                                            </th>
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_dsn', ['angkatan'=>'2022']) }}" class="text-decoration-none">2022</a>
+                                            </th>
+                                            <th >
+                                                <a href="{{ route('rekap_angkatan_dsn', ['angkatan'=>'2023']) }}" class="text-decoration-none">2023</a>
                                             </th>
                                         </tr>
                                     </thead>
-
-                                    <tbody>
-                                        @foreach ($mhs as $mhs)
-
-                                        @php
-                                            $dosen = DB::table('dosenwalis')->where('id', $mhs->dsn_id)->first();
-                                            // dd($mhs);
-                                        @endphp
+                                    <tbody class="status">
                                         <tr>
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->nama }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->id }}
-                                            </td>
-                                            <td>
-                                                {{ $dosen->nama }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->jalur_masuk }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->status }}
-                                            </td>
+                                            <td id="aktif"><a href="{{ route('rekap_status_dsn', ['status'=>'aktif']) }}" class="text-decoration-none">Aktif</a></td>
+                                            <td id="2017"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2017', 'status'=>'aktif']) }}" class="text-decoration-none">{{ $mhs_count['2017']['aktif'] }}</a></td>
+                                            <td id="2018"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2018', 'status'=>'aktif']) }}" class="text-decoration-none">{{ $mhs_count['2018']['aktif'] }}</a></td>
+                                            <td id="2019"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2019', 'status'=>'aktif']) }}" class="text-decoration-none">{{ $mhs_count['2019']['aktif'] }}</a></td>
+                                            <td id="2020"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2020', 'status'=>'aktif']) }}" class="text-decoration-none">{{ $mhs_count['2020']['aktif'] }}</a></td>
+                                            <td id="2021"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2021', 'status'=>'aktif']) }}" class="text-decoration-none">{{ $mhs_count['2021']['aktif'] }}</a></td>
+                                            <td id="2022"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2022', 'status'=>'aktif']) }}" class="text-decoration-none">{{ $mhs_count['2022']['aktif'] }}</a></td>
+                                            <td id="2023"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2023', 'status'=>'aktif']) }}" class="text-decoration-none">{{ $mhs_count['2023']['aktif'] }}</a></td>
                                         </tr>
-                                        @endforeach
-                                    </tbody>
+                                        <tr>
+                                            <td id="do"><a href="{{ route('rekap_status_dsn', ['status'=>'drop out']) }}" class="text-decoration-none">DO</a></td>
+                                            <td id="2017"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2017', 'status'=>'drop out']) }}" class="text-decoration-none">{{ $mhs_count['2017']['drop out'] }}</a></td>
+                                            <td id="2018"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2018', 'status'=>'drop out']) }}" class="text-decoration-none">{{ $mhs_count['2018']['drop out'] }}</a></td>
+                                            <td id="2019"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2019', 'status'=>'drop out']) }}" class="text-decoration-none">{{ $mhs_count['2019']['drop out'] }}</a></td>
+                                            <td id="2020"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2020', 'status'=>'drop out']) }}" class="text-decoration-none">{{ $mhs_count['2020']['drop out'] }}</a></td>
+                                            <td id="2021"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2021', 'status'=>'drop out']) }}" class="text-decoration-none">{{ $mhs_count['2021']['drop out'] }}</a></td>
+                                            <td id="2022"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2022', 'status'=>'drop out']) }}" class="text-decoration-none">{{ $mhs_count['2022']['drop out'] }}</a></td>
+                                            <td id="2023"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2023', 'status'=>'drop out']) }}" class="text-decoration-none">{{ $mhs_count['2023']['drop out'] }}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="mangkir"><a href="{{ route('rekap_status_dsn', ['status'=>'mangkir']) }}" class="text-decoration-none">Mangkir</a></td>
+                                            <td id="2017"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2017', 'status'=>'mangkir']) }}" class="text-decoration-none">{{ $mhs_count['2017']['mangkir'] }}</a></td>
+                                            <td id="2018"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2018', 'status'=>'mangkir']) }}" class="text-decoration-none">{{ $mhs_count['2018']['mangkir'] }}</a></td>
+                                            <td id="2019"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2019', 'status'=>'mangkir']) }}" class="text-decoration-none">{{ $mhs_count['2019']['mangkir'] }}</a></td>
+                                            <td id="2020"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2020', 'status'=>'mangkir']) }}" class="text-decoration-none">{{ $mhs_count['2020']['mangkir'] }}</a></td>
+                                            <td id="2021"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2021', 'status'=>'mangkir']) }}" class="text-decoration-none">{{ $mhs_count['2021']['mangkir'] }}</a></td>
+                                            <td id="2022"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2022', 'status'=>'mangkir']) }}" class="text-decoration-none">{{ $mhs_count['2022']['mangkir'] }}</a></td>
+                                            <td id="2023"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2023', 'status'=>'mangkir']) }}" class="text-decoration-none">{{ $mhs_count['2023']['mangkir'] }}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="cuti"><a href="{{ route('rekap_status_dsn', ['status'=>'cuti']) }}" class="text-decoration-none">Cuti</a></td>
+                                            <td id="2017"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2017', 'status'=>'cuti']) }}" class="text-decoration-none">{{ $mhs_count['2017']['cuti'] }}</a></td>
+                                            <td id="2018"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2018', 'status'=>'cuti']) }}" class="text-decoration-none">{{ $mhs_count['2018']['cuti'] }}</a></td>
+                                            <td id="2019"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2019', 'status'=>'cuti']) }}" class="text-decoration-none">{{ $mhs_count['2019']['cuti'] }}</a></td>
+                                            <td id="2020"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2020', 'status'=>'cuti']) }}" class="text-decoration-none">{{ $mhs_count['2020']['cuti'] }}</a></td>
+                                            <td id="2021"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2021', 'status'=>'cuti']) }}" class="text-decoration-none">{{ $mhs_count['2021']['cuti'] }}</a></td>
+                                            <td id="2022"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2022', 'status'=>'cuti']) }}" class="text-decoration-none">{{ $mhs_count['2022']['cuti'] }}</a></td>
+                                            <td id="2023"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2023', 'status'=>'cuti']) }}" class="text-decoration-none">{{ $mhs_count['2023']['cuti'] }}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="lulus"><a href="{{ route('rekap_status_dsn', ['status'=>'lulus']) }}" class="text-decoration-none">Lulus</a></td>
+                                            <td id="2017"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2017', 'status'=>'lulus']) }}" class="text-decoration-none">{{ $mhs_count['2017']['lulus'] }}</a></td>
+                                            <td id="2018"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2018', 'status'=>'lulus']) }}" class="text-decoration-none">{{ $mhs_count['2018']['lulus'] }}</a></td>
+                                            <td id="2019"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2019', 'status'=>'lulus']) }}" class="text-decoration-none">{{ $mhs_count['2019']['lulus'] }}</a></td>
+                                            <td id="2020"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2020', 'status'=>'lulus']) }}" class="text-decoration-none">{{ $mhs_count['2020']['lulus'] }}</a></td>
+                                            <td id="2021"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2021', 'status'=>'lulus']) }}" class="text-decoration-none">{{ $mhs_count['2021']['lulus'] }}</a></td>
+                                            <td id="2022"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2022', 'status'=>'lulus']) }}" class="text-decoration-none">{{ $mhs_count['2022']['lulus'] }}</a></td>
+                                            <td id="2023"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2023', 'status'=>'lulus']) }}" class="text-decoration-none">{{ $mhs_count['2023']['lulus'] }}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="undur diri"><a href="{{ route('rekap_status_dsn', ['status'=>'undur diri']) }}" class="text-decoration-none">Undur Diri</a></td>
+                                            <td id="2017"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2017', 'status'=>'undur diri']) }}" class="text-decoration-none">{{ $mhs_count['2017']['undur diri'] }}</a></td>
+                                            <td id="2018"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2018', 'status'=>'undur diri']) }}" class="text-decoration-none">{{ $mhs_count['2018']['undur diri'] }}</a></td>
+                                            <td id="2019"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2019', 'status'=>'undur diri']) }}" class="text-decoration-none">{{ $mhs_count['2019']['undur diri'] }}</a></td>
+                                            <td id="2020"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2020', 'status'=>'undur diri']) }}" class="text-decoration-none">{{ $mhs_count['2020']['undur diri'] }}</a></td>
+                                            <td id="2021"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2021', 'status'=>'undur diri']) }}" class="text-decoration-none">{{ $mhs_count['2021']['undur diri'] }}</a></td>
+                                            <td id="2022"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2022', 'status'=>'undur diri']) }}" class="text-decoration-none">{{ $mhs_count['2022']['undur diri'] }}</a></td>
+                                            <td id="2023"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2023', 'status'=>'undur diri']) }}" class="text-decoration-none">{{ $mhs_count['2023']['undur diri'] }}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="meninggal"><a href="{{ route('rekap_status_dsn', ['status'=>'meninggal']) }}" class="text-decoration-none">Meninggal</a></td>
+                                            <td id="2017"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2017', 'status'=>'meninggal']) }}" class="text-decoration-none">{{ $mhs_count['2017']['meninggal'] }}</a></td>
+                                            <td id="2018"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2018', 'status'=>'meninggal']) }}" class="text-decoration-none">{{ $mhs_count['2018']['meninggal'] }}</a></td>
+                                            <td id="2019"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2019', 'status'=>'meninggal']) }}" class="text-decoration-none">{{ $mhs_count['2019']['meninggal'] }}</a></td>
+                                            <td id="2020"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2020', 'status'=>'meninggal']) }}" class="text-decoration-none">{{ $mhs_count['2020']['meninggal'] }}</a></td>
+                                            <td id="2021"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2021', 'status'=>'meninggal']) }}" class="text-decoration-none">{{ $mhs_count['2021']['meninggal'] }}</a></td>
+                                            <td id="2022"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2022', 'status'=>'meninggal']) }}" class="text-decoration-none">{{ $mhs_count['2022']['meninggal'] }}</a></td>
+                                            <td id="2023"><a href="{{ route('rekap_tahun_status_dsn', ['angkatan'=>'2023', 'status'=>'meninggal']) }}" class="text-decoration-none">{{ $mhs_count['2023']['meninggal'] }}</a></td>
+                                        </tr>
 
+                                    </tbody>
                                   </table>
                                 </div>
                                 {{-- button  --}}
                                 <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
+                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
                               </div>
                             </div>
                           </div>
@@ -439,76 +487,6 @@
                             <script src="{{ asset('style1/skydash/js/Chart.roundedBarCharts.js') }}"></script>
 
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                            <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
-
-                            <script>
-                                function printDiv() {
-                                    var printFrame = window.frames["print_frame"];
-                                    var printDocument = printFrame.document;
-
-                                    // Menyalin HTML tabel ke dalam dokumen di dalam iframe
-                                    printDocument.body.innerHTML = document.getElementById("printableTable").outerHTML;
-
-                                    // Menambahkan gaya CSS ke dalam dokumen di dalam iframe
-                                    var styleElement = printDocument.createElement("style");
-                                    styleElement.innerHTML = `
-                                              @import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
-                                              html {
-                                                width: 100%;
-                                                height: 100%;
-                                            }
-                                            body {
-                                                color: #333;
-                                                font-family: "Raleway";
-                                            }
-                                            body h4 {
-                                                text-align: center;
-                                                color: #428bff;
-                                                font-size: 40px;
-                                                padding: 0px 0 0px 0;
-                                                margin: 0;
-                                            }
-
-
-
-
-
-                                                table {
-                                                  border-collapse: collapse;
-                                                  width: 100%;
-                                                }
-
-                                                th, td {
-                                                  border: 1px solid #ddd;
-                                                  padding: 8px;
-                                                  text-align: left;
-                                                }
-
-                                                tr:nth-child(even) {
-                                                  background-color: #f2f2f2;
-                                                }
-
-                                                th {
-                                                  background-color: #4CAF50;
-                                                  color: white;
-                                                }
-
-                                                td {
-                                                  padding: 12px;
-                                                }
-
-                                                tr:hover {
-                                                  background-color: #f5f5f5;
-                                                }
-                                              `;
-                                    printDocument.head.appendChild(styleElement);
-
-                                    // Fokus dan cetak dokumen di dalam iframe
-                                    printFrame.window.focus();
-                                    printFrame.window.print();
-                                }
-                            </script>
-
 
 
 

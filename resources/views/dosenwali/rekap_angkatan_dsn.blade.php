@@ -174,43 +174,44 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard_opt') }}">
+                        <a class="nav-link" href="{{ route('dashboard_dsn') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('generate') }}">
-                            <i class="ti-user menu-icon"></i>
-                            <span class="menu-title">Generate Akun</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('managemen') }}">
-                            <i class="ti-id-badge
-                            menu-icon"></i>
-                            <span class="menu-title"> Manajemen Akun</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_pkl_opt') }}">
+                        <a class="nav-link" href="{{ route('verifikasi_dsn') }}">
                             <i class="fa fa-tasks menu-icon"></i>
-                            <span class="menu-title"> Rekap PKL</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_skripsi_opt') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title"> Rekap Skripsi</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rekap_mahasiswa_opt') }}">
-                                <i class="fa fa-newspaper-o  menu-icon"></i>
-                                <span class="menu-title">Rekap Mahasiswa</span>
-                            </a>
-                        </li>
+                            <span class="menu-title">Verifikasi Progress</span>
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_pkl_dsn') }}">
+                        <i class="fa fa-tasks menu-icon"></i>
+                        <span class="menu-title"> Rekap PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_skripsi_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Skripsi</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rekap_mhs_dsn') }}">
+                            <i class="fa fa-newspaper-o  menu-icon"></i>
+                            <span class="menu-title"> Rekap Mahasiswa</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pencarian_dsn') }}">
+                            <i class="fa fa-user menu-icon"></i>
+                            <span class="menu-title">Pencarian</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -224,8 +225,8 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Rekap Angkatan </h3>
-                                    <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a>
-                                    <a style="color: black" href="{{ route('rekap_mahasiswa_opt') }}">Rekap Mahasiswa/</a>
+                                    <a style="color: black" href="{{ route('dashboard_dsn') }}">Dashboard/</a>
+                                    <a style="color: black" href="{{ route('rekap_mhs_dsn') }}">Rekap Mahasiswa/</a>
                                     <a
                                         class="active" href="">Rekap Angkatan</a>
                                 </div>
