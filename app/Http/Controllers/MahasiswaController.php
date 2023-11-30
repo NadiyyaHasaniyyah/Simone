@@ -655,8 +655,8 @@ class MahasiswaController extends Controller
         $irs = $this->IRSKomulatif();
         $pkl = Pkl::where('mhs_id', $attribute->id)->where('flag',1)->first();
         $valid = false;
-        // dd($pkl);
-        if(($irs>=138)&&($pkl==1)){
+
+        if(($irs>=138)&&($pkl->flag==1)){
             $valid = true;
         }
         return $valid;

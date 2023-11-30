@@ -310,10 +310,7 @@
                                         <tr> <th rowspan="2"  style="text-align: center; vertical-align: middle;" >
                                             Status
                                         </th> <th colspan="7" style="text-align: center;">Angkatan</th></tr>
-
                                         <tr>
-
-
                                             <th >
                                                 <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>'2017']) }}" class="text-decoration-none">2017</a>
                                             </th>
@@ -414,7 +411,9 @@
                                 </div>
                                 {{-- button  --}}
                                 <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
+                                <a href="{{ route('cetakMhs') }}">
+                                    <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                </a>
                               </div>
                             </div>
                           </div>

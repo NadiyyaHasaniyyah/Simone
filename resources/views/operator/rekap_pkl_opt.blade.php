@@ -364,8 +364,10 @@
                                     </div>
                                     {{-- button  --}}
                                     <br><br>
-                                    <button type="button" class="btn btn-primary btn-rounded btn-fw float-right"
-                                        onclick="printDiv()">Cetak</button>
+                                    <a href="{{ route('cetakPKL') }}">
+                                        <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>

@@ -335,7 +335,6 @@
 
                                         @php
                                             $dosen = DB::table('dosenwalis')->where('id', $mhs->dsn_id)->first();
-                                            // dd($mhs);
                                         @endphp
                                         <tr>
                                             <td>
@@ -364,7 +363,9 @@
                                 </div>
                                 {{-- button  --}}
                                 <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
+                                <a href="{{ route('cetakAngkatan', ['angkatan'=>$mhs->angkatan]) }}">
+                                    <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                </a>
                               </div>
                             </div>
                           </div>
