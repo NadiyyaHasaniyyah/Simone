@@ -36,14 +36,28 @@ class DosenwaliController extends Controller
     {
         $attribute=Auth::guard('dsn')->user();
         $mhs = mahasiswa::find($id);
-        $irs = Irs::Where('mhs_id',$mhs->id)->get();
-        $khs = khs::Where('mhs_id',$mhs->id)->get();
-        $pkl = pkl::Where('mhs_id',$mhs->id)->get();
-        $skripsi = skripsi::Where('mhs_id',$mhs->id);
-        $semester = Irs::Where('mhs_id',$mhs->id)->get('semester')->count();
+        $id = mahasiswa::find($id)->id;
+        $irs = Irs::Where('mhs_id',$id)->get();
+        $khs = khs::Where('mhs_id',$id)->get();
+        $pkl = pkl::Where('mhs_id',$id)->get();
+        $skripsi = skripsi::Where('mhs_id',$id)->get();
+        $semester = Irs::Where('mhs_id',$id)->get('semester')->count();
         // $irs = Irs::Where('mhs_id',$mhs->id)->Where('semester',1)->get('flag');
         // dd($semester);
-        return view('dosenwali/hasil_pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi,'semester'=>$semester]);
+        return view('dosenwali/hasil_pencarian_dsn',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi,'semester'=>$semester, 'id'=> $id]);
+    }
+
+    public function hasil_pencarian_dsn_lanj($id, $smt)
+    {
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::find($id);
+        $irs = Irs::Where('mhs_id',$id)->where('semester',$smt)->get();
+        $khs = khs::Where('mhs_id',$id)->where('semester',$smt)->get();
+        $pkl = pkl::Where('mhs_id',$id)->where('semester',$smt)->get();
+        $skripsi = skripsi::Where('mhs_id',$id)->where('semester',$smt)->get();
+        // $irs = Irs::Where('mhs_id',$mhs->id)->Where('semester',1)->get('flag');
+        // dd($semester);
+        return view('dosenwali/semester',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi]);
     }
 
     public function getMahasiswaBySemester($semester)

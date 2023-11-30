@@ -35,7 +35,7 @@ Route::middleware(['isOperator'])->group(function(){
 
     //management
      Route::get('operator/managemen',[OperatorController::class, 'managemen'])-> name('managemen');
-     Route::get('operator/managemen/upadate/{id}', [OperatorController::class, 'managemenView'])->name('managemenView');
+     Route::get('operator/managemen/update/{id}', [OperatorController::class, 'managemenView'])->name('managemenView');
      Route::put('operator/managemen/{id}', [OperatorController::class, 'updateManagemen'])->name('updateManagemen');
 
     //  rekap
@@ -54,10 +54,7 @@ Route::middleware(['isOperator'])->group(function(){
 
 
     // cetak pdf
-    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'cetakPDFbelumPKL'])->name('cetakPDFbelumPKL');
-    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL');
-    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi');
-    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi');
+    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan} - {status}', [OperatorController::class, 'cetakPDF'])->name('cetakPDF');
 });
 
 
@@ -116,10 +113,9 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
     Route::get('dosenwali/hasil_pencarian_dsn/{id}',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
-    Route::get('dosenwali/semester',[DosenwaliController::class, 'semester'])-> name('semester');
-
+    Route::get('dosenwali/hasil_pencarian_dsn/{id}-{smt}',[DosenwaliController::class, 'hasil_pencarian_dsn_lanj'])-> name('semester_pencarian');
     // Route::get('dosenwali/rekap_mahasiswa',[DosenwaliController::class, 'rekap_mhs'])-> name('rekap_mhs');
-    Route::get('dosenwali//getMahasiswaBySemester/{semester}',[DosenwaliController::class, 'getMahasiswaBySemester'])-> name('getMahasiswaBySemester');
+    Route::get('dosenwali/getMahasiswaBySemester/{semester}',[DosenwaliController::class, 'getMahasiswaBySemester'])-> name('getMahasiswaBySemester');
 
     // verifikasi
     Route::get('dosenwali/verifikasi_dsn',[DosenwaliController::class, 'verifikasi'])-> name('verifikasi_dsn');
@@ -175,8 +171,6 @@ Route::middleware(['isDepartemen'])->group(function(){
     Route::get('departemen/list_pkl/belum/{angkatan}',[DepartemenController::class, 'list_pkl_belum'])-> name('list_pkl_belum');
     Route::get('departemen/list_skripsi/sudah/{angkatan}',[DepartemenController::class, 'list_skripsi_sudah'])-> name('list_skripsi_sudah');
     Route::get('departemen/list_skripsi/belum/{angkatan}',[DepartemenController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum');
-
-
 });
 
 
