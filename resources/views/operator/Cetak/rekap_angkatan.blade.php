@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="margin: 0 auto; text-align: center; margin-bottom: 40px;">
-                            <h3 style="font-weight: bold;">List Mahasiswa Sudah PKL</h3>
+                            <h3 style="font-weight: bold;">Rekap PKL per-Angkatan</h3>
                         </div>
 
                         <div class="table-responsive">
@@ -59,25 +59,32 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>NIM</th>
-                                        <th>Angkatan</th>
-                                        <th>Nilai</th>
+                                        <th>Dosen Wali</th>
+                                        <th>Jalur Masuk</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
-                                    @foreach ($mhs as $items)
-                                        {{-- @dd($items) --}}
+                                <tbody>
+                                    @foreach ($mhs as $mhs)
+
                                         @php
-                                            $skripsi = DB::table('skripsis')->where('mhs_id', $items->id)->first();
+                                            $dosen = DB::table('dosenwalis')->where('id', $mhs->dsn_id)->first();
                                         @endphp
-                                        {{-- @dd($skripsi) --}}
-                                            <tr>
-                                                <td>1</td>
-                                                <td>{{ $items->nama }}</td>
-                                                <td>{{ $items->id }}</td>
-                                                <td>{{ $items->angkatan }}</td>
-                                                <td>{{$skripsi->nilai }}</td>
-                                            </tr>
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $mhs->nama }}</td>
+                                            <td>{{ $mhs->id }}</td>
+                                            <td>{{ $dosen->nama }}</td>
+                                            <td>{{ $mhs->jalur_masuk }}</td>
+                                            <td>{{ $mhs->status }}</td>
+                                        </tr>
                                     @endforeach
-                                </table>
+
+                                    <tr>
+
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

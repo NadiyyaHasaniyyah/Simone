@@ -58,6 +58,12 @@ Route::middleware(['isOperator'])->group(function(){
     Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL');
     Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi');
     Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi');
+    Route::get('operator/rekap_pkl_opt/cetak_pkl', [OperatorController::class, 'cetakPKL'])->name('cetakPKL');
+    Route::get('operator/rekap_pkl_opt/cetak_skripsi', [OperatorController::class, 'cetakSkripsi'])->name('cetakSkripsi');
+    Route::get('operator/rekap_pkl_opt/cetak_mhs', [OperatorController::class, 'cetakMhs'])->name('cetakMhs');
+    Route::get('operator/rekap_pkl_opt/cetak_angkatan/{angkatan}', [OperatorController::class, 'cetakAngkatan'])->name('cetakAngkatan');
+    Route::get('operator/rekap_pkl_opt/cetak_status/{status}', [OperatorController::class, 'cetakStatus'])->name('cetakStatus');
+    Route::get('operator/rekap_pkl_opt/cetak_tahun_status/{angkatan}-{status}', [OperatorController::class, 'cetakTahunStatus'])->name('cetakTahunStatus');
 });
 
 
