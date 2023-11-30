@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="margin: 0 auto; text-align: center; margin-bottom: 40px;">
-                            <h3 style="font-weight: bold;">List Mahasiswa Sudah PKL</h3>
+                            <h3 style="font-weight: bold;">List Mahasiswa belum Skripsi</h3>
                         </div>
 
                         <div class="table-responsive">
@@ -63,18 +63,14 @@
                                         <th>Nilai</th>
                                     </tr>
                                 </thead>
-                                    @foreach ($mhs as $items)
-                                        {{-- @dd($items) --}}
-                                        @php
-                                            $pkl = DB::table('pkls')->where('mhs_id', $items->id)->first();
-                                        @endphp
-                                            <tr>
-                                                <td>1</td>
-                                                <td>{{ $items->nama }}</td>
-                                                <td>{{ $items->id }}</td>
-                                                <td>{{ $items->angkatan }}</td>
-                                                <td>{{$pkl->nilai }}</td>
-                                            </tr>
+                                    @foreach ($mhs as $angkatan => $items)
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{ $items->nama }}</td>
+                                        <td>{{ $items->id }}</td>
+                                        <td>{{ $items->angkatan }}</td>
+                                        <td>Belum Skripsi</td>
+                                    </tr>
                                     @endforeach
                                 </table>
                         </div>

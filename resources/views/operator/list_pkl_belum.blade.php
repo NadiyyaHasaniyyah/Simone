@@ -259,6 +259,7 @@
                                     </thead>
                                         {{-- list_pkl --}}
                                         @foreach ($mhs as $item)
+                                        {{-- @dd($item) --}}
                                         <tr>
                                             <td>1</td>
                                             <td>{{ $item->nama }}</td>
@@ -270,7 +271,7 @@
                                     </table>
                                     </div>
                                     <br><br>
-                                    <a href="{{ route('cetakPDF', ['angkatan'=>$item->angkatan, 'status'=>'belumPKL']) }}">
+                                    <a href="{{ route('cetakPDFbelumPKL', ['angkatan'=>$item->angkatan]) }}">
                                         <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
                                     </a>
                                 </div>

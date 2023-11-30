@@ -280,7 +280,7 @@
                                     </table>
                                     </div>
                                     <br><br>
-                                    <a href="{{ route('cetakPDF', ['angkatan'=>$items->angkatan, 'status'=>'sudahPKL']) }}">
+                                    <a href="{{ route('cetakPDFsudahPKL', ['angkatan'=>$items->angkatan]) }}">
                                         <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
                                     </a>
                                 </div>

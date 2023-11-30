@@ -556,4 +556,12 @@ class DosenwaliController extends Controller
     {
         //
     }
+
+    public function semester()
+    {
+        $attribute=Auth::guard('dsn')->user();
+
+        // dd($attribute);
+return view('dosenwali/semester',['attribute'=>$attribute]);
+    }
 }

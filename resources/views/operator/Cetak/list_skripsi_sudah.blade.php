@@ -66,14 +66,15 @@
                                     @foreach ($mhs as $items)
                                         {{-- @dd($items) --}}
                                         @php
-                                            $pkl = DB::table('pkls')->where('mhs_id', $items->id)->first();
+                                            $skripsi = DB::table('skripsis')->where('mhs_id', $items->id)->first();
                                         @endphp
+                                        @dd($skripsi)
                                             <tr>
                                                 <td>1</td>
                                                 <td>{{ $items->nama }}</td>
                                                 <td>{{ $items->id }}</td>
                                                 <td>{{ $items->angkatan }}</td>
-                                                <td>{{$pkl->nilai }}</td>
+                                                <td>{{$skripsi->nilai }}</td>
                                             </tr>
                                     @endforeach
                                 </table>
