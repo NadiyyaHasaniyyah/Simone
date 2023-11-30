@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pkl;
-use App\Models\Skripsi;
 // use Illuminate\Support\Facades\DB;
+use App\Models\Skripsi;
 use App\Models\operator;
 use App\Models\dosenwali;
 use App\Models\mahasiswa;
@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\LazyCollection;
 use App\Http\Requests\StoreoperatorRequest;
 use App\Http\Requests\UpdateoperatorRequest;
-
+use TCPDF;
+use Mpdf\Mpdf;
 
 class OperatorController extends Controller
 {
@@ -230,8 +231,6 @@ class OperatorController extends Controller
             ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai')
             ->get();
 
-        // dd($mhs);
-
         return view('operator/list_pkl_sudah', [
             'attribute' => $attribute,
             'mhs' => $mhs,
@@ -246,11 +245,14 @@ class OperatorController extends Controller
             ->whereNull('pkls.mhs_id')
             ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
             ->get();
+
+
         // dd($mhs);
 
         return view('operator/list_pkl_belum', [
             'attribute' => $attribute,
             'mhs' => $mhs,
+
         ]);
     }
 
@@ -456,27 +458,21 @@ class OperatorController extends Controller
         ]);
     }
 
-    public function PDFlistbelumPKL($angkatan){
-        $attribute = Auth::guard('opt')->user();
+    public function cetakPDF($angkatan, $status){
 
         $mhs = mahasiswa::where('angkatan', $angkatan)
-            ->leftJoin('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
-            ->whereNull('pkls.mhs_id')
-            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai')
             ->get();
 
-        $pdf = Pdf::loadview('operator/Cetak/list_pkl_belum', [
-            'attribute' => $attribute,
-            'mhs' => $mhs,
-        ]);
-        return $pdf->stream('list_pkl_belum.pdf');
-
-        // return view('operator/Cetak/list_pkl_belum', [
-        //     'attribute' => $attribute,
-        //     'mhs' => $mhs,
-        // ]);
+        if ($status == 'belumPKL'){
+            $pdf = PDF::loadView('operator/Cetak/list_pkl_belum', ['mhs' => $mhs]);
+            return $pdf->stream();
+        } else if ($status == 'sudahPKL'){
+            $pdf = PDF::loadView('operator/Cetak/list_pkl_sudah', ['mhs' => $mhs]);
+            return $pdf->stream();
+        }
     }
-
 
 
     /**

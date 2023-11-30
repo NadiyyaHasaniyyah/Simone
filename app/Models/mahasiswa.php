@@ -39,7 +39,7 @@ class mahasiswa extends Model
     // In mahasiswa model
     public function pkls()
     {
-        return $this->hasMany(Pkl::class, 'mhs_id');
+        return $this->hasOne(Pkl::class, 'mhs_id');
     }
 }
 

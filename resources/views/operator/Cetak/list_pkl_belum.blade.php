@@ -2,28 +2,50 @@
 <html lang="en">
 
 <head>
+    <style>
+        body {
+            font-family:'Raleway','arial';
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    <link rel="shortcut icon" href="{{ asset('style1/skydash/images/logo-mini.svg') }}">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description">
-    <meta name="author">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    <title>Simone</title>
-    <!-- inject:css -->
-    <link href="{{ asset('style1/skydash/vendors/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('style1/skydash/css/vertical-layout-light/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('style1/skydash/css/irs.css') }}" rel="stylesheet">
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container" style="margin-top: 50px;">
         <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div style="margin: 0 auto; text-align: center; margin-bottom: 40px;">
@@ -41,12 +63,12 @@
                                         <th>Nilai</th>
                                     </tr>
                                 </thead>
-                                    @foreach ($mhs as $item)
+                                    @foreach ($mhs as $angkatan => $items)
                                     <tr>
                                         <td>1</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->angkatan }}</td>
+                                        <td>{{ $items->nama }}</td>
+                                        <td>{{ $items->id }}</td>
+                                        <td>{{ $items->angkatan }}</td>
                                         <td>Belum PKL</td>
                                     </tr>
                                     @endforeach

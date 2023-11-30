@@ -266,36 +266,23 @@
                                     {{-- BODY --}}
                                     {{-- @if ($status) --}}
                                         @foreach ($mhs as $angkatan => $items)
-                                            @foreach ($items->pkls as $item)
-                                            {{-- @dd($sudah) --}}
+                                            @php
+                                                $pkl = DB::table('pkls')->where('mhs_id', $items->id)->first();
+                                            @endphp
                                                 <tr>
                                                     <td>1</td>
                                                     <td>{{ $items->nama }}</td>
                                                     <td>{{ $items->id }}</td>
                                                     <td>{{ $items->angkatan }}</td>
-                                                    <td>{{ $item->nilai }}</td>
+                                                    <td>{{$pkl->nilai }}</td>
                                                 </tr>
-                                            @endforeach
                                         @endforeach
-                                    {{-- @else
-                                        @foreach ($mhs as $item)
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->angkatan }}</td>
-                                            <td>Belum memiliki PKL</td>
-                                        </tr>
-                                        @endforeach
-                                    @endif --}}
-
-
-
-
                                     </table>
                                     </div>
                                     <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()" >Cetak</button>
+                                    <a href="{{ route('cetakPDF', ['angkatan'=>$items->angkatan, 'status'=>'sudahPKL']) }}">
+                                        <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                    </a>
                                 </div>
                                 </div>
                             </div>

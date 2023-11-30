@@ -54,7 +54,7 @@ Route::middleware(['isOperator'])->group(function(){
 
 
     // cetak pdf
-    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'PDFlistbelumPKL'])->name('PDFlistbelumPKL');
+    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan} - {status}', [OperatorController::class, 'cetakPDF'])->name('cetakPDF');
 });
 
 
