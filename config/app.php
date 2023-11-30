@@ -170,7 +170,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
-        // Barryvdh\DomPDF\ServiceProvider::class,
+        // $app->register(\Barryvdh\DomPDF\ServiceProvider::class);
+        Barryvdh\DomPDF\ServiceProvider::class,
     ])->toArray(),
 
     /*

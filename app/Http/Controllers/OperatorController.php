@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\operator;
-use Illuminate\Routing\Controller;
+use App\Models\Pkl;
+use App\Models\Skripsi;
 // use Illuminate\Support\Facades\DB;
+use App\Models\operator;
+use App\Models\dosenwali;
+use App\Models\mahasiswa;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\LazyCollection;
 use App\Http\Requests\StoreoperatorRequest;
 use App\Http\Requests\UpdateoperatorRequest;
-use App\Models\mahasiswa;
-use Illuminate\Http\Request;
-use App\Models\dosenwali;
-use App\Models\Pkl;
-use Illuminate\Support\Facades\DB;
-use App\Models\Skripsi;
 
 
 class OperatorController extends Controller
@@ -454,6 +455,29 @@ class OperatorController extends Controller
             'status'=>$status,
         ]);
     }
+
+    public function PDFlistbelumPKL($angkatan){
+        $attribute = Auth::guard('opt')->user();
+
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->leftJoin('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->whereNull('pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->get();
+
+        $pdf = Pdf::loadview('operator/Cetak/list_pkl_belum', [
+            'attribute' => $attribute,
+            'mhs' => $mhs,
+        ]);
+        return $pdf->stream('list_pkl_belum.pdf');
+
+        // return view('operator/Cetak/list_pkl_belum', [
+        //     'attribute' => $attribute,
+        //     'mhs' => $mhs,
+        // ]);
+    }
+
+
 
     /**
      * Display the specified resource.

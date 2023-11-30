@@ -215,11 +215,6 @@
                     <div class="row">
                         <div class="col-lg-9 grid-margin">
                             <div class="row">
-                                {{-- <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">List PKL Mahasiswa</h3>
-                                    <a class="active" href="{{ route('dashboard_dpt') }}">Dashboard/</a><a
-                                        style="color: black" href="pkl_dpt">List PKL Mahasiswa</a>
-                                </div> --}}
                                 <div class="col-lg-12">
                                     <h3 class="font-weight-bold">List PKL Mahasiswa</h3>
                                     <a style="color: black" href="{{ route('dashboard_opt') }}">Dashboard/</a><a
@@ -262,9 +257,6 @@
                                         </th>
                                       </tr>
                                     </thead>
-
-                                    {{-- BODY --}}
-                                    {{-- @if ($status) --}}
                                         {{-- list_pkl --}}
                                         @foreach ($mhs as $item)
                                         <tr>
@@ -275,26 +267,12 @@
                                             <td>Belum PKL</td>
                                         </tr>
                                         @endforeach
-
-                                    {{-- @else
-                                        @foreach ($mhs as $item)
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->angkatan }}</td>
-                                            <td>Belum memiliki PKL</td>
-                                        </tr>
-                                        @endforeach
-                                    @endif --}}
-
-
-
-
                                     </table>
                                     </div>
                                     <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
+                                    <a href="{{ route('PDFlistbelumPKL', ['angkatan'=>$item->angkatan]) }}">
+                                        <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                    </a>
                                 </div>
                                 </div>
                             </div>
@@ -359,10 +337,6 @@
                                                 padding: 0px 0 0px 0;
                                                 margin: 0;
                                             }
-
-
-
-
 
                                                 table {
                                                   border-collapse: collapse;

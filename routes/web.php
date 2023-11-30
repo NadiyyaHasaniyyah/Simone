@@ -52,6 +52,9 @@ Route::middleware(['isOperator'])->group(function(){
     Route::get('operator/rekap_angkatan_opt/{angkatan}',[OperatorController::class, 'rekap_angkatan'])-> name('rekap_angkatan_opt');
     Route::get('operator/rekap_mahasiswa/{angkatan}-{status}',[OperatorController::class, 'rekap_tahun_status_opt'])-> name('rekap_tahun_status_opt');
 
+
+    // cetak pdf
+    Route::get('operator/rekap_pkl_opt/cetak_pdf/{angkatan}', [OperatorController::class, 'PDFlistbelumPKL'])->name('PDFlistbelumPKL');
 });
 
 
