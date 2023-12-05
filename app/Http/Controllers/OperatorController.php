@@ -625,36 +625,6 @@ class OperatorController extends Controller
         return $pdf->stream();
     }
 
-    // public function cetakPDF($angkatan, $status){
-
-    //     $mahasiswaSkripsi = Mahasiswa::where('angkatan', $angkatan)
-    //         ->leftJoin('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
-    //         ->whereNull('skripsis.mhs_id')
-    //         ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'skripsis.nilai', 'skripsis.tanggal_lulus');
-
-    //     $mahasiswaPkl = Mahasiswa::where('angkatan', $angkatan)
-    //         ->leftJoin('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
-    //         ->whereNull('pkls.mhs_id')
-    //         ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai', DB::raw('NULL as tanggal_lulus'));
-
-    //     $mhs = $mahasiswaSkripsi->union($mahasiswaPkl)->get();
-
-    //     // dd($mhs);
-
-    //     // dd($mhs);
-
-    //     if ($status == 'belumPKL'){
-    //         $pdf = PDF::loadView('operator/Cetak/list_pkl_belum', ['mhs' => $mhs]);
-    //         return $pdf->stream();
-    //     } else if ($status == 'sudahPKL'){
-    //         $pdf = PDF::loadView('operator/Cetak/list_pkl_sudah', ['mhs' => $mhs]);
-    //         return $pdf->stream();
-    //     } else if ($status == 'belumSkripsi'){
-    //         $pdf = PDF::loadView('operator/Cetak/list_skripsi_belum', ['mhs' => $mhs]);
-    //         return $pdf->stream();
-    //     }
-    // }
-
 
     /**
      * Display the specified resource.

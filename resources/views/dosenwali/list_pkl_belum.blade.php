@@ -261,10 +261,7 @@
                                         </th>
                                       </tr>
                                     </thead>
-
-                                    {{-- BODY --}}
-                                    {{-- @if ($status) --}}
-                                        {{-- list_pkl --}}
+                                    @if ($mhs->count() >= 1)
                                         @foreach ($mhs as $item)
                                         <tr>
                                             <td>1</td>
@@ -274,26 +271,15 @@
                                             <td>Belum memiliki PKL</td>
                                         </tr>
                                         @endforeach
-
-                                    {{-- @else
-                                        @foreach ($mhs as $item)
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->angkatan }}</td>
-                                            <td>Belum memiliki PKL</td>
-                                        </tr>
-                                        @endforeach
-                                    @endif --}}
-
-
-
-
                                     </table>
                                     </div>
                                     <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
+                                    <a href="{{ route('cetakPDFbelumPKL_dsn', ['angkatan'=>$item->angkatan]) }}">
+                                        <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                    </a>
+                                    @endif
+                                    </table>
+                                    </div>
                                 </div>
                                 </div>
                             </div>

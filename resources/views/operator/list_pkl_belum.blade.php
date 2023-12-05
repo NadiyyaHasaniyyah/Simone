@@ -257,24 +257,29 @@
                                         </th>
                                       </tr>
                                     </thead>
+                                        @if ($mhs->count() >= 1)
                                         {{-- list_pkl --}}
-                                        @foreach ($mhs as $item)
-                                        {{-- @dd($item) --}}
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->angkatan }}</td>
-                                            <td>Belum PKL</td>
-                                        </tr>
-                                        @endforeach
+                                            @foreach ($mhs as $item)
+                                            {{-- @dd($item) --}}
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->angkatan }}</td>
+                                                <td>Belum PKL</td>
+                                            </tr>
+                                            @endforeach
+
+                                            </table>
+                                            </div>
+                                            <br><br>
+                                            <a href="{{ route('cetakPDFbelumPKL', ['angkatan'=>$item->angkatan]) }}">
+                                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                            </a>
+                                        @endif
                                     </table>
                                     </div>
-                                    <br><br>
-                                    <a href="{{ route('cetakPDFbelumPKL', ['angkatan'=>$item->angkatan]) }}">
-                                        <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
-                                    </a>
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

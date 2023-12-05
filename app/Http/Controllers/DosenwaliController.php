@@ -10,6 +10,7 @@ use App\Models\Pkl;
 use App\Models\Skripsi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 class DosenwaliController extends Controller
@@ -238,7 +239,7 @@ class DosenwaliController extends Controller
 
     public function rekap_pkl_dsn(){
         $attribute = Auth::guard('dsn')->user();
-        $mhs = mahasiswa::get();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
         $pkl = Pkl::get();
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
@@ -267,7 +268,9 @@ class DosenwaliController extends Controller
 
     public function count_sudah_pkl($angkatan)
     {
+        $attribute = Auth::guard('dsn')->user();
         $jumlahMahasiswaLulusPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
             ->count();
 
@@ -276,7 +279,9 @@ class DosenwaliController extends Controller
 
     public function count_belum_pkl($angkatan)
     {
+        $attribute = Auth::guard('dsn')->user();
         $jumlahMahasiswaBelumPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->whereNotExists(function ($query) {
                 $query->select(DB::raw(1))
                     ->from('pkls')
@@ -290,6 +295,7 @@ class DosenwaliController extends Controller
     public function list_pkl_sudah($angkatan) {
         $attribute=Auth::guard('dsn')->user();
         $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
             ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai')
             ->get();
@@ -306,6 +312,7 @@ class DosenwaliController extends Controller
         $attribute = Auth::guard('dsn')->user();
 
         $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->leftJoin('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
             ->whereNull('pkls.mhs_id')
             ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
@@ -320,7 +327,7 @@ class DosenwaliController extends Controller
 
     public function rekap_skripsi_dsn(){
         $attribute = Auth::guard('dsn')->user();
-        $mhs = mahasiswa::get();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
         $skripsi = Skripsi::get();
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
@@ -349,7 +356,9 @@ class DosenwaliController extends Controller
 
     public function count_sudah_skripsi($angkatan)
     {
+        $attribute = Auth::guard('dsn')->user();
         $jumlahMahasiswaLulusSKRIPSI = Mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->join('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
             ->count();
 
@@ -358,7 +367,9 @@ class DosenwaliController extends Controller
 
     public function count_belum_skripsi($angkatan)
     {
+        $attribute = Auth::guard('dsn')->user();
         $jumlahMahasiswaBelumSKRIPSI = Mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->whereNotExists(function ($query) {
                 $query->select(DB::raw(1))
                     ->from('skripsis')
@@ -370,8 +381,9 @@ class DosenwaliController extends Controller
     }
 
     public function list_skripsi_sudah($angkatan) {
-        $attribute=Auth::guard('dpt')->user();
+        $attribute = Auth::guard('dsn')->user();
         $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->join('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
             ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'skripsis.nilai', 'skripsis.tanggal_lulus')
             ->get();
@@ -383,9 +395,10 @@ class DosenwaliController extends Controller
     }
 
     public function list_skripsi_belum($angkatan) {
-        $attribute = Auth::guard('dpt')->user();
+        $attribute = Auth::guard('dsn')->user();
 
         $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
             ->leftJoin('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
             ->whereNull('skripsis.mhs_id')
             ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
@@ -524,6 +537,191 @@ class DosenwaliController extends Controller
             'angkatan'=>$angkatan,
             'status'=>$status,
         ]);
+    }
+
+    public function cetakPKL(){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+        $pkl = Pkl::get();
+
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $countsudah = [];
+        $countbelum = [];
+
+        foreach ($angkatanList as $angkatan) {
+            $countsudah[$angkatan] = $this->count_sudah_pkl($angkatan) ?? 0;
+            $countbelum[$angkatan] = $this->count_belum_pkl($angkatan) ?? 0;
+        }
+
+        $pdf = PDF::loadView('dosenwali/Cetak/rekap_pkl', [
+            'mhs'=>$mhs,
+            'pkl'=>$pkl,
+            'countsudah'=>$countsudah,
+            'countbelum'=>$countbelum,
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream();
+    }
+
+    public function cetakPDFbelumPKL($angkatan){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
+            ->leftJoin('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->whereNull('pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->get();
+
+        $pdf = PDF::loadView('dosenwali/Cetak/list_pkl_belum', ['mhs' => $mhs]);
+        return $pdf->stream();
+    }
+
+    public function cetakPDFsudahPKL($angkatan){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
+            ->join('pkls', 'mahasiswas.id', '=', 'pkls.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'pkls.nilai')
+            ->get();
+        $pdf = PDF::loadView('dosenwali/Cetak/list_pkl_sudah', ['mhs' => $mhs]);
+        return $pdf->stream();
+    }
+
+    public function cetakSkripsi(){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+        $skripsi = Skripsi::get();
+
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $countsudah = [];
+        $countbelum = [];
+
+        foreach ($angkatanList as $angkatan) {
+            $countsudah[$angkatan] = $this->count_sudah_skripsi($angkatan) ?? 0;
+            $countbelum[$angkatan] = $this->count_belum_skripsi($angkatan) ?? 0;
+        }
+
+        $pdf = PDF::loadView('dosenwali/Cetak/rekap_skripsi', [
+            'mhs'=>$mhs,
+            'skripsi'=>$skripsi,
+            'countsudah'=>$countsudah,
+            'countbelum'=>$countbelum,
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream();
+    }
+
+    public function cetakPDFbelumskripsi($angkatan){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
+            ->leftJoin('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
+            ->whereNull('skripsis.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan')
+            ->get();
+
+        $pdf = PDF::loadView('dosenwali/Cetak/list_skripsi_belum', ['mhs' => $mhs]);
+        return $pdf->stream();
+    }
+
+    public function cetakPDFsudahskripsi($angkatan){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
+            ->rightJoin('skripsis', 'mahasiswas.id', '=', 'skripsis.mhs_id')
+            ->select('mahasiswas.nama', 'mahasiswas.id', 'mahasiswas.angkatan', 'skripsis.nilai', 'skripsis.tanggal_lulus')
+            ->get();
+
+            $pdf = PDF::loadView('dosenwali/Cetak/list_skripsi_sudah', ['mhs' => $mhs]);
+            return $pdf->stream();
+    }
+
+    public function cetakMhs(){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('dsn_id', $attribute->id)->get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+
+        $status_count = [];
+        $mhs_count = [];
+
+        foreach ($statusList as $status) {
+            $status_count[$status] = $this->count_status($status) ?? 0;
+            foreach ($angkatanList as $angkatan) {
+                $mhs_count[$angkatan][$status] = $this->count_mhs($angkatan, $status) ?? 0;
+            }
+        }
+
+        $pdf = PDF::loadView('dosenwali/Cetak/rekap_mhs', [
+            'mhs'=>$mhs,
+            'status_count'=>$status_count,
+            'mhs_count'=>$mhs_count,
+        ]);
+        return $pdf->stream();
+    }
+
+    public function cetakAngkatan($angkatan){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
+            ->get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $angkatan_count = [];
+
+        foreach ($statusList as $status) {
+            foreach ($angkatanList as $angkatan) {
+                $angkatan_count[$status][$angkatan] = $this->count_angkatan($status, $angkatan) ?? 0;
+            }
+        }
+
+        $pdf = PDF::loadView('dosenwali/Cetak/rekap_angkatan', [
+            'mhs'=>$mhs,
+            'angkatan_count'=>$angkatan_count,
+            'angkatan'=>$angkatan,
+        ]);
+        return $pdf->stream();
+    }
+
+    public function cetakStatus($status){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('status', $status)
+            ->where('dsn_id', $attribute->id)
+            ->get();
+
+        $statusList = $mhs->pluck('status')->unique()->toArray();
+        $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        $status_count = [];
+
+        foreach ($statusList as $status) {
+            foreach ($angkatanList as $angkatan) {
+                $status_count[$angkatan][$status] = $this->count_status_mhs($angkatan, $status) ?? 0;
+            }
+        }
+
+        $pdf = PDF::loadView('dosenwali/Cetak/rekap_status', [
+            'mhs'=>$mhs,
+            'status_count'=>$status_count,
+            'status'=>$status,
+        ]);
+        return $pdf->stream();
+    }
+
+    public function cetakTahunStatus($angkatan, $status){
+        $attribute=Auth::guard('dsn')->user();
+        $mhs = mahasiswa::where('angkatan', $angkatan)
+            ->where('dsn_id', $attribute->id)
+            ->where('status', $status)
+            ->get();
+
+        $pdf = PDF::loadView('departemen/Cetak/rekap_tahun_status', [
+            'mhs'=>$mhs,
+            'angkatan'=>$angkatan,
+            'status'=>$status,
+        ]);
+        return $pdf->stream();
     }
 
     public function create()

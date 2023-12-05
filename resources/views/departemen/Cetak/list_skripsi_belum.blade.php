@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="margin: 0 auto; text-align: center; margin-bottom: 40px;">
-                            <h3 style="font-weight: bold;">Rekap PKL per-Angkatan</h3>
+                            <h3 style="font-weight: bold;">List Mahasiswa belum Skripsi</h3>
                         </div>
 
                         <div class="table-responsive">
@@ -59,38 +59,20 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>NIM</th>
-                                        <th>Dosen Wali</th>
-                                        <th>Jalur Masuk</th>
-                                        <th>Status</th>
+                                        <th>Angkatan</th>
+                                        <th>Nilai</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($mhs as $mhs)
-
-                                        @php
-                                            $dosen = DB::table('dosenwalis')->where('id', $mhs->dsn_id)->first();
-                                        @endphp
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $mhs->nama }}</td>
-                                            <td>{{ $mhs->id }}</td>
-                                            <td>
-                                                @if ($dosen)
-                                                    {{ $dosen->nama }}
-                                                @else
-                                                    Data Dosen Tidak Ditemukan
-                                                @endif
-                                            </td>
-                                            <td>{{ $mhs->jalur_masuk }}</td>
-                                            <td>{{ $mhs->status }}</td>
-                                        </tr>
-                                    @endforeach
-
+                                    @foreach ($mhs as $angkatan => $items)
                                     <tr>
-
+                                        <td>1</td>
+                                        <td>{{ $items->nama }}</td>
+                                        <td>{{ $items->id }}</td>
+                                        <td>{{ $items->angkatan }}</td>
+                                        <td>Belum Skripsi</td>
                                     </tr>
-                                </tbody>
-                            </table>
+                                    @endforeach
+                                </table>
                         </div>
                     </div>
                 </div>

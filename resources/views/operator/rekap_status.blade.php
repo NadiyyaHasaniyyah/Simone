@@ -332,7 +332,7 @@
 
                                         @php
                                             $dosen = DB::table('dosenwalis')->where('id', $mhs->dsn_id)->first();
-                                            // dd($mhs);
+
                                         @endphp
                                         <tr>
                                             <td>
@@ -345,8 +345,13 @@
                                                 {{ $mhs->id }}
                                             </td>
                                             <td>
-                                                {{ $dosen->nama }}
+                                                @if ($dosen)
+                                                    {{ $dosen->nama }}
+                                                @else
+                                                    Data Dosen Tidak Ditemukan
+                                                @endif
                                             </td>
+
                                             <td>
                                                 {{ $mhs->jalur_masuk }}
                                             </td>

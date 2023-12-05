@@ -262,43 +262,51 @@
                                             </th>
                                         </tr>
                                     </thead>
+                                    @if ($mhs->count() >= 1)
+                                        <tbody>
+                                            @foreach ($mhs as $mhs)
 
-                                    <tbody>
-                                        @foreach ($mhs as $mhs)
+                                            @php
+                                                $dosen = DB::table('dosenwalis')->where('id', $mhs->dsn_id)->first();
+                                                // dd($mhs);
+                                            @endphp
+                                            <tr>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
+                                                <td>
+                                                    {{ $mhs->nama }}
+                                                </td>
+                                                <td>
+                                                    {{ $mhs->id }}
+                                                </td>
+                                                <td>
+                                                    @if ($dosen)
+                                                        {{ $dosen->nama }}
+                                                    @else
+                                                        Data Dosen Tidak Ditemukan
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{ $mhs->jalur_masuk }}
+                                                </td>
+                                                <td>
+                                                    {{ $mhs->status }}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
 
-                                        @php
-                                            $dosen = DB::table('dosenwalis')->where('id', $mhs->dsn_id)->first();
-                                            // dd($mhs);
-                                        @endphp
-                                        <tr>
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->nama }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->id }}
-                                            </td>
-                                            <td>
-                                                {{ $dosen->nama }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->jalur_masuk }}
-                                            </td>
-                                            <td>
-                                                {{ $mhs->status }}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-
-                                  </table>
-                                </div>
-                                {{-- button  --}}
-                                <br><br>
-                                <a href="{{ route('cetakTahunStatus', ['angkatan'=>$mhs->angkatan, 'status'=>$mhs->status]) }}">
-                                    <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                        </table>
+                                        </div>
+                                        {{-- button  --}}
+                                        <br><br>
+                                        <a href="{{ route('cetakTahunStatus', ['angkatan'=>$mhs->angkatan, 'status'=>$mhs->status]) }}">
+                                            <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>\
+                                        </a>
+                                    @endif
+                                    </table>
+                                    </div>
                               </div>
                             </div>
                           </div>

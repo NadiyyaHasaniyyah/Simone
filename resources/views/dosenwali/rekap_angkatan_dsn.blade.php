@@ -349,7 +349,11 @@
                                                 {{ $mhs->id }}
                                             </td>
                                             <td>
-                                                {{ $dosen->nama }}
+                                                @if ($dosen)
+                                                    {{ $dosen->nama }}
+                                                @else
+                                                    Data Dosen Tidak Ditemukan
+                                                @endif
                                             </td>
                                             <td>
                                                 {{ $mhs->jalur_masuk }}
@@ -365,7 +369,9 @@
                                 </div>
                                 {{-- button  --}}
                                 <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" onclick="printDiv()">Cetak</button>
+                                <a href="{{ route('cetakAngkatan_dsn', ['angkatan'=>$mhs->angkatan]) }}">
+                                    <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                </a>
                               </div>
                             </div>
                           </div>

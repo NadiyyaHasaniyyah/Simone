@@ -264,9 +264,7 @@
                                         </th>
                                       </tr>
                                     </thead>
-
-                                    {{-- BODY --}}
-                                    {{-- @if ($status) --}}
+                                    @if ($mhs->count() >= 1)
                                         @foreach ($mhs as $angkatan => $items)
                                             @php
                                                 $skripsi = DB::table('skripsis')->where('mhs_id', $items->id)->first();
@@ -282,12 +280,15 @@
                                                 </tr>
                                         @endforeach
 
+                                        </table>
+                                        </div>
+                                        <br><br>
+                                        <a href="{{ route('cetakPDFsudahskripsi', ['angkatan'=>$items->angkatan]) }}">
+                                            <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                        </a>
+                                    @endif
                                     </table>
                                     </div>
-                                    <br><br>
-                                    <a href="{{ route('cetakPDFsudahskripsi', ['angkatan'=>$items->angkatan]) }}">
-                                        <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
-                                    </a>
                                 </div>
                                 </div>
                             </div>

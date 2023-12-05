@@ -347,7 +347,11 @@
                                                 {{ $mhs->id }}
                                             </td>
                                             <td>
-                                                {{ $dosen->nama }}
+                                                @if ($dosen)
+                                                    {{ $dosen->nama }}
+                                                @else
+                                                    Data Dosen Tidak Ditemukan
+                                                @endif
                                             </td>
                                             <td>
                                                 {{ $mhs->jalur_masuk }}

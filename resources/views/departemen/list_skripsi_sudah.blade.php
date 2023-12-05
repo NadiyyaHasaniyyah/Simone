@@ -245,27 +245,30 @@
                                         </th>
                                       </tr>
                                     </thead>
-
-                                    {{-- BODY --}}
-                                    {{-- @if ($status) --}}
+                                    @if ($mhs->count() >= 1)
                                         @foreach ($mhs as $angkatan => $items)
-                                            @foreach ($items->pkls as $item)
-                                            {{-- @dd($sudah) --}}
+                                            @php
+                                                $skripsi = DB::table('skripsis')->where('mhs_id', $items->id)->first();
+                                            @endphp
                                                 <tr>
                                                     <td>1</td>
                                                     <td>{{ $items->nama }}</td>
                                                     <td>{{ $items->id }}</td>
                                                     <td>{{ $items->angkatan }}</td>
                                                     <td>{{ $items->tanggal_lulus }}</td>
-                                                    <td>{{ $item->nilai }}</td>
+                                                    <td>{{ $skripsi->nilai }}</td>
                                                 </tr>
-                                            @endforeach
                                         @endforeach
 
                                     </table>
                                     </div>
                                     <br><br>
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-right" >Cetak</button>
+                                    <a href="{{ route('cetakPDFsudahskripsi_dpt', ['angkatan'=>$items->angkatan]) }}">
+                                        <button type="button" class="btn btn-primary btn-rounded btn-fw float-right">Cetak</button>
+                                    </a>
+                                    @endif
+                                    </table>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
