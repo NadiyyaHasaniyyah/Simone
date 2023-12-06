@@ -54,16 +54,16 @@ Route::middleware(['isOperator'])->group(function(){
 
 
     // cetak pdf
-    Route::get('operator/rekap_pkl_opt/cetak_pkl_belum/{angkatan}', [OperatorController::class, 'cetakPDFbelumPKL'])->name('cetakPDFbelumPKL');
-    Route::get('operator/rekap_pkl_opt/cetak_pkl_sudah/{angkatan}', [OperatorController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL');
-    Route::get('operator/rekap_pkl_opt/cetak_skripsi_belum/{angkatan}', [OperatorController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi');
-    Route::get('operator/rekap_pkl_opt/cetak_skripsi_sudah/{angkatan}', [OperatorController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi');
-    Route::get('operator/rekap_pkl_opt/cetak_pkl', [OperatorController::class, 'cetakPKL'])->name('cetakPKL');
-    Route::get('operator/rekap_pkl_opt/cetak_skripsi', [OperatorController::class, 'cetakSkripsi'])->name('cetakSkripsi');
-    Route::get('operator/rekap_pkl_opt/cetak_mhs', [OperatorController::class, 'cetakMhs'])->name('cetakMhs');
-    Route::get('operator/rekap_pkl_opt/cetak_angkatan/{angkatan}', [OperatorController::class, 'cetakAngkatan'])->name('cetakAngkatan');
-    Route::get('operator/rekap_pkl_opt/cetak_status/{status}', [OperatorController::class, 'cetakStatus'])->name('cetakStatus');
-    Route::get('operator/rekap_pkl_opt/cetak_angkatan_status/{angkatan}-{status}', [OperatorController::class, 'cetakTahunStatus'])->name('cetakTahunStatus');
+    Route::get('operator/cetak_pkl_belum/{angkatan}', [OperatorController::class, 'cetakPDFbelumPKL'])->name('cetakPDFbelumPKL');
+    Route::get('operator/cetak_pkl_sudah/{angkatan}', [OperatorController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL');
+    Route::get('operator/cetak_skripsi_belum/{angkatan}', [OperatorController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi');
+    Route::get('operator/cetak_skripsi_sudah/{angkatan}', [OperatorController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi');
+    Route::get('operator/cetak_pkl', [OperatorController::class, 'cetakPKL'])->name('cetakPKL');
+    Route::get('operator/cetak_skripsi', [OperatorController::class, 'cetakSkripsi'])->name('cetakSkripsi');
+    Route::get('operator/cetak_mhs', [OperatorController::class, 'cetakMhs'])->name('cetakMhs');
+    Route::get('operator/cetak_angkatan/{angkatan}', [OperatorController::class, 'cetakAngkatan'])->name('cetakAngkatan');
+    Route::get('operator/cetak_status/{status}', [OperatorController::class, 'cetakStatus'])->name('cetakStatus');
+    Route::get('operator/cetak_angkatan_status/{angkatan}-{status}', [OperatorController::class, 'cetakTahunStatus'])->name('cetakTahunStatus');
 
 });
 
@@ -123,7 +123,7 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/dashboard_dsn',[DosenwaliController::class, 'index'])-> name('dashboard_dsn');
     Route::get('dosenwali/pencarian_dsn',[DosenwaliController::class, 'pencarian_dsn'])-> name('pencarian_dsn');
     Route::get('dosenwali/hasil_pencarian_dsn/{id}',[DosenwaliController::class, 'hasil_pencarian_dsn'])-> name('hasil_pencarian_dsn');
-    Route::get('dosenwali/hasil_pencarian_dsn/{id}-{smt}',[DosenwaliController::class, 'hasil_pencarian_dsn_lanj'])-> name('semester_pencarian');
+    Route::get('dosenwali/hasil_pencarian_dsn/detail/{id}-{smt}',[DosenwaliController::class, 'hasil_pencarian_dsn_lanj'])-> name('semester_pencarian');
     // Route::get('dosenwali/rekap_mahasiswa',[DosenwaliController::class, 'rekap_mhs'])-> name('rekap_mhs');
     Route::get('dosenwali/getMahasiswaBySemester/{semester}',[DosenwaliController::class, 'getMahasiswaBySemester'])-> name('getMahasiswaBySemester');
 
@@ -162,16 +162,16 @@ Route::middleware(['isDosenWali'])->group(function(){
     Route::get('dosenwali/rekap_mahasiswa/{angkatan}-{status}',[DosenwaliController::class, 'rekap_tahun_status_dsn'])-> name('rekap_tahun_status_dsn');
 
     // cetak
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_pkl', [DosenwaliController::class, 'cetakPKL'])->name('cetakPKL_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_pkl_belum/{angkatan}', [DosenwaliController::class, 'cetakPDFbelumPKL'])->name('cetakPDFbelumPKL_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_pkl_sudah/{angkatan}', [DosenwaliController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_skripsi', [DosenwaliController::class, 'cetakSkripsi'])->name('cetakSkripsi_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_skripsi_belum/{angkatan}', [DosenwaliController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_skripsi_sudah/{angkatan}', [DosenwaliController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_mhs', [DosenwaliController::class, 'cetakMhs'])->name('cetakMhs_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_angkatan/{angkatan}', [DosenwaliController::class, 'cetakAngkatan'])->name('cetakAngkatan_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_status/{status}', [DosenwaliController::class, 'cetakStatus'])->name('cetakStatus_dsn');
-    Route::get('dosenwali/rekap_pkl_dsn/cetak_angkatan_status/{angkatan}-{status}', [DosenwaliController::class, 'cetakTahunStatus'])->name('cetakTahunStatus_dsn');
+    Route::get('dosenwali/cetak_pkl', [DosenwaliController::class, 'cetakPKL'])->name('cetakPKL_dsn');
+    Route::get('dosenwali/cetak_pkl_belum/{angkatan}', [DosenwaliController::class, 'cetakPDFbelumPKL'])->name('cetakPDFbelumPKL_dsn');
+    Route::get('dosenwali/cetak_pkl_sudah/{angkatan}', [DosenwaliController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL_dsn');
+    Route::get('dosenwali/cetak_skripsi', [DosenwaliController::class, 'cetakSkripsi'])->name('cetakSkripsi_dsn');
+    Route::get('dosenwali/cetak_skripsi_belum/{angkatan}', [DosenwaliController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi_dsn');
+    Route::get('dosenwali/cetak_skripsi_sudah/{angkatan}', [DosenwaliController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi_dsn');
+    Route::get('dosenwali/cetak_mhs', [DosenwaliController::class, 'cetakMhs'])->name('cetakMhs_dsn');
+    Route::get('dosenwali/cetak_angkatan/{angkatan}', [DosenwaliController::class, 'cetakAngkatan'])->name('cetakAngkatan_dsn');
+    Route::get('dosenwali/cetak_status/{status}', [DosenwaliController::class, 'cetakStatus'])->name('cetakStatus_dsn');
+    Route::get('dosenwali/cetak_angkatan_status/{angkatan}-{status}', [DosenwaliController::class, 'cetakTahunStatus'])->name('cetakTahunStatus_dsn');
 });
 
 // dpt
@@ -193,16 +193,16 @@ Route::middleware(['isDepartemen'])->group(function(){
     Route::get('departemen/list_skripsi/belum/{angkatan}',[DepartemenController::class, 'list_skripsi_belum'])-> name('list_skripsi_belum');
 
     // cetak
-    Route::get('departemen/rekap_pkl_dpt/cetak_pkl', [DepartemenController::class, 'cetakPKL'])->name('cetakPKL_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_pkl_belum/{angkatan}', [DepartemenController::class, 'cetakPDFbelumPKL'])->name('cetakPDFbelumPKL_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_pkl_sudah/{angkatan}', [DepartemenController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_skripsi', [DepartemenController::class, 'cetakSkripsi'])->name('cetakSkripsi_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_skripsi_belum/{angkatan}', [DepartemenController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_skripsi_sudah/{angkatan}', [DepartemenController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_mhs', [DepartemenController::class, 'cetakMhs'])->name('cetakMhs_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_angkatan/{angkatan}', [DepartemenController::class, 'cetakAngkatan'])->name('cetakAngkatan_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_status/{status}', [DepartemenController::class, 'cetakStatus'])->name('cetakStatus_dpt');
-    Route::get('departemen/rekap_pkl_dpt/cetak_angkatan_status/{angkatan}-{status}', [DepartemenController::class, 'cetakTahunStatus'])->name('cetakTahunStatus_dpt');
+    Route::get('departemen/cetak_pkl', [DepartemenController::class, 'cetakPKL'])->name('cetakPKL_dpt');
+    Route::get('departemen/cetak_pkl_belum/{angkatan}', [DepartemenController::class, 'cetakPDFbelumPKL'])->name('cetakPDFbelumPKL_dpt');
+    Route::get('departemen/cetak_pkl_sudah/{angkatan}', [DepartemenController::class, 'cetakPDFsudahPKL'])->name('cetakPDFsudahPKL_dpt');
+    Route::get('departemen/cetak_skripsi', [DepartemenController::class, 'cetakSkripsi'])->name('cetakSkripsi_dpt');
+    Route::get('departemen/cetak_skripsi_belum/{angkatan}', [DepartemenController::class, 'cetakPDFbelumskripsi'])->name('cetakPDFbelumskripsi_dpt');
+    Route::get('departemen/cetak_skripsi_sudah/{angkatan}', [DepartemenController::class, 'cetakPDFsudahskripsi'])->name('cetakPDFsudahskripsi_dpt');
+    Route::get('departemen/cetak_mhs', [DepartemenController::class, 'cetakMhs'])->name('cetakMhs_dpt');
+    Route::get('departemen/cetak_angkatan/{angkatan}', [DepartemenController::class, 'cetakAngkatan'])->name('cetakAngkatan_dpt');
+    Route::get('departemen/cetak_status/{status}', [DepartemenController::class, 'cetakStatus'])->name('cetakStatus_dpt');
+    Route::get('departemen/cetak_angkatan_status/{angkatan}-{status}', [DepartemenController::class, 'cetakTahunStatus'])->name('cetakTahunStatus_dpt');
 
 });
 

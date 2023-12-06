@@ -29,9 +29,9 @@ class DepartemenController extends Controller
         $mhs = mahasiswa::get();
         $pkl = Pkl::get();
 
-        // dd($mhs);
-
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
+
         $countsudah = [];
         $countbelum = [];
         $list_pkl_sudah = [];
@@ -51,6 +51,7 @@ class DepartemenController extends Controller
             'countbelum' => $countbelum,
             'list_sudah' => $list_pkl_sudah,
             'list_belum' => $list_pkl_belum,
+            'angkatanList' => $angkatanList,
         ]);
     }
     public function rekap_mahasiswa()
@@ -69,6 +70,8 @@ class DepartemenController extends Controller
         // dd($mhs);
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
+
         $countsudah = [];
         $countbelum = [];
         $list_skripsi_sudah = [];
@@ -89,6 +92,7 @@ class DepartemenController extends Controller
             'countbelum' => $countbelum,
             'list_sudah' => $list_skripsi_sudah,
             'list_belum' => $list_skripsi_belum,
+            'angkatanList' => $angkatanList,
         ]);
     }
 
@@ -202,6 +206,7 @@ class DepartemenController extends Controller
 
         $statusList = $mhs->pluck('status')->unique()->toArray();
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
 
         $status_count = [];
         $mhs_count = [];
@@ -220,6 +225,7 @@ class DepartemenController extends Controller
             'attribute'=>$attribute,
             'status_count'=>$status_count,
             'mhs_count'=>$mhs_count,
+            'angkatanList' => $angkatanList,
         ]);
     }
 

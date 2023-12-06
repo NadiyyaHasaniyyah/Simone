@@ -148,6 +148,8 @@ class OperatorController extends Controller
         // dd($mhs);
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
+
         $countsudah = [];
         $countbelum = [];
         $list_pkl_sudah = [];
@@ -167,6 +169,7 @@ class OperatorController extends Controller
             'countbelum' => $countbelum,
             'list_sudah' => $list_pkl_sudah,
             'list_belum' => $list_pkl_belum,
+            'angkatanList' => $angkatanList
         ]);
     }
 
@@ -179,6 +182,9 @@ class OperatorController extends Controller
         // dd($mhs);
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
+        dd($angkatanList);
+
         $countsudah = [];
         $countbelum = [];
         $list_skripsi_sudah = [];
@@ -199,6 +205,7 @@ class OperatorController extends Controller
             'countbelum' => $countbelum,
             'list_sudah' => $list_skripsi_sudah,
             'list_belum' => $list_skripsi_belum,
+            'angkatanList' => $angkatanList,
         ]);
     }
 
@@ -265,6 +272,8 @@ class OperatorController extends Controller
         // dd($mhs);
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
+
         $countsudah = [];
         $countbelum = [];
         $list_skripsi_sudah = [];
@@ -285,6 +294,7 @@ class OperatorController extends Controller
             'countbelum' => $countbelum,
             'list_sudah' => $list_skripsi_sudah,
             'list_belum' => $list_skripsi_belum,
+            'angkatanList' => $angkatanList,
         ]);
     }
 
@@ -347,6 +357,7 @@ class OperatorController extends Controller
 
         $statusList = $mhs->pluck('status')->unique()->toArray();
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
 
         $status_count = [];
         $mhs_count = [];
@@ -365,6 +376,7 @@ class OperatorController extends Controller
             'attribute'=>$attribute,
             'status_count'=>$status_count,
             'mhs_count'=>$mhs_count,
+            'angkatanList' => $angkatanList,
         ]);
     }
 

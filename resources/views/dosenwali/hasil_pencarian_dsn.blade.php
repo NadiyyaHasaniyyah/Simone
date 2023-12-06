@@ -262,7 +262,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                
+
 
                                         {{-- foto --}}
                                         <div class="col-md-7">
@@ -286,118 +286,170 @@
                                 <h4 class="card-title">Semester</h4>
 
                                 <div class="template-demo">
-                                    @for ($i = 1; $i <= 5; $i++)
+                                    @php
+                                        $end_flag = 0;
+                                    @endphp
+                                    @if ($end_flag == 0)
+                                        @for ($i = 1; $i <= 5; $i++)
                                         @php
                                         $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
                                         $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-                                        @if ($flag1 == 1)
-                                            @if ($flag2 == 1)
-                                                @if ($flag4 == 1)
-                                                    @php
-                                                        $type='success';
-                                                        $smt=$i;
-                                                    @endphp
-                                                    {{-- <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$i]) }}">
-                                                        <button type="button" class="open btn btn-success btn-icon-text trigger "> --}}
-                                                @elseif ($flag3 == 1)
-                                                    @php
-                                                        $type='warning';
-                                                        $smt=$i;
-                                                    @endphp
-                                                    {{-- <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$i]) }}">
-                                                        <button type="button" class="open btn btn-warning btn-icon-text trigger"> --}}
+                                        
+                                            @if ($flag1 == 1)
+                                                @if ($flag2 == 1)
+                                                    @if ($flag4 == 1)
+                                                        @php
+                                                            $type='success';
+                                                            $smt=$i;
+                                                            $end_flag = 1;
+                                                        @endphp
+                                                    @elseif ($flag3 == 1)
+                                                        @php
+                                                            $type='warning';
+                                                            $smt=$i;
+                                                        @endphp
+                                                    @else
+                                                        @php
+                                                            $type='primary';
+                                                            $smt=$i;
+                                                        @endphp
+                                                    @endif
                                                 @else
                                                     @php
-                                                        $type='primary';
+                                                        $type='info';
                                                         $smt=$i;
                                                     @endphp
-                                                    {{-- <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$i]) }}">
-                                                        <button type="button" class="open btn btn-primary btn-icon-text trigger"> --}}
                                                 @endif
                                             @else
                                                 @php
-                                                    $type='info';
+                                                    $type='success';
                                                     $smt=$i;
                                                 @endphp
-                                                {{-- <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$i]) }}">
-                                                    <button type="button" class="open btn btn-info btn-icon-text trigger"> --}}
                                             @endif
-                                        @else
-                                            @php
-                                                $type='success';
-                                                $smt=$i;
-                                            @endphp
-                                            {{-- <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$i]) }}">
-                                                <button type="button" class="open btn btn-danger btn-icon-text trigger"> --}}
-                                        @endif
-                                            <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
-                                                <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
-                                            </a>
-                                    </button>
-                                @endfor
+                                            @if ($end_flag == 1)
+                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                </a>
+                                                @break
+                                            @else
+                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                </a>
+                                            @endif
+                                        @endfor
+                                    @endif
 
                                 </div>
 
                                 <div class="template-demo">
-                                    @for ($i = 6; $i <= 10; $i++)
+                                    @if ($end_flag == 0)
+                                        @for ($i = 6; $i <= 10; $i++)
                                         @php
                                         $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
                                         $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-
-                                        @if ($flag1 == 1)
-                                            @if ($flag2 == 1)
-                                                @if ($flag4 == 1)
-                                                    <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
-                                                @elseif ($flag3 == 1)
-                                                    <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                            @if ($flag1 == 1)
+                                                @if ($flag2 == 1)
+                                                    @if ($flag4 == 1)
+                                                        @php
+                                                            $type='success';
+                                                            $smt=$i;
+                                                            $end_flag = 1;
+                                                        @endphp
+                                                    @elseif ($flag3 == 1)
+                                                        @php
+                                                            $type='warning';
+                                                            $smt=$i;
+                                                        @endphp
+                                                    @else
+                                                        @php
+                                                            $type='primary';
+                                                            $smt=$i;
+                                                        @endphp
+                                                    @endif
                                                 @else
-                                                    <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                    @php
+                                                        $type='info';
+                                                        $smt=$i;
+                                                    @endphp
                                                 @endif
                                             @else
-                                                <button type="button" class="open btn btn-info btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @php
+                                                    $type='success';
+                                                    $smt=$i;
+                                                @endphp
                                             @endif
-                                        @else
-                                        <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
-                                        @endif
-                                        {{ $i }}
-                                        </button>
-
-                                    @endfor
+                                            @if ($end_flag == 1)
+                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                </a>
+                                                @break
+                                            @else
+                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                </a>
+                                            @endif
+                                        @endfor
+                                    @endif
                                 </div>
 
                                 <div class="template-demo">
-                                    @for ($i = 11; $i <= 14; $i++)
+                                    @if ($end_flag == 0)
+                                        @for ($i = 11; $i <= 14; $i++)
                                         @php
                                         $flag1 = $irs->where('semester', $i)->first()->flag ?? 0;
                                         $flag2 = $khs->where('semester', $i)->first()->flag ?? 0;
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-
-                                        @if ($flag1 == 1)
-                                            @if ($flag2 == 1)
-                                                @if ($flag4 == 1)
-                                                    <button type="button" class="open btn btn-success btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
-                                                @elseif ($flag3 == 1)
-                                                    <button type="button" class="open btn btn-warning btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                            @if ($flag1 == 1)
+                                                @if ($flag2 == 1)
+                                                    @if ($flag4 == 1)
+                                                        @php
+                                                            $type='success';
+                                                            $smt=$i;
+                                                            $end_flag = 1;
+                                                        @endphp
+                                                    @elseif ($flag3 == 1)
+                                                        @php
+                                                            $type='warning';
+                                                            $smt=$i;
+                                                        @endphp
+                                                    @else
+                                                        @php
+                                                            $type='primary';
+                                                            $smt=$i;
+                                                        @endphp
+                                                    @endif
                                                 @else
-                                                    <button type="button" class="open btn btn-primary btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                    @php
+                                                        $type='info';
+                                                        $smt=$i;
+                                                    @endphp
                                                 @endif
                                             @else
-                                                <button type="button" class="open btn btn-info btn-icon-text trigger " data-semester="{{ $i }}" data-url="{{ $i }}">
+                                                @php
+                                                    $type='success';
+                                                    $smt=$i;
+                                                @endphp
                                             @endif
-                                        @else
-                                        <button type="button" class="open btn btn-danger btn-icon-text trigger" data-semester="{{ $i }}" data-url="{{ $i }}">
-                                        @endif
-                                        {{ $i }}
-                                        </button>
-                                    @endfor
+                                            @if ($end_flag == 1)
+                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                </a>
+                                                @break
+                                            @else
+                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                </a>
+                                            @endif
+                                        @endfor
+                                    @endif
 
                                 </div>
 
@@ -451,148 +503,8 @@
                             </div>
                     </div>
 
-                    <div class="modals ">
-                        <div class="modal-content ">
-                          <div class="card col-md-7">
-                            <p>
-                                <div class=" stretch-card">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="tabs">
-                                                <input type="radio" id="tab1" name="tab-control" checked>
-                                                <input type="radio" id="tab2" name="tab-control">
-                                                <ul>
-                                                    <li ><label for="tab1" role="button"><svg
-                                                                viewBox="0 0 24 24">
-                                                                <path
-                                                                    d="M14,2A8,8 0 0,0 6,10A8,8 0 0,0 14,18A8,8 0 0,0 22,10H20C20,13.32 17.32,16 14,16A6,6 0 0,1 8,10A6,6 0 0,1 14,4C14.43,4 14.86,4.05 15.27,4.14L16.88,2.54C15.96,2.18 15,2 14,2M20.59,3.58L14,10.17L11.62,7.79L10.21,9.21L14,13L22,5M4.93,5.82C3.08,7.34 2,9.61 2,12A8,8 0 0,0 10,20C10.64,20 11.27,19.92 11.88,19.77C10.12,19.38 8.5,18.5 7.17,17.29C5.22,16.25 4,14.21 4,12C4,11.7 4.03,11.41 4.07,11.11C4.03,10.74 4,10.37 4,10C4,8.56 4.32,7.13 4.93,5.82Z" />
-                                                            </svg><br><span> IRS</span></label></li>
-                                                    <li><label for="tab2" role="button"><svg
-                                                                viewBox="0 0 24 24">
-                                                                <path
-                                                                    d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19.55,8.72L13.27,12.35L13.85,13.36Z" />
-                                                            </svg><br><span> KHS </span></label></li>
-                                                </ul>
 
-                                                <div class="slider">
-                                                    <div class="indicator"></div>
-                                                </div>
-                                                <div class="content">
-
-                                                    <section>
-                                                        <h2>IRS</h2>
-                                                        <div>
-
-                                                            <link
-                                                                href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined"
-                                                                rel="stylesheet">
-                                                                <p id="modalContent" style="text-align: right; font-weight: bold; font-size: 40px"></p>
-                                                                <br><br>
-                                                                <p style="text-align: center; font-weight: bold; font-size: 35px">
-                                                                    {{-- {{ $sks }} --}}
-                                                                </p>
-                                                                <br>
-                                                                <div style="text-align: center;">
-                                                                    <button type="button" class="btn btn-primary btn-rounded btn-fw float-center">View Detail</button>
-                                                                </div>
-                                                            <br>
-                                                            <br>
-                                                            <br>
-                                                        </div>
-                                                    </section>
-
-
-                                                    <section>
-                                                        <h2>KHS</h2>
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <form action="{{ route('import_manual') }}" method="POST">
-                                                                    @csrf
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <p style="text-align: right; font-weight: bold; font-size: 40px"></p>
-
-                                                                            <table>
-                                                                                <tr>
-                                                                                    <td style="font-size: 20px">SKS Semester</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td style="font-size: 20px">IP Semester</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td style="font-size: 20px">SKS Kumulatif</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td style="font-size: 20px">IP Kumulatif</td>
-                                                                                </tr>
-                                                                            </table>
-
-                                                                            <br><br>
-                                                                            <div style="text-align: center;">
-                                                                                <button type="button" class="btn btn-primary btn-rounded btn-fw float-center">View Detail</button>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </div>
-
-
-
-                                            </div>
-
-                                            <br>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-</p>
-                            <button type="button" class="close btn btn-close position-absolute" style="position: absolute;
-                            top: 0;
-                            right: 0;" aria-label="Close">x</button>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-                            {{-- <script>
-                                $(document).ready(function () {
-                                    $(".trigger").on("click", function () {
-                                        var semester = $(this).data("semester");
-                                        var irs = $(this).data("irs");
-                                        openModal(semester);
-                                        return false;
-                                    });
-
-                                    function openModal(semester) {
-                                        // Kirim permintaan AJAX ke backend
-                                        $.ajax({
-                                            type: "GET",
-                                            url: "/getMahasiswaBySemester/" + semester, // Ganti dengan URL yang sesuai di Laravel
-                                            success: function (data) {
-                                                // Manipulasi DOM atau tampilkan data di modal
-                                                console.log("Data Mahasiswa Semester " + semester + ":", data);
-                                                $
-
-                                                // Tampilkan modal atau lakukan manipulasi DOM lainnya
-                                                $(".modal-wrapper").toggleClass("open");
-                                                $(".page-wrapper").toggleClass("blur-it");
-
-                                            },
-                                            error: function (error) {
-                                                console.error("Error:", error);
-                                            }
-                                        });
-                                    }
-                                });
-                            </script> --}}
 
                             <script src="vendors/js/vendor.bundle.base.js"></script>
                             <script src="{{ asset('style1/skydash/vendors/js/vendor.bundle.base.js') }}"></script>

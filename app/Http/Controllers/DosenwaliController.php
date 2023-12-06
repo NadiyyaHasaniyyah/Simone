@@ -52,13 +52,13 @@ class DosenwaliController extends Controller
     {
         $attribute=Auth::guard('dsn')->user();
         $mhs = mahasiswa::find($id);
-        $irs = Irs::Where('mhs_id',$id)->where('semester',$smt)->get();
-        $khs = khs::Where('mhs_id',$id)->where('semester',$smt)->get();
-        $pkl = pkl::Where('mhs_id',$id)->where('semester',$smt)->get();
-        $skripsi = skripsi::Where('mhs_id',$id)->where('semester',$smt)->get();
+        $irs = Irs::Where('mhs_id',$id)->where('semester',$smt)->first();
+        $khs = khs::Where('mhs_id',$id)->where('semester',$smt)->first();
+        $pkl = pkl::Where('mhs_id',$id)->where('semester',$smt)->first();
+        $skripsi = skripsi::Where('mhs_id',$id)->where('semester',$smt)->first();
         // $irs = Irs::Where('mhs_id',$mhs->id)->Where('semester',1)->get('flag');
-        // dd($semester);
-        return view('dosenwali/semester',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi]);
+        // dd($irs);
+        return view('dosenwali/detail',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi, 'smt'=>$smt]);
     }
 
     public function getMahasiswaBySemester($semester)
@@ -243,6 +243,8 @@ class DosenwaliController extends Controller
         $pkl = Pkl::get();
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
+
         $countsudah = [];
         $countbelum = [];
         $list_pkl_sudah = [];
@@ -263,6 +265,7 @@ class DosenwaliController extends Controller
             'countbelum' => $countbelum,
             'list_sudah' => $list_pkl_sudah,
             'list_belum' => $list_pkl_belum,
+            'angkatanList' => $angkatanList,
         ]);
     }
 
@@ -331,6 +334,7 @@ class DosenwaliController extends Controller
         $skripsi = Skripsi::get();
 
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
         $countsudah = [];
         $countbelum = [];
         $list_skripsi_sudah = [];
@@ -351,6 +355,7 @@ class DosenwaliController extends Controller
             'countbelum' => $countbelum,
             'list_sudah' => $list_skripsi_sudah,
             'list_belum' => $list_skripsi_belum,
+            'angkatanList' => $angkatanList,
         ]);
     }
 
@@ -417,6 +422,7 @@ class DosenwaliController extends Controller
 
         $statusList = $mhs->pluck('status')->unique()->toArray();
         $angkatanList = $mhs->pluck('angkatan')->unique()->toArray();
+        rsort($angkatanList);
 
         $status_count = [];
         $mhs_count = [];
@@ -435,6 +441,7 @@ class DosenwaliController extends Controller
             'attribute'=>$attribute,
             'status_count'=>$status_count,
             'mhs_count'=>$mhs_count,
+            'angkatanList' => $angkatanList,
         ]);
     }
 
