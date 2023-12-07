@@ -64,6 +64,14 @@ class MahasiswaController extends Controller
                         ->where('mhs_id', $validateData['mhs_id'])
                         ->first();
 
+        $KhsSebelumnya = Khs::where('mhs_id', $validateData['mhs_id'])
+                        ->where('semester', $validateData['semester'] - 1)
+                        ->value('flag');
+
+        if ($KhsSebelumnya != 1){
+            return redirect()->route('irs_import')->with('error', 'KHS untuk semester ' . ($validateData['semester'] - 1) . ' belum disetujui.');
+        }
+
         if ($existingIrs) {
             return redirect()->route('irs_import')->with('error', 'IRS untuk semester tersebut sudah ada.');
         }
@@ -97,19 +105,6 @@ class MahasiswaController extends Controller
             'file_khs' => 'required|max:2048',
         ]);
 
-
-        // if ($validateData['semester']==1){
-        //     $validateData['sks_komulatif']=$validateData['sks_smt'];
-        //     $validateData['ipk']=$validateData['ips'];
-        // }else{
-        //     $sks_komulatif=Khs::where('mhs_id', $attribute->id)->Where('semester',$validateData['semester']-1)->first()->sks_komulatif;
-        //     $totalIP = Khs::where('mhs_id', $attribute->id)->sum('ips');
-        //     $CountSMT = Khs::where('mhs_id', $attribute->id)->count();
-
-        //     $validateData['sks_komulatif'] = $sks_komulatif+$validateData['sks_smt'];
-        //     $validateData['ipk']=($totalIP+$validateData['ips'])/($CountSMT+1);
-        // }
-
         $validateData['mhs_id'] = Auth::guard('mhs')->user()->id;
 
         if ($request->hasFile('file_khs')) {
@@ -119,6 +114,14 @@ class MahasiswaController extends Controller
         $existingIrs = Khs::where('semester', $validateData['semester'])
                         ->where('mhs_id', $validateData['mhs_id'])
                         ->first();
+
+        $belumDisetujui = Irs::where('mhs_id', $validateData['mhs_id'])
+                        ->where('semester', $validateData['semester'])
+                        ->value('flag');
+
+        if($belumDisetujui != 1){
+            return redirect()->route('khs_import')->with('error', 'IRS untuk semester tersebut belum disetujui.');
+        }
 
         if ($existingIrs) {
             return redirect()->route('khs_import')->with('error', 'KHS untuk semester tersebut sudah ada.');

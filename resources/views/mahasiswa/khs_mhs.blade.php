@@ -263,28 +263,19 @@
                                                             @csrf
 
                                                             <div class="form-group row" style="margin: auto">
+                                                                {{-- SEEMESTER --}}
+                                                                @php
+                                                                    $irs = DB::table('irs')->where('mhs_id', $attribute->id)->max('semester');
+                                                                @endphp
 
                                                                 <label for="semester" class="col-form-label col-sm-3"
                                                                     style="font-size: 16px; font-weight: bold; color: #000;">Semester</label>
                                                                 <div class="col-sm-7">
-                                                                    <select
-                                                                        class="form-control @error('semester') is-invalid @enderror"
-                                                                        name="semester" id="semester">
-                                                                        <option>pilih semester </option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                        <option value="11">11</option>
-                                                                        <option value="12">12</option>
-                                                                        <option value="13">13</option>
-                                                                        <option value="14">14</option>
+                                                                    <select class="form-control @error('semester') is-invalid @enderror" name="semester" id="semester">
+                                                                        <option>Pilih Semester</option>
+                                                                        @for ($i = 1; $i <= $irs; $i++)
+                                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                                        @endfor
                                                                     </select>
                                                                 </div>
 
@@ -293,7 +284,6 @@
                                                                     </div>
                                                                 @enderror
                                                             </div>
-
 
                                                             {{-- sks diambil --}}
                                                             <div class="form-group row" style="margin: auto">
