@@ -63,6 +63,13 @@
 
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
+                    {{-- NOTIFIKASI --}}
+                    @php
+                        $irs = DB::table('irs')->where('mhs_id', $attribute->id)->get();
+                        $khs = DB::table('khs')->where('mhs_id', $attribute->id)->get();
+                        $pkls = DB::table('pkls')->where('mhs_id', $attribute->id)->get();
+                        $skripsis = DB::table('skripsis')->where('mhs_id', $attribute->id)->get();
+                    @endphp
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                             data-toggle="dropdown">
@@ -72,46 +79,84 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                             aria-labelledby="notificationDropdown">
                             <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="fa fa-tasks mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">IRS</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        IRS sudah diverifikasi
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="fa fa-file-text-o  mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal"> KHS</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Harap Isi KHS
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="fa fa-tasks mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">IRS</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Harap Isi IRS
-                                    </p>
-                                </div>
-                            </a>
 
+                            {{-- MULAI DARI SINI --}}
+
+                            {{-- IRS --}}
+                            @foreach($irs as $irsItem)
+                                @if($irsItem->flag == -1)
+                                    <a class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-info">
+                                                <i class="fa fa-tasks mx-0"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <h6 class="preview-subject font-weight-normal">IRS</h6>
+                                            <p class="font-weight-light small-text mb-0 text-muted">
+                                                IRS untuk semester {{ $irsItem->semester }} ditolak.
+                                            </p>
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
+
+                            {{-- KHS --}}
+                            @foreach($khs as $khsItem)
+                                @if($khsItem->flag == -1)
+                                    <a class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-primary">
+                                                <i class="fa fa-file-text-o  mx-0"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <h6 class="preview-subject font-weight-normal">KHS</h6>
+                                            <p class="font-weight-light small-text mb-0 text-muted">
+                                                KHS untuk semester {{ $khsItem->semester }} ditolak.
+                                            </p>
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
+
+                            {{-- PKL --}}
+                            @foreach($pkls as $pklItem)
+                                @if($pklItem->flag == -1)
+                                    <a class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-warning">
+                                                <i class="fa fa-tasks mx-0"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <h6 class="preview-subject font-weight-normal">PKL</h6>
+                                            <p class="font-weight-light small-text mb-0 text-muted">
+                                                PKL untuk semester {{ $pklItem->semester }} ditolak.
+                                            </p>
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
+
+                            {{-- SKRIPSI --}}
+                            @foreach($skripsis as $skripsiItem)
+                                @if($skripsiItem->flag == -1)
+                                    <a class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-warning">
+                                                <i class="fa fa-tasks mx-0"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <h6 class="preview-subject font-weight-normal">SKRIPSI</h6>
+                                            <p class="font-weight-light small-text mb-0 text-muted">
+                                                SKRIPSI untuk semester {{ $skripsiItem->semester }} ditolak.
+                                            </p>
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
                         </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
