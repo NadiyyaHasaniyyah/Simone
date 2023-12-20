@@ -324,18 +324,35 @@
                                                     @endphp
                                                 @endif
                                             @else
-                                                @break
+                                                @php
+                                                    $type='danger';
+                                                    $smt=$i;
+                                                @endphp
                                             @endif
                                             @if ($end_flag == 1)
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
                                                     <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
                                                 </a>
+                                                @for ($j = $i + 1; $j <= 5; $j++)
+                                                    <a href="">
+                                                        <button type="button" class="open btn btn-danger btn-icon-text trigger">{{ $j }}</button>
+                                                    </a>
+                                                    @php
+                                                        $last=$j;
+                                                    @endphp
+                                                @endfor
                                                 @break
                                             @else
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
                                                     <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
                                                 </a>
                                             @endif
+                                        @endfor
+                                    @else
+                                        @for ($j = $last + 1; $j <= 5; $j++)
+                                            <a href="">
+                                                <button type="button" class="open btn btn-danger btn-icon-text trigger">{{ $j }}</button>
+                                            </a>
                                         @endfor
                                     @endif
 
@@ -378,12 +395,23 @@
                                                     @endphp
                                                 @endif
                                             @else
-                                                @break
+                                                @php
+                                                    $type='danger';
+                                                    $smt=$i;
+                                                @endphp
                                             @endif
                                             @if ($end_flag == 1)
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
                                                     <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
                                                 </a>
+                                                @for ($j = $i + 1; $j <= 10; $j++)
+                                                    <a href="">
+                                                        <button type="button" class="open btn btn-danger btn-icon-text trigger">{{ $j }}</button>
+                                                    </a>
+                                                    @php
+                                                        $last=$j;
+                                                    @endphp
+                                                @endfor
                                                 @break
                                             @else
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
@@ -391,8 +419,15 @@
                                                 </a>
                                             @endif
                                         @endfor
+                                    @else
+                                        @for ($j = $last + 1; $j <= 10; $j++)
+                                            <a href="">
+                                                <button type="button" class="open btn btn-danger btn-icon-text trigger">{{ $j }}</button>
+                                            </a>
+                                        @endfor
                                     @endif
                                 </div>
+                                <br>
 
 
                                 <div class="template-demo">
@@ -430,18 +465,35 @@
                                                     @endphp
                                                 @endif
                                             @else
-                                                @break
+                                                @php
+                                                    $type='danger';
+                                                    $smt=$i;
+                                                @endphp
                                             @endif
                                             @if ($end_flag == 1)
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
                                                     <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
                                                 </a>
+                                                @for ($j = $i + 1; $j <= 14; $j++)
+                                                    <a href="">
+                                                        <button type="button" class="open btn btn-danger btn-icon-text trigger">{{ $j }}</button>
+                                                    </a>
+                                                    @php
+                                                        $last=$j;
+                                                    @endphp
+                                                @endfor
                                                 @break
                                             @else
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
                                                     <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
                                                 </a>
                                             @endif
+                                        @endfor
+                                    @else
+                                        @for ($j = $last +1; $j <= 14; $j++)
+                                            <a href="">
+                                                <button type="button" class="open btn btn-danger btn-icon-text trigger">{{ $j }}</button>
+                                            </a>
                                         @endfor
                                     @endif
 
