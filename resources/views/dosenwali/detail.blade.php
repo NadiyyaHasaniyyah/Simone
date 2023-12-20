@@ -38,7 +38,7 @@
     <!-- dashboard css -->
     <link href="{{ asset('style1/skydash/css/profile.css') }}" rel="stylesheet">
     <!-- irs tabcss -->
-    <link href="{{ asset('style1/skydash/css/hasil.css') }}" rel="stylesheet">
+    <link href="{{ asset('style1/hasil.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 </head>
 <style>
