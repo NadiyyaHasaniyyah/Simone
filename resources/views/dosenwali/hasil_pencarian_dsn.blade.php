@@ -343,9 +343,16 @@
                                                 @endfor
                                                 @break
                                             @else
-                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
-                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
-                                                </a>
+                                                @if ($type == 'danger')
+                                                    <a href="">
+                                                        <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                        <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                    </a>
+                                                @endif
+                                                
                                             @endif
                                         @endfor
                                     @else
@@ -414,9 +421,15 @@
                                                 @endfor
                                                 @break
                                             @else
-                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
-                                                    <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
-                                                </a>
+                                                @if ($type == 'danger')
+                                                    <a href="">
+                                                        <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                        <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                    </a>
+                                                @endif
                                             @endif
                                         @endfor
                                     @else
@@ -484,9 +497,15 @@
                                                 @endfor
                                                 @break
                                             @else
-                                                <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                @if ($type == 'danger')
+                                                <a href="">
                                                     <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
                                                 </a>
+                                                @else
+                                                    <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
+                                                        <button type="button" class="open btn btn-{{ $type }} btn-icon-text trigger">{{ $i }}</button>
+                                                    </a>
+                                                @endif
                                             @endif
                                         @endfor
                                     @else
