@@ -466,12 +466,12 @@ class MahasiswaController extends Controller
             $validateData['file_irs'] = $request->file('file_irs')->store('importIRS');
         }
 
+        $validateData['flag'] = 0;
+
         Irs::where('id', $Irs->id)->update($validateData);
 
         return redirect()->route('irs_mhs')->with('success', 'IRS berhasil diubah.');
-        // return view('mahasiswa/irs_mhs',[
-        //     'attribute'=>$attribute,
-        //     'Irs'=>$Irs]);
+
     }
 
 
@@ -508,6 +508,7 @@ class MahasiswaController extends Controller
             $validateData['file_khs'] = $request->file('file_khs')->store('importKHS');
         }
 
+        $validateData['flag'] = 0;
         Khs::where('id', $Khs->id)->update($validateData);
 
         return redirect()->route('khs')->with('success', 'KHS berhasil diubah.');
@@ -542,6 +543,8 @@ class MahasiswaController extends Controller
         if ($request->hasFile('file_pkl')) {
             $validateData['file_pkl'] = $request->file('file_pkl')->store('importPKL');
         }
+
+        $validateData['flag'] = 0;
 
         Pkl::where('id', $Pkl->id)->update($validateData);
 
@@ -591,6 +594,8 @@ class MahasiswaController extends Controller
         if ($request->hasFile('file_skripsi')) {
             $validateData['file_skripsi'] = $request->file('file_skripsi')->store('importSKRIPSI');
         }
+
+        $validateData['flag'] = 0;
 
         Skripsi::where('id', $Skripsi->id)->update($validateData);
 
