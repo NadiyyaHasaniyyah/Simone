@@ -297,7 +297,7 @@
                                         $flag3 = $pkl->where('semester', $i)->first()->flag ?? 0;
                                         $flag4 = $skripsi->where('semester', $i)->first()->flag ?? 0;
                                         @endphp
-                                        
+
                                             @if ($flag1 == 1)
                                                 @if ($flag2 == 1)
                                                     @if ($flag4 == 1)
@@ -343,6 +343,8 @@
                                     @endif
 
                                 </div>
+
+                                <br>
 
                                 <div class="template-demo">
                                     @if ($end_flag == 0)
@@ -397,6 +399,7 @@
                                         @endfor
                                     @endif
                                 </div>
+
 
                                 <div class="template-demo">
                                     @if ($end_flag == 0)

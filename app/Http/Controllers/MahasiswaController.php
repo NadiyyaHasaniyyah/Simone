@@ -68,7 +68,7 @@ class MahasiswaController extends Controller
                         ->where('semester', $validateData['semester'] - 1)
                         ->value('flag');
 
-        if ($KhsSebelumnya != 1){
+        if ($KhsSebelumnya != 1 && $validateData['semester'] != 1){
             return redirect()->route('irs_import')->with('error', 'KHS untuk semester ' . ($validateData['semester'] - 1) . ' belum disetujui.');
         }
 

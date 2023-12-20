@@ -212,13 +212,12 @@
                         </div>
                     </div>
 
-
                     {{-- List Mahasiswa --}}
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                               <div class="card-body">
-                                <h4 class="card-title">List Mahasiswa</h4>
+                                <h4 class="card-title">List Mahasiswa Belum Skripsi</h4>
                                 <div class="table-responsive">
                                   <table class="table table-striped" id=TabelMahasiswa>
 

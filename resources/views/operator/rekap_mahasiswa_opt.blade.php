@@ -327,7 +327,7 @@
                                                 <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>$angkatanList[2]]) }}" class="text-decoration-none">{{ $angkatanList[2] }}</a>
                                             </th>
                                             <th >
-                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>$angkatanList[1]]) }}" class="text-decoration-none">{[$angkatanList[1]]}</a>
+                                                <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>$angkatanList[1]]) }}" class="text-decoration-none">{{ $angkatanList[1] }}</a>
                                             </th>
                                             <th >
                                                 <a href="{{ route('rekap_angkatan_opt', ['angkatan'=>$angkatanList[0]]) }}" class="text-decoration-none">{{ $angkatanList[0] }}</a>
