@@ -52,10 +52,10 @@ class DosenwaliController extends Controller
     {
         $attribute=Auth::guard('dsn')->user();
         $mhs = mahasiswa::find($id);
-        $irs = Irs::Where('mhs_id',$id)->where('semester',$smt)->first();
-        $khs = khs::Where('mhs_id',$id)->where('semester',$smt)->first();
-        $pkl = pkl::Where('mhs_id',$id)->where('semester',$smt)->first();
-        $skripsi = skripsi::Where('mhs_id',$id)->where('semester',$smt)->first();
+        $irs = Irs::Where('mhs_id',$id)->where('semester',$smt)->where('flag',1)->first();
+        $khs = khs::Where('mhs_id',$id)->where('semester',$smt)->where('flag',1)->first();
+        $pkl = pkl::Where('mhs_id',$id)->where('semester',$smt)->where('flag',1)->first();
+        $skripsi = skripsi::Where('mhs_id',$id)->where('semester',$smt)->where('flag',1)->first();
         // $irs = Irs::Where('mhs_id',$mhs->id)->Where('semester',1)->get('flag');
         // dd($irs);
         return view('dosenwali/detail',['attribute'=>$attribute, 'mhs'=>$mhs, 'irs'=>$irs, 'khs'=>$khs, 'pkl'=>$pkl, 'skripsi'=>$skripsi, 'smt'=>$smt]);
