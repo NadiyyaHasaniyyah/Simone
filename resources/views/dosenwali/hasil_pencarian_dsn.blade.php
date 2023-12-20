@@ -324,10 +324,7 @@
                                                     @endphp
                                                 @endif
                                             @else
-                                                @php
-                                                    $type='success';
-                                                    $smt=$i;
-                                                @endphp
+                                                @break
                                             @endif
                                             @if ($end_flag == 1)
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
@@ -381,10 +378,7 @@
                                                     @endphp
                                                 @endif
                                             @else
-                                                @php
-                                                    $type='success';
-                                                    $smt=$i;
-                                                @endphp
+                                                @break
                                             @endif
                                             @if ($end_flag == 1)
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
@@ -436,10 +430,7 @@
                                                     @endphp
                                                 @endif
                                             @else
-                                                @php
-                                                    $type='success';
-                                                    $smt=$i;
-                                                @endphp
+                                                @break
                                             @endif
                                             @if ($end_flag == 1)
                                                 <a href="{{ route('semester_pencarian', ['id'=>$id,'smt'=>$smt]) }}">
