@@ -4,12 +4,13 @@
 
 ## About FrontEnd
 
-We are using template from SkyDash, then we modify it again
+Template from SkyDash, then we modify it again
 - [Source Template SkyDash](https://themewagon.github.io/skydash/).
 
 ## About Backend
 
-We are using Laravel as Framework
+Laravel as Framework
+
 
 ## Simone
 
