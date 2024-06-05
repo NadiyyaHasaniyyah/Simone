@@ -14,3 +14,6 @@ We are using Laravel as Framework
 ## Simone
 
 Simone adalah Tugas Besar Proyek Perangkat Lunak dengan mengusung Sistem Informasi Monitoring dan Evaluasi sebagai pengambilan keputusan Departemen Informatika
+
+<img src="https://i.ibb.co.com/VQ9FPL3/fitur.png" alt="Fitur">
+
